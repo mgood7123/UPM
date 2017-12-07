@@ -1,0 +1,15 @@
+./contents.txt:                                        empty
+.:                                                     directory
+./etc/alternatives:                                    directory
+./etc/alternatives/java:                               symbolic link to `../../usr/lib/jvm/jre-1.6.0-openjdk/bin/java'
+./etc:                                                 directory
+./usr/bin:                                             directory
+./usr/bin/java:                                        symbolic link to `../../etc/alternatives/java'
+./usr:                                                 directory
+./usr/lib:                                             directory
+./usr/lib/jvm:                                         directory
+./usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0:              directory
+./usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0/jre/bin:      directory
+./usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0/jre/bin/java: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.9, stripped
+./usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0/jre:          directory
+./usr/lib/jvm/jre-1.6.0-openjdk:                       symbolic link to `java-1.6.0-openjdk-1.6.0.0/jre'

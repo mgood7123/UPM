@@ -1,0 +1,22 @@
+Test system calls ending wit *at:
+
+http://linux.die.net/man/2/openat
+
+e.g.,:
+  openat
+  faccessat
+  fstatat64
+  fchownat
+  fchmodat
+  futimesat
+  mknodat
+
+  linkat
+  symlinkat
+  renameat
+  readlinkat
+
+  mkdirat
+
+  unlinkat (both with and without AT_REMOVEDIR)
+

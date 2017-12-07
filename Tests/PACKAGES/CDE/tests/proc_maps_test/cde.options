@@ -1,0 +1,20 @@
+# cde.options v1 (do not alter this first line!)
+
+# Special cde.options file for proc_maps_test ... do NOT ignore /tmp
+
+# These directories often contain pseudo-files that shouldn't be tracked
+ignore_prefix=/dev/
+ignore_exact=/dev
+ignore_prefix=/proc/
+ignore_exact=/proc
+ignore_prefix=/sys/
+ignore_exact=/sys
+ignore_prefix=/var/cache/
+ignore_prefix=/var/lock/
+ignore_prefix=/var/log/
+ignore_prefix=/var/run/
+ignore_prefix=/var/tmp/
+
+ignore_prefix=/etc/passwd
+ignore_prefix=/etc/shadow
+

@@ -1,0 +1,6 @@
+we're assuming that Java is installed :)
+
+test to make sure that a basic Java HelloWorld works ... sadly, this
+isn't a trivial feat due to the JVM's start-up library loading
+shenanigans
+

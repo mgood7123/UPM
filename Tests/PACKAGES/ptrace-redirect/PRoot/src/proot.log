@@ -1,0 +1,389 @@
+
+./syscall/sysnum.h:
+    42	extern word_t detranslate_sysnum(Abi abi, Sysnum sysnum);
+
+./syscall/socket.h:
+    29	int translate_socketcall_enter(Tracee *tracee, word_t *sock_addr, int size);
+    30	int translate_socketcall_exit(Tracee *tracee, word_t sock_addr, word_t size_addr, word_t max_size);
+
+./syscall/exit.o:
+Binary file (standard input) matches
+
+./syscall/exit.c:
+    46	 * Translate the output arguments of the current @tracee's syscall in
+    51	void translate_syscall_exit(Tracee *tracee)
+    72		/* Translate output arguments:
+    80			translate_brk_exit(tracee);
+    96			status = translate_path(tracee, path, AT_FDCWD, ".", false);
+   113			 * in translate_syscall_exit().  */
+   138			status = translate_socketcall_exit(tracee, sock_addr, size_addr, max_size);
+   215			status = translate_socketcall_exit(tracee, sock_addr, size_addr, max_size);
+   264			status = detranslate_path(tracee, old_path, NULL);
+   283			status = detranslate_path(tracee, new_path, NULL);
+   353			/* Not optimal but safe (path is fully translated).  */
+   363			status = detranslate_path(tracee, referee, referer);
+   374			 * result, and then with the detranslated result.  This later
+   390			 * in translate_syscall_exit().  */
+   430			translate_execve_exit(tracee);
+   434			status = translate_ptrace_exit(tracee);
+   442			status = translate_wait_exit(tracee);
+   451			status = translate_setrlimit_exit(tracee, syscall_number == PR_prlimit64);
+
+./syscall/syscall.o:
+Binary file (standard input) matches
+
+./syscall/chain.c:
+   123		sysnum = detranslate_sysnum(get_abi(tracee), syscall->sysnum);
+
+./syscall/heap.c:
+    54	void translate_brk_enter(Tracee *tracee)
+   112			sysnum = detranslate_sysnum(get_abi(tracee), PR_mmap2) != SYSCALL_AVOIDER
+   150	void translate_brk_exit(Tracee *tracee)
+
+./syscall/syscall.h:
+    34	extern void translate_syscall(Tracee *tracee);
+    35	extern int  translate_syscall_enter(Tracee *tracee);
+    36	extern void translate_syscall_exit(Tracee *tracee);
+
+./syscall/rlimit.h:
+    29	extern int translate_setrlimit_exit(const Tracee *tracee, bool is_prlimit);
+
+./syscall/socket.c:
+    87	 * Translate the pathname of the struct sockaddr_un currently stored
+    90	 * Also, the new address of the translated sockaddr_un is put in the
+    94	int translate_socketcall_enter(Tracee *tracee, word_t *address, int size)
+   108		status = translate_path(tracee, host_path, AT_FDCWD, user_path, true);
+   117			/* The translated path is too long to fit the sun_path
+   131			status = detranslate_path(tracee, user_path, NULL);
+   162	 * Detranslate the pathname of the struct sockaddr_un currently stored
+   168	int translate_socketcall_exit(Tracee *tracee, word_t sock_addr, word_t size_addr, word_t max_size)
+   188		status = detranslate_path(tracee, path, NULL);
+
+./syscall/enter.c:
+    47	 * Translate @path and put the result in the @tracee's memory address
+    49	 * the documentation of translate_path() about the meaning of
+    53	static int translate_path2(Tracee *tracee, int dir_fd, char path[PATH_MAX], Reg reg, Type type)
+    62		/* Translate the original path. */
+    63		status = translate_path(tracee, new_path, dir_fd, path, type != SYMLINK);
+    73	static int translate_sysarg(Tracee *tracee, Reg reg, Type type)
+    83		return translate_path2(tracee, AT_FDCWD, old_path, reg, type);
+    87	 * Translate the input arguments of the current @tracee's syscall in the
+    92	int translate_syscall_enter(Tracee *tracee)
+   115		/* Translate input arguments. */
+   124			status = translate_execve_enter(tracee);
+   128			status = translate_ptrace_enter(tracee);
+   133			status = translate_wait_enter(tracee);
+   137			translate_brk_enter(tracee);
+   169			status = translate_path(tracee, path, dirfd, oldpath, true);
+   181			/* Sadly this method doesn't detranslate statefully,
+   195			status = detranslate_path(tracee, path, NULL);
+   225			status = translate_socketcall_enter(tracee, &address, size);
+   333			status = translate_socketcall_enter(tracee, &sock_addr, size);
+   380			status = translate_sysarg(tracee, SYSARG_1, REGULAR);
+   388				status = translate_sysarg(tracee, SYSARG_1, SYMLINK);
+   390				status = translate_sysarg(tracee, SYSARG_1, REGULAR);
+   410				status = translate_path2(tracee, dirfd, path, SYSARG_2, SYMLINK);
+   412				status = translate_path2(tracee, dirfd, path, SYSARG_2, REGULAR);
+   425			status = translate_path2(tracee, dirfd, path, SYSARG_2, REGULAR);
+   432				status = translate_sysarg(tracee, SYSARG_2, SYMLINK);
+   434				status = translate_sysarg(tracee, SYSARG_2, REGULAR);
+   450			status = translate_sysarg(tracee, SYSARG_1, SYMLINK);
+   454			status = translate_sysarg(tracee, SYSARG_1, REGULAR);
+   458			status = translate_sysarg(tracee, SYSARG_2, REGULAR);
+   475				status = translate_path2(tracee, olddirfd, oldpath, SYSARG_2, REGULAR);
+   477				status = translate_path2(tracee, olddirfd, oldpath, SYSARG_2, SYMLINK);
+   481			status = translate_path2(tracee, newdirfd, newpath, SYSARG_4, SYMLINK);
+   491				status = translate_path2(tracee, AT_FDCWD, path, SYSARG_1, REGULAR);
+   496			status = translate_sysarg(tracee, SYSARG_2, REGULAR);
+   509				status = translate_path2(tracee, dirfd, path, SYSARG_2, SYMLINK);
+   511				status = translate_path2(tracee, dirfd, path, SYSARG_2, REGULAR);
+   523			status = translate_path2(tracee, dirfd, path, SYSARG_2, SYMLINK);
+   528			status = translate_sysarg(tracee, SYSARG_1, SYMLINK);
+   532			status = translate_sysarg(tracee, SYSARG_2, SYMLINK);
+   547			status = translate_path2(tracee, olddirfd, oldpath, SYSARG_2, SYMLINK);
+   551			status = translate_path2(tracee, newdirfd, newpath, SYSARG_4, SYMLINK);
+   555			status = translate_sysarg(tracee, SYSARG_2, SYMLINK);
+   565			status = translate_path2(tracee, newdirfd, newpath, SYSARG_3, SYMLINK);
+
+./syscall/chain.o:
+Binary file (standard input) matches
+
+./syscall/enter.o:
+Binary file (standard input) matches
+
+./syscall/rlimit.o:
+Binary file (standard input) matches
+
+./syscall/syscall.c:
+   102	void translate_syscall(Tracee *tracee)
+   120			/* Translate the syscall only if it was actually
+   125				status = translate_syscall_enter(tracee);
+   159			/* Translate the syscall only if it was actually
+   163				translate_syscall_exit(tracee);
+
+./syscall/heap.o:
+Binary file (standard input) matches
+
+./syscall/seccomp.c:
+   276					syscall = detranslate_sysnum(seccomp_archs[i].abis[j], sysnums[k].value);
+   290					syscall = detranslate_sysnum(seccomp_archs[i].abis[j], sysnums[k].value);
+
+./syscall/heap.h:
+    28	extern void translate_brk_enter(Tracee *tracee);
+    29	extern void translate_brk_exit(Tracee *tracee);
+
+./syscall/socket.o:
+Binary file (standard input) matches
+
+./syscall/rlimit.c:
+    59	int translate_setrlimit_exit(const Tracee *tracee, bool is_prlimit)
+
+./syscall/sysnum.o:
+Binary file (standard input) matches
+
+./syscall/sysnum.c:
+    81	static Sysnum translate_sysnum(Abi abi, word_t sysnum)
+   104	word_t detranslate_sysnum(Abi abi, Sysnum sysnum)
+   130		return translate_sysnum(get_abi(tracee), peek_reg(tracee, version, SYSARG_NUM));
+   140		poke_reg(tracee, SYSARG_NUM, detranslate_sysnum(get_abi(tracee), sysnum));
+
+./syscall/seccomp.o:
+Binary file (standard input) matches
+
+./proot:
+Binary file (standard input) matches
+
+./proot.log:
+     3	    42	extern word_t detranslate_sysnum(Abi abi, Sysnum sysnum);
+     6	    29	int translate_socketcall_enter(Tracee *tracee, word_t *sock_addr, int size);
+     7	    30	int translate_socketcall_exit(Tracee *tracee, word_t sock_addr, word_t size_addr, word_t max_size);
+    13	    46	 * Translate the output arguments of the current @tracee's syscall in
+    14	    51	void translate_syscall_exit(Tracee *tracee)
+    15	    72		/* Translate output arguments:
+    16	    80			translate_brk_exit(tracee);
+    17	    96			status = translate_path(tracee, path, AT_FDCWD, ".", false);
+    18	   113			 * in translate_syscall_exit().  */
+    19	   138			status = translate_socketcall_exit(tracee, sock_addr, size_addr, max_size);
+    20	   215			status = translate_socketcall_exit(tracee, sock_addr, size_addr, max_size);
+    21	   264			status = detranslate_path(tracee, old_path, NULL);
+    22	   283			status = detranslate_path(tracee, new_path, NULL);
+    23	   353			/* Not optimal but safe (path is fully translated).  */
+    24	   363			status = detranslate_path(tracee, referee, referer);
+    25	   374			 * result, and then with the detranslated result.  This later
+    26	   390			 * in translate_syscall_exit().  */
+    27	   430			translate_execve_exit(tracee);
+    28	   434			status = translate_ptrace_exit(tracee);
+    29	   442			status = translate_wait_exit(tracee);
+    30	   451			status = translate_setrlimit_exit(tracee, syscall_number == PR_prlimit64);
+    36	   123		sysnum = detranslate_sysnum(get_abi(tracee), syscall->sysnum);
+    39	    54	void translate_brk_enter(Tracee *tracee)
+    40	   112			sysnum = detranslate_sysnum(get_abi(tracee), PR_mmap2) != SYSCALL_AVOIDER
+    41	   150	void translate_brk_exit(Tracee *tracee)
+    44	    34	extern void translate_syscall(Tracee *tracee);
+    45	    35	extern int  translate_syscall_enter(Tracee *tracee);
+    46	    36	extern void translate_syscall_exit(Tracee *tracee);
+    49	    29	extern int translate_setrlimit_exit(const Tracee *tracee, bool is_prlimit);
+    52	    87	 * Translate the pathname of the struct sockaddr_un currently stored
+    53	    90	 * Also, the new address of the translated sockaddr_un is put in the
+    54	    94	int translate_socketcall_enter(Tracee *tracee, word_t *address, int size)
+    55	   108		status = translate_path(tracee, host_path, AT_FDCWD, user_path, true);
+    56	   117			/* The translated path is too long to fit the sun_path
+    57	   131			status = detranslate_path(tracee, user_path, NULL);
+    58	   162	 * Detranslate the pathname of the struct sockaddr_un currently stored
+    59	   168	int translate_socketcall_exit(Tracee *tracee, word_t sock_addr, word_t size_addr, word_t max_size)
+    60	   188		status = detranslate_path(tracee, path, NULL);
+    63	    47	 * Translate @path and put the result in the @tracee's memory address
+    64	    49	 * the documentation of translate_path() about the meaning of
+    65	    53	static int translate_path2(Tracee *tracee, int dir_fd, char path[PATH_MAX], Reg reg, Type type)
+    66	    62		/* Translate the original path. */
+    67	    63		status = translate_path(tracee, new_path, dir_fd, path, type != SYMLINK);
+    68	    73	static int translate_sysarg(Tracee *tracee, Reg reg, Type type)
+    69	    83		return translate_path2(tracee, AT_FDCWD, old_path, reg, type);
+    70	    87	 * Translate the input arguments of the current @tracee's syscall in the
+    71	    92	int translate_syscall_enter(Tracee *tracee)
+    72	   115		/* Translate input arguments. */
+    73	   124			status = translate_execve_enter(tracee);
+    74	   128			status = translate_ptrace_enter(tracee);
+    75	   133			status = translate_wait_enter(tracee);
+    76	   137			translate_brk_enter(tracee);
+    77	   169			status = translate_path(tracee, path, dirfd, oldpath, true);
+    78	   181			/* Sadly this method doesn't detranslate statefully,
+    79	   195			status = detranslate_path(tracee, path, NULL);
+    80	   225			status = translate_socketcall_enter(tracee, &address, size);
+    81	   333			status = translate_socketcall_enter(tracee, &sock_addr, size);
+    82	   380			status = translate_sysarg(tracee, SYSARG_1, REGULAR);
+    83	   388				status = translate_sysarg(tracee, SYSARG_1, SYMLINK);
+    84	   390				status = translate_sysarg(tracee, SYSARG_1, REGULAR);
+    85	   410				status = translate_path2(tracee, dirfd, path, SYSARG_2, SYMLINK);
+    86	   412				status = translate_path2(tracee, dirfd, path, SYSARG_2, REGULAR);
+    87	   425			status = translate_path2(tracee, dirfd, path, SYSARG_2, REGULAR);
+    88	   432				status = translate_sysarg(tracee, SYSARG_2, SYMLINK);
+    89	   434				status = translate_sysarg(tracee, SYSARG_2, REGULAR);
+    90	   450			status = translate_sysarg(tracee, SYSARG_1, SYMLINK);
+    91	   454			status = translate_sysarg(tracee, SYSARG_1, REGULAR);
+    92	   458			status = translate_sysarg(tracee, SYSARG_2, REGULAR);
+    93	   475				status = translate_path2(tracee, olddirfd, oldpath, SYSARG_2, REGULAR);
+    94	   477				status = translate_path2(tracee, olddirfd, oldpath, SYSARG_2, SYMLINK);
+    95	   481			status = translate_path2(tracee, newdirfd, newpath, SYSARG_4, SYMLINK);
+    96	   491				status = translate_path2(tracee, AT_FDCWD, path, SYSARG_1, REGULAR);
+    97	   496			status = translate_sysarg(tracee, SYSARG_2, REGULAR);
+    98	   509				status = translate_path2(tracee, dirfd, path, SYSARG_2, SYMLINK);
+    99	   511				status = translate_path2(tracee, dirfd, path, SYSARG_2, REGULAR);
+   100	   523			status = translate_path2(tracee, dirfd, path, SYSARG_2, SYMLINK);
+   101	   528			status = translate_sysarg(tracee, SYSARG_1, SYMLINK);
+   102	   532			status = translate_sysarg(tracee, SYSARG_2, SYMLINK);
+   103	   547			status = translate_path2(tracee, olddirfd, oldpath, SYSARG_2, SYMLINK);
+   104	   551			status = translate_path2(tracee, newdirfd, newpath, SYSARG_4, SYMLINK);
+   105	   555			status = translate_sysarg(tracee, SYSARG_2, SYMLINK);
+   106	   565			status = translate_path2(tracee, newdirfd, newpath, SYSARG_3, SYMLINK);
+   118	   102	void translate_syscall(Tracee *tracee)
+   119	   120			/* Translate the syscall only if it was actually
+   120	   125				status = translate_syscall_enter(tracee);
+   121	   159			/* Translate the syscall only if it was actually
+   122	   163				translate_syscall_exit(tracee);
+   128	   276					syscall = detranslate_sysnum(seccomp_archs[i].abis[j], sysnums[k].value);
+   129	   290					syscall = detranslate_sysnum(seccomp_archs[i].abis[j], sysnums[k].value);
+   132	    28	extern void translate_brk_enter(Tracee *tracee);
+   133	    29	extern void translate_brk_exit(Tracee *tracee);
+   139	    59	int translate_setrlimit_exit(const Tracee *tracee, bool is_prlimit)
+   145	    81	static Sysnum translate_sysnum(Abi abi, word_t sysnum)
+   146	   104	word_t detranslate_sysnum(Abi abi, Sysnum sysnum)
+   147	   130		return translate_sysnum(get_abi(tracee), peek_reg(tracee, version, SYSARG_NUM));
+   148	   140		poke_reg(tracee, SYSARG_NUM, detranslate_sysnum(get_abi(tracee), sysnum));
+
+./cli/proot.c:
+   346		 * translate_execve() for details.  */
+   348			status = detranslate_path(tracee->reconf.tracee, path, NULL);
+
+./cli/cli.c:
+   271		status = detranslate_path(tracee, path, NULL);
+
+./cli/proot.o:
+Binary file (standard input) matches
+
+./cli/cli.o:
+Binary file (standard input) matches
+
+./tracee/event.c:
+    62		 * translated until they are closed. */
+   221		status = translate_path(tracee, path, AT_FDCWD, tracee->exe, false);
+   475					translate_syscall(tracee);
+   527				translate_syscall(tracee);
+
+./tracee/event.o:
+Binary file (standard input) matches
+
+./extension/extension.h:
+    36		 * is about to be translated: "(char *) data1" is the base for
+    48		 * parent directories and symlinks in order to translate it.
+
+./extension/portmap/portmap.o:
+Binary file (standard input) matches
+
+./extension/portmap/portmap.c:
+   165	int translate_port(Tracee *tracee, Config *config, word_t sockfd, word_t *sock_addr, int size, int is_bind_syscall) {
+   262				status = translate_port(tracee, config, sockfd, &sock_addr, size, is_bind_syscall);
+   314			status = translate_port(tracee, config, sockfd, &sock_addr, size, is_bind_syscall);
+   520			/* As PRoot only translate unix sockets,
+
+./extension/kompat/kompat.o:
+Binary file (standard input) matches
+
+./extension/kompat/kompat.c:
+    98		syscall = detranslate_sysnum(get_abi(tracee), modif->new_sysarg_num);
+
+./extension/care/care.c:
+   500			translate_path(tracee, path, fd, component, false);
+
+./ptrace/ptrace.c:
+    81	 * Translate the ptrace syscall made by @tracee into a "void" syscall
+    86	int translate_ptrace_enter(Tracee *tracee)
+   123	int translate_ptrace_exit(Tracee *tracee)
+
+./ptrace/wait.o:
+Binary file (standard input) matches
+
+./ptrace/wait.h:
+    28	extern int translate_wait_enter(Tracee *ptracer);
+    29	extern int translate_wait_exit(Tracee *ptracer);
+
+./ptrace/ptrace.h:
+    28	extern int translate_ptrace_enter(Tracee *tracee);
+    29	extern int translate_ptrace_exit(Tracee *tracee);
+
+./ptrace/ptrace.o:
+Binary file (standard input) matches
+
+./ptrace/wait.c:
+    82	 * Translate the wait syscall made by @ptracer into a "void" syscall
+    87	int translate_wait_enter(Tracee *ptracer)
+   181	int translate_wait_exit(Tracee *ptracer)
+   324		   the ptracer in translate_ptrace_exit() in order to restart
+   333		/* Note: wait_pid is set in translate_wait_exit() if no
+
+./execve/execve.h:
+    32	extern int translate_execve_enter(Tracee *tracee);
+    33	extern void translate_execve_exit(Tracee *tracee);
+    34	extern int translate_and_check_exec(Tracee *tracee, char host_path[PATH_MAX], const char *user_path);
+
+./execve/exit.o:
+Binary file (standard input) matches
+
+./execve/exit.c:
+   398	void translate_execve_exit(Tracee *tracee)
+
+./execve/enter.c:
+   127	 * Translate @user_path into @host_path and check if this latter exists, is
+   131	int translate_and_check_exec(Tracee *tracee, char host_path[PATH_MAX], const char *user_path)
+   139		status = translate_path(tracee, host_path, AT_FDCWD, user_path, true);
+   208		status = translate_and_check_exec(tracee, host_path, user_path);
+   573	 * translate_load_*().  This function returns -errno if an error
+   576	int translate_execve_enter(Tracee *tracee)
+   618		 * a canonicalized guest path, hence detranslate_path()
+   621		status = detranslate_path(tracee, new_exe, NULL);
+
+./execve/enter.o:
+Binary file (standard input) matches
+
+./execve/shebang.o:
+Binary file (standard input) matches
+
+./execve/shebang.c:
+   234			/* Translate this path (user -> host), then check it is executable.  */
+   235			status = translate_and_check_exec(tracee, host_path, user_path);
+   254			/* Translate new path (user -> host), then check it is executable.  */
+   255			status = translate_and_check_exec(tracee, host_path, user_path);
+
+./path/path.c:
+   233			status = translate_path(tracee, host_path, AT_FDCWD, path, deref_final);
+   318	int translate_path(Tracee *tracee, char result[PATH_MAX], int dir_fd,
+   344			status = detranslate_path(tracee, result, NULL);
+   355		VERBOSE(tracee, 2, "vpid %" PRIu64 ": translate(\"%s\" + \"%s\")",
+   391	 * Remove/substitute the leading part of a "translated" @path.  It
+   397	int detranslate_path(Tracee *tracee, char path[PATH_MAX], const char t_referrer[PATH_MAX])
+   409		/* Don't try to detranslate relative paths (typically the
+   513	 * Check if the translated @host_path belongs to the guest rootfs,
+   653		VERBOSE(tracee, 1, "pid %d: access to \"%s\" (fd %d) won't be translated until closed",
+
+./path/binding.o:
+Binary file (standard input) matches
+
+./path/proc.c:
+   142			 * Note they are still correctly detranslated in
+
+./path/path.h:
+    79	extern int translate_path(Tracee *tracee, char host_path[PATH_MAX],
+    82	extern int detranslate_path(Tracee *tracee, char path[PATH_MAX], const char t_referrer[PATH_MAX]);
+
+./path/path.o:
+Binary file (standard input) matches
+
+./path/canon.c:
+   129	 * Resolve bindings (if any) in @guest_path and copy the translated
+   312			status = detranslate_path(tracee, scratch_path, host_path);
+
+./path/binding.c:
+   618		status = detranslate_path(tracee->reconf.tracee, path, NULL);
+
+./path/canon.o:
+Binary file (standard input) matches

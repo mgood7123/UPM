@@ -1,0 +1,4 @@
+WARNING: the symlink '/lib/modules/2.6.25.9-76.fc9.i686/source' has a non-existent target
+WARNING: '/lib/modules/2.6.25.9-76.fc9.i686/../../../usr/src/kernels/2.6.25.9-76.fc9.i686' (symlink target) does not exist
+WARNING: the symlink '/lib/modules/2.6.25.9-76.fc9.i686/build' has a non-existent target
+WARNING: '/lib/modules/2.6.25.9-76.fc9.i686/../../../usr/src/kernels/2.6.25.9-76.fc9.i686' (symlink target) does not exist
