@@ -1,0 +1,7 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Compiler/Lexer.pm relocate_as=../../../Compiler/Lexer.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Compiler/Lexer/Constants.pm relocate_as=../../../Compiler/Lexer/Constants.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Compiler/Lexer/Token.pm relocate_as=../../../Compiler/Lexer/Token.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Compiler/Lexer/Lexer.bs relocate_as=Lexer.bs
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Compiler/Lexer/Lexer.so relocate_as=Lexer.so
+/UPM/Files/Code/perl/man/man3/Compiler::Lexer.3 relocate_as=../../../../../../../man/man3/Compiler::Lexer.3
+/UPM/Files/Code/perl/man/man3/Compiler::Lexer::Token.3 relocate_as=../../../../../../../man/man3/Compiler::Lexer::Token.3

@@ -1,0 +1,10 @@
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/Future.pm relocate_as=../../../Future.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/Future/Mutex.pm relocate_as=../../../Future/Mutex.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/Future/Phrasebook.pod relocate_as=../../../Future/Phrasebook.pod
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/Future/Utils.pm relocate_as=../../../Future/Utils.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/Test/Future.pm relocate_as=../../../Test/Future.pm
+/UPM/perl-5.26.1/dir./perl/man/man3/Future.3 relocate_as=../../../../../../man/man3/Future.3
+/UPM/perl-5.26.1/dir./perl/man/man3/Future::Mutex.3 relocate_as=../../../../../../man/man3/Future::Mutex.3
+/UPM/perl-5.26.1/dir./perl/man/man3/Future::Phrasebook.3 relocate_as=../../../../../../man/man3/Future::Phrasebook.3
+/UPM/perl-5.26.1/dir./perl/man/man3/Future::Utils.3 relocate_as=../../../../../../man/man3/Future::Utils.3
+/UPM/perl-5.26.1/dir./perl/man/man3/Test::Future.3 relocate_as=../../../../../../man/man3/Test::Future.3

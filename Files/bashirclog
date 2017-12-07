@@ -1,0 +1,67 @@
+[*] Starting BASH IRC Client\Bot
+[I] Written by <-Harvie 2oo7
+
+[i] Using socket wrapper birc_bash_netcat
+[i] Using socket Files/FIFOs /home/zorin-os/.birc/sock(r)
+[i] Using socket interval 0.3 seconds between I/O
+:moon.freenode.net NOTICE * :*** Looking up your hostname...
+:moon.freenode.net NOTICE * :*** Checking Ident
+:moon.freenode.net NOTICE * :*** Couldn't look up your hostname
+[i] zorin-os@zorin-os -> bircbot@#chuckbot@irc.freenode.net:6667
+[i] Joining channel #chuckbot
+[>] Now waiting for your messages on STDIN, Please wait while i join the server irc.freenode.net
+:moon.freenode.net NOTICE * :*** No Ident response
+:moon.freenode.net 451 * :You have not registered
+:moon.freenode.net 001 bircbot :Welcome to the freenode Internet Relay Chat Network bircbot
+:moon.freenode.net 002 bircbot :Your host is moon.freenode.net[2600:3c02::f03c:91ff:fe59:7d2e/6667], running version ircd-seven-1.1.4
+:moon.freenode.net 003 bircbot :This server was created Wed Jan 4 2017 at 21:44:53 UTC
+:moon.freenode.net 004 bircbot moon.freenode.net ircd-seven-1.1.4 DOQRSZaghilopswz CFILMPQSbcefgijklmnopqrstvz bkloveqjfI
+:moon.freenode.net 005 bircbot CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 :are supported by this server
+:moon.freenode.net 005 bircbot CHARSET=ascii NICKLEN=16 CHANNELLEN=50 TOPICLEN=390 DEAF=D FNC TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,ajrxz CLIENTVER=3.0 SAFELIST ELIST=CTU CPRIVMSG :are supported by this server
+:moon.freenode.net 005 bircbot CNOTICE WHOX ETRACE KNOCK :are supported by this server
+:moon.freenode.net 251 bircbot :There are 112 users and 79813 invisible on 30 servers
+:moon.freenode.net 252 bircbot 31 :IRC Operators online
+:moon.freenode.net 253 bircbot 3 :unknown connection(s)
+:moon.freenode.net 254 bircbot 52384 :channels formed
+:moon.freenode.net 255 bircbot :I have 4909 clients and 1 servers
+:moon.freenode.net 265 bircbot 4909 10979 :Current local users 4909, max 10979
+:moon.freenode.net 266 bircbot 79925 97718 :Current global users 79925, max 97718
+:moon.freenode.net 250 bircbot :Highest connection count: 10980 (10979 clients) (1565060 connections received)
+:moon.freenode.net 375 bircbot :- moon.freenode.net Message of the Day - 
+:moon.freenode.net 372 bircbot :-   __                               _          _  _   _     _____     _______ 
+:moon.freenode.net 372 bircbot :-  / _|_ __ ___  ___ _ __   ___   __| | ___   _| || |_| |   |_ _    / / ____|
+:moon.freenode.net 372 bircbot :- | |_| '__/ _ / _  '_  / _  / _` |/ _  |_  ..  _| |    | |   / /|  _|  
+:moon.freenode.net 372 bircbot :- |  _| | |  __/  __/ | | | (_) | (_| |  __/ |_      _| |___ | |   V / | |___ 
+:moon.freenode.net 372 bircbot :- |_| |_|  ___|___|_| |_|___/ __,_|___|   |_||_| |_____|___|  _/  |_____|
+:moon.freenode.net 372 bircbot :-                                                                              
+:moon.freenode.net 372 bircbot :- October 28th - 29th, Bristol, United Kingdom - see http://freenode.live/
+:moon.freenode.net 372 bircbot :-  
+:moon.freenode.net 372 bircbot :- freenode #live is a community-focused live event designed to build and
+:moon.freenode.net 372 bircbot :- strengthen relationships between Free and Open Source Software (FOSS)
+:moon.freenode.net 372 bircbot :- developers and users. freenode live seeks to raise awareness of and 
+:moon.freenode.net 372 bircbot :- promote FOSS alternatives to proprietary software. 
+:moon.freenode.net 372 bircbot :-  
+:moon.freenode.net 372 bircbot :- Facilitating face-to-face interaction, creative workshops, talks and think 
+:moon.freenode.net 372 bircbot :- tanks, freenode #live will bring developers and users together in a nurturing 
+:moon.freenode.net 372 bircbot :- and dynamic environment stimulating the free exchange of ideas and 
+:moon.freenode.net 372 bircbot :- information while fostering cross-project collaboration and dialogue for 
+:moon.freenode.net 372 bircbot :- innovation.
+:moon.freenode.net 372 bircbot :-  
+:moon.freenode.net 372 bircbot :- Please join us in the #live channel on the freenode network, or send us an
+:moon.freenode.net 372 bircbot :- e-mail (2017-team@freenode.live) if you have any questions and would like to
+:moon.freenode.net 372 bircbot :- get involved! Further information will also be posted on the freenode.net 
+:moon.freenode.net 372 bircbot :- website.
+:moon.freenode.net 372 bircbot :-  
+:moon.freenode.net 372 bircbot :-  
+:moon.freenode.net 372 bircbot :- See https://freenode.live/ for more information and to get your tickets!
+:moon.freenode.net 372 bircbot :-  
+:moon.freenode.net 372 bircbot :- We hope to see you there!
+:moon.freenode.net 372 bircbot :-  
+:moon.freenode.net 372 bircbot :-  
+:moon.freenode.net 372 bircbot :- By connecting to freenode you indicate that you have read and
+:moon.freenode.net 372 bircbot :- agree with our policies and guidelines as published on
+:moon.freenode.net 372 bircbot :- https://freenode.net
+:moon.freenode.net 376 bircbot :End of /MOTD command.
+:bircbot MODE bircbot :+i
+:bircbot!~bircbot@2405:7f00:881f:9c00:7036:62df:cce2:49f1 QUIT :Excess Flood
+ERROR :Closing Link: 2405:7f00:881f:9c00:7036:62df:cce2:49f1 (Excess Flood)

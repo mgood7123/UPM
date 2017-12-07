@@ -1,0 +1,3 @@
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/bareword/filehandles/filehandles.so relocate_as=filehandles.so
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/bareword/filehandles.pm relocate_as=../../../bareword/filehandles.pm
+/UPM/perl-5.26.1/dir./perl/man/man3/bareword::filehandles.3 relocate_as=../../../../../../../man/man3/bareword::filehandles.3

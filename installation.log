@@ -1,0 +1,562 @@
+07:22:09 [1]: Calamares version: 3.1.5 
+07:22:09 [1]: Default font ===== 
+Pixel size:    -1 
+Point size:    10 
+Point sizeF:   10 
+Font family:   "Noto Sans" 
+Metric height: 20 
+07:22:09 [1]: Font height: 20 
+07:22:09 [1]: Available languages: ("ar", "ast", "bg", "ca", "cs_CZ", "da", "de", "el", "en", "en_GB", "es_MX", "es", "eu", "fr", "he", "hr", "hu", "id", "is", "it_IT", "ja", "lt", "nl", "pl", "pt_BR", "pt_PT", "ro", "ru", "sk", "sv", "th", "tr_TR", "zh_CN", "zh_TW") 
+07:22:09 [1]: CalamaresApplication thread: 0x1ee8c90 
+07:22:09 [1]: Using log file: "/root/.cache/Calamares/Calamares/Calamares.log" 
+07:22:09 [1]: Using Calamares settings file at "/usr/share/calamares/settings.conf" 
+07:22:09 [1]: Using Calamares branding file at "/usr/share/calamares/branding/chakra/branding.desc" 
+07:22:09 [1]: Loaded branding component "chakra" 
+07:22:09 [1]: STARTUP: initQmlPath, initSettings, initBranding done 
+07:22:09 [1]: STARTUP: initModuleManager: module init started 
+07:22:09 [1]: STARTUP: initModuleManager: all modules init done 
+07:22:10 [1]: STARTUP: initJobQueue done 
+07:22:10 [1]: Available size QSize(1024, 738) 
+07:22:10 [1]:   Proposed window size: 1024 720 
+07:22:10 [1]: STARTUP: CalamaresWindow created; loadModules started 
+07:22:10 [1]: Initial locale  "en_US" 
+07:22:10 [8]: Translation: Branding component: Using default locale, system locale one not found: "en_US"
+07:22:10 [8]: Translation: Calamares: Using system locale: "en_US"
+07:22:10 [1]: Welcome string false "Chakra GNU/Linux 2017 \"Goedel\"" 
+07:22:10 [1]: ViewModule "welcome@welcome" loading complete. 
+07:22:10 [1]: WARNING: guessLocaleConfiguration can't guess from an empty list. 
+07:22:10 [1]: ViewModule "locale@locale" loading complete. 
+07:22:13 [1]: ViewModule "keyboard@keyboard" loading complete. 
+07:22:13 [8]: Loaded backend plugin:  "pmlibpartedbackendplugin"
+07:22:13 [1]: ViewModule "partition@partition" loading complete. 
+07:22:13 [1]: ViewModule "users@users" loading complete. 
+07:22:13 [1]: ViewModule "summary@summary" loading complete. 
+07:22:13 [1]: Module "partition@partition" already loaded. 
+07:22:13 [1]: QML import paths: ("/usr/share/calamares/qml", "/usr/bin", "qrc:/qt-project.org/imports", "/usr/lib/qt5/qml") 
+07:22:13 [1]: Module "locale@locale" already loaded. 
+07:22:13 [1]: Module "keyboard@keyboard" already loaded. 
+07:22:13 [1]: Module "users@users" already loaded. 
+07:22:13 [0]: void Calamares::Module::loadConfigurationFile(const QString&) bad module configuration format "/usr/share/calamares/modules/finished.conf" 
+07:22:13 [1]: FinishedPage() 
+07:22:13 [1]: ViewModule "finished@finished" loading complete. 
+07:22:13 [1]: STARTUP: loadModules for all modules done 
+07:22:13 [1]: STARTUP: Window now visible and ProgressTreeView populated 
+07:22:13 [1]: Need at least storage bytes: 5905580032 
+07:22:14 [1]: Need at least ram bytes: 1073741824 
+07:22:14 [1]: A battery exists, checking for mains power. 
+07:22:14 [1]: enoughStorage, enoughRam, hasPower, hasInternet, isRoot:  true true true true true 
+07:22:14 [1]: xkbmap selection changed to:  "us" - "" 
+07:22:16 [8]: getting smart status failed for  "/dev/sda" :  Operation not supported
+08:22:16 [1]: WARNING: guessLocaleConfiguration can't guess from an empty list. 
+08:22:16 [1]: WARNING: guessLocaleConfiguration can't guess from an empty list. 
+08:22:16 [1]: WARNING: guessLocaleConfiguration can't guess from an empty list. 
+08:22:16 [1]: WARNING: guessLocaleConfiguration can't guess from an empty list. 
+08:22:20 [0]: blkid: unknown file system type  "linux_raid_member"  on  "/dev/sdb4"
+08:22:20 [0]: blkid: unknown file system type  ""  on  "/dev/sdb5"
+08:22:21 [0]: blkid: unknown file system type  "linux_raid_member"  on  "/dev/sdb6"
+08:22:21 [1]: Removing unsuitable devices: 2 candidates. 
+08:22:21 [1]:   .. Removing device with iso9660 filesystem (probably a CD) on it "/dev/sda" 
+08:22:22 [1]: LIST OF DETECTED DEVICES: 
+08:22:22 [1]: node	capacity	name	prettyName 
+08:22:22 [1]: "/dev/sdb" 500105249280 "ATA WDC WD5000BPVT-8" "ATA WDC WD5000BPVT-8 – 465.76 GiB (/dev/sdb)" 
+08:22:22 [1]: .. 1 devices detected. 
+17:23:22 [1]: ERROR: os-prober timed out. 
+17:23:22 [1]: "Osprober lines, clean:\n" 
+17:23:22 [0]: QProcess: Destroyed while process ("os-prober") is still running.
+17:23:22 [1]: Updating partitioning state widgets. 
+17:23:22 [0]: QObject::setParent: Cannot set parent, new parent is in a different thread
+17:23:22 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:23:22 [1]: Available storage B: 238146023424 "(221GB)" for "/dev/sdb3"    length: 488386560    sectorsUsed: 23257608    fsType: "ext4" 
+17:23:22 [1]: Partition "/dev/sdb3" authorized for resize + autopartition install. 
+17:23:22 [1]: Required  storage B: 6442450944 "(6GB)" 
+17:23:22 [1]: Storage capacity  B: 250053918720 "(232GB)" for "/dev/sdb3"    length: 488386560 
+17:23:22 [1]: Partition "/dev/sdb3" authorized for replace install. 
+17:23:22 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:23:22 [1]: Available storage B: 49137061888 "(45GB)" for "/dev/sdb1"    length: 103536640    sectorsUsed: 7565816    fsType: "ext4" 
+17:23:22 [1]: Partition "/dev/sdb1" authorized for resize + autopartition install. 
+17:23:22 [1]: Required  storage B: 6442450944 "(6GB)" 
+17:23:22 [1]: Storage capacity  B: 53010759680 "(49GB)" for "/dev/sdb1"    length: 103536640 
+17:23:22 [1]: Partition "/dev/sdb1" authorized for replace install. 
+17:23:22 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:23:22 [1]: Available storage B: 51717251072 "(48GB)" for "/dev/sdb2"    length: 103536640    sectorsUsed: 2526384    fsType: "ext4" 
+17:23:22 [1]: Partition "/dev/sdb2" authorized for resize + autopartition install. 
+17:23:22 [1]: Required  storage B: 6442450944 "(6GB)" 
+17:23:22 [1]: Storage capacity  B: 53010759680 "(49GB)" for "/dev/sdb2"    length: 103536640 
+17:23:22 [1]: Partition "/dev/sdb2" authorized for replace install. 
+17:23:22 [1]: Required  storage B: 6442450944 "(6GB)" 
+17:23:22 [1]: Storage capacity  B: 15842934784 "(14GB)" for "/dev/sdb4"    length: 30943232 
+17:23:22 [1]: Partition "/dev/sdb4" authorized for replace install. 
+17:23:22 [1]: Required  storage B: 6442450944 "(6GB)" 
+17:23:22 [1]: Storage capacity  B: 536870912 "(0GB)" for "/dev/sdb5"    length: 1048576 
+17:23:22 [1]: Required  storage B: 6442450944 "(6GB)" 
+17:23:22 [1]: Storage capacity  B: 15842934784 "(14GB)" for "/dev/sdb6"    length: 30943232 
+17:23:22 [1]: Partition "/dev/sdb6" authorized for replace install. 
+17:23:22 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:23:22 [1]: Available storage B: 5195878400 "(4GB)" for "/dev/sdb7"    length: 10485760    sectorsUsed: 337560    fsType: "ext4" 
+17:23:22 [1]: Required  storage B: 6442450944 "(6GB)" 
+17:23:22 [1]: Storage capacity  B: 5368709120 "(5GB)" for "/dev/sdb7"    length: 10485760 
+17:23:22 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:23:22 [1]: Available storage B: 17179869184 "(16GB)" for "/dev/sdb8"    length: 33554432    sectorsUsed: 0    fsType: "linuxswap" 
+17:23:22 [1]: Partition "/dev/sdb8" authorized for resize + autopartition install. 
+17:23:22 [1]: Required  storage B: 6442450944 "(6GB)" 
+17:23:22 [1]: Storage capacity  B: 17179869184 "(16GB)" for "/dev/sdb8"    length: 33554432 
+17:23:22 [1]: Partition "/dev/sdb8" authorized for replace install. 
+17:23:22 [1]: Required  storage B: 6442450944 "(6GB)" 
+17:23:22 [1]: Storage capacity  B: 89260039680 "(83GB)" for ""    length: 174336015 
+17:23:22 [1]: Partition "" authorized for replace install. 
+17:23:22 [1]: Updating partitioning preview widgets. 
+17:26:12 [1]: Updating partitioning preview widgets. 
+17:26:12 [1]: PSI added item "/dev/sdb3" size 250053918720 
+17:26:12 [1]: PSI added item "/dev/sdb1" size 53010759680 
+17:26:12 [1]: PSI added item "/dev/sdb2" size 53010759680 
+17:26:12 [1]: PSI added item "/dev/sdb4" size 15842934784 
+17:26:12 [1]: PSI added item "/dev/sdb5" size 536870912 
+17:26:12 [1]: PSI added item "/dev/sdb6" size 15842934784 
+17:26:12 [1]: PSI added item "/dev/sdb7" size 5368709120 
+17:26:12 [1]: PSI added item "/dev/sdb8" size 17179869184 
+17:26:12 [1]: PSI added item "" size 89260039680 
+17:26:18 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:26:18 [1]: Available storage B: 238146023424 "(221GB)" for "/dev/sdb3"    length: 488386560    sectorsUsed: 23257608    fsType: "ext4" 
+17:26:18 [1]: Partition "/dev/sdb3" authorized for resize + autopartition install. 
+17:26:18 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:26:18 [1]: Available storage B: 238146023424 "(221GB)" for "/dev/sdb3"    length: 488386560    sectorsUsed: 23257608    fsType: "ext4" 
+17:26:18 [1]: Partition "/dev/sdb3" authorized for resize + autopartition install. 
+17:26:19 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:26:19 [1]: Available storage B: 238146023424 "(221GB)" for "/dev/sdb3"    length: 488386560    sectorsUsed: 23257608    fsType: "ext4" 
+17:26:19 [1]: Partition "/dev/sdb3" authorized for resize + autopartition install. 
+17:26:19 [1]: void PartitionSplitterWidget::setSplitPartition(const QString&, qint64, qint64, qint64) path: "/dev/sdb3" 
+minSize: 13098684826 
+maxSize: 241463984128 
+prfSize: 125026959360 
+17:26:19 [1]: itemToResize: "/dev/sdb3" 
+17:26:19 [1]: each splitter item opcount: 1 
+17:26:19 [1]: Items updated. Status: 
+17:26:19 [1]: item "/dev/sdb3" size 125026959360 status: 1 
+17:26:19 [1]: item "" size 125026959360 status: 2 
+17:26:19 [1]: item "/dev/sdb1" size 53010759680 status: 0 
+17:26:19 [1]: item "/dev/sdb2" size 53010759680 status: 0 
+17:26:19 [1]: item "/dev/sdb4" size 15842934784 status: 0 
+17:26:19 [1]: item "/dev/sdb5" size 536870912 status: 0 
+17:26:19 [1]: item "/dev/sdb6" size 15842934784 status: 0 
+17:26:19 [1]: item "/dev/sdb7" size 5368709120 status: 0 
+17:26:19 [1]: item "/dev/sdb8" size 17179869184 status: 0 
+17:26:19 [1]: item "" size 89260039680 status: 0 
+17:26:19 [1]: m_itemToResize:     true "/dev/sdb3" 
+17:26:19 [1]: m_itemToResizeNext: true "" 
+17:26:19 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:26:19 [1]: Available storage B: 238146023424 "(221GB)" for "/dev/sdb3"    length: 488386560    sectorsUsed: 23257608    fsType: "ext4" 
+17:26:19 [1]: Partition "/dev/sdb3" authorized for resize + autopartition install. 
+17:26:19 [1]: Partition selected for Alongside. 
+17:26:19 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:26:19 [1]: Available storage B: 238146023424 "(221GB)" for "/dev/sdb3"    length: 488386560    sectorsUsed: 23257608    fsType: "ext4" 
+17:26:19 [1]: Partition "/dev/sdb3" authorized for resize + autopartition install. 
+17:26:19 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:26:19 [1]: Available storage B: 238146023424 "(221GB)" for "/dev/sdb3"    length: 488386560    sectorsUsed: 23257608    fsType: "ext4" 
+17:26:19 [1]: Partition "/dev/sdb3" authorized for resize + autopartition install. 
+17:26:19 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:26:19 [1]: Available storage B: 238146023424 "(221GB)" for "/dev/sdb3"    length: 488386560    sectorsUsed: 23257608    fsType: "ext4" 
+17:26:19 [1]: Partition "/dev/sdb3" authorized for resize + autopartition install. 
+17:26:19 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:26:19 [1]: Available storage B: 238146023424 "(221GB)" for "/dev/sdb3"    length: 488386560    sectorsUsed: 23257608    fsType: "ext4" 
+17:26:19 [1]: Partition "/dev/sdb3" authorized for resize + autopartition install. 
+17:26:19 [1]: Clicked row 0 
+17:26:21 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:26:21 [1]: Available storage B: 238146023424 "(221GB)" for "/dev/sdb3"    length: 488386560    sectorsUsed: 23257608    fsType: "ext4" 
+17:26:21 [1]: Partition "/dev/sdb3" authorized for resize + autopartition install. 
+17:26:42 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:26:42 [1]: Available storage B: 238146023424 "(221GB)" for "/dev/sdb3"    length: 488386560    sectorsUsed: 23257608    fsType: "ext4" 
+17:26:42 [1]: Partition "/dev/sdb3" authorized for resize + autopartition install. 
+17:26:42 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:26:42 [1]: Available storage B: 5195878400 "(4GB)" for "/dev/sdb7"    length: 10485760    sectorsUsed: 337560    fsType: "ext4" 
+17:26:43 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:26:43 [1]: Available storage B: 49137061888 "(45GB)" for "/dev/sdb1"    length: 103536640    sectorsUsed: 7565816    fsType: "ext4" 
+17:26:43 [1]: Partition "/dev/sdb1" authorized for resize + autopartition install. 
+17:26:43 [1]: Required  storage B: 8589934592 "(8GB)" 
+17:26:43 [1]: Available storage B: 51717251072 "(48GB)" for "/dev/sdb2"    length: 103536640    sectorsUsed: 2526384    fsType: "ext4" 
+17:26:43 [1]: Partition "/dev/sdb2" authorized for resize + autopartition install. 
+17:26:51 [1]: # Queue: 
+17:26:51 [1]: ## Device: "ATA WDC WD5000BPVT-8" 
+17:26:51 [1]: - "Resize partition /dev/sdb3." 
+17:26:51 [1]: - "Create new 119234MB partition on /dev/sdb (ATA WDC WD5000BPVT-8) with file system ext4." 
+17:26:51 [1]: PCM::setBootLoaderInstallPath "/dev/sdb" 
+17:27:18 [0]: QLayout: Attempting to add QLayout "" to QWidget "", which already has a layout
+17:27:18 [0]: QObject::setParent: Cannot set parent, new parent is in a different thread
+17:27:18 [1]: Creating FillGlobalStorageJob with bootLoader path "/dev/sdb" 
+17:27:18 [1]: PartitionCodeModule has been asked for jobs. About to return: "Clear all temporary mounts.\nClear mounts for partitioning operations on /dev/sdb\nResize partition /dev/sdb3.\nCreate new 119234MB partition on /dev/sdb (ATA WDC WD5000BPVT-8) with file system ext4.\nSet partition information" 
+17:27:18 [1]: Gathering UUIDs for partitions that exist now. 
+17:27:19 [1]: QHash(("", "")("/dev/sdb1", "08b2e5c8-8d15-421f-a668-55e78f29b1e3")("/dev/sdb2", "57f8f4bc-abf4-655f-bf67-946fc0f9f25b")("/dev/sdb3", "a80ff3c3-cd11-4812-886a-9beb38edc492")("/dev/sdb4", "fc863346-4e67-5eb2-c949-9270739d2838")("/dev/sdb5", "")("/dev/sdb6", "fc863346-4e67-5eb2-c949-9270739d2838")("/dev/sdb7", "0fcb7cff-675f-49a0-8ff3-d05e816e0c61")("/dev/sdb8", "a4ff4dbe-4ab5-4757-b047-d97615022e6c")) 
+17:27:19 [1]: Writing to GlobalStorage["partitions"] 
+17:27:19 [1]: "/dev/sdb3" mtpoint: "" fs: QVariant(QString, "ext4") ( QVariant(QString, "ext4") ) "a80ff3c3-cd11-4812-886a-9beb38edc492" 
+17:27:19 [1]: "" mtpoint: "/" fs: QVariant(QString, "ext4") ( QVariant(QString, "ext4") ) "" 
+17:27:19 [1]: "/dev/sdb1" mtpoint: "" fs: QVariant(QString, "ext4") ( QVariant(QString, "ext4") ) "08b2e5c8-8d15-421f-a668-55e78f29b1e3" 
+17:27:19 [1]: "/dev/sdb2" mtpoint: "" fs: QVariant(QString, "ext4") ( QVariant(QString, "ext4") ) "57f8f4bc-abf4-655f-bf67-946fc0f9f25b" 
+17:27:19 [1]: "/dev/sdb4" mtpoint: "" fs: QVariant(QString, "unknown") ( QVariant(QString, "unknown") ) "fc863346-4e67-5eb2-c949-9270739d2838" 
+17:27:19 [1]: "/dev/sdb5" mtpoint: "" fs: QVariant(QString, "unknown") ( QVariant(QString, "unknown") ) "" 
+17:27:19 [1]: "/dev/sdb6" mtpoint: "" fs: QVariant(QString, "unknown") ( QVariant(QString, "unknown") ) "fc863346-4e67-5eb2-c949-9270739d2838" 
+17:27:19 [1]: "/dev/sdb7" mtpoint: "" fs: QVariant(QString, "ext4") ( QVariant(QString, "ext4") ) "0fcb7cff-675f-49a0-8ff3-d05e816e0c61" 
+17:27:19 [1]: "/dev/sdb8" mtpoint: "" fs: QVariant(QString, "linuxswap") ( QVariant(QString, "linuxswap") ) "a4ff4dbe-4ab5-4757-b047-d97615022e6c" 
+17:27:19 [1]: "" mtpoint: "" fs: QVariant(QString, "unknown") ( QVariant(QString, "unknown") ) "" 
+17:27:19 [8]: QVariant(QString, "a80ff3c3-cd11-4812-886a-9beb38edc492") "/dev/sdb3" "" "ext4"
+17:27:19 [8]: QVariant(QString, "") "" "/" "ext4"
+17:27:19 [8]: QVariant(QString, "08b2e5c8-8d15-421f-a668-55e78f29b1e3") "/dev/sdb1" "" "ext4"
+17:27:19 [8]: QVariant(QString, "57f8f4bc-abf4-655f-bf67-946fc0f9f25b") "/dev/sdb2" "" "ext4"
+17:27:19 [8]: QVariant(QString, "fc863346-4e67-5eb2-c949-9270739d2838") "/dev/sdb4" "" "unknown"
+17:27:19 [8]: QVariant(QString, "") "/dev/sdb5" "" "unknown"
+17:27:19 [8]: QVariant(QString, "fc863346-4e67-5eb2-c949-9270739d2838") "/dev/sdb6" "" "unknown"
+17:27:19 [8]: QVariant(QString, "0fcb7cff-675f-49a0-8ff3-d05e816e0c61") "/dev/sdb7" "" "ext4"
+17:27:19 [8]: QVariant(QString, "a4ff4dbe-4ab5-4757-b047-d97615022e6c") "/dev/sdb8" "" "linuxswap"
+17:27:19 [8]: QVariant(QString, "") "" "" "unknown"
+17:27:19 [1]: Gathering UUIDs for partitions that exist now. 
+17:27:19 [1]: QHash(("", "")("/dev/sdb1", "08b2e5c8-8d15-421f-a668-55e78f29b1e3")("/dev/sdb2", "57f8f4bc-abf4-655f-bf67-946fc0f9f25b")("/dev/sdb3", "a80ff3c3-cd11-4812-886a-9beb38edc492")("/dev/sdb4", "fc863346-4e67-5eb2-c949-9270739d2838")("/dev/sdb5", "")("/dev/sdb6", "fc863346-4e67-5eb2-c949-9270739d2838")("/dev/sdb7", "0fcb7cff-675f-49a0-8ff3-d05e816e0c61")("/dev/sdb8", "a4ff4dbe-4ab5-4757-b047-d97615022e6c")) 
+17:27:19 [1]: Writing to GlobalStorage["partitions"] 
+17:27:19 [1]: "/dev/sdb3" mtpoint: "" fs: QVariant(QString, "ext4") ( QVariant(QString, "ext4") ) "a80ff3c3-cd11-4812-886a-9beb38edc492" 
+17:27:19 [1]: "" mtpoint: "/" fs: QVariant(QString, "ext4") ( QVariant(QString, "ext4") ) "" 
+17:27:19 [1]: "/dev/sdb1" mtpoint: "" fs: QVariant(QString, "ext4") ( QVariant(QString, "ext4") ) "08b2e5c8-8d15-421f-a668-55e78f29b1e3" 
+17:27:19 [1]: "/dev/sdb2" mtpoint: "" fs: QVariant(QString, "ext4") ( QVariant(QString, "ext4") ) "57f8f4bc-abf4-655f-bf67-946fc0f9f25b" 
+17:27:19 [1]: "/dev/sdb4" mtpoint: "" fs: QVariant(QString, "unknown") ( QVariant(QString, "unknown") ) "fc863346-4e67-5eb2-c949-9270739d2838" 
+17:27:19 [1]: "/dev/sdb5" mtpoint: "" fs: QVariant(QString, "unknown") ( QVariant(QString, "unknown") ) "" 
+17:27:19 [1]: "/dev/sdb6" mtpoint: "" fs: QVariant(QString, "unknown") ( QVariant(QString, "unknown") ) "fc863346-4e67-5eb2-c949-9270739d2838" 
+17:27:19 [1]: "/dev/sdb7" mtpoint: "" fs: QVariant(QString, "ext4") ( QVariant(QString, "ext4") ) "0fcb7cff-675f-49a0-8ff3-d05e816e0c61" 
+17:27:19 [1]: "/dev/sdb8" mtpoint: "" fs: QVariant(QString, "linuxswap") ( QVariant(QString, "linuxswap") ) "a4ff4dbe-4ab5-4757-b047-d97615022e6c" 
+17:27:19 [1]: "" mtpoint: "" fs: QVariant(QString, "unknown") ( QVariant(QString, "unknown") ) "" 
+17:27:19 [8]: QVariant(QString, "a80ff3c3-cd11-4812-886a-9beb38edc492") "/dev/sdb3" "" "ext4"
+17:27:19 [8]: QVariant(QString, "") "" "/" "ext4"
+17:27:19 [8]: QVariant(QString, "08b2e5c8-8d15-421f-a668-55e78f29b1e3") "/dev/sdb1" "" "ext4"
+17:27:19 [8]: QVariant(QString, "57f8f4bc-abf4-655f-bf67-946fc0f9f25b") "/dev/sdb2" "" "ext4"
+17:27:19 [8]: QVariant(QString, "fc863346-4e67-5eb2-c949-9270739d2838") "/dev/sdb4" "" "unknown"
+17:27:19 [8]: QVariant(QString, "") "/dev/sdb5" "" "unknown"
+17:27:19 [8]: QVariant(QString, "fc863346-4e67-5eb2-c949-9270739d2838") "/dev/sdb6" "" "unknown"
+17:27:19 [8]: QVariant(QString, "0fcb7cff-675f-49a0-8ff3-d05e816e0c61") "/dev/sdb7" "" "ext4"
+17:27:19 [8]: QVariant(QString, "a4ff4dbe-4ab5-4757-b047-d97615022e6c") "/dev/sdb8" "" "linuxswap"
+17:27:19 [8]: QVariant(QString, "") "" "" "unknown"
+17:27:19 [1]: Summary widget is larger than viewport, enlarge by 200 to QSize(822, 855) 
+17:27:31 [1]: Creating FillGlobalStorageJob with bootLoader path "/dev/sdb" 
+17:27:31 [1]: PartitionCodeModule has been asked for jobs. About to return: "Clear all temporary mounts.\nClear mounts for partitioning operations on /dev/sdb\nResize partition /dev/sdb3.\nCreate new 119234MB partition on /dev/sdb (ATA WDC WD5000BPVT-8) with file system ext4.\nSet partition information" 
+17:27:31 [0]: Starting job "Clear all temporary mounts." 
+17:27:31 [1]: Opened mtab. Lines: 
+17:27:31 [1]: "proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0" 
+17:27:31 [1]: "sys /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0" 
+17:27:31 [1]: "dev /dev devtmpfs rw,nosuid,relatime,size=1812108k,nr_inodes=453027,mode=755 0 0" 
+17:27:31 [1]: "run /run tmpfs rw,nosuid,nodev,relatime,mode=755 0 0" 
+17:27:31 [1]: "overlay / overlay rw,relatime,lowerdir=/ro_branch/overlay:/ro_branch/overlay-pkgs:/ro_branch/root-image:/new_root,upperdir=/rw_branch/upper,workdir=/rw_branch/work 0 0" 
+17:27:31 [1]: "/dev/sda1 /bootmnt iso9660 ro,relatime 0 0" 
+17:27:31 [1]: "securityfs /sys/kernel/security securityfs rw,nosuid,nodev,noexec,relatime 0 0" 
+17:27:31 [1]: "tmpfs /dev/shm tmpfs rw,nosuid,nodev 0 0" 
+17:27:31 [1]: "devpts /dev/pts devpts rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000 0 0" 
+17:27:31 [1]: "tmpfs /sys/fs/cgroup tmpfs ro,nosuid,nodev,noexec,mode=755 0 0" 
+17:27:31 [1]: "cgroup /sys/fs/cgroup/systemd cgroup rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/usr/lib/systemd/systemd-cgroups-agent,name=systemd 0 0" 
+17:27:31 [1]: "pstore /sys/fs/pstore pstore rw,nosuid,nodev,noexec,relatime 0 0" 
+17:27:31 [1]: "cgroup /sys/fs/cgroup/cpu,cpuacct cgroup rw,nosuid,nodev,noexec,relatime,cpu,cpuacct 0 0" 
+17:27:31 [1]: "cgroup /sys/fs/cgroup/blkio cgroup rw,nosuid,nodev,noexec,relatime,blkio 0 0" 
+17:27:31 [1]: "cgroup /sys/fs/cgroup/net_cls,net_prio cgroup rw,nosuid,nodev,noexec,relatime,net_cls,net_prio 0 0" 
+17:27:31 [1]: "cgroup /sys/fs/cgroup/memory cgroup rw,nosuid,nodev,noexec,relatime,memory 0 0" 
+17:27:31 [1]: "cgroup /sys/fs/cgroup/cpuset cgroup rw,nosuid,nodev,noexec,relatime,cpuset 0 0" 
+17:27:31 [1]: "cgroup /sys/fs/cgroup/pids cgroup rw,nosuid,nodev,noexec,relatime,pids 0 0" 
+17:27:31 [1]: "cgroup /sys/fs/cgroup/freezer cgroup rw,nosuid,nodev,noexec,relatime,freezer 0 0" 
+17:27:31 [1]: "cgroup /sys/fs/cgroup/perf_event cgroup rw,nosuid,nodev,noexec,relatime,perf_event 0 0" 
+17:27:31 [1]: "cgroup /sys/fs/cgroup/devices cgroup rw,nosuid,nodev,noexec,relatime,devices 0 0" 
+17:27:31 [1]: "systemd-1 /proc/sys/fs/binfmt_misc autofs rw,relatime,fd=31,pgrp=1,timeout=0,minproto=5,maxproto=5,direct 0 0" 
+17:27:31 [1]: "mqueue /dev/mqueue mqueue rw,relatime 0 0" 
+17:27:31 [1]: "tmpfs /tmp tmpfs rw,nosuid,nodev 0 0" 
+17:27:31 [1]: "hugetlbfs /dev/hugepages hugetlbfs rw,relatime 0 0" 
+17:27:31 [1]: "debugfs /sys/kernel/debug debugfs rw,relatime 0 0" 
+17:27:31 [1]: "configfs /sys/kernel/config configfs rw,relatime 0 0" 
+17:27:31 [1]: "tmpfs /run/user/1000 tmpfs rw,nosuid,nodev,relatime,size=364368k,mode=700,uid=1000,gid=100 0 0" 
+17:27:31 [1]: "fusectl /sys/fs/fuse/connections fusectl rw,relatime 0 0" 
+17:27:31 [1]: ClearTempMountsJob finished. Here's what was done:
+ "" 
+17:27:31 [0]: Starting job "Clear mounts for partitioning operations on /dev/sdb" 
+17:27:34 [1]: ClearMountsJob finished. Here's what was done:
+ "" 
+17:27:34 [0]: Starting job "Resize partition /dev/sdb3." 
+17:27:35 [0]: "- Checking file system on partition /dev/sdb3." 
+17:27:55 [0]: "- Resize file system on partition /dev/sdb3." 
+17:30:20 [0]: "- Update geometry of partition /dev/sdb3." 
+17:30:24 [0]: "- Checking file system on partition /dev/sdb3." 
+17:30:42 [0]: Starting job "Create new 119234MB partition on /dev/sdb (ATA WDC WD5000BPVT-8) with file system ext4." 
+17:30:56 [0]: Starting job "Set partition information" 
+17:30:56 [1]: Gathering UUIDs for partitions that exist now. 
+17:30:57 [1]: QHash(("", "")("/dev/sdb1", "08b2e5c8-8d15-421f-a668-55e78f29b1e3")("/dev/sdb2", "57f8f4bc-abf4-655f-bf67-946fc0f9f25b")("/dev/sdb3", "a80ff3c3-cd11-4812-886a-9beb38edc492")("/dev/sdb4", "fc863346-4e67-5eb2-c949-9270739d2838")("/dev/sdb5", "")("/dev/sdb6", "fc863346-4e67-5eb2-c949-9270739d2838")("/dev/sdb7", "0fcb7cff-675f-49a0-8ff3-d05e816e0c61")("/dev/sdb8", "a4ff4dbe-4ab5-4757-b047-d97615022e6c")("/dev/sdb9", "50426b5e-b342-481b-bdd5-e6dbe044a8e7")) 
+17:30:57 [1]: Writing to GlobalStorage["partitions"] 
+17:30:57 [1]: "/dev/sdb3" mtpoint: "" fs: QVariant(QString, "ext4") ( QVariant(QString, "ext4") ) "a80ff3c3-cd11-4812-886a-9beb38edc492" 
+17:30:57 [1]: "/dev/sdb9" mtpoint: "/" fs: QVariant(QString, "ext4") ( QVariant(QString, "ext4") ) "50426b5e-b342-481b-bdd5-e6dbe044a8e7" 
+17:30:57 [1]: "/dev/sdb1" mtpoint: "" fs: QVariant(QString, "ext4") ( QVariant(QString, "ext4") ) "08b2e5c8-8d15-421f-a668-55e78f29b1e3" 
+17:30:57 [1]: "/dev/sdb2" mtpoint: "" fs: QVariant(QString, "ext4") ( QVariant(QString, "ext4") ) "57f8f4bc-abf4-655f-bf67-946fc0f9f25b" 
+17:30:57 [1]: "/dev/sdb4" mtpoint: "" fs: QVariant(QString, "unknown") ( QVariant(QString, "unknown") ) "fc863346-4e67-5eb2-c949-9270739d2838" 
+17:30:57 [1]: "/dev/sdb5" mtpoint: "" fs: QVariant(QString, "unknown") ( QVariant(QString, "unknown") ) "" 
+17:30:57 [1]: "/dev/sdb6" mtpoint: "" fs: QVariant(QString, "unknown") ( QVariant(QString, "unknown") ) "fc863346-4e67-5eb2-c949-9270739d2838" 
+17:30:57 [1]: "/dev/sdb7" mtpoint: "" fs: QVariant(QString, "ext4") ( QVariant(QString, "ext4") ) "0fcb7cff-675f-49a0-8ff3-d05e816e0c61" 
+17:30:57 [1]: "/dev/sdb8" mtpoint: "" fs: QVariant(QString, "linuxswap") ( QVariant(QString, "linuxswap") ) "a4ff4dbe-4ab5-4757-b047-d97615022e6c" 
+17:30:57 [1]: "" mtpoint: "" fs: QVariant(QString, "unknown") ( QVariant(QString, "unknown") ) "" 
+17:30:57 [1]: FillGlobalStorageJob writing bootLoader path: QVariant(QVariantMap, QMap(("installPath", QVariant(QString, "/dev/sdb")))) 
+17:30:57 [0]: Starting job "mount" 
+17:30:58 [1]: Job file "/usr/lib/calamares/modules/mount/main.py" 
+17:30:58 [1]: Job "mount" (doc) -> "Define mountpoints." 
+17:30:58 [0]: Starting job "unpackfs" 
+17:30:58 [1]: Job file "/usr/lib/calamares/modules/unpackfs/main.py" 
+17:30:58 [1]: Job "unpackfs" (doc) -> "Unsquash filesystem." 
+17:39:59 [0]: Starting job "machineid" 
+17:39:59 [1]: Standard paths ("/home/live", "/usr/bin", "/usr/share/locale") 
+17:39:59 [1]: Checking "en_AU.UTF-8" in "/home/live" 
+17:39:59 [1]: Checking "en_AU.UTF-8" in "/usr/bin" 
+17:39:59 [1]: Checking "en_AU.UTF-8" in "/usr/share/locale" 
+17:39:59 [1]: Checking "en_AU" in "/home/live" 
+17:39:59 [1]: Checking "en_AU" in "/usr/bin" 
+17:39:59 [1]: Checking "en_AU" in "/usr/share/locale" 
+17:39:59 [1]: Job file "/usr/lib/calamares/modules/machineid/main.py" 
+17:39:59 [1]: Job "machineid" (doc) -> "Generate machine-id using dbus and systemd." 
+17:39:59 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "systemd-machine-id-setup") 
+17:40:04 [0]: Finished. Exit code: 0 
+17:40:04 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "ln", "-s", "/etc/machine-id", "/var/lib/dbus/machine-id") 
+17:40:04 [0]: Finished. Exit code: 0 
+17:40:04 [0]: Starting job "fstab" 
+17:40:04 [1]: Job file "/usr/lib/calamares/modules/fstab/main.py" 
+17:40:04 [1]: Job "fstab" (doc) -> "Configures fstab." 
+17:40:05 [0]: Starting job "Set timezone to Australia/Brisbane" 
+17:40:05 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "rm", "-f", "/etc/localtime") 
+17:40:05 [0]: Finished. Exit code: 0 
+17:40:05 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "ln", "-s", "/usr/share/zoneinfo/Australia/Brisbane", "/etc/localtime") 
+17:40:05 [0]: Finished. Exit code: 0 
+17:40:05 [0]: Starting job "Set keyboard model to pc105, layout to us-" 
+17:40:05 [1]: Executing SetKeyboardLayoutJob 
+17:40:05 [1]: Found legacy keymap "us" with score 11 
+17:40:05 [1]: Found legacy keymap "us-acentos" with score 11 
+17:40:05 [1]: Found legacy keymap "dvorak" with score 11 
+17:40:05 [1]: Found legacy keymap "dvorak" with score 11 
+17:40:05 [1]: Written KEYMAP= "us" to vconsole.conf 
+17:40:05 [1]: Written XkbLayout "us" ; XkbModel "pc105" ; XkbVariant "" to X.org file "/tmp/calamares-root-f_p8o1m1/etc/X11/xorg.conf.d/00-keyboard.conf" 
+17:40:05 [1]: Written XKBMODEL "pc105" ; XKBLAYOUT "us" ; XKBVARIANT "" to /etc/default/keyboard file "/tmp/calamares-root-f_p8o1m1/etc/default/keyboard" 
+17:40:05 [0]: Starting job "localecfg" 
+17:40:05 [1]: Job file "/usr/lib/calamares/modules/localecfg/main.py" 
+17:40:05 [1]: Job "localecfg" (doc) -> "Create locale" 
+17:40:06 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "locale-gen") 
+17:40:16 [0]: Finished. Exit code: 0 
+17:40:16 [0]: Starting job "luksbootkeyfile" 
+17:40:16 [1]: Job file "/usr/lib/calamares/modules/luksbootkeyfile/main.py" 
+17:40:16 [1]: Job "luksbootkeyfile" (doc) -> "This module sets up a file crypto_keyfile.bin on the rootfs, assuming the" 
+17:40:16 [0]: Starting job "luksopenswaphookcfg" 
+17:40:16 [1]: Job file "/usr/lib/calamares/modules/luksopenswaphookcfg/main.py" 
+17:40:16 [1]: Job "luksopenswaphookcfg" (doc) -> "This module sets up the openswap hook for a resumable encrypted swap." 
+17:40:16 [0]: Starting job "initcpiocfg" 
+17:40:16 [1]: Job file "/usr/lib/calamares/modules/initcpiocfg/main.py" 
+17:40:16 [1]: Job "initcpiocfg" (doc) -> "Calls routine with given parameters to modify '/etc/mkinitcpio.conf'." 
+17:40:16 [0]: Starting job "initcpio" 
+17:40:16 [1]: Job file "/usr/lib/calamares/modules/initcpio/main.py" 
+17:40:16 [1]: Job "initcpio" (doc) -> "Calls routine to create kernel initramfs image." 
+17:40:16 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "mkinitcpio", "-p", "linux-CHAKRA") 
+17:41:17 [0]: Finished. Exit code: 0 
+17:41:17 [0]: Starting job "Create user chakra" 
+17:41:17 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "groupadd", "autologin") 
+17:41:18 [0]: Finished. Exit code: 0 
+17:41:18 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "useradd", "-m", "-s", "/bin/bash", "-U", "-c", "chakra", "chakra") 
+17:41:19 [0]: Finished. Exit code: 0 
+17:41:19 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "usermod", "-aG", "users,lp,video,network,storage,wheel,audio,lpadmin,autologin", "chakra") 
+17:41:19 [0]: Finished. Exit code: 0 
+17:41:19 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "chown", "-R", "chakra:chakra", "/home/chakra") 
+17:41:19 [0]: Finished. Exit code: 0 
+17:41:19 [0]: Starting job "Set password for user chakra" 
+17:41:19 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "usermod", "-p", "$6$JQ3YTBHNIKBs1kvn$r8Qu7Cld7U0eOVTbP1QZ9nzOT2XO9tyRwbF1v9QrEFSUpXhc9dWRXGUUZvGl9TCNZuUVOpPnFpZvoi5ExENE60", "chakra") 
+17:41:20 [0]: Finished. Exit code: 0 
+17:41:20 [0]: Starting job "Set password for user root" 
+17:41:20 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "usermod", "-p", "$6$1ZbHjHUb5Ca3W6bV$8EACQBqxtacjTdBsIjM9w8F50UFn9NkQeXErtOU6L0Md19C06oUjOwrrdP8czGW/WdiSEp5jb2nAnKMIUrh2H/", "root") 
+17:41:20 [0]: Finished. Exit code: 0 
+17:41:20 [0]: Starting job "Set hostname chakra-pc" 
+17:41:20 [0]: Starting job "displaymanager" 
+17:41:20 [1]: Job file "/usr/lib/calamares/modules/displaymanager/main.py" 
+17:41:20 [1]: Job "displaymanager" (doc) -> "Configure display managers." 
+17:41:20 [1]: [PYTHON JOB]:  "slim selected but not installed" 
+17:41:20 [1]: [PYTHON JOB]:  "lightdm selected but not installed" 
+17:41:20 [1]: [PYTHON JOB]:  "gdm selected but not installed" 
+17:41:20 [1]: [PYTHON JOB]:  "mdm selected but not installed" 
+17:41:20 [1]: [PYTHON JOB]:  "lxdm selected but not installed" 
+17:41:20 [1]: [PYTHON JOB]:  "kdm selected but not installed" 
+17:41:20 [1]: [PYTHON JOB]:  "Setting up autologin for user chakra." 
+17:41:20 [0]: Starting job "_usercfg" 
+17:41:20 [1]: Job file "/usr/lib/calamares/modules/_usercfg/main.py" 
+17:41:20 [1]: Job "_usercfg" (doc) -> "Create Distribution specific settings for users" 
+17:41:20 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "xdg-user-dirs-update") 
+17:41:20 [0]: Finished. Exit code: 0 
+17:41:20 [0]: Starting job "_driver_cleanup" 
+17:41:20 [1]: Job file "/usr/lib/calamares/modules/_driver_cleanup/main.py" 
+17:41:20 [1]: Job "_driver_cleanup" (doc) -> "Clean up unused drivers" 
+17:41:21 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "xf86-video-warning: database file for 'lib32' does not exist") 
+17:41:21 [0]: Finished. Exit code: 1 
+17:41:21 [0]: Target cmd ("pacman", "-Rddn", "--noconfirm", "xf86-video-warning: database file for 'lib32' does not exist") 
+17:41:21 [0]: Target out "warning: database file for 'lib32' does not exist\nwarning: database file for 'gtk' does not exist\nerror: target not found: xf86-video-warning: database file for 'lib32' does not exist" 
+17:41:21 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "xf86-video-warning: database file for 'gtk' does not exist") 
+17:41:21 [0]: Finished. Exit code: 1 
+17:41:21 [0]: Target cmd ("pacman", "-Rddn", "--noconfirm", "xf86-video-warning: database file for 'gtk' does not exist") 
+17:41:21 [0]: Target out "warning: database file for 'lib32' does not exist\nwarning: database file for 'gtk' does not exist\nerror: target not found: xf86-video-warning: database file for 'gtk' does not exist" 
+17:41:21 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "xf86-video-amdgpu") 
+17:41:44 [0]: Finished. Exit code: 0 
+17:41:44 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "xf86-video-ati") 
+17:41:45 [0]: Finished. Exit code: 0 
+17:41:45 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "xf86-video-intel") 
+17:41:46 [0]: Finished. Exit code: 0 
+17:41:46 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "xf86-video-nouveau") 
+17:41:46 [0]: Finished. Exit code: 0 
+17:41:46 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "xf86-video-vmware") 
+17:41:47 [0]: Finished. Exit code: 0 
+17:41:47 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "xf86-video-voodoo") 
+17:41:48 [0]: Finished. Exit code: 0 
+17:41:48 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rncs", "--noconfirm", "xf86-input-wacom") 
+17:41:48 [0]: Finished. Exit code: 0 
+17:41:48 [0]: Starting job "_nonfree_drivers" 
+17:41:48 [1]: Job file "/usr/lib/calamares/modules/_nonfree_drivers/main.py" 
+17:41:48 [1]: Job "_nonfree_drivers" (doc) -> "Setup graphics drivers and sound" 
+17:41:48 [0]: Starting job "_locale_cleanup" 
+17:41:48 [1]: Job file "/usr/lib/calamares/modules/_locale_cleanup/main.py" 
+17:41:48 [1]: Job "_locale_cleanup" (doc) -> "Package removal module. Cleanup the language packs" 
+17:41:48 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-ar") 
+17:41:49 [0]: Finished. Exit code: 0 
+17:41:49 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-bs") 
+17:41:50 [0]: Finished. Exit code: 0 
+17:41:50 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-ca") 
+17:41:50 [0]: Finished. Exit code: 0 
+17:41:50 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-ca@valencia") 
+17:41:51 [0]: Finished. Exit code: 0 
+17:41:51 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-cs") 
+17:41:52 [0]: Finished. Exit code: 0 
+17:41:52 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-da") 
+17:41:52 [0]: Finished. Exit code: 0 
+17:41:52 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-de") 
+17:41:53 [0]: Finished. Exit code: 0 
+17:41:53 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-en_GB") 
+17:41:54 [0]: Finished. Exit code: 0 
+17:41:54 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-fa") 
+17:41:54 [0]: Finished. Exit code: 0 
+17:41:54 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-fi") 
+17:41:55 [0]: Finished. Exit code: 0 
+17:41:55 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-fr") 
+17:41:56 [0]: Finished. Exit code: 0 
+17:41:56 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-ga") 
+17:41:57 [0]: Finished. Exit code: 0 
+17:41:57 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-gl") 
+17:41:57 [0]: Finished. Exit code: 0 
+17:41:57 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-he") 
+17:41:58 [0]: Finished. Exit code: 0 
+17:41:58 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-hi") 
+17:41:59 [0]: Finished. Exit code: 0 
+17:41:59 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-hr") 
+17:41:59 [0]: Finished. Exit code: 0 
+17:41:59 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-hu") 
+17:42:00 [0]: Finished. Exit code: 0 
+17:42:00 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-ia") 
+17:42:01 [0]: Finished. Exit code: 0 
+17:42:01 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-id") 
+17:42:01 [0]: Finished. Exit code: 0 
+17:42:01 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-is") 
+17:42:02 [0]: Finished. Exit code: 0 
+17:42:02 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-it") 
+17:42:02 [0]: Finished. Exit code: 0 
+17:42:02 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-ja") 
+17:42:03 [0]: Finished. Exit code: 0 
+17:42:03 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-kk") 
+17:42:04 [0]: Finished. Exit code: 0 
+17:42:04 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-km") 
+17:42:04 [0]: Finished. Exit code: 0 
+17:42:04 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-ko") 
+17:42:05 [0]: Finished. Exit code: 0 
+17:42:05 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-lt") 
+17:42:06 [0]: Finished. Exit code: 0 
+17:42:06 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-lv") 
+17:42:07 [0]: Finished. Exit code: 0 
+17:42:07 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-mr") 
+17:42:07 [0]: Finished. Exit code: 0 
+17:42:07 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-nds") 
+17:42:08 [0]: Finished. Exit code: 0 
+17:42:08 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-pa") 
+17:42:09 [0]: Finished. Exit code: 0 
+17:42:09 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-pl") 
+17:42:09 [0]: Finished. Exit code: 0 
+17:42:09 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-pt") 
+17:42:10 [0]: Finished. Exit code: 0 
+17:42:10 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-pt_BR") 
+17:42:11 [0]: Finished. Exit code: 0 
+17:42:11 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-ro") 
+17:42:11 [0]: Finished. Exit code: 0 
+17:42:11 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-ru") 
+17:42:12 [0]: Finished. Exit code: 0 
+17:42:12 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-sk") 
+17:42:13 [0]: Finished. Exit code: 0 
+17:42:13 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-sl") 
+17:42:13 [0]: Finished. Exit code: 0 
+17:42:13 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-sr") 
+17:42:14 [0]: Finished. Exit code: 0 
+17:42:14 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-sv") 
+17:42:15 [0]: Finished. Exit code: 0 
+17:42:15 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-tr") 
+17:42:16 [0]: Finished. Exit code: 0 
+17:42:16 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-ug") 
+17:42:16 [0]: Finished. Exit code: 0 
+17:42:16 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-uk") 
+17:42:17 [0]: Finished. Exit code: 0 
+17:42:17 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-zh_CN") 
+17:42:18 [0]: Finished. Exit code: 0 
+17:42:18 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rddn", "--noconfirm", "kde-l10n-zh_TW") 
+17:42:20 [0]: Finished. Exit code: 0 
+17:42:20 [0]: Starting job "_pacmancfg" 
+17:42:21 [1]: Job file "/usr/lib/calamares/modules/_pacmancfg/main.py" 
+17:42:21 [1]: Job "_pacmancfg" (doc) -> "Clean up unused drivers" 
+17:44:07 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Syy", "--noconfirm") 
+17:44:07 [0]: Finished. Exit code: 1 
+17:44:07 [0]: Target cmd ("pacman", "-Syy", "--noconfirm") 
+17:44:07 [0]: Target out ":: Synchronizing package databases...\nerror: failed retrieving file 'lib32.db' from www-ftp.lip6.fr : Could not resolve host: www-ftp.lip6.fr\nerror: failed retrieving file 'lib32.db' from mirror.dacentec.com : Could not resolve host: mirror.dacentec.com\nerror: failed retrieving file 'lib32.db' from ftp.acc.umu.se : Could not resolve host: ftp.acc.umu.se\nerror: failed to update lib32 (download library error)\nerror: failed retrieving file 'core.db' from www-ftp.lip6.fr : Could not resolve host: www-ftp.lip6.fr\nerror: failed retrieving file 'core.db' from mirror.dacentec.com : Could not resolve host: mirror.dacentec.com\nerror: failed retrieving file 'core.db' from ftp.acc.umu.se : Could not resolve host: ftp.acc.umu.se\nerror: failed to update core (download library error)\nerror: failed retrieving file 'desktop.db' from www-ftp.lip6.fr : Could not resolve host: www-ftp.lip6.fr\nerror: failed retrieving file 'desktop.db' from mirror.dacentec.com : Could not resolve host: mirror.dacentec.com\nerror: failed retrieving file 'desktop.db' from ftp.acc.umu.se : Could not resolve host: ftp.acc.umu.se\nerror: failed to update desktop (download library error)\nerror: failed retrieving file 'gtk.db' from www-ftp.lip6.fr : Could not resolve host: www-ftp.lip6.fr\nerror: failed retrieving file 'gtk.db' from mirror.dacentec.com : Could not resolve host: mirror.dacentec.com\nerror: failed retrieving file 'gtk.db' from ftp.acc.umu.se : Could not resolve host: ftp.acc.umu.se\nerror: failed to update gtk (download library error)\nerror: failed to synchronize any databases\nerror: failed to init transaction (download library error)" 
+17:44:07 [0]: Starting job "packages" 
+17:44:07 [1]: Standard paths ("/home/live", "/usr/bin", "/usr/share/locale") 
+17:44:07 [1]: Checking "en_AU.UTF-8" in "/home/live" 
+17:44:07 [1]: Checking "en_AU.UTF-8" in "/usr/bin" 
+17:44:07 [1]: Checking "en_AU.UTF-8" in "/usr/share/locale" 
+17:44:07 [1]: Checking "en_AU" in "/home/live" 
+17:44:07 [1]: Checking "en_AU" in "/usr/bin" 
+17:44:07 [1]: Checking "en_AU" in "/usr/share/locale" 
+17:44:07 [1]: Job file "/usr/lib/calamares/modules/packages/main.py" 
+17:44:07 [1]: Job "packages" (doc) -> "Calls routine with detected package manager to install locale packages" 
+17:44:07 [1]: [PYTHON JOB]:  "Processing packages (0 / 9)" 
+17:44:07 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-U", "--noconfirm", "/var/cache/pacman/pkg/octopi-notifier-0.8.1.90-2-x86_64.pkg.tar.xz") 
+17:44:08 [0]: Finished. Exit code: 0 
+17:44:08 [1]: [PYTHON JOB]:  "Installing one package." 
+17:44:08 [1]: [PYTHON JOB]:  "Processing packages (1 / 9)" 
+17:44:08 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "pacman", "-Rs", "--noconfirm", "calamares", "keyboardctl", "chakra-hardware-detection", "plasma5-applets-welcome-plasmoid", "chakra-init-live", "chakra-hardware-detection", "chakra-live-initcpio", "chakra-live-skel") 
+17:44:09 [0]: Finished. Exit code: 0 
+17:44:09 [1]: [PYTHON JOB]:  "Removing 8 packages." 
+17:44:09 [1]: [PYTHON JOB]:  "Processing packages (9 / 9)" 
+17:44:09 [0]: Starting job "networkcfg" 
+17:44:09 [1]: Job file "/usr/lib/calamares/modules/networkcfg/main.py" 
+17:44:09 [1]: Job "networkcfg" (doc) -> "Setup network configuration" 
+17:44:09 [0]: Starting job "hwclock" 
+17:44:09 [1]: Job file "/usr/lib/calamares/modules/hwclock/main.py" 
+17:44:09 [1]: Job "hwclock" (doc) -> "Set hardware clock." 
+17:44:10 [0]: Starting job "services" 
+17:44:10 [1]: Job file "/usr/lib/calamares/modules/services/main.py" 
+17:44:10 [1]: Job "services" (doc) -> "Setup systemd services" 
+17:44:10 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "systemctl", "enable", "NetworkManager.service") 
+17:44:10 [0]: Finished. Exit code: 0 
+17:44:10 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "systemctl", "enable", "org.cups.cupsd.service") 
+17:44:10 [0]: Finished. Exit code: 0 
+17:44:10 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "systemctl", "enable", "bluetooth.service") 
+17:44:10 [0]: Finished. Exit code: 0 
+17:44:10 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "systemctl", "enable", "graphical.target") 
+17:44:10 [0]: Finished. Exit code: 0 
+17:44:10 [0]: Starting job "grubcfg" 
+17:44:10 [1]: Job file "/usr/lib/calamares/modules/grubcfg/main.py" 
+17:44:10 [1]: Job "grubcfg" (doc) -> "Calls routine with given parameters to modify '/etc/default/grub'." 
+17:44:10 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "sh", "-c", "which dracut") 
+17:44:10 [0]: Finished. Exit code: 1 
+17:44:10 [0]: Target cmd ("sh", "-c", "which dracut") 
+17:44:10 [0]: Target out "which: no dracut in (/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl)" 
+17:44:10 [0]: Starting job "bootloader" 
+17:44:10 [1]: Job file "/usr/lib/calamares/modules/bootloader/main.py" 
+17:44:10 [1]: Job "bootloader" (doc) -> "Starts procedure and passes 'fw_type' to other routine." 
+17:44:10 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "grub-install", "--target=i386-pc", "--recheck", "--force", "/dev/sdb") 
+17:44:53 [0]: Finished. Exit code: 0 
+17:44:53 [0]: Running "chroot" ("/tmp/calamares-root-f_p8o1m1", "grub-mkconfig", "-o", "/boot/grub/grub.cfg") 
+17:49:59 [0]: Finished. Exit code: 0 
+17:49:59 [0]: Starting job "umount" 
+17:49:59 [1]: Job file "/usr/lib/calamares/modules/umount/main.py" 
+17:49:59 [1]: Job "umount" (doc) -> "Unmounts given mountpoints in decreasing order." 
+17:50:01 [1]: FinishedPage::setUpRestart() 
+17:50:38 [8]: Shutting down Calamares... 
+17:50:38 [8]: Finished shutdown. 
+17:50:39 [0]: QBasicTimer::start: QBasicTimer can only be used with threads started with QThread
+17:50:39 [0]: QBasicTimer::start: QBasicTimer can only be used with threads started with QThread

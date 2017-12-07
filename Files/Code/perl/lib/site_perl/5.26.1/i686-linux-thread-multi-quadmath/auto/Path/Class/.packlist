@@ -1,0 +1,8 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Path/Class.pm relocate_as=../../../../Path/Class.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Path/Class/Dir.pm relocate_as=../../../../Path/Class/Dir.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Path/Class/Entity.pm relocate_as=../../../../Path/Class/Entity.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Path/Class/File.pm relocate_as=../../../../Path/Class/File.pm
+/UPM/Files/Code/perl/man/man3/Path::Class.3 relocate_as=../../../../../../../man/man3/Path::Class.3
+/UPM/Files/Code/perl/man/man3/Path::Class::Dir.3 relocate_as=../../../../../../../man/man3/Path::Class::Dir.3
+/UPM/Files/Code/perl/man/man3/Path::Class::Entity.3 relocate_as=../../../../../../../man/man3/Path::Class::Entity.3
+/UPM/Files/Code/perl/man/man3/Path::Class::File.3 relocate_as=../../../../../../../man/man3/Path::Class::File.3

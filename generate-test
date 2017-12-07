@@ -1,0 +1,25 @@
+rm -rf ./C\ test\ binary/*
+mkdir -v 'C test binary'
+cd ./'C test binary'
+git clone git://git.musl-libc.org/musl
+cd ./musl
+./configure && make install
+cd ../
+PATH=/usr/local/musl/bin:$PATH
+clear
+printf 'Compiling static-binary...\n\n\n'
+printf "int main() {}" > ./main.c
+gcc main.c -Wall -ansi -g --static -o test-binary-gcc
+musl-gcc main.c -Wall -ansi -g --static -o test-binary-musl
+chmod +x ./test-binary-gcc ./test-binary-musl
+size ./test-binary-gcc ./test-binary-musl
+ls -l ./test-binary-gcc ./test-binary-musl
+ldd ./test-binary-gcc ./test-binary-musl 
+./test-binary-gcc
+./test-binary-musl
+echo 'Stripping binaries'
+strip ./* ; size ./test-binary-gcc ./test-binary-musl
+ls -l ./test-binary-gcc ./test-binary-musl
+ldd ./test-binary-gcc ./test-binary-musl
+./test-binary-gcc
+./test-binary-musl 

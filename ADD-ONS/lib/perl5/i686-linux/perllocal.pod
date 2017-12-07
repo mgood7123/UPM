@@ -1,0 +1,22 @@
+=head2 Sat Sep 30 04:19:39 2017: C<Module> L<local::lib|local::lib>
+
+=over 4
+
+=item *
+
+C<installed into: /UPM/ADD-ONS/lib/perl5>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 2.000023>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+

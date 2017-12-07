@@ -1,0 +1,75 @@
+#! /bin/sh
+#
+# 'warn' colorises gcc warnings and errors which is useful during
+# the lets-get-it-together phase when there is so many errors which
+# swamp the output.
+
+# make-me Q=0
+warn=warn
+if [ ! -f $HOME/bin/warn ]; then
+	warn=
+fi
+
+#####################################################################
+#   Default to building kernel for current kernel.
+#####################################################################
+BUILD_KERNEL=${BUILD_KERNEL:-`uname -r`}
+build_dir=/lib/modules/$BUILD_KERNEL/build
+
+finished=no
+while [ $finished = "no" ]
+do
+	case $1 in
+	  -b)
+	  	##############################################
+	  	#   Let  us  build  from multiple kernels on
+	  	#   the machine.
+	  	##############################################
+	  	build_dir=$2
+		shift ; shift
+		;;
+	  -*) flags="$flags $1"
+		shift
+		;;
+	  *)
+		finished=yes
+		;;
+	esac
+done
+
+#####################################################################
+#   Nastiness for 32-bit builds. Allow cross-cpu compiler compilation
+#   validation (see 'make kernels')
+#####################################################################
+arch=${BUILD_ARCH:-`uname -m`}
+case $arch in
+  arm*)
+  	export PTR32=-D_ILP32
+	export BUILD_ARM=1
+	;;
+  x86_64)
+  	;;
+  *)
+  	export PTR32=-D_ILP32
+	export BUILD_i386=1
+	;;
+esac
+if [ "$BUILD_ARCH" != "" ]; then
+#	export KBUILD_CONFIG=.config-i386
+	build_dir=`echo $build_dir | sed -e 's/-i386//'`
+	arch_flag="ARCH=i386 CROSS_COMPILE=`pwd`/../../tools/cross-build/i386/"
+fi
+
+if [ ! -d $build_dir ]; then
+	if [ ! -f /usr/src/linux ]; then
+		echo "ERROR: $build_dir does not exist."
+		exit 1
+	fi
+	build_dir=/usr/src/linux/
+fi
+
+#####################################################################
+#   Let Linux have the floor...
+#####################################################################
+echo $warn make $flags -C $build_dir M=`pwd` $@
+exec $warn make $flags -C $build_dir $arch_flag M=`pwd` $@

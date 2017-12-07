@@ -1,0 +1,52 @@
+send_message(){
+		IRC_message=${IRC_message//\"/\\\"}
+# 		echo "$IRC_message"
+		selfdotbot=Code_Bash
+		selfdotapi_key=f6dddeca-761d-4c6b-a624-6b92c61bb2b7
+		message="$(for i in $@ ; do printf "$i " ; done)"
+		curl -s \
+			-u "$selfdotbot:$selfdotapi_key" \
+			-H "Content-Type: application/json" \
+			-X "POST" \
+			-d "{\
+				\"messages\": \
+				[\
+				{\
+				\"body\": \"$IRC_message\", \
+				\"to\": \"smallville7123\", \
+				\"type\": \"text\", \
+				\"chatId\": \"22bbbbd579c28ea81b74936c75a15241934a8758f14af148e66712c8368d8e95\"\
+				}\
+				]\
+				}" \
+			https://api.kik.com/v1/message |& grep -v '{}'
+}
+arrayadd() {
+            export IRC_channel="$@"
+            export IRC_channels+=("$IRC_channel")
+            export IRC_channelsoriginal+=($IRC_channel)
+            export IRC_channelsoriginal=($(printf '%b\n' ${IRC_channelsoriginal[@]} | cat -n | sort -uk2 | sort -nk1 | cut -f2-))
+            export IRC_channels=($(printf '%b\n' ${IRC_channelsoriginal[@]} | cat -n | sort -uk2 | sort -nk1 | cut -f2-))
+            export IRC_channelindexes=($(printf '%b\n' $(declare -p IRC_channels) | sed 's/channels=(//' | grep ^"\[" | sed 's/)$//' | sed 's/\].*/\]/'))
+            export IRC_channelnames=($(printf '%b\n' $(declare -p IRC_channels) | sed 's/channels=(//' | grep ^"\[" | sed 's/)$//' | sed 's/.*\="//' | sed 's/\"//'))
+            export IRC_channelfinal=($(for i in ${!IRC_channelsoriginal[@]} ; do echo "${IRC_channelnames[i]}${IRC_channelindexes[i]}" ; done))
+            export IRC_channels=($(for i in ${!IRC_channels[@]} ; do echo ${IRC_channels[i]}[$i] | tr '\n' ' ' ; done))
+            printf '%b\n' ${IRC_channels[@]} | grep ^"$1\[" | sed "s/$1\[//" | sed "s/]//"
+            printf '%b\n' ${IRC_channelfinal[@]} | grep ^"$1\[" | sed "s/$1\[//" | sed "s/]//"
+            }
+arrayget() { if [[ "$1" == *[a-Z]* ]]
+                then
+                    printf '%b\n' ${IRC_channels[@]} | grep ^"$1\[" | sed "s/$1\[//" | sed "s/]//"
+                else
+                    printf '%b\n' ${IRC_channels[@]} | grep "\[$1\]"$ | sed "s/\[$1\]//"
+             fi
+            }
+arrayjoin() { if [[ "$1" == *[a-Z]* ]]
+                then
+                    export IRC_val="$1"
+                    export IRC_index="$(arrayget "$IRC_val")" && echo "$IRC_val[$IRC_index]"
+                else
+                    export IRC_index="$1"
+                    export IRC_val="$(arrayget "$IRC_index")" && echo "$IRC_val[$index]"
+              fi
+            }

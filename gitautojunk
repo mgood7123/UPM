@@ -1,0 +1,14 @@
+#!./Files/bash-4.4.0
+echo 'this script adds about 1.1 MB (possibly more) of junk each loop'
+rm /home/universalpackagemanager/UPM/.git/HEAD.lock /home/universalpackagemanager/UPM/.git/index.lock 2> /dev/null
+./Files/perl-5.10.1-3/usr/bin/perl -e 'print "."x267696000' > file
+count=0
+printf '%b' $count
+a=null
+until [[ $a = 8 ]] ; do 
+    echo h >> ./junk
+    git add --all
+    git commit -m -a -q
+    printf '%b\r' $count
+    count=$((count +1))
+done

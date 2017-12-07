@@ -1,0 +1,56 @@
+coproc test {
+for i in $(seq 0 9)
+    do
+        sleep 1
+        echo $i
+done
+}
+redirect_to_input() { while read -u 3 inputvar ; do printf '%b' $inputvar >input ; done
+}
+redirect_to_output() { while read outputvar ; do printf '%b' $outputvar >output ; done
+}
+input() { while true ; do in="$(cat input)"
+        if [[ $in == five ]]
+        then
+            echo 5 detected, sending seven
+            echo seven >output
+        else
+        echo sent: $in # this should send to output function 
+        echo $in >output
+        fi
+done
+}
+output() { while true ; do out="$(cat output)"
+    if [[ $out == 5 ]]; then
+        echo five >input
+    else
+        echo Recieved $out
+    fi
+done
+}
+exec 3>&${test[0]}
+exec 4<&${test[1]}
+mkfifo input
+mkfifo output
+redirect_to_input <&3 &
+redirect_to_output <&4 &
+input &
+output &
+sleep 11
+exec 3>&- 4>&-
+kill_descendant_processes() {
+    local pid="$1"
+    local and_self="${2:-false}"
+    if children="$(pgrep -P "$pid")"; then
+        for child in $children; do
+            kill_descendant_processes "$child" true
+        done
+    fi
+    if [[ "$and_self" == true ]]; then
+        kill -9 "$pid"
+    fi
+}
+kill_descendant_processes $$
+unlink input
+unlink output
+echo finished

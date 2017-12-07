@@ -1,0 +1,9 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Params/Validate.pm relocate_as=../../../Params/Validate.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Params/Validate/Constants.pm relocate_as=../../../Params/Validate/Constants.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Params/Validate/PP.pm relocate_as=../../../Params/Validate/PP.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Params/Validate/XS.pm relocate_as=../../../Params/Validate/XS.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Params/ValidatePP.pm relocate_as=../../../Params/ValidatePP.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Params/ValidateXS.pm relocate_as=../../../Params/ValidateXS.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Params/Validate/XS/XS.bs relocate_as=XS/XS.bs
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Params/Validate/XS/XS.so relocate_as=XS/XS.so
+/UPM/Files/Code/perl/man/man3/Params::Validate.3 relocate_as=../../../../../../../man/man3/Params::Validate.3

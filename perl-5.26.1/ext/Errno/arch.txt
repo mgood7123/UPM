@@ -1,0 +1,1 @@
+i686-linux-thread-multi-quadmath-4.9.20-nrj-desktop-1rosa-i586

@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Data/Visitor.pm relocate_as=../../../../Data/Visitor.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Data/Visitor/Callback.pm relocate_as=../../../../Data/Visitor/Callback.pm
+/UPM/Files/Code/perl/man/man3/Data::Visitor.3 relocate_as=../../../../../../../man/man3/Data::Visitor.3
+/UPM/Files/Code/perl/man/man3/Data::Visitor::Callback.3 relocate_as=../../../../../../../man/man3/Data::Visitor::Callback.3

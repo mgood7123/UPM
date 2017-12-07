@@ -1,0 +1,5 @@
+#random cut/paste stuff - ignore this file.
+
+#dtrace -n "syscall:::entry/pid==\$target/{ustack();}" -p 8924
+dtrace -n "fbt::sys*:entry/pid==\$target/{ustack();}" -p 8924
+dtrace -n "fbt::sys_open*:entry/pid==\$target/{ustack();}" -p 8924

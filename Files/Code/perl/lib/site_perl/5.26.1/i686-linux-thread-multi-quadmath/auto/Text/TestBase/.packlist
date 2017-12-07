@@ -1,0 +1,8 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Data/Section/TestBase.pm relocate_as=../../../../Data/Section/TestBase.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/Base/Less.pm relocate_as=../../../../Test/Base/Less.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Text/TestBase.pm relocate_as=../../../../Text/TestBase.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Text/TestBase/Block.pm relocate_as=../../../../Text/TestBase/Block.pm
+/UPM/Files/Code/perl/man/man3/Data::Section::TestBase.3 relocate_as=../../../../../../../man/man3/Data::Section::TestBase.3
+/UPM/Files/Code/perl/man/man3/Test::Base::Less.3 relocate_as=../../../../../../../man/man3/Test::Base::Less.3
+/UPM/Files/Code/perl/man/man3/Text::TestBase.3 relocate_as=../../../../../../../man/man3/Text::TestBase.3
+/UPM/Files/Code/perl/man/man3/Text::TestBase::Block.3 relocate_as=../../../../../../../man/man3/Text::TestBase::Block.3

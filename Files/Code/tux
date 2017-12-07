@@ -1,0 +1,33 @@
+TTY_HOST=$(tty)
+export TTY_HOST
+./tmux new-window -a -n WinSplit
+./tmux new-session -d -s WinSplit
+./tmux selectp -t WinSplit
+./tmux split-window -v -l 5
+./tmux set-window-option -g window-status-current-bg blue
+./tmux send-keys -t 1 'kill_all_panes() {
+panes=($(./tmux list-panes | grep [0-9]:))
+for i in ${!panes[@]}
+    do
+        ./tmux kill-pane -t 0
+    done
+}' C-m
+./tmux send-keys -t 1 'trap kill_all_panes SIGINT' C-m
+./tmux send-keys -t 1 'clear' C-m
+./tmux send-keys -t 0 'TTY_CURRENT=$(tty) ; export TTY_CURRENT' C-m
+./tmux send-keys -t 1 'TTY_CURRENT=$(tty) ; export TTY_CURRENT' C-m
+./tmux send-keys -t 0 'tty > ./term0' C-m
+./tmux send-keys -t 1 'tty > ./term1' C-m
+sleep 0.3
+./tmux send-keys -t 0 'TTY_IN=$(cat ./term1) ; export TTY_IN' C-m
+./tmux send-keys -t 1 'TTY_OUT=$(cat ./term0) ; export TTY_OUT' C-m
+TTY_OUT=$(cat ./term0)
+export TTY_OUT
+TTY_IN=$(cat ./term1)
+export TTY_IN
+./tmux send-keys -t 0 'PS1= ; clear ; while read null; do echo >/dev/null ; done' C-m
+./tmux send-keys -t 1 'clear ; env | grep -e TTY_CURRENT -e TTY_OUT' C-m
+./tmux set -g mouse on
+./tmux attach -t WinSplit
+echo "Cleaning up"
+rm -v ./term0 ./term1

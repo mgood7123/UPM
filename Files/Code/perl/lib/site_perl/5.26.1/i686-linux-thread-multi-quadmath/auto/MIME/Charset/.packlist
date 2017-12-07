@@ -1,0 +1,7 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/MIME/Charset.pm relocate_as=../../../../MIME/Charset.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/MIME/Charset/Defaults.pm.sample relocate_as=../../../../MIME/Charset/Defaults.pm.sample
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/MIME/Charset/UTF.pm relocate_as=../../../../MIME/Charset/UTF.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/MIME/Charset/_Compat.pm relocate_as=../../../../MIME/Charset/_Compat.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/POD2/JA/MIME/Charset.pod relocate_as=../../../../POD2/JA/MIME/Charset.pod
+/UPM/Files/Code/perl/man/man3/MIME::Charset.3 relocate_as=../../../../../../../man/man3/MIME::Charset.3
+/UPM/Files/Code/perl/man/man3/POD2::JA::MIME::Charset.3 relocate_as=../../../../../../../man/man3/POD2::JA::MIME::Charset.3

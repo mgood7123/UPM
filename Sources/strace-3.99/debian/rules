@@ -1,0 +1,68 @@
+#! /usr/bin/make -f
+
+# Debian package information
+package		= strace
+
+# C compiler information
+CFLAGS		= -O2 -g -I/usr/src/linux/include
+
+all build:	Makefile
+	make $(MFLAGS) CFLAGS="$(CFLAGS)"
+	touch stamp-build
+
+clean:
+	-make -f Makefile.in distclean
+	rm -f stamp-build
+	rm -rf debian/tmp debian/*substvars debian/files
+
+Makefile:
+	./configure --prefix=/usr
+
+binary: binary-indep binary-arch
+
+binary-indep:
+
+binary-arch: checkroot
+	test -f stamp-build || make $(MFLAGS) -f debian/rules build
+	-rm -rf debian/tmp debian/{files,substvars}
+
+	install -d -m 755 -o root -g root debian/tmp
+	# reset the mode to work around a bug in install
+	chown 755 debian/tmp
+	install -d -m 755 -o root -g root debian/tmp/DEBIAN
+
+# Install documentation
+	install -d -o root -g root -m 755 debian/tmp/usr/doc/$(package)
+	install -p -o root -g root -m 644 debian/changelog \
+			debian/tmp/usr/doc/$(package)/changelog.Debian
+	install -p -o root -g root -m 644 debian/TODO \
+			debian/tmp/usr/doc/$(package)/TODO.debian
+	install -p -o root -g root -m 644 TODO \
+			debian/tmp/usr/doc/$(package)/TODO
+	install -p -o root -g root -m 644 NEWS \
+			debian/tmp/usr/doc/$(package)/changelog
+	gzip -9 debian/tmp/usr/doc/$(package)/*
+	install -p -o root -g root -m 644 debian/copyright \
+			debian/tmp/usr/doc/$(package)/copyright
+
+# Install examples
+	install -d -o root -g root -m 755 debian/tmp/usr/doc/$(package)/examples
+	install -p -o root -g root -m 755 debian/strace-graph \
+			debian/tmp/usr/doc/$(package)/examples/
+
+# Instrall strace
+	install -d -o root -g root -m 755 debian/tmp/usr/bin debian/tmp/usr/man/man1
+	install -o root -g root -m 755 -s strace debian/tmp/usr/bin/strace
+	install -o root -g root -m 644 -p strace.1 debian/tmp/usr/man/man1/strace.1
+	gzip -9 debian/tmp/usr/man/man1/strace.1
+
+	find debian/tmp -type f | grep -v "./DEBIAN" | xargs md5sum | \
+		sed -e 's#debian/tmp/##' > debian/tmp/DEBIAN/md5sums
+
+	dpkg-shlibdeps strace
+	dpkg-gencontrol
+	dpkg --build debian/tmp ..
+
+checkroot:
+	test root = "`whoami`"
+

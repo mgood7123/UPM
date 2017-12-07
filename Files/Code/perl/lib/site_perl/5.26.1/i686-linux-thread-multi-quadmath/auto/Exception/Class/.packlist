@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Exception/Class.pm relocate_as=../../../../Exception/Class.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Exception/Class/Base.pm relocate_as=../../../../Exception/Class/Base.pm
+/UPM/Files/Code/perl/man/man3/Exception::Class.3 relocate_as=../../../../../../../man/man3/Exception::Class.3
+/UPM/Files/Code/perl/man/man3/Exception::Class::Base.3 relocate_as=../../../../../../../man/man3/Exception::Class::Base.3

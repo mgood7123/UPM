@@ -1,0 +1,12 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/CPAN/Reporter.pm relocate_as=../../../../CPAN/Reporter.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/CPAN/Reporter/API.pm relocate_as=../../../../CPAN/Reporter/API.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/CPAN/Reporter/Config.pm relocate_as=../../../../CPAN/Reporter/Config.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/CPAN/Reporter/FAQ.pm relocate_as=../../../../CPAN/Reporter/FAQ.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/CPAN/Reporter/History.pm relocate_as=../../../../CPAN/Reporter/History.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/CPAN/Reporter/PrereqCheck.pm relocate_as=../../../../CPAN/Reporter/PrereqCheck.pm
+/UPM/Files/Code/perl/man/man3/CPAN::Reporter.3 relocate_as=../../../../../../../man/man3/CPAN::Reporter.3
+/UPM/Files/Code/perl/man/man3/CPAN::Reporter::API.3 relocate_as=../../../../../../../man/man3/CPAN::Reporter::API.3
+/UPM/Files/Code/perl/man/man3/CPAN::Reporter::Config.3 relocate_as=../../../../../../../man/man3/CPAN::Reporter::Config.3
+/UPM/Files/Code/perl/man/man3/CPAN::Reporter::FAQ.3 relocate_as=../../../../../../../man/man3/CPAN::Reporter::FAQ.3
+/UPM/Files/Code/perl/man/man3/CPAN::Reporter::History.3 relocate_as=../../../../../../../man/man3/CPAN::Reporter::History.3
+/UPM/Files/Code/perl/man/man3/CPAN::Reporter::PrereqCheck.3 relocate_as=../../../../../../../man/man3/CPAN::Reporter::PrereqCheck.3

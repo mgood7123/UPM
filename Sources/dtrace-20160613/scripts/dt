@@ -1,0 +1,252 @@
+#! /usr/bin/perl
+
+# $Header:$
+
+# Author: Paul D. Fox
+#
+# Tool to wrap dtrace and provide convenience high level access
+# to some system probes (mostly syscalls)
+#
+# Avoids need to find a script when you dont know the name of the thing.
+# Designed to allow extensions to add higher level D scripts.
+#
+
+use strict;
+use warnings;
+
+use File::Basename;
+use FileHandle;
+use Getopt::Long;
+use IO::File;
+use POSIX;
+
+######################################################################
+#   Map of common groups of calls to invoke.			     #
+######################################################################
+my %calls = (
+	chdir 	=> "chdir",
+	connect => "connect accept listen bind",
+	dir	=> "getdents",
+	exec 	=> "exec*",
+	fbt     => "",
+	file 	=> "chdir chmod chown mkdir open* rmdir symlink unlink",
+	fork 	=> "fork* vfork* clone*",
+	io      => "",
+	mkdir 	=> "mkdir",
+	mmap  	=> "mmap munmap",
+	open 	=> "open*",
+	remove 	=> "unlink* rmdir ",
+	signal  => "",
+	socket  => "socket connect accept listen bind shutdown setsockopt getsockopt",
+	stat 	=> "lstat* stat*",
+	symlink => "symlink",
+	time    => "adjtimex settimeofday clock_settime",
+	);
+
+#######################################################################
+#   Command line switches.					      #
+#######################################################################
+my %opts = (
+	secs => 5
+	);
+
+sub do_func
+{
+	my $pid = shift @ARGV;
+	usage() if !$pid;
+
+	my $exe = readlink("/proc/$pid/exe");
+	if (!$exe) {
+		print "Error: cannot read /proc/$pid/exe - $!\n";
+		exit(1);
+	}
+	$exe = basename($exe);
+
+	print "Type Ctrl-C to see results\n";
+	my $d = <<EOF;
+pid${pid}:${exe}::entry
+{
+	\@func[probefunc] = count();
+}
+END
+{
+	printa(\@func);
+}
+EOF
+	do_dtrace($d);
+
+	exit(0);
+}
+
+sub main
+{
+	Getopt::Long::Configure('no_ignore_case');
+	usage() unless GetOptions(\%opts,
+		'help',
+		'l',
+		'secs=s',
+		'v',
+		);
+
+	usage() if ($opts{help});
+
+	my $cmd = shift @ARGV;
+	if ($cmd eq 'func') {
+		do_func();
+	}
+
+	my $mode = shift @ARGV || "scroll";
+	usage() if !$cmd;
+	usage() if !defined($calls{$cmd});
+	my $d = ""; #"#pragma D option quiet\n";
+
+	my $comma = "";
+	my $width = 16;
+	if ($cmd eq 'fbt') {
+		$d .= "fbt:::entry";
+		$width = 25;
+	} elsif ($cmd eq 'signal') {
+		$d = <<EOF;
+fbt::send_signal:entry
+{
+	printf("%Y %d %s sig=%d\\n", timestamp, pid, execname, arg0);
+}
+EOF
+		do_dtrace($d);
+		return;
+	} elsif ($cmd eq 'io') {
+		$d .= "#pragma options quiet\n";
+		$d .= "io::: /execname != \"dtrace\"/ {\n";
+		$d .= "printf(\"%-8s %5d %s\\n\", probename, pid, execname);\n";
+		$d .= "}\n";
+		do_dtrace($d);
+		return;
+	} else {
+		foreach my $call (split(" ", $calls{$cmd})) {
+			$d .= "${comma}syscall::$call:entry";
+			$comma = ",\n";
+		}
+	}
+
+	$d .= " {\n";
+	if (!$mode) {
+		print "DTrace $cmd $mode: list probes as they occur. Ctrl-C to exit.\n";
+		$d .= "\tprinta(\"%5d %-${width}s %-32s %d\\n\", pid, probefunc, execname, count());\n";
+	} elsif ($mode eq 'count') {
+		print "DTrace $cmd $mode: collect probes until Ctrl-C.\n";
+		$d .= "\t\@num[probefunc] = count();\n";
+	} elsif ($mode eq 'count1') {
+		print "DTrace $cmd $mode: collect probes until Ctrl-C.\n";
+		$d .= "\t\@num[probefunc, execname] = count();\n";
+		$d .= "}\n";
+		$d .= "END {\n";
+		$d .= "\tprintf(\"Grand summary:\\n\");\n";
+		$d .= "\tprinta(\"%-${width}s %-32s %\@d\\n\", \@num);\n";
+	} elsif ($mode eq 'count2') {
+		print "DTrace $cmd $mode: list probes every $opts{secs}s.\n";
+		print "Ctrl-C to exit.\n";
+		$d .= <<EOF;
+	\@num[probefunc, execname] = count();
+	\@tot[probefunc, execname] = count();
+}
+tick-$opts{secs}sec {
+	printf("\\n");
+	printa("%-${width}s %-32s %\@d\\n", \@num);
+	clear(\@num);
+}
+END {
+	printf("Grand summary:\\n");
+	printa("%-${width}s %-32s %\@d\\n", \@tot);
+EOF
+	} elsif ($mode eq 'scroll') {
+		if ($cmd eq 'file') {
+			$d .= 'printf("%Y %5d %s %s %s", timestamp, pid, execname, probefunc, copyinstr(arg0));';
+		} else {
+			$d .= 'printf("%5d %s", pid, execname);';
+		}
+	}
+	$d .= "printf(\"\\n\");\n";
+	$d .= "}\n";
+
+	do_dtrace($d);
+}
+sub do_dtrace
+{	my $d = shift;
+
+	$d = "dtrace -q -n '$d'";
+
+	if ($opts{v} || $opts{l}) {
+		print "### Script:\n";
+		print $d, "\n";
+		print "### End of script\n";
+	}
+	exit(0) if $opts{l};
+
+	return system($d);
+}
+#######################################################################
+#   Print out command line usage.				      #
+#######################################################################
+sub usage
+{
+	print <<EOF;
+dt -- simple interface to useful dtrace scripts
+Usage: dt <cmd> <mode>
+
+Description:
+
+  dt is a simple wrapper around dtrace providing access to a library
+  of useful examples and scenarios.
+
+Commands:
+
+  The following commands are available, and expand into traces against
+  the listed system calls.
+
+  dt func <pid>    - Show function calls for a running process.
+
+EOF
+	foreach my $s (sort(keys(%calls))) {
+		printf "  %-10s => %s\n", $s, $calls{$s} || " (n/a)";
+	}
+
+	print <<EOF;
+
+Mode:
+
+  This word is used to refine the type of collection. Possible values are
+
+  (empty)    List probe events as they occur.
+  count      Collect probes until user types Ctrl-C.
+  count1     Same as 'count', but include execname.
+  count2     Same as 'count1', but also dump exec $opts{secs}s.
+
+Switches:
+
+  -l         List the D program without executing.
+  -secs NN   When dumping periodically, dump after NN seconds.
+  -v         List program but continue executing.
+
+Examples:
+
+  dt fork count2
+
+  \$ dt func 1234
+  Type Ctrl-C to see results
+  ...
+  lex_get_token                                                 28988
+  vt_parse_machine                                              29480
+  eval_expr2                                                    30437
+  thread_verify                                                 40003
+  lex_unget_char                                                69696
+  dstr_add_char                                                111018
+  lex_get_char                                                 331968
+
+EOF
+
+	exit(1);
+}
+
+main();
+0;
+

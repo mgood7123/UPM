@@ -1,0 +1,7 @@
+#if expr match "$IRC_line" "^PING" >/dev/null; then
+#if [[ $IRC_line =~ ^"PING" ]] ; then
+if expr match "$IRC_line" ^"PING" >/dev/null; then
+      export IRC_servers=`echo $IRC_line"" | cut -d: -f2`
+      echo "PONG $IRC_servers" >&4
+      echo "PONG $IRC_servers"
+fi

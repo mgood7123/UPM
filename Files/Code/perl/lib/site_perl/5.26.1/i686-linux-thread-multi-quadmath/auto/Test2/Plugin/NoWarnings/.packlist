@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test2/Event/Warning.pm relocate_as=../../../../../Test2/Event/Warning.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test2/Plugin/NoWarnings.pm relocate_as=../../../../../Test2/Plugin/NoWarnings.pm
+/UPM/Files/Code/perl/man/man3/Test2::Event::Warning.3 relocate_as=../../../../../../../../man/man3/Test2::Event::Warning.3
+/UPM/Files/Code/perl/man/man3/Test2::Plugin::NoWarnings.3 relocate_as=../../../../../../../../man/man3/Test2::Plugin::NoWarnings.3

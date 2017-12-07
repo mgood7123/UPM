@@ -1,0 +1,391 @@
+
+./kernel/hd.c:
+   120	int sys_setup(void)
+
+./kernel/exit.c:
+    10	int sys_pause(void);
+    11	int sys_close(int fd);
+    58	int sys_kill(int pid,int sig)
+    75				sys_close(i);
+    94	int sys_exit(int error_code)
+    99	int sys_waitpid(pid_t pid,int * stat_addr, int options)
+   126			sys_pause();
+
+./kernel/sys.c:
+    10	int sys_ftime()
+    15	int sys_mknod()
+    20	int sys_break()
+    25	int sys_mount()
+    30	int sys_umount()
+    35	int sys_ustat(int dev,struct ustat * ubuf)
+    40	int sys_ptrace()
+    45	int sys_stty()
+    50	int sys_gtty()
+    55	int sys_rename()
+    60	int sys_prof()
+    65	int sys_setgid(int gid)
+    77	int sys_acct()
+    82	int sys_phys()
+    87	int sys_lock()
+    92	int sys_mpx()
+    97	int sys_ulimit()
+   102	int sys_time(long * tloc)
+   114	int sys_setuid(int uid)
+   126	int sys_stime(long * tptr)
+   134	int sys_times(struct tms * tbuf)
+   146	int sys_brk(unsigned long end_data_seg)
+   159	int sys_setpgid(int pid, int pgid)
+   179	int sys_getpgrp(void)
+   184	int sys_setsid(void)
+   196	int sys_uname(struct utsname * name)
+   210	int sys_umask(int mask)
+
+./kernel/sched.c:
+   107	int sys_pause(void)
+   171	int sys_alarm(long seconds)
+   177	int sys_getpid(void)
+   182	int sys_getppid(void)
+   187	int sys_getuid(void)
+   192	int sys_geteuid(void)
+   197	int sys_getgid(void)
+   202	int sys_getegid(void)
+   207	int sys_nice(long increment)
+   214	int sys_signal(long signal,long addr,long restorer)
+
+./kernel/system_call.s:
+    50	.globl _system_call,_sys_fork,_timer_interrupt,_hd_interrupt,_sys_execve
+    53	bad_sys_call:
+    58		pushl $ret_from_sys_call
+    63		ja bad_sys_call
+    75		call _sys_call_table(,%eax,4)
+    82	ret_from_sys_call:
+   151		pushl %ebx		# is saved as we use that in ret_sys_call
+   166		jmp ret_from_sys_call
+   169	_sys_execve:
+   177	_sys_fork:
+
+./fs/pipe.c:
+    52	int sys_pipe(unsigned long * fildes)
+
+./fs/exec.c:
+    11	extern int sys_exit(int exit_code);
+    12	extern int sys_close(int fd);
+   283				sys_close(i);
+   299			sys_exit(-1);
+
+./fs/stat.c:
+    31	int sys_stat(char * filename, struct stat * statbuf)
+    43	int sys_fstat(unsigned int fd, struct stat * statbuf)
+
+./fs/read_write.c:
+    19	int sys_lseek(unsigned int fd,off_t offset, int origin)
+    49	int sys_read(unsigned int fd,char * buf,int count)
+    77	int sys_write(unsigned int fd,char * buf,int count)
+
+./fs/ioctl.c:
+    24	int sys_ioctl(unsigned int fd, unsigned int cmd, unsigned long arg)
+
+./fs/fcntl.c:
+    10	extern int sys_close(int fd);
+    30	int sys_dup2(unsigned int oldfd, unsigned int newfd)
+    32		sys_close(newfd);
+    36	int sys_dup(unsigned int fildes)
+    41	int sys_fcntl(unsigned int fd, unsigned int cmd, unsigned long arg)
+
+./fs/namei.c:
+   381	int sys_mkdir(const char * pathname, int mode)
+   505	int sys_rmdir(const char * name)
+   569	int sys_unlink(const char * name)
+   621	int sys_link(const char * oldname, const char * newname)
+
+./fs/buffer.c:
+    37	int sys_sync(void)
+
+./fs/open.c:
+    13	int sys_utime(char * filename, struct utimbuf * times)
+    32	int sys_access(const char * filename,int mode)
+    56	int sys_chdir(const char * filename)
+    71	int sys_chroot(const char * filename)
+    86	int sys_chmod(const char * filename,int mode)
+   104	int sys_chown(const char * filename,int uid,int gid)
+   121	int sys_open(const char * filename,int flag,int mode)
+   167	int sys_creat(const char * pathname, int mode)
+   169		return sys_open(pathname, O_CREAT | O_TRUNC, mode);
+   172	int sys_close(unsigned int fd)
+
+./include/sys/wait.h:
+     1	#ifndef _SYS_WAIT_H
+     2	#define _SYS_WAIT_H
+
+./include/sys/utsname.h:
+     1	#ifndef _SYS_UTSNAME_H
+     2	#define _SYS_UTSNAME_H
+
+./include/sys/stat.h:
+     1	#ifndef _SYS_STAT_H
+     2	#define _SYS_STAT_H
+
+./include/sys/types.h:
+     1	#ifndef _SYS_TYPES_H
+     2	#define _SYS_TYPES_H
+
+./include/linux/sys.h:
+     1	extern int sys_setup();
+     2	extern int sys_exit();
+     3	extern int sys_fork();
+     4	extern int sys_read();
+     5	extern int sys_write();
+     6	extern int sys_open();
+     7	extern int sys_close();
+     8	extern int sys_waitpid();
+     9	extern int sys_creat();
+    10	extern int sys_link();
+    11	extern int sys_unlink();
+    12	extern int sys_execve();
+    13	extern int sys_chdir();
+    14	extern int sys_time();
+    15	extern int sys_mknod();
+    16	extern int sys_chmod();
+    17	extern int sys_chown();
+    18	extern int sys_break();
+    19	extern int sys_stat();
+    20	extern int sys_lseek();
+    21	extern int sys_getpid();
+    22	extern int sys_mount();
+    23	extern int sys_umount();
+    24	extern int sys_setuid();
+    25	extern int sys_getuid();
+    26	extern int sys_stime();
+    27	extern int sys_ptrace();
+    28	extern int sys_alarm();
+    29	extern int sys_fstat();
+    30	extern int sys_pause();
+    31	extern int sys_utime();
+    32	extern int sys_stty();
+    33	extern int sys_gtty();
+    34	extern int sys_access();
+    35	extern int sys_nice();
+    36	extern int sys_ftime();
+    37	extern int sys_sync();
+    38	extern int sys_kill();
+    39	extern int sys_rename();
+    40	extern int sys_mkdir();
+    41	extern int sys_rmdir();
+    42	extern int sys_dup();
+    43	extern int sys_pipe();
+    44	extern int sys_times();
+    45	extern int sys_prof();
+    46	extern int sys_brk();
+    47	extern int sys_setgid();
+    48	extern int sys_getgid();
+    49	extern int sys_signal();
+    50	extern int sys_geteuid();
+    51	extern int sys_getegid();
+    52	extern int sys_acct();
+    53	extern int sys_phys();
+    54	extern int sys_lock();
+    55	extern int sys_ioctl();
+    56	extern int sys_fcntl();
+    57	extern int sys_mpx();
+    58	extern int sys_setpgid();
+    59	extern int sys_ulimit();
+    60	extern int sys_uname();
+    61	extern int sys_umask();
+    62	extern int sys_chroot();
+    63	extern int sys_ustat();
+    64	extern int sys_dup2();
+    65	extern int sys_getppid();
+    66	extern int sys_getpgrp();
+    67	extern int sys_setsid();
+    69	fn_ptr sys_call_table[] = { sys_setup, sys_exit, sys_fork, sys_read,
+    70	sys_write, sys_open, sys_close, sys_waitpid, sys_creat, sys_link,
+    71	sys_unlink, sys_execve, sys_chdir, sys_time, sys_mknod, sys_chmod,
+    72	sys_chown, sys_break, sys_stat, sys_lseek, sys_getpid, sys_mount,
+    73	sys_umount, sys_setuid, sys_getuid, sys_stime, sys_ptrace, sys_alarm,
+    74	sys_fstat, sys_pause, sys_utime, sys_stty, sys_gtty, sys_access,
+    75	sys_nice, sys_ftime, sys_sync, sys_kill, sys_rename, sys_mkdir,
+    76	sys_rmdir, sys_dup, sys_pipe, sys_times, sys_prof, sys_brk, sys_setgid,
+    77	sys_getgid, sys_signal, sys_geteuid, sys_getegid, sys_acct, sys_phys,
+    78	sys_lock, sys_ioctl, sys_fcntl, sys_mpx, sys_setpgid, sys_ulimit,
+    79	sys_uname, sys_umask, sys_chroot, sys_ustat, sys_dup2, sys_getppid,
+    80	sys_getpgrp,sys_setsid};
+
+./include/linux/hdreg.h:
+    91		unsigned char sys_ind;		/* ? */
+
+./grep_SYS_:
+     3	   120	int sys_setup(void)
+     6	    10	int sys_pause(void);
+     7	    11	int sys_close(int fd);
+     8	    58	int sys_kill(int pid,int sig)
+     9	    75				sys_close(i);
+    10	    94	int sys_exit(int error_code)
+    11	    99	int sys_waitpid(pid_t pid,int * stat_addr, int options)
+    12	   126			sys_pause();
+    15	    10	int sys_ftime()
+    16	    15	int sys_mknod()
+    17	    20	int sys_break()
+    18	    25	int sys_mount()
+    19	    30	int sys_umount()
+    20	    35	int sys_ustat(int dev,struct ustat * ubuf)
+    21	    40	int sys_ptrace()
+    22	    45	int sys_stty()
+    23	    50	int sys_gtty()
+    24	    55	int sys_rename()
+    25	    60	int sys_prof()
+    26	    65	int sys_setgid(int gid)
+    27	    77	int sys_acct()
+    28	    82	int sys_phys()
+    29	    87	int sys_lock()
+    30	    92	int sys_mpx()
+    31	    97	int sys_ulimit()
+    32	   102	int sys_time(long * tloc)
+    33	   114	int sys_setuid(int uid)
+    34	   126	int sys_stime(long * tptr)
+    35	   134	int sys_times(struct tms * tbuf)
+    36	   146	int sys_brk(unsigned long end_data_seg)
+    37	   159	int sys_setpgid(int pid, int pgid)
+    38	   179	int sys_getpgrp(void)
+    39	   184	int sys_setsid(void)
+    40	   196	int sys_uname(struct utsname * name)
+    41	   210	int sys_umask(int mask)
+    44	   107	int sys_pause(void)
+    45	   171	int sys_alarm(long seconds)
+    46	   177	int sys_getpid(void)
+    47	   182	int sys_getppid(void)
+    48	   187	int sys_getuid(void)
+    49	   192	int sys_geteuid(void)
+    50	   197	int sys_getgid(void)
+    51	   202	int sys_getegid(void)
+    52	   207	int sys_nice(long increment)
+    53	   214	int sys_signal(long signal,long addr,long restorer)
+    56	    50	.globl _system_call,_sys_fork,_timer_interrupt,_hd_interrupt,_sys_execve
+    57	    53	bad_sys_call:
+    58	    58		pushl $ret_from_sys_call
+    59	    63		ja bad_sys_call
+    60	    75		call _sys_call_table(,%eax,4)
+    61	    82	ret_from_sys_call:
+    62	   151		pushl %ebx		# is saved as we use that in ret_sys_call
+    63	   166		jmp ret_from_sys_call
+    64	   169	_sys_execve:
+    65	   177	_sys_fork:
+    68	    52	int sys_pipe(unsigned long * fildes)
+    71	    11	extern int sys_exit(int exit_code);
+    72	    12	extern int sys_close(int fd);
+    73	   283				sys_close(i);
+    74	   299			sys_exit(-1);
+    77	    31	int sys_stat(char * filename, struct stat * statbuf)
+    78	    43	int sys_fstat(unsigned int fd, struct stat * statbuf)
+    81	    19	int sys_lseek(unsigned int fd,off_t offset, int origin)
+    82	    49	int sys_read(unsigned int fd,char * buf,int count)
+    83	    77	int sys_write(unsigned int fd,char * buf,int count)
+    86	    24	int sys_ioctl(unsigned int fd, unsigned int cmd, unsigned long arg)
+    89	    10	extern int sys_close(int fd);
+    90	    30	int sys_dup2(unsigned int oldfd, unsigned int newfd)
+    91	    32		sys_close(newfd);
+    92	    36	int sys_dup(unsigned int fildes)
+    93	    41	int sys_fcntl(unsigned int fd, unsigned int cmd, unsigned long arg)
+    96	   381	int sys_mkdir(const char * pathname, int mode)
+    97	   505	int sys_rmdir(const char * name)
+    98	   569	int sys_unlink(const char * name)
+    99	   621	int sys_link(const char * oldname, const char * newname)
+   102	    37	int sys_sync(void)
+   105	    13	int sys_utime(char * filename, struct utimbuf * times)
+   106	    32	int sys_access(const char * filename,int mode)
+   107	    56	int sys_chdir(const char * filename)
+   108	    71	int sys_chroot(const char * filename)
+   109	    86	int sys_chmod(const char * filename,int mode)
+   110	   104	int sys_chown(const char * filename,int uid,int gid)
+   111	   121	int sys_open(const char * filename,int flag,int mode)
+   112	   167	int sys_creat(const char * pathname, int mode)
+   113	   169		return sys_open(pathname, O_CREAT | O_TRUNC, mode);
+   114	   172	int sys_close(unsigned int fd)
+   117	     1	#ifndef _SYS_WAIT_H
+   118	     2	#define _SYS_WAIT_H
+   121	     1	#ifndef _SYS_UTSNAME_H
+   122	     2	#define _SYS_UTSNAME_H
+   125	     1	#ifndef _SYS_STAT_H
+   126	     2	#define _SYS_STAT_H
+   129	     1	#ifndef _SYS_TYPES_H
+   130	     2	#define _SYS_TYPES_H
+   133	     1	extern int sys_setup();
+   134	     2	extern int sys_exit();
+   135	     3	extern int sys_fork();
+   136	     4	extern int sys_read();
+   137	     5	extern int sys_write();
+   138	     6	extern int sys_open();
+   139	     7	extern int sys_close();
+   140	     8	extern int sys_waitpid();
+   141	     9	extern int sys_creat();
+   142	    10	extern int sys_link();
+   143	    11	extern int sys_unlink();
+   144	    12	extern int sys_execve();
+   145	    13	extern int sys_chdir();
+   146	    14	extern int sys_time();
+   147	    15	extern int sys_mknod();
+   148	    16	extern int sys_chmod();
+   149	    17	extern int sys_chown();
+   150	    18	extern int sys_break();
+   151	    19	extern int sys_stat();
+   152	    20	extern int sys_lseek();
+   153	    21	extern int sys_getpid();
+   154	    22	extern int sys_mount();
+   155	    23	extern int sys_umount();
+   156	    24	extern int sys_setuid();
+   157	    25	extern int sys_getuid();
+   158	    26	extern int sys_stime();
+   159	    27	extern int sys_ptrace();
+   160	    28	extern int sys_alarm();
+   161	    29	extern int sys_fstat();
+   162	    30	extern int sys_pause();
+   163	    31	extern int sys_utime();
+   164	    32	extern int sys_stty();
+   165	    33	extern int sys_gtty();
+   166	    34	extern int sys_access();
+   167	    35	extern int sys_nice();
+   168	    36	extern int sys_ftime();
+   169	    37	extern int sys_sync();
+   170	    38	extern int sys_kill();
+   171	    39	extern int sys_rename();
+   172	    40	extern int sys_mkdir();
+   173	    41	extern int sys_rmdir();
+   174	    42	extern int sys_dup();
+   175	    43	extern int sys_pipe();
+   176	    44	extern int sys_times();
+   177	    45	extern int sys_prof();
+   178	    46	extern int sys_brk();
+   179	    47	extern int sys_setgid();
+   180	    48	extern int sys_getgid();
+   181	    49	extern int sys_signal();
+   182	    50	extern int sys_geteuid();
+   183	    51	extern int sys_getegid();
+   184	    52	extern int sys_acct();
+   185	    53	extern int sys_phys();
+   186	    54	extern int sys_lock();
+   187	    55	extern int sys_ioctl();
+   188	    56	extern int sys_fcntl();
+   189	    57	extern int sys_mpx();
+   190	    58	extern int sys_setpgid();
+   191	    59	extern int sys_ulimit();
+   192	    60	extern int sys_uname();
+   193	    61	extern int sys_umask();
+   194	    62	extern int sys_chroot();
+   195	    63	extern int sys_ustat();
+   196	    64	extern int sys_dup2();
+   197	    65	extern int sys_getppid();
+   198	    66	extern int sys_getpgrp();
+   199	    67	extern int sys_setsid();
+   200	    69	fn_ptr sys_call_table[] = { sys_setup, sys_exit, sys_fork, sys_read,
+   201	    70	sys_write, sys_open, sys_close, sys_waitpid, sys_creat, sys_link,
+   202	    71	sys_unlink, sys_execve, sys_chdir, sys_time, sys_mknod, sys_chmod,
+   203	    72	sys_chown, sys_break, sys_stat, sys_lseek, sys_getpid, sys_mount,
+   204	    73	sys_umount, sys_setuid, sys_getuid, sys_stime, sys_ptrace, sys_alarm,
+   205	    74	sys_fstat, sys_pause, sys_utime, sys_stty, sys_gtty, sys_access,
+   206	    75	sys_nice, sys_ftime, sys_sync, sys_kill, sys_rename, sys_mkdir,
+   207	    76	sys_rmdir, sys_dup, sys_pipe, sys_times, sys_prof, sys_brk, sys_setgid,
+   208	    77	sys_getgid, sys_signal, sys_geteuid, sys_getegid, sys_acct, sys_phys,
+   209	    78	sys_lock, sys_ioctl, sys_fcntl, sys_mpx, sys_setpgid, sys_ulimit,
+   210	    79	sys_uname, sys_umask, sys_chroot, sys_ustat, sys_dup2, sys_getppid,
+   211	    80	sys_getpgrp,sys_setsid};
+   214	    91		unsigned char sys_ind;		/* ? */
+   216	./grep_SYS_:

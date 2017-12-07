@@ -1,0 +1,8 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/MooseX/NonMoose.pm relocate_as=../../../../MooseX/NonMoose.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/MooseX/NonMoose/InsideOut.pm relocate_as=../../../../MooseX/NonMoose/InsideOut.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/MooseX/NonMoose/Meta/Role/Class.pm relocate_as=../../../../MooseX/NonMoose/Meta/Role/Class.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/MooseX/NonMoose/Meta/Role/Constructor.pm relocate_as=../../../../MooseX/NonMoose/Meta/Role/Constructor.pm
+/UPM/Files/Code/perl/man/man3/MooseX::NonMoose.3 relocate_as=../../../../../../../man/man3/MooseX::NonMoose.3
+/UPM/Files/Code/perl/man/man3/MooseX::NonMoose::InsideOut.3 relocate_as=../../../../../../../man/man3/MooseX::NonMoose::InsideOut.3
+/UPM/Files/Code/perl/man/man3/MooseX::NonMoose::Meta::Role::Class.3 relocate_as=../../../../../../../man/man3/MooseX::NonMoose::Meta::Role::Class.3
+/UPM/Files/Code/perl/man/man3/MooseX::NonMoose::Meta::Role::Constructor.3 relocate_as=../../../../../../../man/man3/MooseX::NonMoose::Meta::Role::Constructor.3

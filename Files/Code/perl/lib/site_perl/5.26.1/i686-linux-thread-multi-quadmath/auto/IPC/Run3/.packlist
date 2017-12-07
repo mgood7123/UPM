@@ -1,0 +1,12 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/IPC/Run3.pm relocate_as=../../../../IPC/Run3.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/IPC/Run3/ProfArrayBuffer.pm relocate_as=../../../../IPC/Run3/ProfArrayBuffer.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/IPC/Run3/ProfLogReader.pm relocate_as=../../../../IPC/Run3/ProfLogReader.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/IPC/Run3/ProfLogger.pm relocate_as=../../../../IPC/Run3/ProfLogger.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/IPC/Run3/ProfPP.pm relocate_as=../../../../IPC/Run3/ProfPP.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/IPC/Run3/ProfReporter.pm relocate_as=../../../../IPC/Run3/ProfReporter.pm
+/UPM/Files/Code/perl/man/man3/IPC::Run3.3 relocate_as=../../../../../../../man/man3/IPC::Run3.3
+/UPM/Files/Code/perl/man/man3/IPC::Run3::ProfArrayBuffer.3 relocate_as=../../../../../../../man/man3/IPC::Run3::ProfArrayBuffer.3
+/UPM/Files/Code/perl/man/man3/IPC::Run3::ProfLogReader.3 relocate_as=../../../../../../../man/man3/IPC::Run3::ProfLogReader.3
+/UPM/Files/Code/perl/man/man3/IPC::Run3::ProfLogger.3 relocate_as=../../../../../../../man/man3/IPC::Run3::ProfLogger.3
+/UPM/Files/Code/perl/man/man3/IPC::Run3::ProfPP.3 relocate_as=../../../../../../../man/man3/IPC::Run3::ProfPP.3
+/UPM/Files/Code/perl/man/man3/IPC::Run3::ProfReporter.3 relocate_as=../../../../../../../man/man3/IPC::Run3::ProfReporter.3

@@ -1,0 +1,7 @@
+file=($(find ./)) &&
+for i in ${file[@]}
+    do
+        cat -n $i 2>/dev/null | grep -q -i -e "$@" && 
+        printf "\n$i:\n" && 
+        cat -n $i 2>/dev/null | grep -i -e "$@"
+done

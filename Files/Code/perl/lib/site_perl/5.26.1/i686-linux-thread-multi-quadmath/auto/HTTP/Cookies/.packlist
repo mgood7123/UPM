@@ -1,0 +1,6 @@
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/HTTP/Cookies.pm relocate_as=../../../../HTTP/Cookies.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/HTTP/Cookies/Microsoft.pm relocate_as=../../../../HTTP/Cookies/Microsoft.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/HTTP/Cookies/Netscape.pm relocate_as=../../../../HTTP/Cookies/Netscape.pm
+/UPM/perl-5.26.1/dir./perl/man/man3/HTTP::Cookies.3 relocate_as=../../../../../../../man/man3/HTTP::Cookies.3
+/UPM/perl-5.26.1/dir./perl/man/man3/HTTP::Cookies::Microsoft.3 relocate_as=../../../../../../../man/man3/HTTP::Cookies::Microsoft.3
+/UPM/perl-5.26.1/dir./perl/man/man3/HTTP::Cookies::Netscape.3 relocate_as=../../../../../../../man/man3/HTTP::Cookies::Netscape.3

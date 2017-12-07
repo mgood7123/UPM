@@ -1,0 +1,11 @@
+if [[ $@ =~ "*" ]]
+    then
+        array=($(echo "$@" | sed 's/*/ * /'))
+        echo $((${array[0]}${array[1]}${array[2]}))
+elif [[ $@ =~ "+" ]]
+    then
+        array=($(echo "$@" | sed 's/+/ + /'))
+        echo $((${array[0]}${array[1]}${array[2]}))
+else
+    echo invalid syntax
+fi

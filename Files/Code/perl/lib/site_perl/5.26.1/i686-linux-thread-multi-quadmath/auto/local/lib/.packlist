@@ -1,0 +1,8 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/POD2/DE/local/lib.pod relocate_as=../../../../POD2/DE/local/lib.pod
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/POD2/PT_BR/local/lib.pod relocate_as=../../../../POD2/PT_BR/local/lib.pod
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/lib/core/only.pm relocate_as=../../../../lib/core/only.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/local/lib.pm relocate_as=../../../../local/lib.pm
+/UPM/Files/Code/perl/man/man3/POD2::DE::local::lib.3 relocate_as=../../../../../../../man/man3/POD2::DE::local::lib.3
+/UPM/Files/Code/perl/man/man3/POD2::PT_BR::local::lib.3 relocate_as=../../../../../../../man/man3/POD2::PT_BR::local::lib.3
+/UPM/Files/Code/perl/man/man3/lib::core::only.3 relocate_as=../../../../../../../man/man3/lib::core::only.3
+/UPM/Files/Code/perl/man/man3/local::lib.3 relocate_as=../../../../../../../man/man3/local::lib.3

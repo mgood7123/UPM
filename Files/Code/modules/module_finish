@@ -1,0 +1,14 @@
+function finish() {
+  exec 3>&- 4>&-
+    printf "${IRC_RED}killing connection to 'nc $IRC_server $IRC_port' with process id of 'IRC_NC_PID=$IRC_NC_PID' ${IRC_Color_None}\n"
+    kill $IRC_SESSION_PID >/dev/null 2>&1
+    kill $IRC_READ_PID >/dev/null 2>&1
+    kill $IRC_NC_PID >/dev/null 2>&1
+#    ./modules/module_kill_all_panes
+    unlink input
+    unlink output
+export IRC_FIN=1
+}
+finish
+echo "finished"
+

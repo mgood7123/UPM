@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Types/Serialiser.pm relocate_as=../../../../Types/Serialiser.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Types/Serialiser/Error.pm relocate_as=../../../../Types/Serialiser/Error.pm
+/UPM/Files/Code/perl/man/man3/Types::Serialiser.3 relocate_as=../../../../../../../man/man3/Types::Serialiser.3
+/UPM/Files/Code/perl/man/man3/Types::Serialiser::Error.3 relocate_as=../../../../../../../man/man3/Types::Serialiser::Error.3

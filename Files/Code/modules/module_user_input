@@ -1,0 +1,120 @@
+set -o pipefail
+export IRC_channel_REPLY
+if [[ $IRC_First_Init ]] ; then
+    echo "USER $IRC_user 0 * :$IRC_user" >&4
+    echo "NICK $IRC_user" >&4
+    echo "NickServ identify mgood7123 Myaccount22" >&4
+    sleep 30
+    echo "JOIN $IRC_channel" >&4
+    unset IRC_First_Init
+    if [[ -z $Auto_Join ]]
+        then
+            Auto_Join=($(cat ./modules/autojoin))
+            for i in ${Auto_Join[@]}
+                do
+                    printf "/join $i" >input
+                    printf "/join $i" >&1
+            done
+    fi
+fi
+if [[ $IRC_line =~ "$IRC_user_target :Nickname is already in use." ]]
+    then
+        printf "${IRC_RED}name taken, trying to fix${IRC_Color_None}\n"
+        export IRC_user="$IRC_user"_
+        echo "trying [nick $IRC_user]"
+        echo "/nick $IRC_user" >input
+        echo -e "\r waiting for 3 seconds while i connect to the server..."
+        (sleep 3 ; echo "/NickServ identify mgood7123 Myaccount22" >input ; echo "/join $IRC_channel" >input) &
+
+        
+        
+        
+elif (echo "$IRC_line" | grep -q -m1 "#" | sed -e 's/.* PRIVMSG #/#/' | sed -e 's/ :.*//') ; then
+         Channel_Detected=$(printf "$IRC_line" | grep "#" | grep -o ".*PRIVMSG.*" | sed -e 's/.* PRIVMSG #/#/' | sed -e 's/ :.*//')
+         Channel_JOIN_Detected=$(printf "$IRC_line" | tr '\n' ' ' | tr '\r' ' ' | grep "#" | grep -o " JOIN.*" | sed -e 's/.* JOIN #/#/' | sed -e 's/ :.*//' | tr '\n' ' ' | sed 's/ /¬/g' | sed "s/¬//g")
+         Channel_PART_Detected=$(printf "$IRC_line" | tr '\n' ' ' | tr '\r' ' ' | grep "#" | grep -o " PART.*" | sed -e 's/.* PART #/#/' | sed -e 's/ :.*//' | tr '\n' ' ' | sed 's/ /¬/g' | sed "s/¬//g")
+         User_Detected=$(echo "$IRC_line" | grep -m1 -o "^:.*!" | sed -e 's/!.*//' | sed -e 's/://')
+        export IRC_channel_REPLY="$(printf "$IRC_line" | grep -m1 "#" | sed -e 's/.* PRIVMSG #/#/' | sed -e 's/ :.*//')"
+        export IRC_user_REPLY="$(echo "$IRC_line" | grep -m1 -o "^:.*!" | sed -e 's/!.*//' | sed -e 's/://')"
+#         echo $IRC_line | head -c 41
+#         echo $IRC_mess_nocolor
+        KICK_Detected=$(printf "$IRC_line" | grep ":.*!.*@.* KICK.* .* .")
+        Quit_Detected=$(printf "$IRC_line" | grep "^:.*!.*@.* QUIT")
+    if (printf "$IRC_line" | tr '\n' ' ' | tr '\r' ' ' | sed -e 's/.*PRIVMSG.*//g' | grep "#" | grep -o " JOIN.*" | sed -e 's/.* JOIN #/#/' | sed -e 's/ :.*//' | tr '\n' ' ' | sed 's/ /¬/g' | sed "s/¬//g" | tr '\n' ' ' | tr '\r' ' ' >/dev/null) ; then
+#          echo $(echo "PRIVMSG $Channel_JOIN_Detected :[Channel_Detected:$Channel_Detected] [Channel_JOIN_Detected:$Channel_JOIN_Detected] [User_Detected:$User_Detected]" | tr '\n' ' ' | tr '\r' ' ') #>&4
+         echo $(echo "PRIVMSG $Channel_JOIN_Detected :$User_Detected has joined $Channel_JOIN_Detected" | tr '\n' ' ' | tr '\r' ' ') >/dev/null #>&4
+    elif (printf "$IRC_line" | tr '\n' ' ' | tr '\r' ' ' | sed -e 's/.*PRIVMSG.*//g' | grep "#" | grep -o " PART.*" | sed -e 's/.* PART #/#/' | sed -e 's/ :.*//' | tr '\n' ' ' | sed 's/ /¬/g' | sed "s/¬//g" | tr '\n' ' ' | tr '\r' ' ' >/dev/null) ; then
+#          echo $(echo "PRIVMSG $Channel_PART_Detected :[Channel_Detected:$Channel_Detected] [Channel_PART_Detected:$Channel_PART_Detected] [User_Detected:$User_Detected]" | tr '\n' ' ' | tr '\r' ' ') #>&4
+         echo $(echo "PRIVMSG $Channel_PART_Detected :$User_Detected has left $Channel_PART_Detected" | tr '\n' ' ' | tr '\r' ' ') >/dev/null #>&4
+    elif (printf "$IRC_line" | grep ":.*!.*@.* KICK.* .* ." > /dev/null) ; then
+        kick() { echo "PRIVMSG $IRC_channel_REPLY :$User_Detected has kicked $4 from $3" >/dev/null #>&4
+        }
+        kick $KICK_Detected
+        printf "\r"
+    elif (printf "$IRC_line" | grep "^:.*!.*@.* QUIT" > /dev/null) ; then
+        echo "PRIVMSG $IRC_channel_REPLY :$User_Detected has quit all channels" >/dev/null #>&4
+        printf "\r"
+    elif (printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}commands") ; then
+        echo "PRIVMSG $IRC_channel_REPLY :$IRC_user_REPLY: The commands i accept are: ${PREFIX}source, ${PREFIX}modules, ${PREFIX}null, ${PREFIX}pid, ${PREFIX}channel, ${PREFIX}line, ${PREFIX}me, ${PREFIX}languages, ${PREFIX}(language prefix) (see !languages for more details on the ${PREFIX}(language prefix) command)" >&4
+    elif (printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}admin") ; then
+        echo "/checkadmin $(printf '%b' "$IRC_mess_nocolor" | sed "s/.*${PREFIX}admin //g")" >input
+        echo "who Code" >&4
+    elif (printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}modules") ; then
+        . ./modules/module_tracker
+        echo "PRIVMSG $IRC_channel_REPLY :$IRC_user_REPLY: modules: $IRC_modules" >&4
+    elif (printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}source") ; then
+        echo "PRIVMSG $IRC_channel_REPLY :$IRC_user_REPLY: You can find my Source Code here: https://github.com/mgood7123/UPM/tree/master/Files/Code/modules and https://github.com/mgood7123/UPM/blob/master/Sources/linenoise/example.c (origin: https://github.com/antirez/linenoise )" >&4
+    elif (printf '%b' "$IRC_line" | head -c 42 | grep -q "\[ADMIN\]" && printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}null") ; then
+#         export IRC_RESET=
+#         . ./modules/module_null
+        echo > /dev/null
+    elif (printf '%b' "$IRC_line" | head -c 42 | grep -q "\[ADMIN\]" && printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}pid") ; then
+        echo "PRIVMSG $IRC_channel_REPLY :PIDs: SESSION_PID=$IRC_SESSION_PID, READ_PID=$IRC_READ_PID" >&4
+    elif (printf '%b' "$IRC_line" | head -c 42 | grep -q "\[ADMIN\]" && printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}channel") ; then
+        echo "PRIVMSG $IRC_channel_REPLY :channel='$IRC_channel'" >&4
+    elif (printf '%b' "$IRC_line" | head -c 42 | grep -q "\[ADMIN\]" && printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}line") ; then
+        echo "PRIVMSG $IRC_channel_REPLY :From module: Code_Bash>controller>loader>irc_read>user_input: line=$IRC_line" >&4
+    elif (printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}me") ; then
+        export IRC_me_user="$(printf '%b' "$IRC_mess_nocolor" | grep "> ${PREFIX}me" | sed "s/.*> ${PREFIX}me //")"
+        export IRC_me_users+=("$(printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}me" | sed "s/.*> ${PREFIX}me //")")
+        echo -e "PRIVMSG $IRC_channel_REPLY :\x01ACTION $IRC_me_user \x01" >&4
+    elif (printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}languages") ; then
+    echo "PRIVMSG $IRC_channel_REPLY :The languages/interperators i understand are: $(cat ./modules/module_interperator | grep "interperator=" | sed 's/ //g' | sed 's/.*\///g' | sed 's/ //g' | sed 's/interperator=//g' | sort -u | sed 's/$/,/g' | sed 's/-static//g' | sed 's/gcc/c/g' | sed 's/g++/c++/g' | tr '\n' ' ' | sed 's/, $//g' )		, REMINDER: usually it is the 1st letter or 1st two letters of the language name (or 3 for specific languages like c++) that make up the language prefix, for example: custom built fully 100% relocatable perl (preloaded with modules) is !p (system standard default perl is !p2) and python2.7 is !py2" >&4
+    elif (printf '%b' "$IRC_mess_nocolor" | grep -q "> #") ; then
+    echo -e "PRIVMSG $IRC_channel_REPLY :\x02\x0304Chuck Detected" >&4
+    elif (printf '%b' "$IRC_line" | grep -q ":.*!.*@.* JOIN.*") ; then
+    sleep 1
+         JOIN_USER=$(printf '%b' "$IRC_line" | grep -o ":.*!" | sed s/':'//g | sed s/'!'//g)
+         printf '%b' "PRIVMSG  :slept for 1 second, '$JOIN_USER' detected" >&4
+    elif (printf '%b' "$IRC_line" | head -c 42 | grep -q "\[ADMIN\]" && printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}join") ; then
+        export IRC_join_user="$(printf "$IRC_mess_nocolor" | grep -q "\[ADMIN\]" && printf '%b' "$IRC_mess_nocolor" | grep "> ${PREFIX}join" | sed "s/.*> ${PREFIX}join //")"
+        export IRC_join_users+=("$(printf "$IRC_mess_nocolor" | grep "\[ADMIN\]" && printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}join" | sed "s/.*> ${PREFIX}join //")")
+        echo -e "/join $IRC_join_user" >input
+    elif (printf '%b' "$IRC_line" | head -c 42 | grep -q "\[ADMIN\]" && printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}leave") ; then
+        export IRC_leave_user="$(printf "$IRC_mess_nocolor" | grep -q "\[ADMIN\]" && printf '%b' "$IRC_mess_nocolor" | grep "> ${PREFIX}leave" | sed "s/.*> ${PREFIX}leave //")"
+        export IRC_leave_users+=("$(printf "$IRC_mess_nocolor" | grep "\[ADMIN\]" && printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}leave" | sed "s/.*> ${PREFIX}leave //")")
+        echo -e "/leave $IRC_leave_user" >input
+    elif (printf '%b' "$IRC_line" | head -c 42 | grep -q "\[ADMIN\]" && printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}") ; then
+        unset IRC_Bash_Send
+        export IRC_Bash_Send=("$(printf '%s' "$IRC_mess_nocolor" | sed "s/.*> ${PREFIX}/!/" | tr '\r' ' ' | sed 's/;r/; echo [return status: \$?] ;/g')")
+        export IRC_Bash_Sends+=("$(printf '%s' "$IRC_mess_nocolor" | sed "s/.*> ${PREFIX}/!/" | tr '\r' ' ')")
+#        echo "/$IRC_Bash_Send ¬T¬o¬¬¬O¬u¬t¬p¬u¬t ¬R¬E¬S¬T¬R¬I¬C¬T¬E¬D¬¬¬A¬C¬C¬E¬S¬S ¬R¬E¬P¬L¬Y¬$IRC_channel_REPLY" >input
+         echo "/$IRC_Bash_Send ¬T¬o¬¬¬O¬u¬t¬p¬u¬t ¬R¬E¬P¬L¬Y¬$IRC_channel_REPLY" >input
+#          echo "/PRIVMSG $IRC_channel_REPLY :Shell Command Accepted" >input
+    elif (printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}") ; then
+        unset IRC_Bash_Send
+        export IRC_Bash_Send=("$(printf '%s' "$IRC_mess_nocolor" | sed "s/.*> ${PREFIX}/!/" | tr '\r' ' ' | sed 's/;r/; echo [return status: \$?] ;/g')")
+        export IRC_Bash_Sends+=("$(printf '%s' "$IRC_mess_nocolor" | sed "s/.*> ${PREFIX}/!/" | tr '\r' ' ')")
+
+        
+        
+        echo "/$IRC_Bash_Send ¬T¬o¬¬¬O¬u¬t¬p¬u¬t ¬R¬E¬S¬T¬R¬I¬C¬T¬E¬D¬¬¬A¬C¬C¬E¬S¬S ¬R¬E¬P¬L¬Y¬$IRC_channel_REPLY" >input
+#        echo "/$IRC_Bash_Send ¬T¬o¬¬¬O¬u¬t¬p¬u¬t ¬R¬E¬P¬L¬Y¬$IRC_channel_REPLY" >input
+#          echo "/PRIVMSG $IRC_channel_REPLY :Shell Command Accepted" >input
+    
+    
+    elif (printf '%b' "$IRC_mess_nocolor" | grep -q "> ${PREFIX}" || grep -q "> ${PREFIX}.*") ; then
+    echo -e "PRIVMSG $IRC_channel_REPLY :${IRC_ERROR[0]}You are not admin" >&4
+    fi
+fi
+        printf "\r" >&1

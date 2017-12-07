@@ -1,0 +1,4 @@
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/Mozilla/CA.pm relocate_as=../../../../Mozilla/CA.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/Mozilla/CA/cacert.pem relocate_as=../../../../Mozilla/CA/cacert.pem
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/Mozilla/mk-ca-bundle.pl relocate_as=../../../../Mozilla/mk-ca-bundle.pl
+/UPM/perl-5.26.1/dir./perl/man/man3/Mozilla::CA.3 relocate_as=../../../../../../../man/man3/Mozilla::CA.3

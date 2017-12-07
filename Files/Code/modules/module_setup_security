@@ -1,0 +1,33 @@
+if [[ $UID = 0 ]]
+    then
+        echo "setting up security, this requires root access, sleeping for 10 seconds to give you time to read this"
+        previous_USER="$(whoami)"
+        sleep 10
+        sudo chmod -v 750 "$(sudo which systemctl)"
+        sudo chmod -v 750 "$(sudo which kill)"
+        sudo chmod -v 750 "$(sudo which killall)"
+        sudo chmod -v 750 "$(sudo which killall5)"
+        sudo chmod -v 750 "$(sudo which pkill)"
+        sudo chmod -v 750 "$(sudo which xkill)"
+        sudo chmod -v 750 "$(sudo which skill)"
+        sudo chmod -v 750 "$(sudo which rfkill)"
+        sudo chmod -v 750 "$(sudo which tcpkill)"
+        sudo chmod -v 750 "$(sudo which tcpkill)"
+        sudo chmod -v 750 "$(sudo which nc)"
+        sudo chown $previous_USER:$previous_USER "$(sudo which systemctl)"
+        sudo chown $previous_USER:$previous_USER "$(sudo which kill)"
+        sudo chown $previous_USER:$previous_USER "$(sudo which killall)"
+        sudo chown $previous_USER:$previous_USER "$(sudo which killall5)"
+        sudo chown $previous_USER:$previous_USER "$(sudo which pkill)"
+        sudo chown $previous_USER:$previous_USER "$(sudo which xkill)"
+        sudo chown $previous_USER:$previous_USER "$(sudo which skill)"
+        sudo chown $previous_USER:$previous_USER "$(sudo which rfkill)"
+        sudo chown $previous_USER:$previous_USER "$(sudo which tcpkill)"
+        sudo chown $previous_USER:$previous_USER "$(sudo which tcpkill)"
+        sudo chown $previous_USER:$previous_USER "$(sudo which nc)"
+    else
+        echo -e "skipping setting up security due to this requiring root access in which you do not currently have:
+        \rExpected user id: 0
+        \rYour current user id: $UID\r"
+        sleep 5
+fi

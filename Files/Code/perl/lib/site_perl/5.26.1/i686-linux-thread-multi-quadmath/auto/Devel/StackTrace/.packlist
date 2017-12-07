@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Devel/StackTrace.pm relocate_as=../../../../Devel/StackTrace.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Devel/StackTrace/Frame.pm relocate_as=../../../../Devel/StackTrace/Frame.pm
+/UPM/Files/Code/perl/man/man3/Devel::StackTrace.3 relocate_as=../../../../../../../man/man3/Devel::StackTrace.3
+/UPM/Files/Code/perl/man/man3/Devel::StackTrace::Frame.3 relocate_as=../../../../../../../man/man3/Devel::StackTrace::Frame.3

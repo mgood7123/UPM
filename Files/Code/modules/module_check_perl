@@ -1,0 +1,3 @@
+./perlbot/bin/perltidy -st "$1" --extrude | ./perlbot/bin/perl5.26.1 -c -T |& Code/modules/Python_script_modules/module_variablegrepper_perl.py
+
+#cp -bfrv --suffix=.backup perlbot/lib/perl5/* perlbot/lib/ ; rm -rfv perlbot/lib/perl5

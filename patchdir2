@@ -1,0 +1,44 @@
+unset succ fail
+for i in $(find ./ |& grep "$1")
+    do
+#     echo "patching $(readlink -e $i)"
+#     ./patchelf-static --set-interpreter "$(readlink -e "$1")" "$(readlink -e $i)" |& :
+#     ./patchelf-static --set-rpath ./usr/lib "$(readlink -e "$1")" "$(readlink -e $i)"
+    so=($(./ldd "$(readlink -e $i)" |& grep "=> " | sed -e "s/.*=> //g" -e s/"(.*"//g))
+    for h in ${!so[@]}
+        do
+            echo processing "${so[h]}"
+            if [[ $(readlink -e $(readlink -m ".$(readlink -m "${so[h]}")")) ]]
+                then
+                    echo valid
+                    readlink -e $(readlink -m ".$(readlink -m "${so[h]}")")
+                else
+                    echo invalid
+                    parent="$(readlink -e "$i")"
+                    childest="$(readlink -m ".$(readlink -m "${so[h]}")")"
+                    childreal="$(readlink -e "$(find ./ 2>&1 | grep "$(basename "$(readlink -m ".$(readlink -m "${so[h]}")")")")" || readlink -e "$(readlink -m "${so[h]}")")"
+                    if [[ $childreal =~ "home" || -z $childreal ]]
+                    then
+                    echo rel home
+                    echo "$childreal"
+                    else
+                    base="$(basename "$childreal")"
+                    declare -p parent childest childreal
+                    dir="./libimported/$base"
+                    mkdir -v -p "$(dirname "$dir/$base$childreal")"
+                    cp -v $childreal $dir/$base$childreal
+                    echo                     rec "$dir/$base$childreal"
+                    sleep 5
+                    rec "$dir/$base$childreal"
+                    fi
+            fi
+    done
+#     if [[ ${PIPESTATUS[0]} == 0 ]]
+#         then
+#             succ+=("$i ${PIPESTATUS[0]}")
+#         else
+#             fail+=("$i ${PIPESTATUS[0]}")
+#     fi
+done
+# echo "[SUCCEEDED (${#succ[@]})]"
+# echo "[FAILED (${#fail[@]})]"

@@ -1,0 +1,7 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/IO/Pty.pm relocate_as=../../../IO/Pty.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/IO/Tty.pm relocate_as=../../../IO/Tty.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/IO/Tty/Constant.pm relocate_as=../../../IO/Tty/Constant.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/IO/Tty/Tty.so relocate_as=Tty.so
+/UPM/Files/Code/perl/man/man3/IO::Pty.3 relocate_as=../../../../../../../man/man3/IO::Pty.3
+/UPM/Files/Code/perl/man/man3/IO::Tty.3 relocate_as=../../../../../../../man/man3/IO::Tty.3
+/UPM/Files/Code/perl/man/man3/IO::Tty::Constant.3 relocate_as=../../../../../../../man/man3/IO::Tty::Constant.3

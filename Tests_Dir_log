@@ -1,0 +1,377 @@
+./Tests/
+./Tests/Packages
+./Tests/Packages/bash-4.4.012-2-x86_64
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_0
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_0/bash-4.4.012-2-x86_64.pkg.tar.xz
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_1
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_1/glibc-2.25-7-x86_64.pkg.tar.xz
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_1/ncurses-6.0%2B20170527-1-x86_64.pkg.tar.xz
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_1/readline-7.0.003-1-x86_64.pkg.tar.xz
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_2
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_2/filesystem-2017.03-2-x86_64.pkg.tar.xz
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_2/gcc-libs-7.1.1-4-x86_64.pkg.tar.xz
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_2/linux-api-headers-4.10.1-1-x86_64.pkg.tar.xz
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_2/tzdata-2017b-1-any.pkg.tar.xz
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_3
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_3/iana-etc-20170512-1-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64
+./Tests/Packages/johnny-20120424-7-x86_64/layer_0
+./Tests/Packages/johnny-20120424-7-x86_64/layer_0/johnny-20120424-7-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_1
+./Tests/Packages/johnny-20120424-7-x86_64/layer_10
+./Tests/Packages/johnny-20120424-7-x86_64/layer_10/krb5-1.15.1-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_11
+./Tests/Packages/johnny-20120424-7-x86_64/layer_11/e2fsprogs-1.43.5-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_11/keyutils-1.5.10-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_11/libldap-2.4.44-5-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_12
+./Tests/Packages/johnny-20120424-7-x86_64/layer_12/libsasl-2.1.26-11-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_1/john-1.8.0.jumbo1-8-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_1/qt4-4.8.7-22-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/alsa-lib-1.1.4.1-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/ca-certificates-20170307-1-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/dbus-1.10.18-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/dbus-1.10.22-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/desktop-file-utils-0.23-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/fontconfig-2.12.4-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/gcc-libs-7.1.1-4-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/gmp-6.1.2-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/hicolor-icon-theme-0.15-1-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/libmng-2.0.3-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/libpcap-1.4-1.4.0-3-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/libpcap-1.8.1-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/libxi-1.7.9-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/libxrandr-1.5.1-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/libxv-1.0.11-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/openmpi-2.1.1-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/openssl-1.0-1.0.2.l-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/sqlite-3.20.0-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2/xdg-utils-1.1.2-1-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/ca-certificates-cacert-20140824-4-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/ca-certificates-mozilla-3.31-3-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/ca-certificates-mozilla-3.32-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/expat-2.2.2-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/expat-2.2.3-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/freetype2-2.8-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/glib2-2.52.3-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/glibc-2.25-7-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/hwloc-1.11.7-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/inputproto-2.3.2-1-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/lcms2-2.8-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/libnl-3.3.0-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/libsystemd-234.11-6-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/libxext-1.3.3-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/libxrender-0.9.10-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/perl-5.26.0-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/randrproto-1.5.0-1-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/readline-7.0.003-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/videoproto-2.3.3-1-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3/xorg-xset-1.2.3-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/bzip2-1.0.6-6-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/ca-certificates-utils-20170307-1-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/db-5.3.28-3-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/filesystem-2017.03-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/gdbm-1.13-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/harfbuzz-1.4.7-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/libcap-2.25-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/libffi-3.2.1-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/libgcrypt-1.8.0-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/libpng-1.6.31-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/libtiff-4.0.8-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/libtool-2.4.6-8-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/libutil-linux-2.30.1-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/libx11-1.6.5-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/libxmu-1.1.2-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/linux-api-headers-4.10.1-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/lz4-1%3A1.7.5-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/ncurses-6.0%2B20170527-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/numactl-2.0.11-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/pcre-8.41-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/renderproto-0.11.1-3-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/tzdata-2017b-1-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/xextproto-7.3.0-1-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/xz-5.2.3-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4/zlib-1%3A1.2.11-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_5
+./Tests/Packages/johnny-20120424-7-x86_64/layer_5/attr-2.4.47-3-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_5/bash-4.4.012-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_5/coreutils-8.27-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_5/findutils-4.6.0-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_5/graphite-1%3A1.3.10-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_5/iana-etc-20170512-1-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_5/kbproto-1.0.7-1-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_5/libgpg-error-1.27-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_5/libxcb-1.12-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_5/libxt-1.1.5-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_5/p11-kit-0.23.7-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_5/tar-1.29-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_5/xproto-7.0.31-1-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_6
+./Tests/Packages/johnny-20120424-7-x86_64/layer_6/acl-2.2.52-4-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_6/libsm-1.2.2-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_6/libtasn1-4.12-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_6/libxau-1.0.8-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_6/libxdmcp-1.1.2-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_6/openssl-1.0-1.0.2.l-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_6/openssl-1.1.0.f-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_6/xcb-proto-1.12-3-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_7
+./Tests/Packages/johnny-20120424-7-x86_64/layer_7/libice-1.0.9-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_7/util-linux-2.30.1-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_8
+./Tests/Packages/johnny-20120424-7-x86_64/layer_8/libcap-ng-0.7.8-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_8/pam-1.3.0-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_8/shadow-4.4-3-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_8/shadow-4.5-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_9
+./Tests/Packages/johnny-20120424-7-x86_64/layer_9/cracklib-2.9.6-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_9/libtirpc-1.0.2-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_9/pambase-20130928-1-any.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_0
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_0/zsh-5.3.1-2-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_1
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_1/gdbm-1.13-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_1/libcap-2.25-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_1/pcre-8.41-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_2
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_2/attr-2.4.47-3-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_2/bash-4.4.012-2-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_2/bzip2-1.0.6-6-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_2/gcc-libs-7.1.1-4-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_2/glibc-2.25-7-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_2/readline-7.0.003-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_2/zlib-1%3A1.2.11-2-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_3
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_3/filesystem-2017.03-2-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_3/linux-api-headers-4.10.1-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_3/ncurses-6.0%2B20170527-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_3/tzdata-2017b-1-any.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_4
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_4/iana-etc-20170512-1-any.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64
+./Tests/Packages/zsh-5.4-1-x86_64/layer_0
+./Tests/Packages/zsh-5.4-1-x86_64/layer_0/zsh-5.4-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_1
+./Tests/Packages/zsh-5.4-1-x86_64/layer_1/gdbm-1.13-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_1/libcap-2.25-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_1/libcap-ng-0.7.8-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_1/pcre-8.41-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_2
+./Tests/Packages/zsh-5.4-1-x86_64/layer_2/attr-2.4.47-3-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_2/bash-4.4.012-2-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_2/bash-completion-2.7-1-any.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_2/bzip2-1.0.6-6-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_2/gcc-libs-7.1.1-4-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_2/glibc-2.25-7-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_2/readline-7.0.003-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_2/zlib-1%3A1.2.11-2-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_3
+./Tests/Packages/zsh-5.4-1-x86_64/layer_3/filesystem-2017.03-2-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_3/linux-api-headers-4.10.1-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_3/ncurses-6.0%2B20170527-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_3/tzdata-2017b-1-any.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_4
+./Tests/Packages/zsh-5.4-1-x86_64/layer_4/iana-etc-20170512-1-any.pkg.tar.xz
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_0:
+total 1420
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 1451676 09.08.2017 15:04 bash-4.4.012-2-x86_64.pkg.tar.xz
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_1:
+total 9788
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 8636744 09.08.2017 15:05 glibc-2.25-7-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 1078584 09.08.2017 15:05 ncurses-6.0%2B20170527-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  301740 09.08.2017 15:05 readline-7.0.003-1-x86_64.pkg.tar.xz
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_2:
+total 19380
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    10448 09.08.2017 15:05 filesystem-2017.03-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 18714036 09.08.2017 15:05 gcc-libs-7.1.1-4-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   872856 09.08.2017 15:06 linux-api-headers-4.10.1-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   241408 09.08.2017 15:06 tzdata-2017b-1-any.pkg.tar.xz
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_3:
+total 364
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 369552 09.08.2017 15:06 iana-etc-20170512-1-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_0:
+total 148
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 150880 09.08.2017 18:15 johnny-20120424-7-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_1:
+total 43320
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 22264360 09.08.2017 18:16 john-1.8.0.jumbo1-8-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 22090940 09.08.2017 18:17 qt4-4.8.7-22-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_10:
+total 1124
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 1146960 09.08.2017 18:28 krb5-1.15.1-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_11:
+total 1340
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 1006524 09.08.2017 18:28 e2fsprogs-1.43.5-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   69144 09.08.2017 18:28 keyutils-1.5.10-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  291728 09.08.2017 18:28 libldap-2.4.44-5-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_12:
+total 140
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 140568 09.08.2017 18:28 libsasl-2.1.26-11-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_2:
+total 27120
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   476460 09.08.2017 18:17 alsa-lib-1.1.4.1-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager     1904 09.08.2017 18:17 ca-certificates-20170307-1-any.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   280252 09.08.2017 18:17 dbus-1.10.18-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   281776 09.08.2017 18:17 dbus-1.10.22-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    37568 09.08.2017 18:17 desktop-file-utils-0.23-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   832284 09.08.2017 18:17 fontconfig-2.12.4-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 18714036 09.08.2017 18:18 gcc-libs-7.1.1-4-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   418316 09.08.2017 18:18 gmp-6.1.2-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager     6720 09.08.2017 18:18 hicolor-icon-theme-0.15-1-any.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   173500 09.08.2017 18:18 libmng-2.0.3-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    91996 09.08.2017 18:18 libpcap-1.4-1.4.0-3-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   222140 09.08.2017 18:18 libpcap-1.8.1-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   148604 09.08.2017 18:18 libxi-1.7.9-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    25704 09.08.2017 18:18 libxrandr-1.5.1-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    35596 09.08.2017 18:18 libxv-1.0.11-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  3048340 09.08.2017 18:18 openmpi-2.1.1-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  1609836 09.08.2017 18:19 openssl-1.0-1.0.2.l-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  1264072 09.08.2017 18:19 sqlite-3.20.0-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    56852 09.08.2017 18:19 xdg-utils-1.1.2-1-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_3:
+total 30176
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager     7220 09.08.2017 18:19 ca-certificates-cacert-20140824-4-any.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   411616 09.08.2017 18:19 ca-certificates-mozilla-3.31-3-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   388752 09.08.2017 18:19 ca-certificates-mozilla-3.32-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    84964 09.08.2017 18:19 expat-2.2.2-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    85180 09.08.2017 18:19 expat-2.2.3-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  2701492 09.08.2017 18:19 freetype2-2.8-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  2383128 09.08.2017 18:20 glib2-2.52.3-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  8636744 09.08.2017 18:20 glibc-2.25-7-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   386460 09.08.2017 18:20 hwloc-1.11.7-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    79764 09.08.2017 18:20 inputproto-2.3.2-1-any.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   190548 09.08.2017 18:20 lcms2-2.8-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   363468 09.08.2017 18:20 libnl-3.3.0-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   363680 09.08.2017 18:20 libsystemd-234.11-6-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   104868 09.08.2017 18:20 libxext-1.3.3-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    24816 09.08.2017 18:20 libxrender-0.9.10-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 14288556 09.08.2017 18:21 perl-5.26.0-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    28740 09.08.2017 18:21 randrproto-1.5.0-1-any.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   301740 09.08.2017 18:21 readline-7.0.003-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    13928 09.08.2017 18:21 videoproto-2.3.3-1-any.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    17744 09.08.2017 18:21 xorg-xset-1.2.3-1-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_4:
+total 9836
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   54096 09.08.2017 18:21 bzip2-1.0.6-6-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    7632 09.08.2017 18:21 ca-certificates-utils-20170307-1-any.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 1123960 09.08.2017 18:21 db-5.3.28-3-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   10448 09.08.2017 18:21 filesystem-2017.03-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  154028 09.08.2017 18:21 gdbm-1.13-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  368064 09.08.2017 18:22 harfbuzz-1.4.7-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   38800 09.08.2017 18:22 libcap-2.25-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   32264 09.08.2017 18:22 libffi-3.2.1-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  494580 09.08.2017 18:22 libgcrypt-1.8.0-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  245260 09.08.2017 18:22 libpng-1.6.31-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  808804 09.08.2017 18:22 libtiff-4.0.8-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  405564 09.08.2017 18:22 libtool-2.4.6-8-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  344360 09.08.2017 18:22 libutil-linux-2.30.1-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 2124148 09.08.2017 18:23 libx11-1.6.5-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   72652 09.08.2017 18:23 libxmu-1.1.2-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  872856 09.08.2017 18:23 linux-api-headers-4.10.1-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   84668 09.08.2017 18:23 lz4-1%3A1.7.5-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 1078584 09.08.2017 18:23 ncurses-6.0%2B20170527-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   76248 09.08.2017 18:24 numactl-2.0.11-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  946792 09.08.2017 18:24 pcre-8.41-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   16168 09.08.2017 18:24 renderproto-0.11.1-3-any.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  241408 09.08.2017 18:24 tzdata-2017b-1-any.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  105836 09.08.2017 18:24 xextproto-7.3.0-1-any.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  234628 09.08.2017 18:24 xz-5.2.3-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   83628 09.08.2017 18:24 zlib-1%3A1.2.11-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_5:
+total 7804
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   71352 09.08.2017 18:24 attr-2.4.47-3-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 1451676 09.08.2017 18:25 bash-4.4.012-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 2288568 09.08.2017 18:25 coreutils-8.27-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  430808 09.08.2017 18:25 findutils-4.6.0-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  233828 09.08.2017 18:25 graphite-1%3A1.3.10-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  369552 09.08.2017 18:25 iana-etc-20170512-1-any.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  127824 09.08.2017 18:25 kbproto-1.0.7-1-any.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  153996 09.08.2017 18:25 libgpg-error-1.27-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  993336 09.08.2017 18:25 libxcb-1.12-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  546028 09.08.2017 18:26 libxt-1.1.5-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  456356 09.08.2017 18:26 p11-kit-0.23.7-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  690092 09.08.2017 18:26 tar-1.29-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  146944 09.08.2017 18:26 xproto-7.0.31-1-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_6:
+total 4976
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  135296 09.08.2017 18:26 acl-2.2.52-4-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   43032 09.08.2017 18:26 libsm-1.2.2-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  120208 09.08.2017 18:26 libtasn1-4.12-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    9756 09.08.2017 18:26 libxau-1.0.8-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   25508 09.08.2017 18:26 libxdmcp-1.1.2-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 1609836 09.08.2017 18:26 openssl-1.0-1.0.2.l-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 3024412 09.08.2017 18:27 openssl-1.1.0.f-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  103916 09.08.2017 18:27 xcb-proto-1.12-3-any.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_7:
+total 2052
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   75300 09.08.2017 18:27 libice-1.0.9-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 2023336 09.08.2017 18:27 util-linux-2.30.1-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_8:
+total 2796
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   35768 09.08.2017 18:27 libcap-ng-0.7.8-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  624348 09.08.2017 18:27 pam-1.3.0-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 1086028 09.08.2017 18:27 shadow-4.4-3-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 1109624 09.08.2017 18:28 shadow-4.5-2-x86_64.pkg.tar.xz
+./Tests/Packages/johnny-20120424-7-x86_64/layer_9:
+total 436
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 255932 09.08.2017 18:28 cracklib-2.9.6-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 181124 09.08.2017 18:28 libtirpc-1.0.2-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   1708 09.08.2017 18:28 pambase-20130928-1-any.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_0:
+total 1908
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 1950176 09.08.2017 18:12 zsh-5.3.1-2-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_1:
+total 1120
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 154028 09.08.2017 18:12 gdbm-1.13-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  38800 09.08.2017 18:12 libcap-2.25-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 946792 09.08.2017 18:12 pcre-8.41-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_2:
+total 28640
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    71352 09.08.2017 18:12 attr-2.4.47-3-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  1451676 09.08.2017 18:13 bash-4.4.012-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    54096 09.08.2017 18:13 bzip2-1.0.6-6-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 18714036 09.08.2017 18:13 gcc-libs-7.1.1-4-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  8636744 09.08.2017 18:13 glibc-2.25-7-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   301740 09.08.2017 18:13 readline-7.0.003-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    83628 09.08.2017 18:13 zlib-1%3A1.2.11-2-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_3:
+total 2160
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   10448 09.08.2017 18:13 filesystem-2017.03-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  872856 09.08.2017 18:14 linux-api-headers-4.10.1-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 1078584 09.08.2017 18:14 ncurses-6.0%2B20170527-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  241408 09.08.2017 18:14 tzdata-2017b-1-any.pkg.tar.xz
+./Tests/Packages/zsh-5.3.1-2-x86_64/layer_4:
+total 364
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 369552 09.08.2017 18:14 iana-etc-20170512-1-any.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_0:
+total 1944
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 1988108 09.08.2017 15:07 zsh-5.4-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_1:
+total 1156
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 154028 09.08.2017 15:07 gdbm-1.13-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  38800 09.08.2017 15:07 libcap-2.25-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  35768 09.08.2017 15:07 libcap-ng-0.7.8-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 946792 09.08.2017 15:07 pcre-8.41-1-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_2:
+total 28820
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    71352 09.08.2017 15:07 attr-2.4.47-3-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  1451676 09.08.2017 15:07 bash-4.4.012-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   183916 09.08.2017 15:07 bash-completion-2.7-1-any.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    54096 09.08.2017 15:07 bzip2-1.0.6-6-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 18714036 09.08.2017 15:08 gcc-libs-7.1.1-4-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  8636744 09.08.2017 15:08 glibc-2.25-7-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   301740 09.08.2017 15:08 readline-7.0.003-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager    83628 09.08.2017 15:08 zlib-1%3A1.2.11-2-x86_64.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_3:
+total 2160
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager   10448 09.08.2017 15:08 filesystem-2017.03-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  872856 09.08.2017 15:08 linux-api-headers-4.10.1-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 1078584 09.08.2017 15:09 ncurses-6.0%2B20170527-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager  241408 09.08.2017 15:09 tzdata-2017b-1-any.pkg.tar.xz
+./Tests/Packages/zsh-5.4-1-x86_64/layer_4:
+total 364
+-rw-r--r-- 1 universalpackagemanager universalpackagemanager 369552 09.08.2017 15:09 iana-etc-20170512-1-any.pkg.tar.xz

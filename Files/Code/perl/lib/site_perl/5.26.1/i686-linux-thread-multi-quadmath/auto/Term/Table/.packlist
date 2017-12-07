@@ -1,0 +1,13 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Term/Table.pm relocate_as=../../../../Term/Table.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Term/Table/Cell.pm relocate_as=../../../../Term/Table/Cell.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Term/Table/CellStack.pm relocate_as=../../../../Term/Table/CellStack.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Term/Table/HashBase.pm relocate_as=../../../../Term/Table/HashBase.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Term/Table/LineBreak.pm relocate_as=../../../../Term/Table/LineBreak.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Term/Table/Spacer.pm relocate_as=../../../../Term/Table/Spacer.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Term/Table/Util.pm relocate_as=../../../../Term/Table/Util.pm
+/UPM/Files/Code/perl/man/man3/Term::Table.3 relocate_as=../../../../../../../man/man3/Term::Table.3
+/UPM/Files/Code/perl/man/man3/Term::Table::Cell.3 relocate_as=../../../../../../../man/man3/Term::Table::Cell.3
+/UPM/Files/Code/perl/man/man3/Term::Table::CellStack.3 relocate_as=../../../../../../../man/man3/Term::Table::CellStack.3
+/UPM/Files/Code/perl/man/man3/Term::Table::HashBase.3 relocate_as=../../../../../../../man/man3/Term::Table::HashBase.3
+/UPM/Files/Code/perl/man/man3/Term::Table::LineBreak.3 relocate_as=../../../../../../../man/man3/Term::Table::LineBreak.3
+/UPM/Files/Code/perl/man/man3/Term::Table::Util.3 relocate_as=../../../../../../../man/man3/Term::Table::Util.3

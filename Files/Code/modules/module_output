@@ -1,0 +1,108 @@
+#set -x
+set +H
+IRC_ADMIN=$IRC_line
+if [[ $IRC_line =~ ^:([^!]+)+![^' ']+' PRIVMSG '([^' ']+)' :'(.*) ]]
+then
+    br=("${BASH_REMATCH[@]:1}")
+	if [[ $IRC_line =~ "@CPE-1-120-1" || $IRC_line =~ "2405:7f00:8" ]]
+		then
+			#IRC_line=${IRC_line[0]/@tx0.co/@[ADMIN]tx0.co}
+			IRC_line=${IRC_line[0]/@2405:7f00:8/@[ADMIN]2405:7f00:8}
+			IRC_line=${IRC_line[0]/@CPE-1-120-1/@[ADMIN]CPE-1-120-1}
+			#IRC_line=${IRC_line[0]/@4A2D75A3:FC9/@[ADMIN]4A2D75A3:FC9}
+			printf -v IRC_mess '\r%s%s <%s> <%s> %s\n'  "${IRC_Color_Special}" "[ADMIN]" "${IRC_Color_White}${IRC_BOLD}${br[1]}${IRC_Color_Special}" "${IRC_Color_Blue}${br[0]}${IRC_Color_Special}" "${br[2]}${IRC_Color_None}"
+			printf -v IRC_mess_nocolor '\r%s <%s> <%s> %s\n' "[ADMIN]" "${br[1]}" "${br[0]}" "${br[2]}"
+		else
+			printf -v IRC_mess '\r%s<%s> <%s> %s\n'  "${IRC_Color_Special}" "${IRC_Color_White}${IRC_BOLD}${br[1]}${IRC_Color_Special}" "${IRC_Color_Blue}${br[0]}${IRC_Color_Special}" "${br[2]}${IRC_Color_None}"
+			printf -v IRC_mess_nocolor '\r<%s> <%s> %s\n' "${br[1]}" "${br[0]}" "${br[2]}"
+		fi
+#     printf '%s' "$IRC_mess"
+    printf "\r"
+else
+         Channel_Detected=$(printf "$IRC_line" | sed -e 's/ :.*//' | grep "#" | grep -o ".*PRIVMSG.*" | sed -e 's/.* PRIVMSG #/#/')
+         Channel_JOIN_Detected=$(printf "$IRC_line" | sed -e 's/ :.*//' | tr '\n' ' ' | tr '\r' ' ' | grep "#" | grep -o " JOIN.*" | sed -e 's/.* JOIN #/#/' | tr '\n' ' ' | sed 's/ /¬/g' | sed "s/¬//g")
+         Channel_JOIN2_Detected=$(printf "$IRC_line" | tr '\n' ' ' | tr '\r' ' ' | grep "#" | grep -o " JOIN.*" | sed -e 's/.* JOIN #/#/' | sed -e 's/ :.*//' | tr '\n' ' ' | sed 's/ /¬/g' | sed "s/¬//g")
+#          printf "\r"
+#          declare -p Channel_JOIN_Detected Channel_JOIN2_Detected
+#          printf "\r"
+         Channel_PART_Detected=$(printf "$IRC_line" | sed -e 's/ :.*//' | tr '\n' ' ' | tr '\r' ' ' | grep "#" | grep -o " PART.*" | sed -e 's/.* PART #/#/' | tr '\n' ' ' | sed 's/ /¬/g' | sed "s/¬//g")
+         User_Detected=$(echo "$IRC_line" | sed -e 's/ :.*//' | grep -m1 -o "^:.*!" | sed -e 's/!.*//' | sed -e 's/://')
+         MODE_Detected=$(printf "$IRC_line" | sed -e 's/ :.*//' | grep "#" | grep -o " MODE .* .. " | sed "s/ MODE.* +/+/g" | sed "s/ MODE.* -/-/g" | tr '\r' ' ' | tr '\n' ' ' | sed 's/ /¬/g' | sed "s/¬//g")
+         MODE_Channel_Detected=$(printf "$IRC_line" | sed -e 's/ :.*//' | grep "#" | grep -o " MODE.*" | sed -e 's/.* MODE #/#/' | sed 's/ +.*//g' | sed 's/ -.*//g' | tr '\r' ' ' | tr '\n' ' ' | sed 's/ /¬/g' | sed "s/¬//g")
+         MODE_User_Detected=$(printf "$IRC_line" | sed -e 's/ :.*//' | grep "#" | grep -o " MODE.*" | sed -e 's/.* MODE #/#/' | sed 's/.* +. //' | sed 's/.* -. //' | tr '\r' ' ' | tr '\n' ' ' | sed 's/ /¬/g' | sed "s/¬//g")
+        KICK_Detected=$(printf "$IRC_line" | grep ":.*!.*@.* KICK.* .* .")
+        Quit_Detected=$(printf "$IRC_line" | grep "^:.*!.*@.* QUIT")
+    if (printf "$IRC_line" | tr '\n' ' ' | tr '\r' ' ' | sed -e 's/.*PRIVMSG.*//g' | grep "#" | grep -o " JOIN.*" | sed -e 's/.* JOIN #/#/' | sed -e 's/ :.*//' | tr '\n' ' ' | sed 's/ /¬/g' | sed "s/¬//g" | tr '\n' ' ' | tr '\r' ' ' >/dev/null) ; then
+        echo $(echo "$User_Detected has joined $Channel_JOIN_Detected" | tr '\n' ' ' | tr '\r' ' ')
+        printf "\r"
+    elif (printf "$IRC_line" | tr '\n' ' ' | tr '\r' ' ' | sed -e 's/.*PRIVMSG.*//g' | grep "#" | grep -o " PART.*" | sed -e 's/.* PART #/#/' | sed -e 's/ :.*//' | tr '\n' ' ' | sed 's/ /¬/g' | sed "s/¬//g" | tr '\n' ' ' | tr '\r' ' ' >/dev/null) ; then
+        echo $(echo "$User_Detected has left $Channel_PART_Detected" | tr '\n' ' ' | tr '\r' ' ')
+        printf "\r"
+    elif (printf "$IRC_line" | grep "#" | grep -o " MODE.*" | sed -e 's/.* MODE #/#/' | sed -e 's/ :.*//' | tr '\r' ' ' | tr '\n' ' ' | sed 's/ /¬/g' | sed "s/¬//g" >/dev/null) ; then
+        echo "<$MODE_Channel_Detected> $User_Detected sets $MODE_Detected on $MODE_User_Detected"
+        printf "\r"
+    elif (printf "$IRC_line" | grep ":.*!.*@.* KICK.* .* ." > /dev/null) ; then
+        kick() { echo "$User_Detected has kicked $4 from $3" ; }
+        kick $KICK_Detected
+        printf "\r"
+    elif (printf "$IRC_line" | grep "^:.*!.*@.* QUIT" > /dev/null) ; then
+        echo "$User_Detected has quit all channels"
+        printf "\r"
+    else
+#         printf -v IRC_mess_nocolor '\r%s\n' "$IRC_line"
+#         printf '%s' "$IRC_mess_nocolor"
+        printf "\r"
+    fi
+fi
+status() {
+    if [[ $2 == PRIVMSG ]] ; then
+        for i in $(cat ./admins) ; do
+                        if [[ $1 =~ $i ]] ; then
+                            local admins="[ADMIN] "
+                        fi
+                        export list+="$(printf "<$(echo $1 | sed -e 's/://g' -e 's/!.*//g') ($(echo $1 | sed -e 's/://g' -e 's/!.*//g' | head -c 1)$(echo $1 | sed -e 's/.*!//g' -e 's/~//g' -e 's/@.*//g' | head -c 1)$(echo $1 | sed -e 's/.*@//g' -e 's/unaffiliated\///g' | head -c 1))>")
+"
+        done
+        echo "<$3> $admins$(printf "${list[0]}"| sort -u ) $(echo $@ | sed "s/.*$3 ://g")"
+                     echo "$(printf "${list[0]}"| sort -u)" >> ./admin_log
+                    printf '\r'
+    elif [[ $2 == MODE ]] ; then
+        echo "<$3> $(echo $1 | sed -e 's/://g' -e 's/!.*//g') sets $4 on $5"
+        printf '\r'
+    elif [[ $2 == QUIT ]] ; then
+        echo "$(echo $1 | sed -e 's/://g' -e 's/!.*//g') has quit all channels"
+        printf '\r'
+    elif [[ $2 == JOIN ]] ; then
+        echo "$(echo $1 | sed -e 's/://g' -e 's/!.*//g') has joined $3"
+        printf '\r'
+    elif [[ $2 == PART ]] ; then
+        echo "$(echo $1 | sed -e 's/://g' -e 's/!.*//g') has left $3"
+        printf '\r'
+    elif [[ $2 == KICK ]] ; then
+        echo "$(echo $1 | sed -e 's/://g' -e 's/!.*//g') has kicked $4 from $3"
+        printf '\r'
+    else
+        echo $2
+        printf '\r'
+        echo $@
+        printf '\r'
+    fi
+}
+status $IRC_ADMIN &
+printf '\r'
+#   if [[ $(echo "$IRC_line" | grep -q "PRIVMSG" ; echo $?) ]] ; then
+#     if [[ $(echo "$IRC_line" | grep -q ":" | grep -q "!" ; echo $?) ]] ; then
+#       export IRC_user=$(echo "$IRC_line" | sed -e 's/://' -e 's/!.*//')
+#         if [[ $(echo "$IRC_line" | grep -q " #" | grep -q " :.*" ; echo $?) ]] ; then 
+#           export IRC_channeltag=$(echo "$IRC_line" | sed -e 's/.* #/#/' | sed -e 's/ :.*//')
+#             if [[ $(echo "$IRC_line" | grep -q ".* #.* :" ; echo $?) ]] ; then
+#               export IRC_rest=$(echo "$IRC_line" | sed 's/.* #.* ://')
+#                 printf '%b' "${IRC_Color_Special}<$(tput setaf 7)$(tput bold)$IRC_channeltag${IRC_Color_Special}> <${IRC_RED}$IRC_user${IRC_Color_Special}> $IRC_rest\n"
+#             fi
+#         fi
+#      fi
+
+    #echo "$IRC_line" | sed -e 's/:/</' -e 's/!.* #/> in <#/' -e 's/ :/> /'
+    #echo "$IRC_line" | sed -e 's/:/</' -e 's/!.*:/> /'
+
+    # Handle PINGs

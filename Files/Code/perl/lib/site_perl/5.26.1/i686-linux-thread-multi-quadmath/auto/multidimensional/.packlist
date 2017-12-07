@@ -1,0 +1,3 @@
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/multidimensional/multidimensional.so relocate_as=multidimensional.so
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/multidimensional.pm relocate_as=../../multidimensional.pm
+/UPM/perl-5.26.1/dir./perl/man/man3/multidimensional.3 relocate_as=../../../../../../man/man3/multidimensional.3

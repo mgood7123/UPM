@@ -1,0 +1,1 @@
+tput sc ; tput cup 0 0 ; tput el ; printf test ; tput rc

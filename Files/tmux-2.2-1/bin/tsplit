@@ -1,0 +1,19 @@
+./tmux new-window -a -n WinSplit
+./tmux new-session -d -s WinSplit
+./tmux selectp -t WinSplit
+./tmux split-window -v -l 0
+./tmux set-window-option -g window-status-current-bg blue
+./tmux send-keys -t WinSplit 'kill_all_panes() {
+panes=($(./tmux list-panes | sed ''s/:.*//g'' | grep [0-9]))
+for i in ${!panes[@]}
+    do
+        ./tmux kill-pane -t 0
+    done
+}' C-m
+./tmux send-keys -t WinSplit 'trap kill_all_panes SIGINT' C-m
+./tmux send-keys -t WinSplit 'clear' C-m
+./tmux send-keys -t 0 'out=$(tty)' C-m
+./tmux send-keys -t 1 'in=$(tty)' C-m
+./tmux send-keys -t WinSplit 'clear' C-m
+./tmux set -g mouse on
+./tmux attach -t WinSplit

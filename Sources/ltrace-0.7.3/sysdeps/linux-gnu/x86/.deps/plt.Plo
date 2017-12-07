@@ -1,0 +1,213 @@
+plt.lo: plt.c /usr/include/stdc-predef.h /usr/include/gelf.h \
+ /usr/include/libelf.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/libc-header-start.h \
+ /usr/include/features.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h /usr/include/bits/long-double.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
+ /usr/include/bits/types.h /usr/include/bits/typesizes.h \
+ /usr/include/bits/wchar.h /usr/include/sys/types.h \
+ /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
+ /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/include/stddef.h \
+ /usr/include/endian.h /usr/include/bits/endian.h \
+ /usr/include/bits/byteswap.h /usr/include/bits/byteswap-16.h \
+ /usr/include/bits/uintn-identity.h /usr/include/sys/select.h \
+ /usr/include/bits/select.h /usr/include/bits/sigset.h \
+ /usr/include/bits/types/struct_timeval.h \
+ /usr/include/bits/types/struct_timespec.h /usr/include/sys/sysmacros.h \
+ /usr/include/bits/sysmacros.h /usr/include/bits/pthreadtypes.h \
+ /usr/include/elf.h ../../../proc.h ../../../config.h \
+ /usr/include/sys/time.h /usr/include/libunwind.h \
+ /usr/include/libunwind-x86_64.h /usr/include/inttypes.h \
+ /usr/include/ucontext.h /usr/include/sys/ucontext.h \
+ /usr/include/signal.h /usr/include/bits/signum.h \
+ /usr/include/bits/siginfo.h /usr/include/bits/sigaction.h \
+ /usr/include/bits/sigcontext.h /usr/include/bits/sigstack.h \
+ /usr/include/bits/sigthread.h /usr/include/libunwind-dynamic.h \
+ /usr/include/libunwind-common.h ../../../ltrace.h ../../../dict.h \
+ ../../../sysdeps/sysdep.h arch.h ../../../sysdeps/linux-gnu/os.h \
+ ../../../callback.h ../../../forward.h ../../../common.h \
+ ../../../config.h /usr/include/stdio.h /usr/include/libio.h \
+ /usr/include/_G_config.h /usr/include/wchar.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/include/stdarg.h \
+ /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+ /usr/include/bits/stdio.h ../../../defs.h ../../../debug.h \
+ ../../../ltrace-elf.h /usr/include/stdlib.h \
+ /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+ /usr/include/alloca.h /usr/include/bits/stdlib-bsearch.h \
+ /usr/include/bits/stdlib-float.h ../../../read_config_file.h \
+ ../../../proc.h ../../../options.h ../../../output.h ../../../fetch.h \
+ ../../../param.h ../../../demangle.h ../../../library.h
+
+/usr/include/stdc-predef.h:
+
+/usr/include/gelf.h:
+
+/usr/include/libelf.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/bits/libc-header-start.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/bits/long-double.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/bits/wchar.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/bits/types/clock_t.h:
+
+/usr/include/bits/types/clockid_t.h:
+
+/usr/include/bits/types/time_t.h:
+
+/usr/include/bits/types/timer_t.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/include/stddef.h:
+
+/usr/include/endian.h:
+
+/usr/include/bits/endian.h:
+
+/usr/include/bits/byteswap.h:
+
+/usr/include/bits/byteswap-16.h:
+
+/usr/include/bits/uintn-identity.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/bits/select.h:
+
+/usr/include/bits/sigset.h:
+
+/usr/include/bits/types/struct_timeval.h:
+
+/usr/include/bits/types/struct_timespec.h:
+
+/usr/include/sys/sysmacros.h:
+
+/usr/include/bits/sysmacros.h:
+
+/usr/include/bits/pthreadtypes.h:
+
+/usr/include/elf.h:
+
+../../../proc.h:
+
+../../../config.h:
+
+/usr/include/sys/time.h:
+
+/usr/include/libunwind.h:
+
+/usr/include/libunwind-x86_64.h:
+
+/usr/include/inttypes.h:
+
+/usr/include/ucontext.h:
+
+/usr/include/sys/ucontext.h:
+
+/usr/include/signal.h:
+
+/usr/include/bits/signum.h:
+
+/usr/include/bits/siginfo.h:
+
+/usr/include/bits/sigaction.h:
+
+/usr/include/bits/sigcontext.h:
+
+/usr/include/bits/sigstack.h:
+
+/usr/include/bits/sigthread.h:
+
+/usr/include/libunwind-dynamic.h:
+
+/usr/include/libunwind-common.h:
+
+../../../ltrace.h:
+
+../../../dict.h:
+
+../../../sysdeps/sysdep.h:
+
+arch.h:
+
+../../../sysdeps/linux-gnu/os.h:
+
+../../../callback.h:
+
+../../../forward.h:
+
+../../../common.h:
+
+../../../config.h:
+
+/usr/include/stdio.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/wchar.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/include/stdarg.h:
+
+/usr/include/bits/stdio_lim.h:
+
+/usr/include/bits/sys_errlist.h:
+
+/usr/include/bits/stdio.h:
+
+../../../defs.h:
+
+../../../debug.h:
+
+../../../ltrace-elf.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/bits/waitflags.h:
+
+/usr/include/bits/waitstatus.h:
+
+/usr/include/alloca.h:
+
+/usr/include/bits/stdlib-bsearch.h:
+
+/usr/include/bits/stdlib-float.h:
+
+../../../read_config_file.h:
+
+../../../proc.h:
+
+../../../options.h:
+
+../../../output.h:
+
+../../../fetch.h:
+
+../../../param.h:
+
+../../../demangle.h:
+
+../../../library.h:

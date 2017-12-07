@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/MDV/Packdrakeng.pm relocate_as=../../../../MDV/Packdrakeng.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/MDV/Packdrakeng/zlib.pm relocate_as=../../../../MDV/Packdrakeng/zlib.pm
+/UPM/Files/Code/perl/man/man3/MDV::Packdrakeng.3 relocate_as=../../../../../../../man/man3/MDV::Packdrakeng.3
+/UPM/Files/Code/perl/man/man3/MDV::Packdrakeng::zlib.3 relocate_as=../../../../../../../man/man3/MDV::Packdrakeng::zlib.3

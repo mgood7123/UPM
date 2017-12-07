@@ -1,0 +1,8 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/File/Find/Object.pm relocate_as=../../../../../File/Find/Object.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/File/Find/Object/Base.pm relocate_as=../../../../../File/Find/Object/Base.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/File/Find/Object/PathComp.pm relocate_as=../../../../../File/Find/Object/PathComp.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/File/Find/Object/Result.pm relocate_as=../../../../../File/Find/Object/Result.pm
+/UPM/Files/Code/perl/man/man3/File::Find::Object.3 relocate_as=../../../../../../../../man/man3/File::Find::Object.3
+/UPM/Files/Code/perl/man/man3/File::Find::Object::Base.3 relocate_as=../../../../../../../../man/man3/File::Find::Object::Base.3
+/UPM/Files/Code/perl/man/man3/File::Find::Object::PathComp.3 relocate_as=../../../../../../../../man/man3/File::Find::Object::PathComp.3
+/UPM/Files/Code/perl/man/man3/File::Find::Object::Result.3 relocate_as=../../../../../../../../man/man3/File::Find::Object::Result.3

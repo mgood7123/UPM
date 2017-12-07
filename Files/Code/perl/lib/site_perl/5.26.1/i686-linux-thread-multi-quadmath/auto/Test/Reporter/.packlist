@@ -1,0 +1,8 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/Reporter.pm relocate_as=../../../../Test/Reporter.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/Reporter/Transport.pm relocate_as=../../../../Test/Reporter/Transport.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/Reporter/Transport/File.pm relocate_as=../../../../Test/Reporter/Transport/File.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/Reporter/Transport/Null.pm relocate_as=../../../../Test/Reporter/Transport/Null.pm
+/UPM/Files/Code/perl/man/man3/Test::Reporter.3 relocate_as=../../../../../../../man/man3/Test::Reporter.3
+/UPM/Files/Code/perl/man/man3/Test::Reporter::Transport.3 relocate_as=../../../../../../../man/man3/Test::Reporter::Transport.3
+/UPM/Files/Code/perl/man/man3/Test::Reporter::Transport::File.3 relocate_as=../../../../../../../man/man3/Test::Reporter::Transport::File.3
+/UPM/Files/Code/perl/man/man3/Test::Reporter::Transport::Null.3 relocate_as=../../../../../../../man/man3/Test::Reporter::Transport::Null.3

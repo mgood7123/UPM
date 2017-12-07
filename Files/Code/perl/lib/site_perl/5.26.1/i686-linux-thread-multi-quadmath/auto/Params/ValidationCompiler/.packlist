@@ -1,0 +1,6 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Params/ValidationCompiler.pm relocate_as=../../../../Params/ValidationCompiler.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Params/ValidationCompiler/Compiler.pm relocate_as=../../../../Params/ValidationCompiler/Compiler.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Params/ValidationCompiler/Exceptions.pm relocate_as=../../../../Params/ValidationCompiler/Exceptions.pm
+/UPM/Files/Code/perl/man/man3/Params::ValidationCompiler.3 relocate_as=../../../../../../../man/man3/Params::ValidationCompiler.3
+/UPM/Files/Code/perl/man/man3/Params::ValidationCompiler::Compiler.3 relocate_as=../../../../../../../man/man3/Params::ValidationCompiler::Compiler.3
+/UPM/Files/Code/perl/man/man3/Params::ValidationCompiler::Exceptions.3 relocate_as=../../../../../../../man/man3/Params::ValidationCompiler::Exceptions.3

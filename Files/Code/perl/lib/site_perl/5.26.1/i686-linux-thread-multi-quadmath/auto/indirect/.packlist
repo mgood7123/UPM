@@ -1,0 +1,3 @@
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/indirect/indirect.so relocate_as=indirect.so
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/indirect.pm relocate_as=../../indirect.pm
+/UPM/perl-5.26.1/dir./perl/man/man3/indirect.3 relocate_as=../../../../../../man/man3/indirect.3

@@ -1,0 +1,13 @@
+Making all in src
+make[1]: Entering directory '/home/universalpackagemanager/UPM/Sources/patchelf-0.9/src'
+g++ -DPACKAGE_NAME=\"patchelf\" -DPACKAGE_TARNAME=\"patchelf\" -DPACKAGE_VERSION=\"0.9\" -DPACKAGE_STRING=\"patchelf\ 0.9\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"patchelf\" -DVERSION=\"0.9\" -DPAGESIZE=4096 -I.    -Wall -g -O2 -MT patchelf.o -MD -MP -MF .deps/patchelf.Tpo -c -o patchelf.o patchelf.cc
+mv -f .deps/patchelf.Tpo .deps/patchelf.Po
+g++ -Wall -g -O2   -o patchelf patchelf.o  
+make[1]: Leaving directory '/home/universalpackagemanager/UPM/Sources/patchelf-0.9/src'
+Making all in tests
+make[1]: Entering directory '/home/universalpackagemanager/UPM/Sources/patchelf-0.9/tests'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/home/universalpackagemanager/UPM/Sources/patchelf-0.9/tests'
+make[1]: Entering directory '/home/universalpackagemanager/UPM/Sources/patchelf-0.9'
+make[1]: Nothing to be done for 'all-am'.
+make[1]: Leaving directory '/home/universalpackagemanager/UPM/Sources/patchelf-0.9'

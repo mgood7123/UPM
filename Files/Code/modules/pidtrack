@@ -1,0 +1,110 @@
+pidtrace() {
+if [[ $track == "" ]] ; then
+track=0
+else
+track=$((track +1))
+fi
+echo tracking child $1
+if [[ $pid == "" ]] ; then
+    ps -hjf $1 | grep "$1"
+fi
+foo=`ps -hfj $1`
+pid=`echo $foo | awk '{print $2}'`
+ppid=`echo $foo | awk '{print $1}'`
+declare -p foo
+hput () {
+if [[ $1 == "reset" ]]
+    then
+        if [[ ! $count == 0 ]] ; then
+        count=$(( $count - 1 ))
+            for i in $(seq 0 $count) ; do
+                echo "unsetting childpids$i"
+                unset childpids$i
+            done
+        fi
+        unset arrays
+        count=0
+        echo count reset
+        return 0
+fi
+array=($@)
+if [[ $count == "" ]] ; then
+    count=0
+fi
+    for i in ${!array[@]} ; do
+        eval childpids"$count"[i]=${array[i]}
+    done
+unset array
+# echo "childpids$count set"
+arrays+=("childpids$count")
+count=$((count +1))
+# declare -p arrays
+}
+arrayconvert() { eval arrayb=$(printf '${'"$1"'['"@"']}') ; eval array2=$(printf '${!'"$1"'['"@"']}')
+a=$1
+arrayindexes=($(printf '%b\n' $(declare -p $1) | sed "s/$a=(//" | grep ^"\[" | sed 's/)$//' | sed 's/\].*/\]/'))
+arraynames=($(printf '%b\n' $(declare -p $1) | sed "s/$a=(//" | grep ^"\[" | sed 's/)$//' | sed 's/.*\="//' | sed 's/\"//'))
+arraytmp=($(for i in $array2 ; do echo "${arraynames[i]}${arrayindexes[i]}" ; done))
+unset $1
+for i in ${!arraytmp[@]}
+    do
+        eval $1[i]+="${arraynames[i]}${arrayindexes[i]}"
+done
+            }
+arrayget() { eval arrayc=$(printf '${'"$1"'[@]}')
+printf '%b\n' $arrayc | grep "\[$2\]"$ | sed "s/\[$2\]//"
+}
+ps -hfjax | awk '$1 == '"$pid" # aquires all child pid of base pid, skips children of children
+# declare -p ppid pid
+hput $(ps -hfjax | awk '$1 == '"$pid" | awk '{print $2}')
+wait
+arrayconvert childpids$track
+wait
+if [[ $(a=$(printf 'childpids'"$track") ; printf '%b ' $(declare -p $a | sed "s/.*$a=(//" | sed 's/)$//')) == " " ]] ; then
+    echo childpids$track empty
+    declare -p childpids$track
+    if [[ $track == "0" ]] ; then
+        echo pidtrace "0"
+        return 1
+    else
+        unset -v childpids$track
+        unset -v arrays[-1]
+        track=$((track -1))
+        countb=$((countb +1))
+        count=$((count -1))
+        echo pidtrace "arrayget childpids$track $countb"
+        pidtrace "$(arrayget childpids$track $countb)"
+    fi
+
+    return 1
+else
+    echo pidtrace "$(arrayget childpids$track 0)"
+    pidtrace "$(arrayget childpids$track 0)"
+fi
+}
+pidbacktrack() {
+if [[ $pid == "" ]] ; then
+    ps -jf $1 | grep "$1"
+fi
+foo=`ps -hfj $1`
+pid=`echo $foo | awk '{print $2}'`
+ppid=`echo $foo | awk '{print $1}'`
+pids+=(`echo $foo | awk '{print $2}'`)
+ppids+=(`echo $foo | awk '{print $1}'`)
+if [[ ! $ppid == "" && "$ppid" == 0 ]] ; then
+    unset pid
+    unset ppid
+    echo "pidbacktrack: error: cannot backtrack to pid 0, pid 0 is non existant"
+    declare -p pids ppids
+    unset pids
+    unset ppids
+else
+    ps -jf $ppid | grep $ppid
+    pidbacktrack $ppid
+fi
+}
+# pidbacktrack $1
+pidtrace $1
+wait
+hput reset
+# http://codepad.org/tIdV0I0a

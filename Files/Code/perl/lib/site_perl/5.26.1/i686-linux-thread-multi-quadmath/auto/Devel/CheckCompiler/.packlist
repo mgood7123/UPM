@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Devel/AssertC99.pm relocate_as=../../../../Devel/AssertC99.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Devel/CheckCompiler.pm relocate_as=../../../../Devel/CheckCompiler.pm
+/UPM/Files/Code/perl/man/man3/Devel::AssertC99.3 relocate_as=../../../../../../../man/man3/Devel::AssertC99.3
+/UPM/Files/Code/perl/man/man3/Devel::CheckCompiler.3 relocate_as=../../../../../../../man/man3/Devel::CheckCompiler.3

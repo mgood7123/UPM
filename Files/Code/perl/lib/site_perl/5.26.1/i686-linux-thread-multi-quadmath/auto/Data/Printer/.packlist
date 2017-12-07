@@ -1,0 +1,12 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/DDP.pm relocate_as=../../../../DDP.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Data/Printer.pm relocate_as=../../../../Data/Printer.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Data/Printer/Filter.pm relocate_as=../../../../Data/Printer/Filter.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Data/Printer/Filter/DB.pm relocate_as=../../../../Data/Printer/Filter/DB.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Data/Printer/Filter/DateTime.pm relocate_as=../../../../Data/Printer/Filter/DateTime.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Data/Printer/Filter/Digest.pm relocate_as=../../../../Data/Printer/Filter/Digest.pm
+/UPM/Files/Code/perl/man/man3/DDP.3 relocate_as=../../../../../../../man/man3/DDP.3
+/UPM/Files/Code/perl/man/man3/Data::Printer.3 relocate_as=../../../../../../../man/man3/Data::Printer.3
+/UPM/Files/Code/perl/man/man3/Data::Printer::Filter.3 relocate_as=../../../../../../../man/man3/Data::Printer::Filter.3
+/UPM/Files/Code/perl/man/man3/Data::Printer::Filter::DB.3 relocate_as=../../../../../../../man/man3/Data::Printer::Filter::DB.3
+/UPM/Files/Code/perl/man/man3/Data::Printer::Filter::DateTime.3 relocate_as=../../../../../../../man/man3/Data::Printer::Filter::DateTime.3
+/UPM/Files/Code/perl/man/man3/Data::Printer::Filter::Digest.3 relocate_as=../../../../../../../man/man3/Data::Printer::Filter::Digest.3

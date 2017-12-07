@@ -1,0 +1,16 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/DateTime/Format/Builder.pm relocate_as=../../../../../DateTime/Format/Builder.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/DateTime/Format/Builder/Parser.pm relocate_as=../../../../../DateTime/Format/Builder/Parser.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/DateTime/Format/Builder/Parser/Dispatch.pm relocate_as=../../../../../DateTime/Format/Builder/Parser/Dispatch.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/DateTime/Format/Builder/Parser/Quick.pm relocate_as=../../../../../DateTime/Format/Builder/Parser/Quick.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/DateTime/Format/Builder/Parser/Regex.pm relocate_as=../../../../../DateTime/Format/Builder/Parser/Regex.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/DateTime/Format/Builder/Parser/Strptime.pm relocate_as=../../../../../DateTime/Format/Builder/Parser/Strptime.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/DateTime/Format/Builder/Parser/generic.pm relocate_as=../../../../../DateTime/Format/Builder/Parser/generic.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/DateTime/Format/Builder/Tutorial.pod relocate_as=../../../../../DateTime/Format/Builder/Tutorial.pod
+/UPM/Files/Code/perl/man/man3/DateTime::Format::Builder.3 relocate_as=../../../../../../../../man/man3/DateTime::Format::Builder.3
+/UPM/Files/Code/perl/man/man3/DateTime::Format::Builder::Parser.3 relocate_as=../../../../../../../../man/man3/DateTime::Format::Builder::Parser.3
+/UPM/Files/Code/perl/man/man3/DateTime::Format::Builder::Parser::Dispatch.3 relocate_as=../../../../../../../../man/man3/DateTime::Format::Builder::Parser::Dispatch.3
+/UPM/Files/Code/perl/man/man3/DateTime::Format::Builder::Parser::Quick.3 relocate_as=../../../../../../../../man/man3/DateTime::Format::Builder::Parser::Quick.3
+/UPM/Files/Code/perl/man/man3/DateTime::Format::Builder::Parser::Regex.3 relocate_as=../../../../../../../../man/man3/DateTime::Format::Builder::Parser::Regex.3
+/UPM/Files/Code/perl/man/man3/DateTime::Format::Builder::Parser::Strptime.3 relocate_as=../../../../../../../../man/man3/DateTime::Format::Builder::Parser::Strptime.3
+/UPM/Files/Code/perl/man/man3/DateTime::Format::Builder::Parser::generic.3 relocate_as=../../../../../../../../man/man3/DateTime::Format::Builder::Parser::generic.3
+/UPM/Files/Code/perl/man/man3/DateTime::Format::Builder::Tutorial.3 relocate_as=../../../../../../../../man/man3/DateTime::Format::Builder::Tutorial.3

@@ -1,0 +1,9 @@
+/UPM/Files/Code/perl/bin/pod_cover relocate_as=../../../../../../../bin/pod_cover
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Pod/Coverage.pm relocate_as=../../../../Pod/Coverage.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Pod/Coverage/CountParents.pm relocate_as=../../../../Pod/Coverage/CountParents.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Pod/Coverage/ExportOnly.pm relocate_as=../../../../Pod/Coverage/ExportOnly.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Pod/Coverage/Overloader.pm relocate_as=../../../../Pod/Coverage/Overloader.pm
+/UPM/Files/Code/perl/man/man3/Pod::Coverage.3 relocate_as=../../../../../../../man/man3/Pod::Coverage.3
+/UPM/Files/Code/perl/man/man3/Pod::Coverage::CountParents.3 relocate_as=../../../../../../../man/man3/Pod::Coverage::CountParents.3
+/UPM/Files/Code/perl/man/man3/Pod::Coverage::ExportOnly.3 relocate_as=../../../../../../../man/man3/Pod::Coverage::ExportOnly.3
+/UPM/Files/Code/perl/man/man3/Pod::Coverage::Overloader.3 relocate_as=../../../../../../../man/man3/Pod::Coverage::Overloader.3

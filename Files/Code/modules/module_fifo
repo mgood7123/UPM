@@ -1,0 +1,2 @@
+mkfifo input
+mkfifo output

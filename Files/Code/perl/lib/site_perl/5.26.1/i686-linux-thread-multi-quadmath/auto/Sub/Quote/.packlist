@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Sub/Defer.pm relocate_as=../../../../Sub/Defer.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Sub/Quote.pm relocate_as=../../../../Sub/Quote.pm
+/UPM/Files/Code/perl/man/man3/Sub::Defer.3 relocate_as=../../../../../../../man/man3/Sub::Defer.3
+/UPM/Files/Code/perl/man/man3/Sub::Quote.3 relocate_as=../../../../../../../man/man3/Sub::Quote.3

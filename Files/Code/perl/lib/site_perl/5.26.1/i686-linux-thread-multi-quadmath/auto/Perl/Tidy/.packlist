@@ -1,0 +1,5 @@
+/UPM/Files/Code/perl/bin/perltidy relocate_as=../../../../../../../bin/perltidy
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Perl/Tidy.pm relocate_as=../../../../Perl/Tidy.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Perl/Tidy.pod relocate_as=../../../../Perl/Tidy.pod
+/UPM/Files/Code/perl/man/man1/perltidy.1 relocate_as=../../../../../../../man/man1/perltidy.1
+/UPM/Files/Code/perl/man/man3/Perl::Tidy.3 relocate_as=../../../../../../../man/man3/Perl::Tidy.3

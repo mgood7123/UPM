@@ -1,0 +1,6 @@
+Some thing still need work:
+-Support more network protocols: AX25, appletalk, netrom, bridge, etc.
+-Support more socket-types: AX25, appletalk, netrom, bridge, udp, etc.
+-Fix support for sparc architecture
+-Add supporttrace for ultrasparc architecture
+

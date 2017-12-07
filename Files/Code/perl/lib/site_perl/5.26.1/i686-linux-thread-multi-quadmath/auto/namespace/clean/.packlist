@@ -1,0 +1,3 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/namespace/clean.pm relocate_as=../../../../namespace/clean.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/namespace/clean/_Util.pm relocate_as=../../../../namespace/clean/_Util.pm
+/UPM/Files/Code/perl/man/man3/namespace::clean.3 relocate_as=../../../../../../../man/man3/namespace::clean.3

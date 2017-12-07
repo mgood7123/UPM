@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/bin/test-yaml relocate_as=../../../../../../../bin/test-yaml
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/YAML.pm relocate_as=../../../../Test/YAML.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/YAML.pod relocate_as=../../../../Test/YAML.pod
+/UPM/Files/Code/perl/man/man3/Test::YAML.3 relocate_as=../../../../../../../man/man3/Test::YAML.3

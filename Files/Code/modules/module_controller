@@ -1,0 +1,8 @@
+ #  . ./modules/module_CORE
+. ./modules/module_trap
+export IRC_FIN=0
+declare -p IRC_FIN
+    printf "\r"
+until [[ $IRC_FIN == 1 ]] ; do
+. ./modules/module_loader
+done

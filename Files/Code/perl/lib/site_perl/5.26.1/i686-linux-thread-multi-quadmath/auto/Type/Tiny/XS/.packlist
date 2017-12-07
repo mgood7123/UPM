@@ -1,0 +1,5 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Type/Tiny/XS.pm relocate_as=../../../../Type/Tiny/XS.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Type/Tiny/XS/Util.pm relocate_as=../../../../Type/Tiny/XS/Util.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Type/Tiny/XS/XS.so relocate_as=XS.so
+/UPM/Files/Code/perl/man/man3/Type::Tiny::XS.3 relocate_as=../../../../../../../../man/man3/Type::Tiny::XS.3
+/UPM/Files/Code/perl/man/man3/Type::Tiny::XS::Util.3 relocate_as=../../../../../../../../man/man3/Type::Tiny::XS::Util.3

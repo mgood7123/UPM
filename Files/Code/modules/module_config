@@ -1,0 +1,8 @@
+[ -z "$IRC_channel" ] && export IRC_channel="##UPM"
+export IRC_channels=("$IRC_channel")
+export IRC_server="irc.freenode.net"
+# export IRC_server="irc.gazellegames.net"
+# export IRC_server="irc.perl.org"
+# export IRC_server="IRC.RIZON.NET"
+[ -z "$IRC_port" ] && export IRC_port="6667"
+[ -z "$IRC_user" ] && export IRC_user=Code

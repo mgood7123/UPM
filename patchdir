@@ -1,0 +1,338 @@
+cleanup-prep()
+{
+for i in $(find ./libimported -maxdepth 1 | sed s/".\/libimported\/"//)
+    do
+        cleanup "$i"
+done
+}
+
+cleanup()
+{
+for i in $(find "./libimported/$1" -mindepth 2 -maxdepth 2 -type f)
+    do
+        local base="$(basename $i)"
+        local dir="$(dirname "$i" | sed s/"\.\/libimported\/$1\/"//g)"
+        from="$(readlink -e "./libimported/$dir")"
+        to="$(readlink -e "./libimported/$1/$dir")"
+        rm -rf "$to"
+        ln -sv "$from" "$to"
+        echo "symlinked: $to > $from"
+        cleanup "$dir"
+done
+}
+
+patchlib() {
+echo "patching $2"
+echo "patching $2" >> "$patchdir/patch.log"
+echo >> "$patchdir/patch.log"
+# echo "./patchelf-static --set-interpreter \"$1\" \"$3\"" >> "$patchdir/patch.log"
+# ./patchelf-static --set-interpreter "$1" "$3" |& :
+# if [[ ${PIPESTATUS[0]} == 0 ]]
+#     then
+#         succcs+=("\$\(\(\$sss+1\)\) \${PIPESTATUS[0]}")
+#         echo "[SUCCEEDED]" >> "$patchdir/patch.log"
+#         echo >> "$patchdir/patch.log"
+#     else
+#         succcf+=("\$\(\(\$ssf+1\)\) \${PIPESTATUS[0]}")
+#         echo "[FAILED]" >> "$patchdir/patch.log"
+#         echo >> "$patchdir/patch.log"
+# fi
+echo "./patchelf-static --add-needed \"$1\" \"$2\"" >> "$patchdir/patch.log"
+echo >> "$patchdir/patch.log"
+./patchelf-static --add-needed "$1" "$2" |& :
+if [[ ${PIPESTATUS[0]} == 0 ]]
+    then
+        succcsb+=(\${PIPESTATUS[0]})
+        echo "[SUCCEEDED]" >> "$patchdir/patch.log"
+        echo >> "$patchdir/patch.log"
+    else
+        succcfb+=(\${PIPESTATUS[0]})
+        echo "[FAILED]" >> "$patchdir/patch.log"
+        echo >> "$patchdir/patch.log"
+fi
+}
+
+patchme() {
+                printf '%s%b' "$result" |& grep "interpreter.*" |& grep "ld-.*" >> "$patchdir/$logsucceed"
+                echo >> "$patchdir/$logsucceed"
+                echo "$1 has interpreter and it is not currently set to $(readlink -e "./ld-2.26.so")" >> "$patchdir/$logsucceed"
+                echo >> "$patchdir/$logsucceed"
+                echo "patching $1"
+                echo "patching $i" >> "$patchdir/$logsucceed"
+                echo >> "$patchdir/$logsucceed"
+                echo "./patchelf-static --set-interpreter \"$(readlink -e "./ld-2.26.so")\" \"$1\"" >> "$patchdir/$logsucceed"
+                echo >> "$patchdir/$logsucceed"
+                ./patchelf-static --set-interpreter "$(readlink -e "./ld-2.26.so")" "$1"
+                #2>>"$patchdir/patch.log"
+                ln -sv "$(readlink -e "./ld.so.cache")" "$(dirname "$1")/ld.so.cache" 2>> "$patchdir/$logfail"
+                echo ln -sv "$(readlink -e "./ld.so.cache")" "$(dirname "$1")/ld.so.cache" >> "$patchdir/$logsucceed"
+                echo >> "$patchdir/$logsucceed"
+                if [[ ${PIPESTATUS[0]} == 0 ]]
+                    then
+                        suis+=(\${PIPESTATUS[0]})
+                        echo "[SUCCEEDED]" >> "$patchdir/$logsucceed"
+                        echo >> "$patchdir/$logsucceed"
+                    else
+                        suif+=(\${PIPESTATUS[0]})
+                        echo "[FAILED]" >> "$patchdir/$logsucceed"
+                        echo >> "$patchdir/$logsucceed"
+                fi
+                echo [PATCHED]
+                echo [PATCHED] >> "$patchdir/$logsucceed"
+                echo >> "$patchdir/$logsucceed"
+}
+
+patchinterpreter() {
+patchdir=./libimported
+logsucceed="patchsucceed.log"
+logfail="patchfail.log"
+echo > "$patchdir/$logsucceed"
+echo > "$patchdir/$logfail"
+
+for i in $(find ./ -type f | grep -v "ld-")
+    do
+    result="$(patchelf --print-interpreter $i 2>&1)"
+#         if (( $(file "$i" |& grep -o "interpreter.*" |& grep -c -v PACKAGES) != 0))
+#             then
+    #             patchme "$i"
+        if (( $(printf '%s%b' "$result" |& grep -c "ld-.*") != 0))
+            then
+                patchme "$i"
+#         elif (( $(file "$i" |& grep -o "interpreter.*" |& grep -c "ld.*") != 0))
+#             then
+#             patchme "$i"
+        elif [[ $(printf '%s%b' "$result" |& grep -c "not an ELF executable") == 0 && $(printf '%s%b' "$result" |& grep -c "wrong ELF type") == 0 && $(printf '%s%b' "$result" |& grep -c "missing ELF header") == 0 && $(printf '%s%b' "$result" |& grep -c "cannot find section .interp") == 0 ]]
+            then
+                echo "[SKIPPING] $i contains interpreter i cannot handle yet"
+                printf '%s%b' "$result"
+                echo
+                printf '%s%b' "$result" >> "$patchdir/$logfail"
+                echo >> "$patchdir/$logfail"
+                file $i
+                file $i >> "$patchdir/$logfail" 2>&1
+                echo >> "$patchdir/$logfail"
+        else
+            echo "[SKIPPING] $i"
+        fi
+done
+# echo "[SUCCEEDED interp (${#suis[@]})]"
+# echo "[FAILED interp (${#suif[@]})]"
+echo "results saved to $patchdir/$logsucceed and $patchdir/$logfail"
+}
+
+rec() {
+local depth=$2
+local sob=($(./ldd "$(readlink -e "$1")" |& grep "=> " | sed -e "s/.*=> //g" -e s/"(.*"//g))
+if [[ -z $sob ]]
+    then
+        echo [SETTING UP]
+        echo [SETTING UP] >> "$patchdir/patch.log"
+        echo >> "$patchdir/patch.log"
+        echo "\$1 = $1" >> "$patchdir/patch.log"
+        echo >> "$patchdir/patch.log"
+        echo "\$2 = $2" >> "$patchdir/patch.log"
+        echo >> "$patchdir/patch.log"
+        echo "\$3 = $3" >> "$patchdir/patch.log"
+        echo >> "$patchdir/patch.log"
+        echo "\$4 = $4" >> "$patchdir/patch.log"
+        echo >> "$patchdir/patch.log"
+        local basechain="$3"
+        echo "$basechain" >> "$patchdir/patch.log"
+        echo >> "$patchdir/patch.log"
+        echo "$basechain" | sed -e s/' > '/'_dir\/'/g -e s/"$"/'_dir\/'/g >> "$patchdir/patch.log"
+        echo >> "$patchdir/patch.log"
+        local fullchain=("$4")
+        echo "$fullchain" >> "$patchdir/patch.log"
+        echo >> "$patchdir/patch.log"
+        de=($(printf "$3" | sed s/" >"//g))
+        fe=($(printf "$4" | sed s/" >"//g))
+        d=()
+        f=()
+        echo [EXECUTING]
+        echo [EXECUTING] >> "$patchdir/patch.log"
+        echo >> "$patchdir/patch.log"
+        local dirb="./libimported"
+        echo "sss=0" >> ./que
+        echo "ssf=0" >> ./que
+        echo "succcs=()" >> ./que
+        echo "succcf=()" >> ./que
+        echo "succcsb=()" >> ./que
+        echo "succcfb=()" >> ./que
+        for i in ${!de[@]}
+            do
+                echo "file: ${de[i]}" >> "$patchdir/patch.log"
+                echo >> "$patchdir/patch.log"
+                if [[ -z $d ]]
+                    then
+                    d+=("${de[i]}_dir")
+                else
+                    d+=("${d[-1]}/${de[i]}_dir")
+                fi
+                f+=("$(printf '%s%b' "${d[i]}/${de[i]}")")
+                mkdir -p "$dirb/${d[i]}"
+                cp "${fe[i]}" "$dirb/${f[i]}" || (echo retrying with SUDO && sudo cp "${fe[i]}" "$dirb/${f[i]}" && echo SUDO SUCCESFULL)
+                rep=$?
+                if [[ "$rep" == 0 ]]
+                    then
+                        echo succesfully copied "${fe[i]}" to "$dirb/${f[i]}" >> "$patchdir/patch.log"
+                        echo >> "$patchdir/patch.log"
+                    else
+                        echo "failed (\"cp\" command return code: $rep) to copy \"${fe[i]}\" to \"$dirb/${f[i]}\"" >> "$patchdir/patch.log"
+                        echo >> "$patchdir/patch.log"
+                fi
+                if [[ -z $prev ]]
+                    then
+                        :
+                    else
+                        echo patchlib "$(readlink -e "$dirb/${f[i]}")" "$prev" >> ./que
+                        echo patchlib "$(readlink -e "$dirb/${f[i]}")" "$prev" >> "$patchdir/patch.log"
+                        echo >> "$patchdir/patch.log"
+                        :
+                fi
+                local prev="$(readlink -e "$dirb/${f[i]}")"
+        done
+    else
+        for h in ${!sob[@]}
+            do
+                if [[ $(readlink -e $(readlink -m ".$(readlink -m "${sob[h]}")")) ]]
+                    then
+                    :
+                    else
+                        local parentb="$(readlink -e "$1")"
+                        local childestb="$(readlink -m ".$(readlink -m "${sob[h]}")")"
+                        local childrealb="$(readlink -e "$(find ./ 2>&1 | grep "^$(basename "$(readlink -m ".$(readlink -m "${sob[h]}")")")$")" 2>: || readlink -e "$(readlink -m "${sob[h]}")")"
+                        local baseb="$(basename "$childrealb")"
+                        local basechain="$3 > $baseb"
+                        local fullchain="$4 > $childrealb"
+                        if [[ -z $childrealb || $childrealb =~ "/home/" ]]
+                            then
+                                rec "$childrealb" "$(($depth+1))" "$basechain" "$fullchain"
+                            else
+                                rec "$dir/$base$childrealb" "$(($depth+1))" "$basechain" "$fullchain"
+                        fi
+                fi
+        done
+fi
+}
+
+patch() {
+dirbase="./libimported"
+cp /home/universalpackagemanager/UPM/Tests/tools/universal/* ./
+#### could use /etc/os-release to determine distro for a system wide patch but for now we assume this is a distro specific patch for packages from specific distro's ####
+cp -f /home/universalpackagemanager/UPM/Tests/tools/"$1"/ld-2.26.so ./ld-2.26.so
+echo [SYSTEM] applying pre-configure
+./ldconfig
+echo [SYSTEM] applying patch
+unset succ fail
+for i in $(find ./ -type f |& grep "\.so" | grep -v ./ld-2.26.so | grep lib)
+    do
+        echo "patching $(readlink -e $i)"
+        echo "echo \"relinking \"$(readlink -e $i)\"\" &&
+        rm -rfv \"$(readlink -e $i)\"
+        if [[ \$? == 0 ]]
+            then
+                succc+=(\${PIPESTATUS[0]})
+            else
+                faill+=(\${PIPESTATUS[0]})
+        fi
+        ln \"./libimported/$(basename $(readlink -e $i))_dir/$(basename $(readlink -e $i))\" \"$(readlink -e $i)\" || (echo retrying with SUDO && sudo ln \"./libimported/$(basename $(readlink -e $i))_dir/$(basename $(readlink -e $i))\" \"$(readlink -e $i)\" && echo SUDO SUCCESFULL)
+        if [[ \$? == 0 ]]
+            then
+                succcb+=(\${PIPESTATUS[0]})
+            else
+                faillb+=(\${PIPESTATUS[0]})
+        fi" >> ./queb
+        ./patchelf-static --set-interpreter "$(readlink -e ./ld-2.26.so)" "$(readlink -e $i)" |& :
+        if [[ ${PIPESTATUS[0]} == 0 ]]
+            then
+                succ+=(\${PIPESTATUS[0]})
+            else
+                fail+=(\${PIPESTATUS[0]})
+        fi
+        ./patchelf-static --set-rpath "./lib" "$i" |& :
+        if [[ ${PIPESTATUS[0]} == 0 ]]
+            then
+                succb+=(\${PIPESTATUS[0]})
+            else
+                failb+=(\${PIPESTATUS[0]})
+        fi
+        echo "[SUCCEEDED interp (${#succ[@]})]"
+        echo "[FAILED interp (${#fail[@]})]"
+        echo "[SUCCEEDED rpath (${#succb[@]})]"
+        echo "[FAILED rpath (${#failb[@]})]"
+        echo "ffrm=0" >> ./queb
+        echo "ssrm=0" >> ./queb
+        echo "ffln=0" >> ./queb
+        echo "ssln=0" >> ./queb
+        echo "succc=()" >>./queb
+        echo "faill=()" >> ./queb
+        echo "succcb=()" >> ./queb
+        echo "faillb=()" >> ./queb
+        so=($(eval "find ./ | grep -v libimported | grep $(./ldd "$(readlink -e $i)" 2>: |& grep "=>" | sed -e "s/ .*//g" -e  s/'\t'//g -e s/"^"/'-e "'/ -e s/"$"/'"'/ | tr '\n' ' ')"))
+        basepath=$(basename "$i")
+        fullpath=$(readlink -e "$i")
+        fullbasepath=$(basename "$fullpath")
+        patchdir="./libimported/${fullbasepath[0]}_dir"
+        mkdir -p "$patchdir"
+        echo > "$patchdir/patch.log"
+        if [[ -z $so ]]
+            then
+                echo >> "$patchdir/patch.log"
+                rec "$i" "0" "$basepath" "$fullpath"
+            else
+            for h in ${!so[@]}
+                do
+                    depth=1
+                    if [[ $(readlink -e $(readlink -m ".$(readlink -m "${so[h]}")")) ]]
+                        then
+                            :
+                        else
+                            parent="$(readlink -e "$i")"
+                            childest="$(readlink -m ".$(readlink -m "${so[h]}")")"
+                            childreal="$(readlink -e "$(find ./ 2>&1 | grep "^$(basename "$(readlink -m ".$(readlink -m "${so[h]}")")")$")" 2>: || readlink -e "$(readlink -m "${so[h]}")")"
+                            base="$(basename "$childreal")"
+                            dir="./libimported/$base"
+                            dirb="./libimported/${basepath[0]}_dir/${base[0]}_dir/"
+                            ((depth++))
+                            basec="$basepath > $base"
+                            based="$fullpath > $childreal"
+                            if [[ -z $childreal || $childreal =~ "/home/" ]]
+                            then
+                                rec "$childreal" "$(($depth+1))" "$basec" "$based" | sed s/".*)> $"//
+                            else
+                                rec "$dir/$base$childreal" "$(($depth+1))" "$basec" "$based" | sed s/".*)> $"//
+                            fi
+                    fi
+            done
+            echo [PATCHING]
+            echo [PATCHING] >> "$patchdir/patch.log"
+            echo >> "$patchdir/patch.log"
+            echo "echo \"[SUCCEEDED needed (\${#succcsb[@]})]\"" >>./que
+            echo "echo \"[FAILED needed (\${#succcfb[@]})]\"" >> ./que
+
+            . ./que
+            echo "[NOTICE]: refer to $patchdir/patch.log for a detailed copy of this output"
+            rm ./que
+        fi
+done
+echo "echo \"[SUCCEEDED rm (\${#succc[@]})]\"" >>./queb
+echo "echo \"[FAILED rm (\${#faill[@]})]\"" >> ./queb
+echo "echo \"[SUCCEEDED ln (\${#succcb[@]})]\"" >> ./queb
+echo "echo \"[FAILED ln (\${#faillb[@]})]\"" >> ./queb
+echo [RELINKING]
+cat ./queb > ./libimported/relink.log
+. ./queb
+rm ./queb
+echo [PATCHING FINAL]
+patchinterpreter
+echo [CLEANING UP]
+cleanup-prep
+echo "[SYSTEM] removing ldconfig due to the resulting patching integrity not matching the integrity expected by ldconfig producing a corrupted cache"
+for i in $(find ./ -name ldconfig | tr '\n' ' ')
+    do
+        rm -rfv  "$i"
+done
+rm ./:
+# ./lddd
+}
+patch $1

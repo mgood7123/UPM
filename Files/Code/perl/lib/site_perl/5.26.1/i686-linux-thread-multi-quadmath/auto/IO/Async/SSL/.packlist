@@ -1,0 +1,4 @@
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/IO/Async/SSL.pm relocate_as=../../../../../IO/Async/SSL.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/IO/Async/SSLStream.pm relocate_as=../../../../../IO/Async/SSLStream.pm
+/UPM/perl-5.26.1/dir./perl/man/man3/IO::Async::SSL.3 relocate_as=../../../../../../../../man/man3/IO::Async::SSL.3
+/UPM/perl-5.26.1/dir./perl/man/man3/IO::Async::SSLStream.3 relocate_as=../../../../../../../../man/man3/IO::Async::SSLStream.3

@@ -1,0 +1,4 @@
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/strictures.pm relocate_as=../../../strictures.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/strictures/extra.pm relocate_as=../../../strictures/extra.pm
+/UPM/perl-5.26.1/dir./perl/man/man3/strictures.3 relocate_as=../../../../../../man/man3/strictures.3
+/UPM/perl-5.26.1/dir./perl/man/man3/strictures::extra.3 relocate_as=../../../../../../man/man3/strictures::extra.3

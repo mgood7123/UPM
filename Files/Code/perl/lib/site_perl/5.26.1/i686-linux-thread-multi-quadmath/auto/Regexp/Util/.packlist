@@ -1,0 +1,3 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Regexp/Util.pm relocate_as=../../../Regexp/Util.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Regexp/Util/Util.so relocate_as=Util.so
+/UPM/Files/Code/perl/man/man3/Regexp::Util.3 relocate_as=../../../../../../../man/man3/Regexp::Util.3

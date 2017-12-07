@@ -1,0 +1,2 @@
+if [[ $(curl "https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/blackarch.db" -k -r 0-0 -z "$(date +'%d-%b-%Y %H:%M:%S')") ]];     then         echo ; echo "https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/blackarch.db has been updated since $(date +'%d-%b-%Y %H:%M:%S')" >&2 ; echo ;     else         echo ; echo "https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/blackarch.db has not been updated since $(date +'%d-%b-%Y %H:%M:%S')" >&2 ; echo ; fi
+        

@@ -1,0 +1,1759 @@
+for the following two checks (we check for the presence of readlink, and dirname), we assume that the current working directory is set to the location of this script should any of them fail...
+dirname exists
+readlink exists
+script directory = /home/chakra/UPM
+REPOS=(
+https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/
+# http://mirrors.kernel.org/archlinux/pool/packages/
+http://www-ftp.lip6.fr/pub/linux/distributions/chakra/core/x86_64/
+http://mirror.dacentec.com/chakra/core/x86_64/
+http://ftp.acc.umu.se/mirror/chakraos.org/packages/core/x86_64/
+
+#https://mirror.aarnet.edu.au/pub/archlinux/core/os/x86_64/
+http://archlinux.mirror.digitalpacific.com.au/core/os/x86_64/
+http://mirror.internode.on.net/pub/archlinux/core/os/x86_64/
+http://archlinux.melbourneitmirror.net/core/os/x86_64/
+http://ftp.swin.edu.au/archlinux/core/os/x86_64/
+
+#https://mirror.aarnet.edu.au/pub/archlinux/community/os/x86_64/
+http://archlinux.mirror.digitalpacific.com.au/community/os/x86_64/
+http://mirror.internode.on.net/pub/archlinux/community/os/x86_64/
+http://archlinux.melbourneitmirror.net/community/os/x86_64/
+http://ftp.swin.edu.au/archlinux/community/os/x86_64/
+
+#https://mirror.aarnet.edu.au/pub/archlinux/extra/os/x86_64/
+http://archlinux.mirror.digitalpacific.com.au/extra/os/x86_64/
+http://mirror.internode.on.net/pub/archlinux/extra/os/x86_64/
+http://archlinux.melbourneitmirror.net/extra/os/x86_64/
+http://ftp.swin.edu.au/archlinux/extra/os/x86_64/
+
+#https://mirror.aarnet.edu.au/pub/archlinux/multilib/os/x86_64/
+http://archlinux.mirror.digitalpacific.com.au/multilib/os/x86_64/
+http://mirror.internode.on.net/pub/archlinux/multilib/os/x86_64/
+http://archlinux.melbourneitmirror.net/multilib/os/x86_64/
+http://ftp.swin.edu.au/archlinux/multilib/os/x86_64/
+
+http://www-ftp.lip6.fr/pub/linux/distributions/chakra/desktop/x86_64/
+http://mirror.dacentec.com/chakra/desktop/x86_64/
+http://ftp.acc.umu.se/mirror/chakraos.org/packages/desktop/x86_64/
+
+http://www-ftp.lip6.fr/pub/linux/distributions/chakra/lib32/x86_64/
+http://mirror.dacentec.com/chakra/lib32/x86_64/
+http://ftp.acc.umu.se/mirror/chakraos.org/packages/lib32/x86_64/
+)
+REPODB=(
+https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/blackarch.db
+$(for i in ${!REPOS[@]}
+do
+    if [[ ${REPOS[i]} =~ "/core/" ]]
+        then
+            printf "${REPOS[i]}${REPOS[i]/*\/core\/*/core}.db
+"
+    elif [[ ${REPOS[i]} =~ "/community/" ]]
+        then
+            printf "${REPOS[i]}${REPOS[i]/*\/community\/*/community}.db
+"
+    elif [[ ${REPOS[i]} =~ "/extra/" ]]
+        then
+            printf "${REPOS[i]}${REPOS[i]/*\/extra\/*/extra}.db
+"
+    elif [[ ${REPOS[i]} =~ "/multilib/" ]]
+        then
+            printf "${REPOS[i]}${REPOS[i]/*\/multilib\/*/multilib}.db
+"
+    fi
+done)
+)
+POOL0='https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/'
+ftpPOOL0='ftp://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/'
+echo "connecting to https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/blackarch.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/blackarch.db" |& grep -i "modified" >&2 || curl -k -I "https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/blackarch.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew0=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/ -o ./repo/https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew0=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/' | sed 's/https:\/\/www.mirrorservice.org\/sites\/blackarch.org\/blackarch\/blackarch\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/timestamp
+                    printf "\rDownloaded 'https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL1='http://www-ftp.lip6.fr/pub/linux/distributions/chakra/core/x86_64/'
+ftpPOOL1='ftp://www-ftp.lip6.fr/pub/linux/distributions/chakra/core/x86_64/'
+echo "connecting to http://www-ftp.lip6.fr/pub/linux/distributions/chakra/core/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://www-ftp.lip6.fr/pub/linux/distributions/chakra/core/x86_64/core.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://www-ftp.lip6.fr/pub/linux/distributions/chakra/core/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://www-ftp.lip6.fr/pub/linux/distributions/chakra/core/x86_64/core.db" |& grep -i "modified" >&2 || curl -k -I "http://www-ftp.lip6.fr/pub/linux/distributions/chakra/core/x86_64/core.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew1=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://www-ftp.lip6.fr/pub/linux/distributions/chakra/core/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://www-ftp.lip6.fr/pub/linux/distributions/chakra/core/x86_64/ -o ./repo/http://www-ftp.lip6.fr/pub/linux/distributions/chakra/core/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew1=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://www-ftp.lip6.fr/pub/linux/distributions/chakra/core/x86_64/' | sed 's/http:\/\/www-ftp.lip6.fr\/pub\/linux\/distributions\/chakra\/core\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://www-ftp.lip6.fr/pub/linux/distributions/chakra/core/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://www-ftp.lip6.fr/pub/linux/distributions/chakra/core/x86_64/timestamp
+                    printf "\rDownloaded 'http://www-ftp.lip6.fr/pub/linux/distributions/chakra/core/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL2='http://mirror.dacentec.com/chakra/core/x86_64/'
+ftpPOOL2='ftp://mirror.dacentec.com/chakra/core/x86_64/'
+echo "connecting to http://mirror.dacentec.com/chakra/core/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://mirror.dacentec.com/chakra/core/x86_64/core.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://mirror.dacentec.com/chakra/core/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://mirror.dacentec.com/chakra/core/x86_64/core.db" |& grep -i "modified" >&2 || curl -k -I "http://mirror.dacentec.com/chakra/core/x86_64/core.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew2=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://mirror.dacentec.com/chakra/core/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://mirror.dacentec.com/chakra/core/x86_64/ -o ./repo/http://mirror.dacentec.com/chakra/core/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew2=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://mirror.dacentec.com/chakra/core/x86_64/' | sed 's/http:\/\/mirror.dacentec.com\/chakra\/core\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://mirror.dacentec.com/chakra/core/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://mirror.dacentec.com/chakra/core/x86_64/timestamp
+                    printf "\rDownloaded 'http://mirror.dacentec.com/chakra/core/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL3='http://ftp.acc.umu.se/mirror/chakraos.org/packages/core/x86_64/'
+ftpPOOL3='ftp://ftp.acc.umu.se/mirror/chakraos.org/packages/core/x86_64/'
+echo "connecting to http://ftp.acc.umu.se/mirror/chakraos.org/packages/core/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://ftp.acc.umu.se/mirror/chakraos.org/packages/core/x86_64/core.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://ftp.acc.umu.se/mirror/chakraos.org/packages/core/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://ftp.acc.umu.se/mirror/chakraos.org/packages/core/x86_64/core.db" |& grep -i "modified" >&2 || curl -k -I "http://ftp.acc.umu.se/mirror/chakraos.org/packages/core/x86_64/core.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew3=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://ftp.acc.umu.se/mirror/chakraos.org/packages/core/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://ftp.acc.umu.se/mirror/chakraos.org/packages/core/x86_64/ -o ./repo/http://ftp.acc.umu.se/mirror/chakraos.org/packages/core/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew3=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://ftp.acc.umu.se/mirror/chakraos.org/packages/core/x86_64/' | sed 's/http:\/\/ftp.acc.umu.se\/mirror\/chakraos.org\/packages\/core\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://ftp.acc.umu.se/mirror/chakraos.org/packages/core/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://ftp.acc.umu.se/mirror/chakraos.org/packages/core/x86_64/timestamp
+                    printf "\rDownloaded 'http://ftp.acc.umu.se/mirror/chakraos.org/packages/core/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL4='http://archlinux.mirror.digitalpacific.com.au/core/os/x86_64/'
+ftpPOOL4='ftp://archlinux.mirror.digitalpacific.com.au/core/os/x86_64/'
+echo "connecting to http://archlinux.mirror.digitalpacific.com.au/core/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://archlinux.mirror.digitalpacific.com.au/core/os/x86_64/core.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://archlinux.mirror.digitalpacific.com.au/core/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://archlinux.mirror.digitalpacific.com.au/core/os/x86_64/core.db" |& grep -i "modified" >&2 || curl -k -I "http://archlinux.mirror.digitalpacific.com.au/core/os/x86_64/core.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew4=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://archlinux.mirror.digitalpacific.com.au/core/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://archlinux.mirror.digitalpacific.com.au/core/os/x86_64/ -o ./repo/http://archlinux.mirror.digitalpacific.com.au/core/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew4=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://archlinux.mirror.digitalpacific.com.au/core/os/x86_64/' | sed 's/http:\/\/archlinux.mirror.digitalpacific.com.au\/core\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://archlinux.mirror.digitalpacific.com.au/core/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://archlinux.mirror.digitalpacific.com.au/core/os/x86_64/timestamp
+                    printf "\rDownloaded 'http://archlinux.mirror.digitalpacific.com.au/core/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL5='http://mirror.internode.on.net/pub/archlinux/core/os/x86_64/'
+ftpPOOL5='ftp://mirror.internode.on.net/pub/archlinux/core/os/x86_64/'
+echo "connecting to http://mirror.internode.on.net/pub/archlinux/core/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://mirror.internode.on.net/pub/archlinux/core/os/x86_64/core.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://mirror.internode.on.net/pub/archlinux/core/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://mirror.internode.on.net/pub/archlinux/core/os/x86_64/core.db" |& grep -i "modified" >&2 || curl -k -I "http://mirror.internode.on.net/pub/archlinux/core/os/x86_64/core.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew5=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://mirror.internode.on.net/pub/archlinux/core/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://mirror.internode.on.net/pub/archlinux/core/os/x86_64/ -o ./repo/http://mirror.internode.on.net/pub/archlinux/core/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew5=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://mirror.internode.on.net/pub/archlinux/core/os/x86_64/' | sed 's/http:\/\/mirror.internode.on.net\/pub\/archlinux\/core\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://mirror.internode.on.net/pub/archlinux/core/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://mirror.internode.on.net/pub/archlinux/core/os/x86_64/timestamp
+                    printf "\rDownloaded 'http://mirror.internode.on.net/pub/archlinux/core/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL6='http://archlinux.melbourneitmirror.net/core/os/x86_64/'
+ftpPOOL6='ftp://archlinux.melbourneitmirror.net/core/os/x86_64/'
+echo "connecting to http://archlinux.melbourneitmirror.net/core/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://archlinux.melbourneitmirror.net/core/os/x86_64/core.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://archlinux.melbourneitmirror.net/core/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://archlinux.melbourneitmirror.net/core/os/x86_64/core.db" |& grep -i "modified" >&2 || curl -k -I "http://archlinux.melbourneitmirror.net/core/os/x86_64/core.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew6=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://archlinux.melbourneitmirror.net/core/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://archlinux.melbourneitmirror.net/core/os/x86_64/ -o ./repo/http://archlinux.melbourneitmirror.net/core/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew6=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://archlinux.melbourneitmirror.net/core/os/x86_64/' | sed 's/http:\/\/archlinux.melbourneitmirror.net\/core\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://archlinux.melbourneitmirror.net/core/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://archlinux.melbourneitmirror.net/core/os/x86_64/timestamp
+                    printf "\rDownloaded 'http://archlinux.melbourneitmirror.net/core/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL7='http://ftp.swin.edu.au/archlinux/core/os/x86_64/'
+ftpPOOL7='ftp://ftp.swin.edu.au/archlinux/core/os/x86_64/'
+echo "connecting to http://ftp.swin.edu.au/archlinux/core/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://ftp.swin.edu.au/archlinux/core/os/x86_64/core.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://ftp.swin.edu.au/archlinux/core/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://ftp.swin.edu.au/archlinux/core/os/x86_64/core.db" |& grep -i "modified" >&2 || curl -k -I "http://ftp.swin.edu.au/archlinux/core/os/x86_64/core.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew7=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://ftp.swin.edu.au/archlinux/core/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://ftp.swin.edu.au/archlinux/core/os/x86_64/ -o ./repo/http://ftp.swin.edu.au/archlinux/core/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew7=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://ftp.swin.edu.au/archlinux/core/os/x86_64/' | sed 's/http:\/\/ftp.swin.edu.au\/archlinux\/core\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://ftp.swin.edu.au/archlinux/core/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://ftp.swin.edu.au/archlinux/core/os/x86_64/timestamp
+                    printf "\rDownloaded 'http://ftp.swin.edu.au/archlinux/core/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL8='http://archlinux.mirror.digitalpacific.com.au/community/os/x86_64/'
+ftpPOOL8='ftp://archlinux.mirror.digitalpacific.com.au/community/os/x86_64/'
+echo "connecting to http://archlinux.mirror.digitalpacific.com.au/community/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://archlinux.mirror.digitalpacific.com.au/community/os/x86_64/community.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://archlinux.mirror.digitalpacific.com.au/community/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://archlinux.mirror.digitalpacific.com.au/community/os/x86_64/community.db" |& grep -i "modified" >&2 || curl -k -I "http://archlinux.mirror.digitalpacific.com.au/community/os/x86_64/community.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew8=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://archlinux.mirror.digitalpacific.com.au/community/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://archlinux.mirror.digitalpacific.com.au/community/os/x86_64/ -o ./repo/http://archlinux.mirror.digitalpacific.com.au/community/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew8=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://archlinux.mirror.digitalpacific.com.au/community/os/x86_64/' | sed 's/http:\/\/archlinux.mirror.digitalpacific.com.au\/community\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://archlinux.mirror.digitalpacific.com.au/community/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://archlinux.mirror.digitalpacific.com.au/community/os/x86_64/timestamp
+                    printf "\rDownloaded 'http://archlinux.mirror.digitalpacific.com.au/community/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL9='http://mirror.internode.on.net/pub/archlinux/community/os/x86_64/'
+ftpPOOL9='ftp://mirror.internode.on.net/pub/archlinux/community/os/x86_64/'
+echo "connecting to http://mirror.internode.on.net/pub/archlinux/community/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://mirror.internode.on.net/pub/archlinux/community/os/x86_64/community.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://mirror.internode.on.net/pub/archlinux/community/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://mirror.internode.on.net/pub/archlinux/community/os/x86_64/community.db" |& grep -i "modified" >&2 || curl -k -I "http://mirror.internode.on.net/pub/archlinux/community/os/x86_64/community.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew9=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://mirror.internode.on.net/pub/archlinux/community/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://mirror.internode.on.net/pub/archlinux/community/os/x86_64/ -o ./repo/http://mirror.internode.on.net/pub/archlinux/community/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew9=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://mirror.internode.on.net/pub/archlinux/community/os/x86_64/' | sed 's/http:\/\/mirror.internode.on.net\/pub\/archlinux\/community\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://mirror.internode.on.net/pub/archlinux/community/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://mirror.internode.on.net/pub/archlinux/community/os/x86_64/timestamp
+                    printf "\rDownloaded 'http://mirror.internode.on.net/pub/archlinux/community/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL10='http://archlinux.melbourneitmirror.net/community/os/x86_64/'
+ftpPOOL10='ftp://archlinux.melbourneitmirror.net/community/os/x86_64/'
+echo "connecting to http://archlinux.melbourneitmirror.net/community/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://archlinux.melbourneitmirror.net/community/os/x86_64/community.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://archlinux.melbourneitmirror.net/community/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://archlinux.melbourneitmirror.net/community/os/x86_64/community.db" |& grep -i "modified" >&2 || curl -k -I "http://archlinux.melbourneitmirror.net/community/os/x86_64/community.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew10=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://archlinux.melbourneitmirror.net/community/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://archlinux.melbourneitmirror.net/community/os/x86_64/ -o ./repo/http://archlinux.melbourneitmirror.net/community/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew10=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://archlinux.melbourneitmirror.net/community/os/x86_64/' | sed 's/http:\/\/archlinux.melbourneitmirror.net\/community\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://archlinux.melbourneitmirror.net/community/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://archlinux.melbourneitmirror.net/community/os/x86_64/timestamp
+                    printf "\rDownloaded 'http://archlinux.melbourneitmirror.net/community/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL11='http://ftp.swin.edu.au/archlinux/community/os/x86_64/'
+ftpPOOL11='ftp://ftp.swin.edu.au/archlinux/community/os/x86_64/'
+echo "connecting to http://ftp.swin.edu.au/archlinux/community/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://ftp.swin.edu.au/archlinux/community/os/x86_64/community.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://ftp.swin.edu.au/archlinux/community/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://ftp.swin.edu.au/archlinux/community/os/x86_64/community.db" |& grep -i "modified" >&2 || curl -k -I "http://ftp.swin.edu.au/archlinux/community/os/x86_64/community.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew11=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://ftp.swin.edu.au/archlinux/community/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://ftp.swin.edu.au/archlinux/community/os/x86_64/ -o ./repo/http://ftp.swin.edu.au/archlinux/community/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew11=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://ftp.swin.edu.au/archlinux/community/os/x86_64/' | sed 's/http:\/\/ftp.swin.edu.au\/archlinux\/community\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://ftp.swin.edu.au/archlinux/community/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://ftp.swin.edu.au/archlinux/community/os/x86_64/timestamp
+                    printf "\rDownloaded 'http://ftp.swin.edu.au/archlinux/community/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL12='http://archlinux.mirror.digitalpacific.com.au/extra/os/x86_64/'
+ftpPOOL12='ftp://archlinux.mirror.digitalpacific.com.au/extra/os/x86_64/'
+echo "connecting to http://archlinux.mirror.digitalpacific.com.au/extra/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://archlinux.mirror.digitalpacific.com.au/extra/os/x86_64/extra.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://archlinux.mirror.digitalpacific.com.au/extra/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://archlinux.mirror.digitalpacific.com.au/extra/os/x86_64/extra.db" |& grep -i "modified" >&2 || curl -k -I "http://archlinux.mirror.digitalpacific.com.au/extra/os/x86_64/extra.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew12=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://archlinux.mirror.digitalpacific.com.au/extra/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://archlinux.mirror.digitalpacific.com.au/extra/os/x86_64/ -o ./repo/http://archlinux.mirror.digitalpacific.com.au/extra/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew12=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://archlinux.mirror.digitalpacific.com.au/extra/os/x86_64/' | sed 's/http:\/\/archlinux.mirror.digitalpacific.com.au\/extra\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://archlinux.mirror.digitalpacific.com.au/extra/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://archlinux.mirror.digitalpacific.com.au/extra/os/x86_64/timestamp
+                    printf "\rDownloaded 'http://archlinux.mirror.digitalpacific.com.au/extra/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL13='http://mirror.internode.on.net/pub/archlinux/extra/os/x86_64/'
+ftpPOOL13='ftp://mirror.internode.on.net/pub/archlinux/extra/os/x86_64/'
+echo "connecting to http://mirror.internode.on.net/pub/archlinux/extra/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://mirror.internode.on.net/pub/archlinux/extra/os/x86_64/extra.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://mirror.internode.on.net/pub/archlinux/extra/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://mirror.internode.on.net/pub/archlinux/extra/os/x86_64/extra.db" |& grep -i "modified" >&2 || curl -k -I "http://mirror.internode.on.net/pub/archlinux/extra/os/x86_64/extra.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew13=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://mirror.internode.on.net/pub/archlinux/extra/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://mirror.internode.on.net/pub/archlinux/extra/os/x86_64/ -o ./repo/http://mirror.internode.on.net/pub/archlinux/extra/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew13=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://mirror.internode.on.net/pub/archlinux/extra/os/x86_64/' | sed 's/http:\/\/mirror.internode.on.net\/pub\/archlinux\/extra\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://mirror.internode.on.net/pub/archlinux/extra/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://mirror.internode.on.net/pub/archlinux/extra/os/x86_64/timestamp
+                    printf "\rDownloaded 'http://mirror.internode.on.net/pub/archlinux/extra/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL14='http://archlinux.melbourneitmirror.net/extra/os/x86_64/'
+ftpPOOL14='ftp://archlinux.melbourneitmirror.net/extra/os/x86_64/'
+echo "connecting to http://archlinux.melbourneitmirror.net/extra/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://archlinux.melbourneitmirror.net/extra/os/x86_64/extra.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://archlinux.melbourneitmirror.net/extra/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://archlinux.melbourneitmirror.net/extra/os/x86_64/extra.db" |& grep -i "modified" >&2 || curl -k -I "http://archlinux.melbourneitmirror.net/extra/os/x86_64/extra.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew14=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://archlinux.melbourneitmirror.net/extra/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://archlinux.melbourneitmirror.net/extra/os/x86_64/ -o ./repo/http://archlinux.melbourneitmirror.net/extra/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew14=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://archlinux.melbourneitmirror.net/extra/os/x86_64/' | sed 's/http:\/\/archlinux.melbourneitmirror.net\/extra\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://archlinux.melbourneitmirror.net/extra/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://archlinux.melbourneitmirror.net/extra/os/x86_64/timestamp
+                    printf "\rDownloaded 'http://archlinux.melbourneitmirror.net/extra/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL15='http://ftp.swin.edu.au/archlinux/extra/os/x86_64/'
+ftpPOOL15='ftp://ftp.swin.edu.au/archlinux/extra/os/x86_64/'
+echo "connecting to http://ftp.swin.edu.au/archlinux/extra/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://ftp.swin.edu.au/archlinux/extra/os/x86_64/extra.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://ftp.swin.edu.au/archlinux/extra/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://ftp.swin.edu.au/archlinux/extra/os/x86_64/extra.db" |& grep -i "modified" >&2 || curl -k -I "http://ftp.swin.edu.au/archlinux/extra/os/x86_64/extra.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew15=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://ftp.swin.edu.au/archlinux/extra/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://ftp.swin.edu.au/archlinux/extra/os/x86_64/ -o ./repo/http://ftp.swin.edu.au/archlinux/extra/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew15=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://ftp.swin.edu.au/archlinux/extra/os/x86_64/' | sed 's/http:\/\/ftp.swin.edu.au\/archlinux\/extra\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://ftp.swin.edu.au/archlinux/extra/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://ftp.swin.edu.au/archlinux/extra/os/x86_64/timestamp
+                    printf "\rDownloaded 'http://ftp.swin.edu.au/archlinux/extra/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL16='http://archlinux.mirror.digitalpacific.com.au/multilib/os/x86_64/'
+ftpPOOL16='ftp://archlinux.mirror.digitalpacific.com.au/multilib/os/x86_64/'
+echo "connecting to http://archlinux.mirror.digitalpacific.com.au/multilib/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://archlinux.mirror.digitalpacific.com.au/multilib/os/x86_64/multilib.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://archlinux.mirror.digitalpacific.com.au/multilib/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://archlinux.mirror.digitalpacific.com.au/multilib/os/x86_64/multilib.db" |& grep -i "modified" >&2 || curl -k -I "http://archlinux.mirror.digitalpacific.com.au/multilib/os/x86_64/multilib.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew16=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://archlinux.mirror.digitalpacific.com.au/multilib/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://archlinux.mirror.digitalpacific.com.au/multilib/os/x86_64/ -o ./repo/http://archlinux.mirror.digitalpacific.com.au/multilib/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew16=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://archlinux.mirror.digitalpacific.com.au/multilib/os/x86_64/' | sed 's/http:\/\/archlinux.mirror.digitalpacific.com.au\/multilib\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://archlinux.mirror.digitalpacific.com.au/multilib/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://archlinux.mirror.digitalpacific.com.au/multilib/os/x86_64/timestamp
+                    printf "\rDownloaded 'http://archlinux.mirror.digitalpacific.com.au/multilib/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL17='http://mirror.internode.on.net/pub/archlinux/multilib/os/x86_64/'
+ftpPOOL17='ftp://mirror.internode.on.net/pub/archlinux/multilib/os/x86_64/'
+echo "connecting to http://mirror.internode.on.net/pub/archlinux/multilib/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://mirror.internode.on.net/pub/archlinux/multilib/os/x86_64/multilib.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://mirror.internode.on.net/pub/archlinux/multilib/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://mirror.internode.on.net/pub/archlinux/multilib/os/x86_64/multilib.db" |& grep -i "modified" >&2 || curl -k -I "http://mirror.internode.on.net/pub/archlinux/multilib/os/x86_64/multilib.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew17=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://mirror.internode.on.net/pub/archlinux/multilib/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://mirror.internode.on.net/pub/archlinux/multilib/os/x86_64/ -o ./repo/http://mirror.internode.on.net/pub/archlinux/multilib/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew17=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://mirror.internode.on.net/pub/archlinux/multilib/os/x86_64/' | sed 's/http:\/\/mirror.internode.on.net\/pub\/archlinux\/multilib\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://mirror.internode.on.net/pub/archlinux/multilib/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://mirror.internode.on.net/pub/archlinux/multilib/os/x86_64/timestamp
+                    printf "\rDownloaded 'http://mirror.internode.on.net/pub/archlinux/multilib/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL18='http://archlinux.melbourneitmirror.net/multilib/os/x86_64/'
+ftpPOOL18='ftp://archlinux.melbourneitmirror.net/multilib/os/x86_64/'
+echo "connecting to http://archlinux.melbourneitmirror.net/multilib/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://archlinux.melbourneitmirror.net/multilib/os/x86_64/multilib.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://archlinux.melbourneitmirror.net/multilib/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://archlinux.melbourneitmirror.net/multilib/os/x86_64/multilib.db" |& grep -i "modified" >&2 || curl -k -I "http://archlinux.melbourneitmirror.net/multilib/os/x86_64/multilib.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew18=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://archlinux.melbourneitmirror.net/multilib/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://archlinux.melbourneitmirror.net/multilib/os/x86_64/ -o ./repo/http://archlinux.melbourneitmirror.net/multilib/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew18=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://archlinux.melbourneitmirror.net/multilib/os/x86_64/' | sed 's/http:\/\/archlinux.melbourneitmirror.net\/multilib\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://archlinux.melbourneitmirror.net/multilib/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://archlinux.melbourneitmirror.net/multilib/os/x86_64/timestamp
+                    printf "\rDownloaded 'http://archlinux.melbourneitmirror.net/multilib/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL19='http://ftp.swin.edu.au/archlinux/multilib/os/x86_64/'
+ftpPOOL19='ftp://ftp.swin.edu.au/archlinux/multilib/os/x86_64/'
+echo "connecting to http://ftp.swin.edu.au/archlinux/multilib/os/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "http://ftp.swin.edu.au/archlinux/multilib/os/x86_64/multilib.db" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://ftp.swin.edu.au/archlinux/multilib/os/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "http://ftp.swin.edu.au/archlinux/multilib/os/x86_64/multilib.db" |& grep -i "modified" >&2 || curl -k -I "http://ftp.swin.edu.au/archlinux/multilib/os/x86_64/multilib.db" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew19=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://ftp.swin.edu.au/archlinux/multilib/os/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://ftp.swin.edu.au/archlinux/multilib/os/x86_64/ -o ./repo/http://ftp.swin.edu.au/archlinux/multilib/os/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew19=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://ftp.swin.edu.au/archlinux/multilib/os/x86_64/' | sed 's/http:\/\/ftp.swin.edu.au\/archlinux\/multilib\/os\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://ftp.swin.edu.au/archlinux/multilib/os/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://ftp.swin.edu.au/archlinux/multilib/os/x86_64/timestamp
+                    printf "\rDownloaded 'http://ftp.swin.edu.au/archlinux/multilib/os/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL20='http://www-ftp.lip6.fr/pub/linux/distributions/chakra/desktop/x86_64/'
+ftpPOOL20='ftp://www-ftp.lip6.fr/pub/linux/distributions/chakra/desktop/x86_64/'
+echo "connecting to http://www-ftp.lip6.fr/pub/linux/distributions/chakra/desktop/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://www-ftp.lip6.fr/pub/linux/distributions/chakra/desktop/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "" |& grep -i "modified" >&2 || curl -k -I "" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew20=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://www-ftp.lip6.fr/pub/linux/distributions/chakra/desktop/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://www-ftp.lip6.fr/pub/linux/distributions/chakra/desktop/x86_64/ -o ./repo/http://www-ftp.lip6.fr/pub/linux/distributions/chakra/desktop/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew20=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://www-ftp.lip6.fr/pub/linux/distributions/chakra/desktop/x86_64/' | sed 's/http:\/\/www-ftp.lip6.fr\/pub\/linux\/distributions\/chakra\/desktop\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://www-ftp.lip6.fr/pub/linux/distributions/chakra/desktop/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://www-ftp.lip6.fr/pub/linux/distributions/chakra/desktop/x86_64/timestamp
+                    printf "\rDownloaded 'http://www-ftp.lip6.fr/pub/linux/distributions/chakra/desktop/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL21='http://mirror.dacentec.com/chakra/desktop/x86_64/'
+ftpPOOL21='ftp://mirror.dacentec.com/chakra/desktop/x86_64/'
+echo "connecting to http://mirror.dacentec.com/chakra/desktop/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://mirror.dacentec.com/chakra/desktop/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "" |& grep -i "modified" >&2 || curl -k -I "" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew21=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://mirror.dacentec.com/chakra/desktop/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://mirror.dacentec.com/chakra/desktop/x86_64/ -o ./repo/http://mirror.dacentec.com/chakra/desktop/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew21=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://mirror.dacentec.com/chakra/desktop/x86_64/' | sed 's/http:\/\/mirror.dacentec.com\/chakra\/desktop\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://mirror.dacentec.com/chakra/desktop/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://mirror.dacentec.com/chakra/desktop/x86_64/timestamp
+                    printf "\rDownloaded 'http://mirror.dacentec.com/chakra/desktop/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL22='http://ftp.acc.umu.se/mirror/chakraos.org/packages/desktop/x86_64/'
+ftpPOOL22='ftp://ftp.acc.umu.se/mirror/chakraos.org/packages/desktop/x86_64/'
+echo "connecting to http://ftp.acc.umu.se/mirror/chakraos.org/packages/desktop/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://ftp.acc.umu.se/mirror/chakraos.org/packages/desktop/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "" |& grep -i "modified" >&2 || curl -k -I "" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew22=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://ftp.acc.umu.se/mirror/chakraos.org/packages/desktop/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://ftp.acc.umu.se/mirror/chakraos.org/packages/desktop/x86_64/ -o ./repo/http://ftp.acc.umu.se/mirror/chakraos.org/packages/desktop/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew22=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://ftp.acc.umu.se/mirror/chakraos.org/packages/desktop/x86_64/' | sed 's/http:\/\/ftp.acc.umu.se\/mirror\/chakraos.org\/packages\/desktop\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://ftp.acc.umu.se/mirror/chakraos.org/packages/desktop/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://ftp.acc.umu.se/mirror/chakraos.org/packages/desktop/x86_64/timestamp
+                    printf "\rDownloaded 'http://ftp.acc.umu.se/mirror/chakraos.org/packages/desktop/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL23='http://www-ftp.lip6.fr/pub/linux/distributions/chakra/lib32/x86_64/'
+ftpPOOL23='ftp://www-ftp.lip6.fr/pub/linux/distributions/chakra/lib32/x86_64/'
+echo "connecting to http://www-ftp.lip6.fr/pub/linux/distributions/chakra/lib32/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://www-ftp.lip6.fr/pub/linux/distributions/chakra/lib32/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "" |& grep -i "modified" >&2 || curl -k -I "" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew23=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://www-ftp.lip6.fr/pub/linux/distributions/chakra/lib32/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://www-ftp.lip6.fr/pub/linux/distributions/chakra/lib32/x86_64/ -o ./repo/http://www-ftp.lip6.fr/pub/linux/distributions/chakra/lib32/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew23=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://www-ftp.lip6.fr/pub/linux/distributions/chakra/lib32/x86_64/' | sed 's/http:\/\/www-ftp.lip6.fr\/pub\/linux\/distributions\/chakra\/lib32\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://www-ftp.lip6.fr/pub/linux/distributions/chakra/lib32/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://www-ftp.lip6.fr/pub/linux/distributions/chakra/lib32/x86_64/timestamp
+                    printf "\rDownloaded 'http://www-ftp.lip6.fr/pub/linux/distributions/chakra/lib32/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL24='http://mirror.dacentec.com/chakra/lib32/x86_64/'
+ftpPOOL24='ftp://mirror.dacentec.com/chakra/lib32/x86_64/'
+echo "connecting to http://mirror.dacentec.com/chakra/lib32/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://mirror.dacentec.com/chakra/lib32/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "" |& grep -i "modified" >&2 || curl -k -I "" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew24=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://mirror.dacentec.com/chakra/lib32/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://mirror.dacentec.com/chakra/lib32/x86_64/ -o ./repo/http://mirror.dacentec.com/chakra/lib32/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew24=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://mirror.dacentec.com/chakra/lib32/x86_64/' | sed 's/http:\/\/mirror.dacentec.com\/chakra\/lib32\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://mirror.dacentec.com/chakra/lib32/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://mirror.dacentec.com/chakra/lib32/x86_64/timestamp
+                    printf "\rDownloaded 'http://mirror.dacentec.com/chakra/lib32/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+POOL25='http://ftp.acc.umu.se/mirror/chakraos.org/packages/lib32/x86_64/'
+ftpPOOL25='ftp://ftp.acc.umu.se/mirror/chakraos.org/packages/lib32/x86_64/'
+echo "connecting to http://ftp.acc.umu.se/mirror/chakraos.org/packages/lib32/x86_64/" >&2
+    online="$(date -d "$(curl -k -I "" |& grep -i "modified" | sed 's/.*\: //')" +%s)"
+    physical="$(cat ./repo/http://ftp.acc.umu.se/mirror/chakraos.org/packages/lib32/x86_64/timestamp | sed 's/.*: //g')"
+    difference="$(($physical-$online))"
+
+#     curl -k -I "" |& grep -i "modified" >&2 || curl -k -I "" >&2
+#     echo "Last-Modified: $online (online)" >&2
+#     echo "Last-Modified: $physical (physical)" >&2
+#     echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s) (current)" >&2
+#     echo "difference: $difference seconds" >&2
+    if [[ $difference =~ - ]]
+        then
+            keyword=newer
+            difference=${difference[0]/-/}
+        else
+            keyword=older
+    fi
+    echo "online repo is $keyword then cached repo by $difference seconds" >&2
+    if [[ $keyword =~ "older" ]]
+        then
+            echo "repo does not need updating" >&2
+            treelistnew25=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers './repo/http://ftp.acc.umu.se/mirror/chakraos.org/packages/lib32/x86_64/index.html' | sed "s/.*x86_64\///g" | grep "xz$"))
+        else
+            echo "repo needs updating" >&2
+            aria2c $max_speed_flags_html_repo http://ftp.acc.umu.se/mirror/chakraos.org/packages/lib32/x86_64/ -o ./repo/http://ftp.acc.umu.se/mirror/chakraos.org/packages/lib32/x86_64/index.html
+            response=0
+            if [[ $response == 0 ]]
+                then
+                    treelistnew25=($(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers 'http://ftp.acc.umu.se/mirror/chakraos.org/packages/lib32/x86_64/' | sed 's/http:\/\/ftp.acc.umu.se\/mirror\/chakraos.org\/packages\/lib32\/x86_64\///g' | grep "xz$"))
+                    mkdir -pv ./repo/http://ftp.acc.umu.se/mirror/chakraos.org/packages/lib32/x86_64/
+                    echo "Last-Modified: $(date -d "$(date +'%a, %d %b %Y %H:%M:%S')" +%s)" >./repo/http://ftp.acc.umu.se/mirror/chakraos.org/packages/lib32/x86_64/timestamp
+                    printf "\rDownloaded 'http://ftp.acc.umu.se/mirror/chakraos.org/packages/lib32/x86_64/'    \n"
+                else
+                    echo "repo could not be downloaded" >&2
+            fi
+    fi
+    echo
+
+package_check_repo() {
+
+if [ $(printf '%s\n' "found ${treelistnew0[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL0$1
+    ftp=$ftpPOOL0$1
+    echo $1 found in $POOL0
+
+elif [ $(printf '%s\n' "${treelistnew1[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL1$1
+    ftp=$ftpPOOL1$1
+    echo $1 found in $POOL1
+
+elif [ $(printf '%s\n' "${treelistnew2[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL2$1
+    ftp=$ftpPOOL2$1
+    echo $1 found in $POOL2
+
+elif [ $(printf '%s\n' "${treelistnew3[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL3$1
+    ftp=$ftpPOOL3$1
+    echo $1 found in $POOL3
+
+elif [ $(printf '%s\n' "${treelistnew4[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL4$1
+    ftp=$ftpPOOL4$1
+    echo $1 found in $POOL4
+
+elif [ $(printf '%s\n' "${treelistnew5[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL5$1
+    ftp=$ftpPOOL5$1
+    echo $1 found in $POOL5
+
+elif [ $(printf '%s\n' "${treelistnew6[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL6$1
+    ftp=$ftpPOOL6$1
+    echo $1 found in $POOL6
+
+elif [ $(printf '%s\n' "${treelistnew7[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL7$1
+    ftp=$ftpPOOL7$1
+    echo $1 found in $POOL7
+
+elif [ $(printf '%s\n' "${treelistnew8[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL8$1
+    ftp=$ftpPOOL8$1
+    echo $1 found in $POOL8
+
+elif [ $(printf '%s\n' "${treelistnew9[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL9$1
+    ftp=$ftpPOOL9$1
+    echo $1 found in $POOL9
+
+elif [ $(printf '%s\n' "${treelistnew10[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL10$1
+    ftp=$ftpPOOL10$1
+    echo $1 found in $POOL10
+
+elif [ $(printf '%s\n' "${treelistnew11[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL11$1
+    ftp=$ftpPOOL11$1
+    echo $1 found in $POOL11
+
+elif [ $(printf '%s\n' "${treelistnew12[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL12$1
+    ftp=$ftpPOOL12$1
+    echo $1 found in $POOL12
+
+elif [ $(printf '%s\n' "${treelistnew13[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL13$1
+    ftp=$ftpPOOL13$1
+    echo $1 found in $POOL13
+
+elif [ $(printf '%s\n' "${treelistnew14[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL14$1
+    ftp=$ftpPOOL14$1
+    echo $1 found in $POOL14
+
+elif [ $(printf '%s\n' "${treelistnew15[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL15$1
+    ftp=$ftpPOOL15$1
+    echo $1 found in $POOL15
+
+elif [ $(printf '%s\n' "${treelistnew16[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL16$1
+    ftp=$ftpPOOL16$1
+    echo $1 found in $POOL16
+
+elif [ $(printf '%s\n' "${treelistnew17[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL17$1
+    ftp=$ftpPOOL17$1
+    echo $1 found in $POOL17
+
+elif [ $(printf '%s\n' "${treelistnew18[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL18$1
+    ftp=$ftpPOOL18$1
+    echo $1 found in $POOL18
+
+elif [ $(printf '%s\n' "${treelistnew19[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL19$1
+    ftp=$ftpPOOL19$1
+    echo $1 found in $POOL19
+
+elif [ $(printf '%s\n' "${treelistnew20[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL20$1
+    ftp=$ftpPOOL20$1
+    echo $1 found in $POOL20
+
+elif [ $(printf '%s\n' "${treelistnew21[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL21$1
+    ftp=$ftpPOOL21$1
+    echo $1 found in $POOL21
+
+elif [ $(printf '%s\n' "${treelistnew22[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL22$1
+    ftp=$ftpPOOL22$1
+    echo $1 found in $POOL22
+
+elif [ $(printf '%s\n' "${treelistnew23[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL23$1
+    ftp=$ftpPOOL23$1
+    echo $1 found in $POOL23
+
+elif [ $(printf '%s\n' "${treelistnew24[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL24$1
+    ftp=$ftpPOOL24$1
+    echo $1 found in $POOL24
+
+elif [ $(printf '%s\n' "${treelistnew25[@]}" | grep -i -e ^"$1") ]
+    then
+    url=$POOL25$1
+    ftp=$ftpPOOL25$1
+    echo $1 found in $POOL25
+
+else
+    echo $1 not found
+    notfound+=($1)
+fi
+}
+
+package_search_repo() {
+echo "initiating search for $1"
+found0=($(printf '%s\n' "${treelistnew0[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found0[@]}
+    do
+        package_check_repo "${found0[i]}" > /dev/null
+printf '%b\n' "Repository: blackarch, \
+\
+Number: 0, \
+\
+Section: Could Not Detect, \
+\
+Package Availability: $(package_check_repo ${found0[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found0[i]}" \
+"
+done
+
+found1=($(printf '%s\n' "${treelistnew1[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found1[@]}
+    do
+        package_check_repo "${found1[i]}" > /dev/null
+printf '%b\n' "Repository: chakra, \
+\
+Number: 1, \
+\
+Section: core, \
+\
+Package Availability: $(package_check_repo ${found1[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found1[i]}" \
+"
+done
+
+found2=($(printf '%s\n' "${treelistnew2[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found2[@]}
+    do
+        package_check_repo "${found2[i]}" > /dev/null
+printf '%b\n' "Repository: chakra, \
+\
+Number: 2, \
+\
+Section: core, \
+\
+Package Availability: $(package_check_repo ${found2[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found2[i]}" \
+"
+done
+
+found3=($(printf '%s\n' "${treelistnew3[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found3[@]}
+    do
+        package_check_repo "${found3[i]}" > /dev/null
+printf '%b\n' "Repository: chakra, \
+\
+Number: 3, \
+\
+Section: core, \
+\
+Package Availability: $(package_check_repo ${found3[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found3[i]}" \
+"
+done
+
+found4=($(printf '%s\n' "${treelistnew4[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found4[@]}
+    do
+        package_check_repo "${found4[i]}" > /dev/null
+printf '%b\n' "Repository: archlinux, \
+\
+Number: 4, \
+\
+Section: core, \
+\
+Package Availability: $(package_check_repo ${found4[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found4[i]}" \
+"
+done
+
+found5=($(printf '%s\n' "${treelistnew5[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found5[@]}
+    do
+        package_check_repo "${found5[i]}" > /dev/null
+printf '%b\n' "Repository: archlinux, \
+\
+Number: 5, \
+\
+Section: core, \
+\
+Package Availability: $(package_check_repo ${found5[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found5[i]}" \
+"
+done
+
+found6=($(printf '%s\n' "${treelistnew6[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found6[@]}
+    do
+        package_check_repo "${found6[i]}" > /dev/null
+printf '%b\n' "Repository: archlinux, \
+\
+Number: 6, \
+\
+Section: core, \
+\
+Package Availability: $(package_check_repo ${found6[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found6[i]}" \
+"
+done
+
+found7=($(printf '%s\n' "${treelistnew7[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found7[@]}
+    do
+        package_check_repo "${found7[i]}" > /dev/null
+printf '%b\n' "Repository: archlinux, \
+\
+Number: 7, \
+\
+Section: core, \
+\
+Package Availability: $(package_check_repo ${found7[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found7[i]}" \
+"
+done
+
+found8=($(printf '%s\n' "${treelistnew8[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found8[@]}
+    do
+        package_check_repo "${found8[i]}" > /dev/null
+printf '%b\n' "Repository: archlinux, \
+\
+Number: 8, \
+\
+Section: community, \
+\
+Package Availability: $(package_check_repo ${found8[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found8[i]}" \
+"
+done
+
+found9=($(printf '%s\n' "${treelistnew9[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found9[@]}
+    do
+        package_check_repo "${found9[i]}" > /dev/null
+printf '%b\n' "Repository: archlinux, \
+\
+Number: 9, \
+\
+Section: community, \
+\
+Package Availability: $(package_check_repo ${found9[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found9[i]}" \
+"
+done
+
+found10=($(printf '%s\n' "${treelistnew10[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found10[@]}
+    do
+        package_check_repo "${found10[i]}" > /dev/null
+printf '%b\n' "Repository: archlinux, \
+\
+Number: 10, \
+\
+Section: community, \
+\
+Package Availability: $(package_check_repo ${found10[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found10[i]}" \
+"
+done
+
+found11=($(printf '%s\n' "${treelistnew11[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found11[@]}
+    do
+        package_check_repo "${found11[i]}" > /dev/null
+printf '%b\n' "Repository: archlinux, \
+\
+Number: 11, \
+\
+Section: community, \
+\
+Package Availability: $(package_check_repo ${found11[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found11[i]}" \
+"
+done
+
+found12=($(printf '%s\n' "${treelistnew12[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found12[@]}
+    do
+        package_check_repo "${found12[i]}" > /dev/null
+printf '%b\n' "Repository: archlinux, \
+\
+Number: 12, \
+\
+Section: extra, \
+\
+Package Availability: $(package_check_repo ${found12[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found12[i]}" \
+"
+done
+
+found13=($(printf '%s\n' "${treelistnew13[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found13[@]}
+    do
+        package_check_repo "${found13[i]}" > /dev/null
+printf '%b\n' "Repository: archlinux, \
+\
+Number: 13, \
+\
+Section: extra, \
+\
+Package Availability: $(package_check_repo ${found13[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found13[i]}" \
+"
+done
+
+found14=($(printf '%s\n' "${treelistnew14[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found14[@]}
+    do
+        package_check_repo "${found14[i]}" > /dev/null
+printf '%b\n' "Repository: archlinux, \
+\
+Number: 14, \
+\
+Section: extra, \
+\
+Package Availability: $(package_check_repo ${found14[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found14[i]}" \
+"
+done
+
+found15=($(printf '%s\n' "${treelistnew15[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found15[@]}
+    do
+        package_check_repo "${found15[i]}" > /dev/null
+printf '%b\n' "Repository: archlinux, \
+\
+Number: 15, \
+\
+Section: extra, \
+\
+Package Availability: $(package_check_repo ${found15[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found15[i]}" \
+"
+done
+
+found16=($(printf '%s\n' "${treelistnew16[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found16[@]}
+    do
+        package_check_repo "${found16[i]}" > /dev/null
+printf '%b\n' "Repository: archlinux, \
+\
+Number: 16, \
+\
+Section: multilib, \
+\
+Package Availability: $(package_check_repo ${found16[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found16[i]}" \
+"
+done
+
+found17=($(printf '%s\n' "${treelistnew17[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found17[@]}
+    do
+        package_check_repo "${found17[i]}" > /dev/null
+printf '%b\n' "Repository: archlinux, \
+\
+Number: 17, \
+\
+Section: multilib, \
+\
+Package Availability: $(package_check_repo ${found17[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found17[i]}" \
+"
+done
+
+found18=($(printf '%s\n' "${treelistnew18[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found18[@]}
+    do
+        package_check_repo "${found18[i]}" > /dev/null
+printf '%b\n' "Repository: archlinux, \
+\
+Number: 18, \
+\
+Section: multilib, \
+\
+Package Availability: $(package_check_repo ${found18[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found18[i]}" \
+"
+done
+
+found19=($(printf '%s\n' "${treelistnew19[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found19[@]}
+    do
+        package_check_repo "${found19[i]}" > /dev/null
+printf '%b\n' "Repository: archlinux, \
+\
+Number: 19, \
+\
+Section: multilib, \
+\
+Package Availability: $(package_check_repo ${found19[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found19[i]}" \
+"
+done
+
+found20=($(printf '%s\n' "${treelistnew20[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found20[@]}
+    do
+        package_check_repo "${found20[i]}" > /dev/null
+printf '%b\n' "Repository: chakra, \
+\
+Number: 20, \
+\
+Section: desktop, \
+\
+Package Availability: $(package_check_repo ${found20[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found20[i]}" \
+"
+done
+
+found21=($(printf '%s\n' "${treelistnew21[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found21[@]}
+    do
+        package_check_repo "${found21[i]}" > /dev/null
+printf '%b\n' "Repository: chakra, \
+\
+Number: 21, \
+\
+Section: desktop, \
+\
+Package Availability: $(package_check_repo ${found21[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found21[i]}" \
+"
+done
+
+found22=($(printf '%s\n' "${treelistnew22[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found22[@]}
+    do
+        package_check_repo "${found22[i]}" > /dev/null
+printf '%b\n' "Repository: chakra, \
+\
+Number: 22, \
+\
+Section: desktop, \
+\
+Package Availability: $(package_check_repo ${found22[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found22[i]}" \
+"
+done
+
+found23=($(printf '%s\n' "${treelistnew23[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found23[@]}
+    do
+        package_check_repo "${found23[i]}" > /dev/null
+printf '%b\n' "Repository: chakra, \
+\
+Number: 23, \
+\
+Section: lib32, \
+\
+Package Availability: $(package_check_repo ${found23[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found23[i]}" \
+"
+done
+
+found24=($(printf '%s\n' "${treelistnew24[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found24[@]}
+    do
+        package_check_repo "${found24[i]}" > /dev/null
+printf '%b\n' "Repository: chakra, \
+\
+Number: 24, \
+\
+Section: lib32, \
+\
+Package Availability: $(package_check_repo ${found24[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found24[i]}" \
+"
+done
+
+found25=($(printf '%s\n' "${treelistnew25[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found25[@]}
+    do
+        package_check_repo "${found25[i]}" > /dev/null
+printf '%b\n' "Repository: chakra, \
+\
+Number: 25, \
+\
+Section: lib32, \
+\
+Package Availability: $(package_check_repo ${found25[i]} | grep -q 'found in' ; echo $? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\
+\
+Package: "${found25[i]}" \
+"
+done
+
+
+echo "finished search for $1"
+}
+package_quick_search_repo() {
+unset url ftp
+found0=($(printf '%s\n' "${treelistnew0[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found0[@]} ; do package_check_repo "${found0[i]}" > /dev/null ;  package+=("${found0[i]}") ; done
+
+found1=($(printf '%s\n' "${treelistnew1[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found1[@]} ; do package_check_repo "${found1[i]}" > /dev/null ;  package+=("${found1[i]}") ; done
+
+found2=($(printf '%s\n' "${treelistnew2[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found2[@]} ; do package_check_repo "${found2[i]}" > /dev/null ;  package+=("${found2[i]}") ; done
+
+found3=($(printf '%s\n' "${treelistnew3[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found3[@]} ; do package_check_repo "${found3[i]}" > /dev/null ;  package+=("${found3[i]}") ; done
+
+found4=($(printf '%s\n' "${treelistnew4[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found4[@]} ; do package_check_repo "${found4[i]}" > /dev/null ;  package+=("${found4[i]}") ; done
+
+found5=($(printf '%s\n' "${treelistnew5[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found5[@]} ; do package_check_repo "${found5[i]}" > /dev/null ;  package+=("${found5[i]}") ; done
+
+found6=($(printf '%s\n' "${treelistnew6[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found6[@]} ; do package_check_repo "${found6[i]}" > /dev/null ;  package+=("${found6[i]}") ; done
+
+found7=($(printf '%s\n' "${treelistnew7[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found7[@]} ; do package_check_repo "${found7[i]}" > /dev/null ;  package+=("${found7[i]}") ; done
+
+found8=($(printf '%s\n' "${treelistnew8[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found8[@]} ; do package_check_repo "${found8[i]}" > /dev/null ;  package+=("${found8[i]}") ; done
+
+found9=($(printf '%s\n' "${treelistnew9[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found9[@]} ; do package_check_repo "${found9[i]}" > /dev/null ;  package+=("${found9[i]}") ; done
+
+found10=($(printf '%s\n' "${treelistnew10[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found10[@]} ; do package_check_repo "${found10[i]}" > /dev/null ;  package+=("${found10[i]}") ; done
+
+found11=($(printf '%s\n' "${treelistnew11[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found11[@]} ; do package_check_repo "${found11[i]}" > /dev/null ;  package+=("${found11[i]}") ; done
+
+found12=($(printf '%s\n' "${treelistnew12[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found12[@]} ; do package_check_repo "${found12[i]}" > /dev/null ;  package+=("${found12[i]}") ; done
+
+found13=($(printf '%s\n' "${treelistnew13[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found13[@]} ; do package_check_repo "${found13[i]}" > /dev/null ;  package+=("${found13[i]}") ; done
+
+found14=($(printf '%s\n' "${treelistnew14[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found14[@]} ; do package_check_repo "${found14[i]}" > /dev/null ;  package+=("${found14[i]}") ; done
+
+found15=($(printf '%s\n' "${treelistnew15[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found15[@]} ; do package_check_repo "${found15[i]}" > /dev/null ;  package+=("${found15[i]}") ; done
+
+found16=($(printf '%s\n' "${treelistnew16[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found16[@]} ; do package_check_repo "${found16[i]}" > /dev/null ;  package+=("${found16[i]}") ; done
+
+found17=($(printf '%s\n' "${treelistnew17[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found17[@]} ; do package_check_repo "${found17[i]}" > /dev/null ;  package+=("${found17[i]}") ; done
+
+found18=($(printf '%s\n' "${treelistnew18[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found18[@]} ; do package_check_repo "${found18[i]}" > /dev/null ;  package+=("${found18[i]}") ; done
+
+found19=($(printf '%s\n' "${treelistnew19[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found19[@]} ; do package_check_repo "${found19[i]}" > /dev/null ;  package+=("${found19[i]}") ; done
+
+found20=($(printf '%s\n' "${treelistnew20[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found20[@]} ; do package_check_repo "${found20[i]}" > /dev/null ;  package+=("${found20[i]}") ; done
+
+found21=($(printf '%s\n' "${treelistnew21[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found21[@]} ; do package_check_repo "${found21[i]}" > /dev/null ;  package+=("${found21[i]}") ; done
+
+found22=($(printf '%s\n' "${treelistnew22[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found22[@]} ; do package_check_repo "${found22[i]}" > /dev/null ;  package+=("${found22[i]}") ; done
+
+found23=($(printf '%s\n' "${treelistnew23[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found23[@]} ; do package_check_repo "${found23[i]}" > /dev/null ;  package+=("${found23[i]}") ; done
+
+found24=($(printf '%s\n' "${treelistnew24[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found24[@]} ; do package_check_repo "${found24[i]}" > /dev/null ;  package+=("${found24[i]}") ; done
+
+found25=($(printf '%s\n' "${treelistnew25[@]}" | grep -i -e ^"$1" | grep -i -e "64" -i -e "any"))
+for i in ${!found25[@]} ; do package_check_repo "${found25[i]}" > /dev/null ;  package+=("${found25[i]}") ; done
+
+
+package=($(printf '%b\n' ${package[@]} | sort -u))
+if [[ -z $url || -z $ftp ]]
+    then
+        echo $1 not found | sed 's/-\[0-9\]//g'
+        notfound+=($(echo $1 | sed 's/-\[0-9\]//g'))
+        return 1
+    else
+        echo $1 found | sed 's/-\[0-9\]//g'
+#         declare -p url ftp
+        return 0
+fi
+}

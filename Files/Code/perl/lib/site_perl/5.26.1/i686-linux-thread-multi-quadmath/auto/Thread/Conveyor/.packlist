@@ -1,0 +1,8 @@
+/home/universalpackagemanager/UPM/Files/Code/perl/lib/site_perl/5.26.1/Thread/Conveyor.pm relocate_as=../../../../Thread/Conveyor.pm
+/home/universalpackagemanager/UPM/Files/Code/perl/lib/site_perl/5.26.1/Thread/Conveyor/Array.pm relocate_as=../../../../Thread/Conveyor/Array.pm
+/home/universalpackagemanager/UPM/Files/Code/perl/lib/site_perl/5.26.1/Thread/Conveyor/Throttled.pm relocate_as=../../../../Thread/Conveyor/Throttled.pm
+/home/universalpackagemanager/UPM/Files/Code/perl/lib/site_perl/5.26.1/Thread/Conveyor/Tied.pm relocate_as=../../../../Thread/Conveyor/Tied.pm
+/home/universalpackagemanager/UPM/Files/Code/perl/man/man3/Thread::Conveyor.3 relocate_as=../../../../../../../man/man3/Thread::Conveyor.3
+/home/universalpackagemanager/UPM/Files/Code/perl/man/man3/Thread::Conveyor::Array.3 relocate_as=../../../../../../../man/man3/Thread::Conveyor::Array.3
+/home/universalpackagemanager/UPM/Files/Code/perl/man/man3/Thread::Conveyor::Throttled.3 relocate_as=../../../../../../../man/man3/Thread::Conveyor::Throttled.3
+/home/universalpackagemanager/UPM/Files/Code/perl/man/man3/Thread::Conveyor::Tied.3 relocate_as=../../../../../../../man/man3/Thread::Conveyor::Tied.3

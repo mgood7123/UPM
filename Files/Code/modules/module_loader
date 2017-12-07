@@ -1,0 +1,28 @@
+. ./modules/module_colors
+. ./modules/module_tracker
+. ./modules/module_config
+. ./modules/module_kill_all_panes
+. ./modules/module_irc_session
+. ./modules/module_irc_read
+. ./modules/module_array
+. ./modules/module_interperator
+#. ./modules/module_environment
+if [[ -z $IRC_NC_PID && $IRC_FIN == "0" ]] ; then
+    rm -rf ./Environment/* >/dev/null 2>&1
+    mkdir ./Environment >/dev/null 2>&1
+    printf "${IRC_RED}connecting to 'nc $IRC_server $IRC_port' with process id of 'IRC_NC_PID=$IRC_NC_PID' ${IRC_Color_None}\n\r"
+    . ./modules/module_coproc_nc
+    printf "${IRC_RED}connected to 'nc $IRC_server $IRC_port' with process id of 'IRC_NC_PID=$IRC_NC_PID' ${IRC_Color_None}\n\r"
+    declare -p IRC_NC
+    printf "\r"
+    declare -p IRC_NC_PID
+    printf "\r"
+    export IRC_NC
+    export IRC_PID
+    export IRC_First_Init=yes
+    . ./modules/module_fifo
+    . ./modules/module_init_redirection
+    . ./modules/module_start
+    export IRC_RESET=0
+fi
+. ./modules/module_null

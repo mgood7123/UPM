@@ -1,0 +1,2 @@
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/ExtUtils/InstallPaths.pm relocate_as=../../../../ExtUtils/InstallPaths.pm
+/UPM/perl-5.26.1/dir./perl/man/man3/ExtUtils::InstallPaths.3 relocate_as=../../../../../../../man/man3/ExtUtils::InstallPaths.3

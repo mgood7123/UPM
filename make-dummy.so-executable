@@ -1,0 +1,49 @@
+#!/bin/bash
+
+git clone git://git.musl-libc.org/musl
+
+cd musl
+
+./configure --prefix=$(pwd)
+
+make -j2
+
+make install
+
+# cd ../
+
+# echo "#include <stdio.h>" > simple.c
+
+# echo "int main(){printf(\"hello\\n\");}" >> simple.c
+
+# ./bin/musl-gcc simple.c -static
+
+# ./a.out
+
+set -v
+
+rm -rfv dummy* l*
+
+# cp -v ./musl/lib/libc.so ./libcM.so.6
+
+# cp -v /mnt/home/universalpackagemanager/UPM/Sources/glibc-2.26/build/elf/ldconfig /mnt/home/universalpackagemanager/UPM/Sources/glibc-2.26/build/elf/ld-linux.so.2 /mnt/home/universalpackagemanager/UPM/Sources/glibc-2.26/build/elf/ld.so /mnt/home/universalpackagemanager/UPM/Sources/glibc-2.26/build/libc.so ./
+
+echo "main() { return 5 ; }" > dummyso.c
+
+echo -e "#include <stdio.h>\nmain() { printf(\"test\\\n\"); }" > dummy.c
+
+gcc -o ./lib/libdummy.so -shared dummyso.c -Wl,-rpath=./ -lc -Wl,-t -Wl,-dynamic-linker,./ld-2.26.so
+
+./ldconfig
+
+gcc -o dummy -ldummy dummy.c -Wl,-rpath=./ -lc -Wl,-t -Wl,-dynamic-linker,./ld-2.26.so
+
+./dummy
+
+echo $?
+
+ldd ./dummy
+
+file ./dummy
+
+LD_DEBUG=libs ./dummy

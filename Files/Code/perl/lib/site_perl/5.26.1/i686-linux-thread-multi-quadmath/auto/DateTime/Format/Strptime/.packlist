@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/DateTime/Format/Strptime.pm relocate_as=../../../../../DateTime/Format/Strptime.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/DateTime/Format/Strptime/Types.pm relocate_as=../../../../../DateTime/Format/Strptime/Types.pm
+/UPM/Files/Code/perl/man/man3/DateTime::Format::Strptime.3 relocate_as=../../../../../../../../man/man3/DateTime::Format::Strptime.3
+/UPM/Files/Code/perl/man/man3/DateTime::Format::Strptime::Types.3 relocate_as=../../../../../../../../man/man3/DateTime::Format::Strptime::Types.3

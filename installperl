@@ -1,0 +1,54 @@
+set -v
+olddir="$(pwd)"
+# rm -rfv perl-5.26.1 &&
+# tar -vxf ./Sources/perl-5.26.1.tar.gz &&
+cd perl-5.26.1/
+# rm -rfv ./librt.so.1 ./libpthread.so.0 ./libnsl.so.1 ./libdl.so.2 ./libm.so.6 ./libcrypt.so.1 ./libutil.so.1 ./libc.so.6 ./libquadmath.so.0 ./libfreebl3.so &&
+# cp -vf -L /lib/librt.so.1 /lib/libpthread.so.0 /lib/libnsl.so.1 /lib/libdl.so.2 /lib/libm.so.6 /lib/libcrypt.so.1 /lib/libutil.so.1 /lib/libc.so.6 /usr/lib/libquadmath.so.0 /lib/libfreebl3.so ./ &&
+# ls -l ./librt.so.1 ./libpthread.so.0 ./libnsl.so.1 ./libdl.so.2 ./libm.so.6 ./libcrypt.so.1 ./libutil.so.1 ./libc.so.6 ./libquadmath.so.0 ./libfreebl3.so &&
+# ./Configure -d -Dprefix=./perl5.26.1 -Dinstallprefix=./perl5.26.1 -Dmyarchname='i686-linux' -Dusemultiplicity -Dusethreads -Duseithreads -Duseperlio -Dusequadmath -Duseposix -Dusemallocwrap -Duselargefiles -Dusevendorprefix -Dvendorprefix='.../../vendor' -Dstartperl='#!./perl/bin/perl' -Dperladmin='smallville7123@gmail.com' -Dotherlibdirs='.../../vendor/lib/vendor_perl/site_perl/5.26.1/i686-linux-thread-multi-quadmath:.../../vendor/lib/vendor_perl/site_perl/5.26.1:.../../custom/lib/site_perl/5.26.1/i686-linux:.../../custom/lib/site_perl/5.26.1:.../../custom/lib/5.26.1/i686-linux:.../../custom/lib/5.26.1' -Dmyhostname='rosa-k53by' -Dlibpth='~/perllib /usr/local/lib /usr/lib /lib' -Duserelocatableinc -Dldflags='-fstack-protector-strong -L~/perllib -L/usr/local/lib -L/usr/lib -L/lib' -Dlddlflags='-shared -g -O2 -L~/perllib -L/usr/local/lib -L/usr/lib -L/lib -fstack-protector-strong' -Ddynamic_ext=' ' -Dcf_email='smallville7123@gmail.com' -Darchname='i686-linux' -Daphostname='/bin/hostname' -Dusefaststdio && 
+# make install
+# wait
+# ./perl5.26.1/bin/perl -V
+# ldd ./perl5.26.1/bin/perl
+
+
+cd ./perl5.26.1/bin
+
+rm -rfv ./librt.so.1 ./libpthread.so.0 ./libnsl.so.1 ./libdl.so.2 ./libm.so.6 ./libcrypt.so.1 ./libutil.so.1 ./libc.so.6 ./libquadmath.so.0 ./libfreebl3.so ./linker.so
+
+cd ../../
+
+cp -vf -L /lib/librt.so.1 /lib/libpthread.so.0 /lib/libnsl.so.1 /lib/libdl.so.2 /lib/libm.so.6 /lib/libcrypt.so.1 /lib/libutil.so.1 /lib/libc.so.6 /usr/lib/libquadmath.so.0 /lib/libfreebl3.so ./
+
+ls -l ./librt.so.1 ./libpthread.so.0 ./libnsl.so.1 ./libdl.so.2 ./libm.so.6 ./libcrypt.so.1 ./libutil.so.1 ./libc.so.6 ./libquadmath.so.0 ./libfreebl3.so
+
+cp -v /lib/ld-2.25.so ./linker.so
+
+rm -rfv ./perl5.26.1/bin/perl-static
+
+gcc -Wl,-rpath=./ -o ./perl5.26.1/bin/perl-static -fstack-protector-strong -L~/perllib -L/usr/local/lib -L/usr/lib -L/lib -Wl,-E perlmain.o  lib/auto/arybase/arybase.a lib/auto/attributes/attributes.a lib/auto/B/B.a lib/auto/Compress/Raw/Bzip2/Bzip2.a lib/auto/Compress/Raw/Zlib/Zlib.a lib/auto/Cwd/Cwd.a lib/auto/Data/Dumper/Dumper.a lib/auto/Devel/Peek/Peek.a lib/auto/Devel/PPPort/PPPort.a lib/auto/Digest/MD5/MD5.a lib/auto/Digest/SHA/SHA.a lib/auto/Encode/Encode.a lib/auto/Fcntl/Fcntl.a lib/auto/File/DosGlob/DosGlob.a lib/auto/File/Glob/Glob.a lib/auto/Filter/Util/Call/Call.a lib/auto/Hash/Util/Util.a lib/auto/Hash/Util/FieldHash/FieldHash.a lib/auto/I18N/Langinfo/Langinfo.a lib/auto/IO/IO.a lib/auto/IPC/SysV/SysV.a lib/auto/List/Util/Util.a lib/auto/Math/BigInt/FastCalc/FastCalc.a lib/auto/MIME/Base64/Base64.a lib/auto/mro/mro.a lib/auto/Opcode/Opcode.a lib/auto/PerlIO/encoding/encoding.a lib/auto/PerlIO/mmap/mmap.a lib/auto/PerlIO/scalar/scalar.a lib/auto/PerlIO/via/via.a lib/auto/POSIX/POSIX.a lib/auto/re/re.a lib/auto/SDBM_File/SDBM_File.a lib/auto/Socket/Socket.a lib/auto/Storable/Storable.a lib/auto/Sys/Hostname/Hostname.a lib/auto/Sys/Syslog/Syslog.a lib/auto/threads/threads.a lib/auto/threads/shared/shared.a lib/auto/Tie/Hash/NamedCapture/NamedCapture.a lib/auto/Time/HiRes/HiRes.a lib/auto/Time/Piece/Piece.a lib/auto/Unicode/Collate/Collate.a lib/auto/Unicode/Normalize/Normalize.a lib/auto/XS/APItest/APItest.a lib/auto/XS/Typemap/Typemap.a lib/auto/Encode/Byte/Byte.a lib/auto/Encode/CN/CN.a lib/auto/Encode/EBCDIC/EBCDIC.a lib/auto/Encode/JP/JP.a lib/auto/Encode/KR/KR.a lib/auto/Encode/Symbol/Symbol.a lib/auto/Encode/TW/TW.a lib/auto/Encode/Unicode/Unicode.a libperl.a `cat ext.libs` -lpthread -lnsl -ldl -lm -lcrypt -lutil -lc -lquadmath -lfreebl3 -Wl,-dynamic-linker,./linker.so
+
+file ./perl5.26.1/bin/perl-static
+
+ldd ./perl5.26.1/bin/perl-static
+
+mv -fv ./librt.so.1 ./libpthread.so.0 ./libnsl.so.1 ./libdl.so.2 ./libm.so.6 ./libcrypt.so.1 ./libutil.so.1 ./libc.so.6 ./libquadmath.so.0 ./libfreebl3.so ./linker.so ./perl5.26.1/bin/
+
+cd ./perl5.26.1/bin
+
+ldd ./perl-static
+
+file ./perl-static
+
+./perl-static -V
+
+cd ../../
+
+ldd ./perl5.26.1/bin/perl-static
+
+file ./perl5.26.1/bin/perl-static
+
+sudo chroot ./perl5.26.1/ ./bin/perl -V
+
+cd "$olddir"

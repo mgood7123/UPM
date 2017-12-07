@@ -1,0 +1,23 @@
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_0:
+total 1420
+-rw-r--r-- 1 chakra chakra 1451676 18.10.2017 17:50 bash-4.4.012-2-x86_64.pkg.tar.xz
+
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_1:
+total 12300
+-rw-r--r-- 1 chakra chakra 9042316 18.10.2017 17:51 glibc-2.26-5-x86_64.pkg.tar.xz
+-rw-r--r-- 1 chakra chakra 1080244 18.10.2017 17:51 ncurses-6.0+20170902-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 chakra chakra 1080244 18.10.2017 17:51 ncurses-6.0%2B20170902-1-x86_64.pkg.tar.xz
+-rw-r--r-- 1 chakra chakra 1084704 18.10.2017 17:51 ncurses-6.0%2B20170902-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 chakra chakra  301740 18.10.2017 17:51 readline-7.0.003-1-x86_64.pkg.tar.xz
+
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_2:
+total 19128
+-rw-r--r-- 1 chakra chakra    10448 18.10.2017 17:52 filesystem-2017.03-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 chakra chakra     7896 18.10.2017 17:52 filesystem-2017.10-2-x86_64.pkg.tar.xz
+-rw-r--r-- 1 chakra chakra 18375976 18.10.2017 17:52 gcc-libs-7.2.0-3-x86_64.pkg.tar.xz
+-rw-r--r-- 1 chakra chakra   942884 18.10.2017 17:53 linux-api-headers-4.12.7-1-any.pkg.tar.xz
+-rw-r--r-- 1 chakra chakra   241408 18.10.2017 17:53 tzdata-2017b-1-any.pkg.tar.xz
+
+./Tests/Packages/bash-4.4.012-2-x86_64/layer_3:
+total 364
+-rw-r--r-- 1 chakra chakra 370188 18.10.2017 17:53 iana-etc-20170824-1-any.pkg.tar.xz

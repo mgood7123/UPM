@@ -1,0 +1,3 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Socket6.pm relocate_as=../../Socket6.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Socket6/Socket6.so relocate_as=Socket6.so
+/UPM/Files/Code/perl/man/man3/Socket6.3 relocate_as=../../../../../../man/man3/Socket6.3

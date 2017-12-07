@@ -1,0 +1,8 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/B/Hooks/EndOfScope.pm relocate_as=../../../../../B/Hooks/EndOfScope.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/B/Hooks/EndOfScope/PP.pm relocate_as=../../../../../B/Hooks/EndOfScope/PP.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/B/Hooks/EndOfScope/PP/FieldHash.pm relocate_as=../../../../../B/Hooks/EndOfScope/PP/FieldHash.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/B/Hooks/EndOfScope/PP/HintHash.pm relocate_as=../../../../../B/Hooks/EndOfScope/PP/HintHash.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/B/Hooks/EndOfScope/XS.pm relocate_as=../../../../../B/Hooks/EndOfScope/XS.pm
+/UPM/Files/Code/perl/man/man3/B::Hooks::EndOfScope.3 relocate_as=../../../../../../../../man/man3/B::Hooks::EndOfScope.3
+/UPM/Files/Code/perl/man/man3/B::Hooks::EndOfScope::PP.3 relocate_as=../../../../../../../../man/man3/B::Hooks::EndOfScope::PP.3
+/UPM/Files/Code/perl/man/man3/B::Hooks::EndOfScope::XS.3 relocate_as=../../../../../../../../man/man3/B::Hooks::EndOfScope::XS.3

@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Taint/Runtime.pm relocate_as=../../../Taint/Runtime.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Taint/is_taint_bench.pl relocate_as=../../../Taint/is_taint_bench.pl
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Taint/Runtime/Runtime.so relocate_as=Runtime.so
+/UPM/Files/Code/perl/man/man3/Taint::Runtime.3 relocate_as=../../../../../../../man/man3/Taint::Runtime.3

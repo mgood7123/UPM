@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Ref/Util.pm relocate_as=../../../../Ref/Util.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Ref/Util/PP.pm relocate_as=../../../../Ref/Util/PP.pm
+/UPM/Files/Code/perl/man/man3/Ref::Util.3 relocate_as=../../../../../../../man/man3/Ref::Util.3
+/UPM/Files/Code/perl/man/man3/Ref::Util::PP.3 relocate_as=../../../../../../../man/man3/Ref::Util::PP.3

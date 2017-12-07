@@ -1,0 +1,6 @@
+rm read.history 
+rm read.log 
+cat temp.variable 
+cat temp.variable
+linenoise_example 
+cat temp.variable 

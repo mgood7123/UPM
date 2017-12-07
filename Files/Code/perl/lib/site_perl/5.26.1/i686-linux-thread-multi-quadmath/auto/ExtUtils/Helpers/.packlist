@@ -1,0 +1,8 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/ExtUtils/Helpers.pm relocate_as=../../../../ExtUtils/Helpers.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/ExtUtils/Helpers/Unix.pm relocate_as=../../../../ExtUtils/Helpers/Unix.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/ExtUtils/Helpers/VMS.pm relocate_as=../../../../ExtUtils/Helpers/VMS.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/ExtUtils/Helpers/Windows.pm relocate_as=../../../../ExtUtils/Helpers/Windows.pm
+/UPM/Files/Code/perl/man/man3/ExtUtils::Helpers.3 relocate_as=../../../../../../../man/man3/ExtUtils::Helpers.3
+/UPM/Files/Code/perl/man/man3/ExtUtils::Helpers::Unix.3 relocate_as=../../../../../../../man/man3/ExtUtils::Helpers::Unix.3
+/UPM/Files/Code/perl/man/man3/ExtUtils::Helpers::VMS.3 relocate_as=../../../../../../../man/man3/ExtUtils::Helpers::VMS.3
+/UPM/Files/Code/perl/man/man3/ExtUtils::Helpers::Windows.3 relocate_as=../../../../../../../man/man3/ExtUtils::Helpers::Windows.3

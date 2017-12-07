@@ -1,0 +1,3 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Locale/gettext.pm relocate_as=../../../Locale/gettext.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Locale/gettext/gettext.so relocate_as=gettext.so
+/UPM/Files/Code/perl/man/man3/Locale::gettext.3 relocate_as=../../../../../../../man/man3/Locale::gettext.3

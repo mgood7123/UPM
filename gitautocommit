@@ -1,0 +1,4 @@
+#!./Files/bash-4.4.0
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+a=null ; until [[ $a = 8 ]] ; do git add --all ; git commit -m -a ; git push origin master ; done

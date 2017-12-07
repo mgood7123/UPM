@@ -1,0 +1,3 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Class/Load/XS.pm relocate_as=../../../../Class/Load/XS.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Class/Load/XS/XS.so relocate_as=XS.so
+/UPM/Files/Code/perl/man/man3/Class::Load::XS.3 relocate_as=../../../../../../../../man/man3/Class::Load::XS.3

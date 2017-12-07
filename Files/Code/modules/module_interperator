@@ -1,0 +1,407 @@
+checkargs() {
+                if [[ "$IRC_message" =~ "--end --run" ]]
+                then
+                    args="$(printf '%s' "$IRC_message" |& sed 's/ ¬T¬o¬¬¬O¬u¬t¬p¬u¬t.*//')"
+                    export compile=0
+                    export upload=0
+                    export download=0
+                    export run=1
+                    export end=1
+                    export wait=0
+                    rm wait.lock
+                elif [[ "$IRC_message" =~ "--end" ]]
+                then
+#                     echo "PRIVMSG $IRC_channel :Warning: --end specified without --run, auto-adding --run" >&$fd
+                    export compile=0
+                    export upload=0
+                    export download=0
+                    export end=1
+                    export wait=0
+                    rm wait.lock
+                    args="$(printf '%s' "$IRC_message" |& sed 's/ ¬T¬o¬¬¬O¬u¬t¬p¬u¬t.*//')"
+                elif [[ "$IRC_message" =~ "--run" ]]
+                then
+#                     echo "PRIVMSG $IRC_channel :Warning: --run specified without --end, auto-adding --end" >&$fd
+                    export compile=0
+                    export upload=0
+                    export download=0
+                    export run=1
+                    export wait=0
+                    rm wait.lock
+                    args="$(printf '%s' "$IRC_message" |& sed 's/ ¬T¬o¬¬¬O¬u¬t¬p¬u¬t.*//')"
+                elif [[ "$IRC_message" =~ "--wait" ]]
+                then
+                    export compile=0
+                    export upload=0
+                    export download=0
+                    export run=0
+                    export end=0
+                    touch wait.lock
+                    export wait=1
+                    args="$(printf '%s' "$IRC_message" |& sed 's/ ¬T¬o¬¬¬O¬u¬t¬p¬u¬t.*//')"
+                elif [[ "$IRC_message" =~ "--newline" ]]
+                then
+                    export compile=0
+                    export upload=0
+                    export download=0
+                    export run=0
+                    export end=0
+                    if [[ -e wait.lock ]]
+                    then
+                    export compile=0
+                    export upload=0
+                        export wait=1
+                        IRC_tmpwait="$(cat wait.file)"
+                    printf "\n" >> "$IRC_tmpwait"
+                    elif [[ ! -e wait.lock ]]
+                    then
+                    export compile=0
+                    export upload=0
+                        export wait=0
+                        local newline=1
+                    fi
+                    args="$(printf '%s' "$IRC_message" |& sed 's/ ¬T¬o¬¬¬O¬u¬t¬p¬u¬t.*//')"
+                elif [[ "$IRC_message" =~ "--upload" ]]
+                then
+#                     echo "PRIVMSG $IRC_channel :Warning: --end specified without --run, auto-adding --run" >&$fd
+                    export compile=0
+                    export upload=1
+                    export download=0
+                    export wait=0
+                    rm wait.lock
+                    args="$(printf '%s' "$IRC_message" |& sed 's/ ¬T¬o¬¬¬O¬u¬t¬p¬u¬t.*//')"
+                elif [[ "$IRC_message" =~ "--download" ]]
+                then
+#                     echo "PRIVMSG $IRC_channel :Warning: --end specified without --run, auto-adding --run" >&$fd
+                    export compile=0
+                    export upload=0
+                    export download=1
+                    export wait=0
+                    export wait=0
+                    rm wait.lock
+                    args="$(printf '%s' "$IRC_message" |& sed 's/ ¬T¬o¬¬¬O¬u¬t¬p¬u¬t.*//')"
+                elif [[ "$IRC_message" =~ "--compile" ]]
+                then
+#                     echo "PRIVMSG $IRC_channel :Warning: --end specified without --run, auto-adding --run" >&$fd
+                    export upload=0
+                    export download=0
+                    export compile=1
+                    export wait=0
+                    rm wait.lock
+                    args="$(printf '%s' "$IRC_message" |& sed 's/ ¬T¬o¬¬¬O¬u¬t¬p¬u¬t.*//')"
+                else
+                    export compile=0
+                    export upload=0
+                    export download=0
+                    export run=0
+                    export end=0
+                    if [[ -e wait.lock ]]
+                    then
+                        export wait=1
+                        IRC_tmpwait="$(cat wait.file)"
+                    elif [[ ! -e wait.lock ]]
+                    then
+                        export wait=0
+                    fi
+                    args="$(printf '%s' "$IRC_message" |& sed 's/ ¬T¬o¬¬¬O¬u¬t¬p¬u¬t.*//')"
+#                     echo "PRIVMSG $IRC_channel :wait is $wait" >&$fd
+                fi
+}
+execute() {
+	    origin="$(echo "$(pwd)/")"
+            if [[ $IRC_message =~ "¬R¬E¬S¬T¬R¬I¬C¬T¬E¬D¬¬¬A¬C¬C¬E¬S¬S" ]]
+				then
+					export IRC_command="$(printf '%s' "$IRC_message" |& grep "/!" |& sed "s/.*\/!//" |& sed 's/ ¬.*//' |& sed 's/R¬E¬S¬T¬R¬I¬C¬T¬E¬D¬¬¬A¬C¬C¬E¬S¬S//')"
+					IRC_command=${IRC_command//\\/\\\\}
+					echo -e "PRIVMSG $(printf '%s' "$IRC_message" |& sed 's/.* ¬R¬E¬P¬L¬Y¬//g') :\x02\x0304Error: Shell is currently running in Admin Only mode\x0f" >&4
+					local NOT_A_VALID_LANGUAGE=1
+            elif [[ $IRC_message =~ ^"/! " ]]
+                then
+                    sym=!
+                    interperator=bash
+                    extention=
+                    additional=
+                    additionalargs=
+            elif [[ $IRC_message =~ ^"/!a " ]]
+                then
+                    sym=!a
+                    interperator=awk
+                    extention=.awk
+                    additional=
+                    additionalargs=
+            elif [[ $IRC_message =~ ^"/!b " ]]
+                then
+                    sym=!b
+                    interperator=bash
+                    extention=
+                    additional=
+                    additionalargs=
+            elif [[ $IRC_message =~ ^"/!p " ]]
+                then
+                    sym=!p
+                    interperator=./perl/bin/perl
+                    extention=.pl
+                    additional="use 5.026; use experimental 'declared_refs'; use utf8; use Data::Dumper ; "
+                    additionalargs=
+            elif [[ $IRC_message =~ ^"/!cp " ]]
+                then
+                    sym=!cp
+                    interperator=./perl/bin/cpan
+                    extention=""
+                    additional=""
+                    additionalargs=
+            elif [[ $IRC_message =~ ^"/!p2 " ]]
+                then
+                    sym=!p2
+                    interperator=perl
+                    extention=.pl
+                    additional="use 5.020; use Data::Dumper ; "
+                    additionalargs=
+            elif [[ $IRC_message =~ ^"/!cp2 " ]]
+                then
+                    sym=!cp2
+                    interperator=cpan
+                    extention=
+                    additional=
+                    additionalargs=
+            elif [[ $IRC_message =~ ^"/!py " ]]
+                then
+                    sym=!py
+                    interperator=python
+                    extention=.py
+                    additional=
+                    additionalargs=
+            elif [[ $IRC_message =~ ^"/!py2 " ]]
+                then
+                    sym=!py2
+                    interperator=../python2.7-static
+                    extention=.py
+                    additional=
+                    additionalargs=
+            elif [[ $IRC_message =~ ^"/!py3 " ]]
+                then
+                    sym=!py2
+                    interperator=../python3.2-static
+                    extention=.py
+                    additional=
+                    additionalargs=
+            elif [[ $IRC_message =~ ^"/!r " ]]
+                then
+                    sym=!r
+                    interperator=ruby
+                    extention=.rb
+                    additional=
+                    additionalargs=
+            elif [[ $IRC_message =~ ^"/!c " ]]
+                then
+                    sym=!c
+                    interperator=gcc
+                    extention=.c
+                    additional="#include <stdio.h>--newline "
+                    additionalargs=''
+                    touch compile.lock
+            elif [[ $IRC_message =~ ^"/!c++ " ]]
+                then
+                    sym=!c++
+                    interperator=g++
+                    extention=.cpp
+                    additional=
+                    additionalargs='-std=c++14 -O2 -Wall -pedantic -pthread'
+                    touch compile.lock
+            else
+                export IRC_command="$(printf '%s' "$IRC_message" |& grep "/!" |& sed "s/.*\/!//" |& sed 's/ ¬.*//')"
+                IRC_command=${IRC_command//\\/\\\\}
+                echo -e "PRIVMSG $(printf '%s' "$IRC_message" |& sed 's/.* ¬R¬E¬P¬L¬Y¬//g') :Either '\x02\x0304\x1d$IRC_command\x1d\x0f' is a \x02\x0304privileged command\x0f, \x02\x0304invalid command\x0f, or it is not a valid language that i can parse yet, see \x02\x0304!commands\x0f for a list of currently available commands including \x02\x0304privileged\x0f and \x02\x0304non-privileged\x0f commands" >&4
+                local NOT_A_VALID_LANGUAGE=1
+            fi
+            if [[ $IRC_message =~ "¬T¬o¬¬¬O¬u¬t¬p¬u¬t" ]]
+                then
+                    fd='4'
+                    export IRC_command="$(printf '%s' "$IRC_message" |& grep "/$sym" |& sed "s/.*\/$sym //" |& sed 's/ ¬.*//')"
+                    local IRC_channel="$(printf '%s' "$IRC_message" |& sed 's/.* ¬R¬E¬P¬L¬Y¬//g')"
+                    checkargs
+            elif [[ $IRC_message =~ "¬T¬o¬¬¬I¬n¬p¬u¬t" ]]
+                then
+                    fd='1'
+                    echo "PRIVMSG $IRC_channel :Sending to input" >&$fd
+                    printf "\r"
+                    export IRC_command="$(printf '%s' "$IRC_message" |& grep "/$sym" |& sed "s/.*\/$sym //" |& sed 's/ ¬T¬o¬¬¬I¬n¬p¬u¬t//')"
+            else
+                fd='1'
+                echo "Sending to input" >&$fd
+                printf "\r"
+                export IRC_command="$(printf '%s' "$IRC_message" |& grep "/$sym" |& sed "s/.*\/$sym //")"
+            fi
+            if [[ $NOT_A_VALID_LANGUAGE == "" ]]
+                then
+                    if [[ $wait == 1 ]]
+                        then
+                            if [[ $IRC_command =~ "--wait" ]]
+                                then
+                                    echo "PRIVMSG $IRC_channel :--wait detected, appending all following input (specified with $sym ) to file until either --run or --end is given" >&$fd
+                                    printf "\r"
+                                    mktemp /tmp/tmpwait.XXXXXXXXXX$extention 2>&1 > wait.file
+                                    IRC_tmpwait="$(cat wait.file)"
+                            fi
+                            export IRC_command="$(printf '%s' "$IRC_message" |& grep "/$sym" |& sed "s/.*\/$sym //" |& sed 's/ --end.*//' |& sed 's/ --upload.*//' |& sed 's/ --download.*//' |& sed 's/ --compile.*//'|& sed 's/ --run.*//' |& sed 's/ --wait.*//' |& sed 's/--newline/\n/g' |& sed 's/ ¬T¬o¬¬¬O¬u¬t¬p¬u¬t.*//' |& sed 's/ ¬R¬E¬S¬T¬R¬I¬C¬T¬E¬D¬¬¬A¬C¬C¬E¬S¬S.*//')"
+							local IRC_command3="$(printf '%s' "$IRC_message" |& grep "/$sym" |& sed "s/.*\/$sym //" |& sed 's/ --end.*//' |& sed 's/ --upload.*//' |& sed 's/ --download.*//' |& sed 's/ --compile.*//'|& sed 's/ --run.*//' |& sed 's/ --wait.*//' |& sed 's/--newline/\n/g' |& sed 's/ ¬T¬o¬¬¬O¬u¬t¬p¬u¬t.*//' |& sed ':a;N;$!ba;s/\n/ ¬/g' |& sed 's/ ¬/\; /g')"
+							IRC_command3=${IRC_command3//\\/\\\\}
+                            args=${args//\\/\\\\}
+                            additional="$(printf '%s' "$additional" |& sed 's/--newline/\n/g')"
+                            printf '%s' "$additional" "$IRC_command" >> $IRC_tmpwait
+                            chmod 775 $IRC_tmpwait
+#                             echo "PRIVMSG $IRC_channel :appended $additional $IRC_command to $IRC_tmpwait" >&$fd
+                            elif [[ $IRC_command =~ ^"-" ]]
+                                then
+                                    if [[ -e wait.file ]]
+                                        then
+#                                            echo "PRIVMSG $IRC_channel :- wait exists" >&$fd
+                                            export IRC_command="$(printf '%s' "$IRC_message" |& sed "s/.*\/$sym //" |& sed 's/ --end.*//' |& sed 's/ --upload.*//' |& sed 's/ --download.*//' |& sed 's/ --compile.*//'|& sed 's/ --run.*//' |& sed 's/--newline/\n/g')"
+											local IRC_command3="$(printf '%s' "$IRC_message" |& sed "s/.*\/$sym //" |& sed 's/ --end.*//' |& sed 's/ --upload.*//' |& sed 's/ --download.*//' |& sed 's/ --compile.*//'|& sed 's/ --run.*//' |& sed 's/--newline/\n/g' |& sed ':a;N;$!ba;s/\n/ ¬/g' |& sed 's/ ¬/\; /g')"
+											IRC_command3=${IRC_command3//\\/\\\\}
+											args=${args//\\/\\\\}
+											additional="$(printf '%s' "$additional" |& sed 's/--newline/\n/g')"
+                                            export IRC_commands+=($IRC_command)
+                                            IRC_tmpwait="$(cat wait.file)"
+                                            if [[ -e compile.lock ]]
+                                                then
+#                                                    echo "PRIVMSG $IRC_channel :running $interperator $IRC_tmp 2>&1 && echo "OUTPUT OF COMPILED APPLICATION: " && timeout 10 sudo -u testacc ./a.out 2>&1 && rm -f ./a.out ; ls $IRC_tmp" >&$fd
+                                                    echo -e "PRIVMSG $IRC_channel :running interperator: '\x0304$interperator\x0f' command: '\x0304$IRC_command3\x0f' location: '\x02\x0304\x1d$IRC_tmp\x0f' arguments: '\x0304$args\x0f' additional arguments: '\x0304$additionalargs\x0f'" >&$fd
+                                                    printf "\r"
+													echo "PRIVMSG ##UPM :running interperator: '$interperator' command: '$IRC_command3' location: '$IRC_tmp' arguments: '$args' additional arguments: '$additionalargs'" >&$fd
+                                                    printf "\r"
+                                                    local result="$(cd /tmp && timeout 10 sudo -u testacc $interperator $additionalargs $IRC_tmpwait 2>&1 && echo "OUTPUT OF COMPILED APPLICATION: " && timeout 10 sudo -u testacc ./a.out 2>&1 ; cd "$origin")"
+                                                    rm -f ./a.out ; ls $IRC_tmpwait
+                                                    rm -f compile.lock
+                                            elif [[ ! -e compile.lock ]]
+                                                then
+#                                                    echo "PRIVMSG $IRC_channel :running $interperator $IRC_tmp $args $additionalargs" >&$fd
+                                                    echo -e "PRIVMSG $IRC_channel :running interperator: '\x0304$interperator\x0f' command: '\x0304$IRC_command3\x0f' location: '\x02\x0304\x1d$IRC_tmp\x0f' arguments: '\x0304$args\x0f' additional arguments: '\x0304$additionalargs\x0f'" >&$fd
+                                                    printf "\r"
+													echo "PRIVMSG ##UPM :running interperator: '$interperator' command: '$IRC_command3' location: '$IRC_tmp' arguments: '$args' additional arguments: '$additionalargs'" >&$fd
+                                                    printf "\r"
+                                                    local result="$(cd /tmp && timeout 10 sudo -u testacc $interperator $IRC_tmpwait "$args"  2>&1 ; cd "$origin")"
+                                                    ls $IRC_tmpwait
+                                            fi
+                                            rm wait.file
+                                    elif [[ ! -e wait.file ]]
+                                        then
+#                                            echo "PRIVMSG $IRC_channel :- detected, running $interperator $IRC_command" >&$fd
+local DETECT=1
+                                            export IRC_command="$(printf '%s' "$IRC_message" |& sed "s/.*\/$sym //" |& sed 's/ --end.*//' |& sed 's/ --upload.*//' |& sed 's/ --download.*//' |& sed 's/ --compile.*//'|& sed 's/ --run.*//' |& sed 's/--newline/\n/g' |& sed 's/ ¬T¬o¬¬¬O¬u¬t¬p¬u¬t.*//')"
+											local IRC_command3="$(printf '%s' "$IRC_message" |& sed "s/.*\/$sym //" |& sed 's/ --end.*//' |& sed 's/ --upload.*//' |& sed 's/ --download.*//' |& sed 's/ --compile.*//'|& sed 's/ --run.*//' |& sed 's/--newline/\n/g' |& sed 's/ ¬T¬o¬¬¬O¬u¬t¬p¬u¬t.*//' |& sed ':a;N;$!ba;s/\n/ ¬/g' |& sed 's/ ¬/\; /g')"
+											args=${args//\\/\\\\}
+											additional="$(printf '%s' "$additional" |& sed 's/--newline/\n/g')"
+											IRC_command3=${IRC_command3//\\/\\\\}
+                                            export IRC_commands+=($IRC_command)
+#                                        echo "PRIVMSG $IRC_channel :- wait does not exist" >&$fd
+                                            if [[ -e compile.lock ]]
+                                                then
+                                                    echo -e "PRIVMSG $IRC_channel :running interperator: '\x0304$interperator\x0f' command: '\x0304$IRC_command3\x0f' location: '\x02\x0304\x1d$IRC_tmp\x0f' arguments: '\x0304$args\x0f' additional arguments: '\x0304$additionalargs\x0f'" >&$fd
+                                                    printf "\r"
+													echo "PRIVMSG ##UPM :running interperator: '$interperator' command: '$IRC_command3' location: '$IRC_tmp' arguments: '$args' additional arguments: '$additionalargs'" >&$fd
+                                                    printf "\r"
+                                                    local result="$(cd /tmp && timeout 10 sudo -u testacc $interperator $IRC_command 2>&1 ; cd "$origin")"
+                                                    rm -f compile.lock
+                                            elif [[ ! -e compile.lock ]]
+                                                then
+#                                                   echo "PRIVMSG $IRC_channel :running $interperator $IRC_tmp $args $additionalargs" >&$fd
+                                                    echo -e "PRIVMSG $IRC_channel :running interperator: '\x0304$interperator\x0f' command: '\x0304$IRC_command3\x0f' location: '\x02\x0304\x1d$IRC_tmp\x0f' arguments: '\x0304$args\x0f' additional arguments: '\x0304$additionalargs\x0f'" >&$fd
+                                                    printf "\r"
+													echo "PRIVMSG ##UPM :running interperator: '$interperator' command: '$IRC_command3' location: '$IRC_tmp' arguments: '$args' additional arguments: '$additionalargs'" >&$fd
+                                                    printf "\r"
+                                                    local result="$(eval timeout 10 sudo -u testacc $interperator "$IRC_command"  2>&1)"
+                                            fi
+                                    fi
+                            else
+#                                 echo "PRIVMSG $IRC_channel :- not detected, running $IRC_command" >&$fd
+                                export IRC_command="$(printf '%s' "$IRC_message" |& sed "s/.*\/$sym //" |& sed 's/ --end.*//' |& sed 's/ --upload.*//' |& sed 's/ --download.*//' |& sed 's/ --compile.*//'|& sed 's/ --run.*//' |& sed 's/--newline/\n/g' |& sed 's/ ¬T¬o¬¬¬O¬u¬t¬p¬u¬t.*//')"
+								local IRC_command3="$(printf '%s' "$IRC_message" |& sed "s/.*\/$sym //" |& sed 's/ --end.*//' |& sed 's/ --upload.*//' |& sed 's/ --download.*//' |& sed 's/ --compile.*//'|& sed 's/ --run.*//' |& sed 's/--newline/\n/g' |& sed 's/ ¬T¬o¬¬¬O¬u¬t¬p¬u¬t.*//' |& sed ':a;N;$!ba;s/\n/ ¬/g' |& sed 's/ ¬/\; /g')"
+								IRC_command3=${IRC_command3//\\/\\\\}
+                                args=${args//\\/\\\\}
+								additional="$(printf '%s' "$additional" |& sed 's/--newline/\n/g')"
+                                export IRC_commands+=($IRC_command)
+                                export IRC_tmp=$(mktemp /tmp/tmp.XXXXXXXXXX$extention)
+                                alias > $IRC_tmp
+                                alias
+                                declare -p additional IRC_command
+                                printf '%s' "$additional" "$IRC_command" >> $IRC_tmp
+                                chmod 775 "$IRC_tmp"
+                                if [[ -e compile.lock ]]
+                                    then
+										if [[ $compile == 1 ]]
+											then
+												echo -e "PRIVMSG $IRC_channel :running interperator: '\x0304$interperator\x0f' command: '\x0304$IRC_command3\x0f' location: '\x02\x0304\x1d$IRC_tmp\x0f' arguments: '\x0304$args\x0f' additional arguments: '\x0304$additionalargs\x0f'" >&$fd
+                                                printf "\r"
+												echo "PRIVMSG ##UPM :running interperator: '$interperator' command: '$IRC_command3' location: '$IRC_tmp' arguments: '$args' additional arguments: '$additionalargs'" >&$fd
+                                                printf "\r"
+												local result="$(cd /tmp && timeout 10 sudo -u testacc $interperator $additionalargs "$IRC_command" 2>&1 && echo "OUTPUT OF COMPILED APPLICATION: " && timeout 10 sudo -u testacc ./a.out 2>&1 ; cd "$origin")"
+												rm -f ./a.out
+												rm -f compile.lock
+										else
+#                                         	  echo "PRIVMSG $IRC_channel :running $interperator $additionalargs $IRC_tmp 2>&1 && echo "OUTPUT OF COMPILED APPLICATION: " && timeout 10 sudo -u testacc ./a.out 2>&1 && rm -f ./a.out ; ls $IRC_tmp" >&$fd
+											echo -e "PRIVMSG $IRC_channel :running interperator: '\x0304$interperator\x0f' command: '\x0304$IRC_command3\x0f' location: '\x02\x0304\x1d$IRC_tmp\x0f' arguments: '\x0304$args\x0f' additional arguments: '\x0304$additionalargs\x0f'" >&$fd
+                                            printf "\r"
+											echo "PRIVMSG ##UPM :running interperator: '$interperator' command: '$IRC_command3' location: '$IRC_tmp' arguments: '$args' additional arguments: '$additionalargs'" >&$fd
+                                            printf "\r"
+											local result="$(cd /tmp && timeout 10 sudo -u testacc $interperator $additionalargs "$IRC_tmp" 2>&1 && echo "OUTPUT OF COMPILED APPLICATION: " && timeout 10 sudo -u testacc ./a.out 2>&1 ; cd "$origin")"
+											rm -f ./a.out ; ls $IRC_tmp
+											rm -f compile.lock
+								fi
+                                elif [[ ! -e compile.lock ]]
+                                    then
+#                                        echo "PRIVMSG $IRC_channel :running $interperator $IRC_tmp $args $additionalargs" >&$fd
+                                        echo -e "PRIVMSG $IRC_channel :running interperator: '\x0304$interperator\x0f' command: '\x0304$IRC_command3\x0f' location: '\x02\x0304\x1d$IRC_tmp\x0f' arguments: '\x0304$args\x0f' additional arguments: '\x0304$additionalargs\x0f'" >&$fd
+                                        printf "\r"
+										echo -e "PRIVMSG ##UPM :running interperator: '$interperator' command: '$IRC_command3' location: '$IRC_tmp' arguments: '$args' additional arguments: '$additionalargs'" >&$fd
+                                        printf "\r"
+                                        local result="$(cd /tmp && timeout 10 sudo -u testacc $interperator "$IRC_tmp" "$args" "$additionalargs" 2>&1 ; cd "$origin")"
+                                        ls $IRC_tmp
+                                fi
+                            fi
+#                echo "PRIVMSG $IRC_channel :wait is $wait" >&$fd
+                if [[ -z $IRC_tmp ]]
+                    then
+                        IRC_tmp=null¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬null¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                fi
+                if [[ -z $IRC_tmpwait ]]
+                    then
+                        IRC_tmpwait=null¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬null¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                fi
+#                declare -p DETECT
+                    if [[ $wait == 0 ]]
+                        then
+                          if [[ $upload == 1 ]]
+			    then
+			      echo "PRIVMSG $IRC_channel :uploading to bpaste" >&$fd
+                  printf "\r"
+			      echo "PRIVMSG $IRC_channel :$( (if [[ -z $DETECT ]] ; then sudo -u testacc $IRC_tmp ; else printf '%b' "$result" ; fi) |& sed "s/declare.*result=\"//" |& sed "s/\"$//" |& sed "s/Execution\ of\ \.${IRC_tmp[0]//\//\\\/}/Execution/g" |& sed "s/${IRC_tmp[0]//\//\\\/} //" |& sed "s/${IRC_tmp[0]//\//\\\/}\: //" |& sed "s/${IRC_tmp[0]//\//\\\/}\://" |& sed "s/${IRC_tmp[0]//\//\\\/}//" |& sed "s/Execution\ of\ \.${IRC_tmpwait[0]//\//\\\/}/Execution/g" |& sed "s/${IRC_tmpwait[0]//\//\\\/} //" |& sed "s/${IRC_tmpwait[0]//\//\\\/}\: //" |& sed "s/${IRC_tmpwait[0]//\//\\\/}\://" |& sed "s/${IRC_tmpwait[0]//\//\\\/}//" |& grep -v "Running command" |& grep -v "Command finished" |& '../wgetpaste 2.28/wgetpaste' -s bpaste -r |& sed 's/.* http/rest...  ( http/' |& sed 's/$/ )/')" >&$fd
+                  printf "\r"
+			  else
+                            if [[ $result == "" ]]
+                                then
+                                    echo "PRIVMSG $IRC_channel :No Output." >&$fd &
+                                    printf "\r"
+                            else
+                                if [[ $( (if [[ -z $DETECT ]] ; then sudo -u testacc $IRC_tmp ; else printf '%b' "$result" ; fi) |& sed "s/declare.*result=\"//" |& sed "s/\"$//" |& sed "s/Execution\ of\ \.${IRC_tmp[0]//\//\\\/}/Execution/g" |& sed "s/${IRC_tmp[0]//\//\\\/} //" |& sed "s/${IRC_tmp[0]//\//\\\/}\: //" |& sed "s/${IRC_tmp[0]//\//\\\/}\://" |& sed "s/${IRC_tmp[0]//\//\\\/}//" |& sed "s/Execution\ of\ \.${IRC_tmpwait[0]//\//\\\/}/Execution/g" |& sed "s/${IRC_tmpwait[0]//\//\\\/} //" |& sed "s/${IRC_tmpwait[0]//\//\\\/}\: //" |& sed "s/${IRC_tmpwait[0]//\//\\\/}\://" |& sed "s/${IRC_tmpwait[0]//\//\\\/}//" |& grep -v "Running command" |& grep -v "Command finished" |& sed ':a;N;$!ba;s/\n/ ¬/g' |& sed 's/ ¬/\, /g' |& sed 's/OUTPUT OF COMPILED APPLICATION: ,/OUTPUT OF COMPILED APPLICATION:/g' |& sed -r 's/(.{435})/\1\n/g' |& wc -l) -gt 2 ]]
+                                then
+                                    echo "PRIVMSG $IRC_channel :Output is greater then 2 lines, uncompressing output then uploading to bpaste" >&$fd
+                                    printf "\r"
+                                    echo "PRIVMSG $IRC_channel :$( (if [[ -z $DETECT ]] ; then sudo -u testacc $IRC_tmp ; else printf '%b' "$result" ; fi) |& sed "s/declare.*result=\"//" |& sed "s/\"$//" |& sed "s/Execution\ of\ \.${IRC_tmp[0]//\//\\\/}/Execution/g" |& sed "s/${IRC_tmp[0]//\//\\\/} //" |& sed "s/${IRC_tmp[0]//\//\\\/}\: //" |& sed "s/${IRC_tmp[0]//\//\\\/}\://" |& sed "s/${IRC_tmp[0]//\//\\\/}//" |& sed "s/Execution\ of\ \.${IRC_tmpwait[0]//\//\\\/}/Execution/g" |& sed "s/${IRC_tmpwait[0]//\//\\\/} //" |& sed "s/${IRC_tmpwait[0]//\//\\\/}\: //" |& sed "s/${IRC_tmpwait[0]//\//\\\/}\://" |& sed "s/${IRC_tmpwait[0]//\//\\\/}//" |& grep -v "Running command" |& grep -v "Command finished" |& '../wgetpaste 2.28/wgetpaste' -s bpaste -r |& sed 's/.* http/rest...  ( http/' |& sed 's/$/ )/')" >&$fd
+                                    printf "\r"
+                            elif [[ $( (if [[ -z $DETECT ]] ; then sudo -u testacc $IRC_tmp ; else printf '%b' "$result" ; fi) |& sed "s/declare.*result=\"//" |& sed "s/\"$//" |& sed "s/Execution\ of\ \.${IRC_tmp[0]//\//\\\/}/Execution/g" |& sed "s/${IRC_tmp[0]//\//\\\/} //" |& sed "s/${IRC_tmp[0]//\//\\\/}\: //" |& sed "s/${IRC_tmp[0]//\//\\\/}\://" |& sed "s/${IRC_tmp[0]//\//\\\/}//" |& sed "s/Execution\ of\ \.${IRC_tmpwait[0]//\//\\\/}/Execution/g" |& sed "s/${IRC_tmpwait[0]//\//\\\/} //" |& sed "s/${IRC_tmpwait[0]//\//\\\/}\: //" |& sed "s/${IRC_tmpwait[0]//\//\\\/}\://" |& sed "s/${IRC_tmpwait[0]//\//\\\/}//" |& grep -v "Running command" |& grep -v "Command finished" |& sed ':a;N;$!ba;s/\n/ ¬/g' |& sed 's/ ¬/\, /g' |& sed 's/OUTPUT OF COMPILED APPLICATION: ,/OUTPUT OF COMPILED APPLICATION:/g' |& wc -c) -gt 435 ]]
+                                then
+                                    echo "PRIVMSG $IRC_channel :Output is greater then 435 characters, truncating to 435 characters per post" >&$fd
+                                    printf "\r"
+                                    echo "PRIVMSG $IRC_channel :$( (if [[ -z $DETECT ]] ; then sudo -u testacc $IRC_tmp ; else printf '%b' "$result" ; fi) |& sed "s/declare.*result=\"//" |& sed "s/\"$//" |& sed "s/Execution\ of\ \.${IRC_tmp[0]//\//\\\/}/Execution/g" |& sed "s/${IRC_tmp[0]//\//\\\/} //" |& sed "s/${IRC_tmp[0]//\//\\\/}\: //" |& sed "s/${IRC_tmp[0]//\//\\\/}\://" |& sed "s/${IRC_tmp[0]//\//\\\/}//" |& sed "s/Execution\ of\ \.${IRC_tmpwait[0]//\//\\\/}/Execution/g" |& sed "s/${IRC_tmpwait[0]//\//\\\/} //" |& sed "s/${IRC_tmpwait[0]//\//\\\/}\: //" |& sed "s/${IRC_tmpwait[0]//\//\\\/}\://" |& sed "s/${IRC_tmpwait[0]//\//\\\/}//" |& grep -v "Running command" |& grep -v "Command finished" |& sed ':a;N;$!ba;s/\n/ ¬/g' |& sed 's/ ¬/\, /g' |& sed 's/OUTPUT OF COMPILED APPLICATION: ,/OUTPUT OF COMPILED APPLICATION:/g' |& sed -r 's/(.{435})/\1\n/g' |& sed ":a;N;\$!ba;s/\n/\nPRIVMSG $IRC_channel :/g")" >&$fd
+                                    printf "\r"
+                            else
+#                                 echo "PRIVMSG $IRC_channel :Output less than 435 characters" >&$fd
+                                echo "PRIVMSG $IRC_channel :$( (if [[ -z $DETECT ]] ; then sudo -u testacc $IRC_tmp ; else printf '%b' "$result" ; fi) |& sed "s/declare.*result=\"//" |& sed "s/\"$//" |& sed "s/Execution\ of\ \.${IRC_tmp[0]//\//\\\/}/Execution/g" |& sed "s/${IRC_tmp[0]//\//\\\/} //" |& sed "s/${IRC_tmp[0]//\//\\\/}\: //" |& sed "s/${IRC_tmp[0]//\//\\\/}\://" |& sed "s/${IRC_tmp[0]//\//\\\/}//" |& sed "s/Execution\ of\ \.${IRC_tmpwait[0]//\//\\\/}/Execution/g" |& sed "s/${IRC_tmpwait[0]//\//\\\/} //" |& sed "s/${IRC_tmpwait[0]//\//\\\/}\: //" |& sed "s/${IRC_tmpwait[0]//\//\\\/}\://" |& sed "s/${IRC_tmpwait[0]//\//\\\/}//" |& grep -v "Running command" |& grep -v "Command finished" |& sed ':a;N;$!ba;s/\n/ ¬/g' |& sed 's/ ¬/\, /g' |& sed 's/OUTPUT OF COMPILED APPLICATION: ,/OUTPUT OF COMPILED APPLICATION:/g')" >&$fd
+                                printf "\r"
+                            fi
+                          fi
+                    fi
+                fi
+            fi
+}

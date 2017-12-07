@@ -1,0 +1,8 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Algorithm/Diff.pm relocate_as=../../../../Algorithm/Diff.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Algorithm/DiffOld.pm relocate_as=../../../../Algorithm/DiffOld.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Algorithm/cdiff.pl relocate_as=../../../../Algorithm/cdiff.pl
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Algorithm/diff.pl relocate_as=../../../../Algorithm/diff.pl
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Algorithm/diffnew.pl relocate_as=../../../../Algorithm/diffnew.pl
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Algorithm/htmldiff.pl relocate_as=../../../../Algorithm/htmldiff.pl
+/UPM/Files/Code/perl/man/man3/Algorithm::Diff.3 relocate_as=../../../../../../../man/man3/Algorithm::Diff.3
+/UPM/Files/Code/perl/man/man3/Algorithm::DiffOld.3 relocate_as=../../../../../../../man/man3/Algorithm::DiffOld.3

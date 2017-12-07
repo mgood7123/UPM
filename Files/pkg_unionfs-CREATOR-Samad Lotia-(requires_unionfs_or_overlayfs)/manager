@@ -1,0 +1,236 @@
+#!/bin/sh
+
+# The "pkg_dir" variable points to the directory containing the packages.
+# This path must be absolute.
+pkg_dir="/pkgs"
+
+# The "target_dir" variable points to the directory where the target
+# directories are located. This path must be absolute.
+target_dir="/"
+
+
+command="${1}"
+pkg_name="${2}"
+pkg_version="${3}"
+
+# Unfortunately, bash does not support map or dictionary data structures.
+# The goal of map_dir is to simulate this data structure. Given a source
+# directory, it will map it to a target directory.
+#
+# Input: ${1} - the path of the source directory; the path cannot be absolute
+#               but must be relative to the package's directory.
+# Result: the target directory if the source directory has a target, otherwise
+#         an empty string.
+function map_dir ()
+{
+	dir_entries ()
+	{
+		# target-point source-dir
+		echo "${target_dir}/bin bin"
+		echo "${target_dir}/bin jre/bin"
+		echo "${target_dir}/bin usr/bin"
+		echo "${target_dir}/bin usr/local/bin"
+
+		echo "${target_dir}/sbin sbin"
+		echo "${target_dir}/sbin usr/sbin"
+		echo "${target_dir}/sbin usr/local/sbin"
+
+		echo "${target_dir}/lib lib"
+		echo "${target_dir}/lib jre/lib"
+		echo "${target_dir}/lib usr/lib"
+		echo "${target_dir}/lib usr/local/lib"
+		echo "${target_dir}/lib lib64"
+		echo "${target_dir}/lib usr/lib64"
+		echo "${target_dir}/lib usr/local/lib64"
+
+		echo "${target_dir}/usr/include include"
+		echo "${target_dir}/usr/include usr/include"
+		echo "${target_dir}/usr/include usr/local/include"
+
+		echo "${target_dir}/usr/share share"
+		echo "${target_dir}/usr/share usr/share"
+		echo "${target_dir}/usr/share usr/local/share"
+
+		echo "${target_dir}/usr/man man"
+		echo "${target_dir}/usr/man usr/man"
+		echo "${target_dir}/usr/man usr/share/man"
+		echo "${target_dir}/usr/man usr/local/share/man"
+
+		echo "${target_dir}/etc etc"
+		echo "${target_dir}/var var"
+	}
+
+	( dir_entries ) | while read mount_point source_dir; do
+		if [ "${source_dir}" == "${1}" ]; then
+			echo "${mount_point}"
+			exit 0
+		fi
+	done
+	echo
+}
+
+function print_usage()
+{
+	echo "Usage: ${0} <command> <parameters>"
+	echo "Commands:"
+	echo "  list"
+	echo "    list all packages"
+	echo "  list package-name"
+	echo "    list versions of specified package"
+	echo "  load package-name [package-version]"
+	echo "    load a package"
+	echo "  unload package-name"
+	echo "    unload a package"
+	echo "  test package-name [package-version]"
+	echo "    dump mount points of a package"
+}
+
+# Find all the sub-directories in a package directory. The prefix of ./ is
+# stripped off from all sub-directory paths returned by find.
+# Input: ${1} - the package name
+#        ${2} - the package version
+# Result: all of the sub-directories
+function find_dirs()
+{
+	dir="${pkg_dir}/${1}/${2}/*/"
+	cd ${dir}
+	find . -maxdepth 3 -mindepth 1 -type d | sed 's/\.\///'
+}
+
+# Checks the variable ${pkg_name} to see if the package name exists.
+# It prints messages to standard error if the package is not found.
+# Input: ${pkg_name} - the name of the package.
+# Result: 0 if the package directory is found, 1 if not.
+function check_pkg_name()
+{
+	if [ "${pkg_name}" == "" ]; then
+		echo "No package was specified" >&2
+		exit 1
+	elif [ ! -d "${pkg_dir}/${pkg_name}" ]; then
+		echo "Package \`${pkg_name}' does not exist" >&2
+		potential_pkg_names=""
+		for potential_pkg_name in `${0} list`; do
+			matches=`echo ${potential_pkg_name} | grep ${pkg_name}`
+			if [ ! "${matches}" == "" ]; then
+				potential_pkg_names="${matches} ${potential_pkg_names}"
+			fi
+		done
+		if [ ! "${potential_pkg_names}" == "" ]; then
+			echo "Possible packages are: ${potential_pkg_names}" >&2
+		fi
+		exit 1
+	else
+		exit 0
+	fi
+}
+
+# Checks the package version in order to determine if it is valid.
+# If ${pkg_version} is empty, the default package version is used instead.
+# Input: ${pkg_version} - the package version to check
+# Result: the package version to use. This can be different from the supplied
+#         ${pkg_version} if it is an empty string.
+function check_pkg_version()
+{
+	if [ "${pkg_version}" == "" ]; then
+		cd "${pkg_dir}/${pkg_name}"
+		for version in `ls -r`; do pkg_version=${version}; done
+		if [ "${pkg_version}" == "" ]; then
+			echo "No package versions are available for package \`${pkg_name}'" >&2
+			exit 1
+		else
+			echo "No package version was specified for \`${pkg_name}'; defaulting to \`${pkg_version}'" >&2
+		fi
+	else
+		if [ ! -d "${pkg_dir}/${pkg_name}/${pkg_version}" ]; then
+			echo "Version \`${pkg_version}' does not exist for package \`${pkg_name}'" >&2
+			echo -n "Available versions are: " >&2
+			${0} list ${pkg_name} >&2
+			exit 1
+		fi
+	fi
+	echo "${pkg_version}"
+	exit 0
+}
+
+# Performs a supplied function on each directory returned by map_dir.
+# On each directory returned, the function will be called with the parameters:
+# ${1} set to the absolute path to the source directory, and ${2} set to
+# the path to the target directory.
+# Input: ${1} - the function name to execute
+#        ${2} - the package name
+#        ${3} - the package version
+# Result: 0 if the supplied function succeeded for each directory, 1 otherwise.
+function for_each_mapped_dir ()
+{
+	for dir in `( find_dirs ${2} ${3} )`; do
+		dest=`( map_dir ${dir} )`
+		if [ "${dest}" != "" ]; then
+			( "${1}" "${pkg_dir}/${2}/${3}/${dir}" "${dest}" )
+			if [ ! $? -eq 0 ]; then exit 1; fi
+		fi
+	done
+}
+
+case "${command}" in
+	list)
+		if [ "${pkg_name}" == "" ]; then
+			cd ${pkg_dir}
+			for pkg_name in *; do
+				if [ -d ${pkg_dir}/${pkg_name} ]; then
+					echo -n "${pkg_name} "
+					cd ${pkg_name}
+					for version in *; do
+						echo -n "${version} "
+					done
+					echo
+					cd ..
+				fi
+			done
+			echo
+		else
+			( check_pkg_name ); if [ ! $? -eq 0 ]; then exit 1; fi
+			cd ${pkg_dir}/${pkg_name}
+			for version in *; do
+				echo -n "${version} "
+			done
+			echo
+		fi
+		;;
+	load)
+		( check_pkg_name ); if [ ! $? -eq 0 ]; then exit 1; fi
+		pkg_version=`( check_pkg_version )`; if [ ! $? -eq 0 ]; then exit 1; fi
+		do_load ()
+		{
+			mount -n -t unionfs -o "remount,add=:${1}=rw" none "${2}"
+		}
+		( for_each_mapped_dir "do_load" ${pkg_name} ${pkg_version} )
+		exit ${?}
+		;;
+	unload)
+		( check_pkg_name ); if [ ! $? -eq 0 ]; then exit 1; fi
+		pkg_version=`( check_pkg_version )`; if [ ! $? -eq 0 ]; then exit 1; fi
+		do_unload ()
+		{
+			mount -n -t unionfs -o "remount,del=${1}" none "${2}"
+		}
+		( for_each_mapped_dir "do_unload" ${pkg_name} ${pkg_version} )
+		exit ${?}
+		;;
+	test)
+		( check_pkg_name ); if [ ! $? -eq 0 ]; then exit 1; fi
+		pkg_version=`( check_pkg_version )`; if [ ! $? -eq 0 ]; then exit 1; fi
+		do_test ()
+		{
+			echo ${2} \<== ${1}
+		}
+		( for_each_mapped_dir "do_test" ${pkg_name} ${pkg_version} )
+		exit $?
+		;;
+	*)
+		if [ ! "${command}" == "" ]; then
+			echo "Command \`${command}' not understood"
+		fi
+		( print_usage )
+		exit 1
+		;;
+esac

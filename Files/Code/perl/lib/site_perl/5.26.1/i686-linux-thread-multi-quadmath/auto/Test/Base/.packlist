@@ -1,0 +1,6 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/Base.pm relocate_as=../../../../Test/Base.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/Base.pod relocate_as=../../../../Test/Base.pod
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/Base/Filter.pm relocate_as=../../../../Test/Base/Filter.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/Base/Filter.pod relocate_as=../../../../Test/Base/Filter.pod
+/UPM/Files/Code/perl/man/man3/Test::Base.3 relocate_as=../../../../../../../man/man3/Test::Base.3
+/UPM/Files/Code/perl/man/man3/Test::Base::Filter.3 relocate_as=../../../../../../../man/man3/Test::Base::Filter.3

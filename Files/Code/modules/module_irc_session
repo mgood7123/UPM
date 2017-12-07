@@ -1,0 +1,31 @@
+function irc_session () {
+  # Login phase
+  # User input
+  while true
+  do
+    IRC_message="$(cat input)"
+    export IRC_message
+    . ./modules/module_input
+env | grep IRC_ | sort | tr '\n' '\0' > ./Environment/module_irc_session.environment
+_zedlmt() { od -t x1 -w1 -v  | sed -n '
+    /.* \(..\)$/s//\1/
+    /00/!{H;b};s///
+    x;s/\n/\\x/gp;x;h'
+}
+_pidenv() { ps -p $1 >/dev/null 2>&1 &&
+        [ -z "${1#"$psrc"}" ] && . /dev/fd/3 ||
+        cat <&3 ; unset psrc pcat
+} 3<<STATE
+$( [ -z "${1#${pcat=$psrc}}" ] &&
+pcat='$(printf %%b "%s")' || pcat="%b"
+xeq="$(printf '\\x%x' "'=")"
+for x in $( _zedlmt <$1 ) ; do
+    printf "export %b=$pcat\n" "${x%%"$xeq"*}" "${x#*"$xeq"}"
+done)
+STATE
+_pidenv ${pcat=./Environment/module_irc_session.environment} >./Environment/module_irc_session.environment_sourcable
+#. ./Environment/module_irc_read.environment_sourcable 2>&1>&/dev/null
+  done
+  # Termination
+  printf "QUIT"
+}

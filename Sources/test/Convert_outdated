@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+fatal() { echo error: cannot embed $path into executable: $path does not exist; }
+objectconvert() {
+path=$1 && objectfile=$(echo $path | sed 's/.*\///') && mkdir Converted ; mkdir Converted/$objectfile ; cd Converted/$objectfile && object=$(objcopy --input binary --output elf64-x86-64 --binary-architecture i386 $path $objectfile.o -v | sed 's/.*to `//' | sed s/\'.*//) && start=$(nm $object | sed 's/.* _/_/' | grep start) && size=$(nm $object | sed 's/.* _/_/' | grep size) && end=$(nm $object | sed 's/.* _/_/' | grep end) && printf '
+#include <stdio.h>
+main()
+    {' > main.c
+printf '
+        // OBJECT START
+        extern char '"$start"';
+        extern char '"$size"'; // we keep this just in case we ever need it
+        extern char '"$end"';
+        char * p = &'"$start"';
+        FILE *fp;
+        fp = fopen("'"$objectfile.object"'", ("'"w+"'"));
+        while ( p != &'"$end"' ) fputc(*p++, fp); // credit for fputc(*p++, fp): flawless_snowflake from kik messenger
+        fclose(fp);
+        // OBJECT END
+        ' >> main.c
+printf '
+    }
+
+' >> main.c && cat ./main.c && gcc -g main.c $object && echo size of $path is $( wc -c < $path) && echo size of embedded $path is $(./a.out | wc -c) && declare -p path objectfile object start end
+}
+
+replacement=$(whereis $1 | cut -d ' ' -f2)
+
+path=$@ && if [ $(printf '%s\n' "$path" | grep -e ^"/") ]; then path=$path; elif [ $(printf '%s\n' "$e" | grep ^"./") ]; then path=$path; elif [[ -f $replacement ]]; then : > /dev/null ; else fatal ; exit; fi && declare -p path && if [[ -f $path ]] ; then objectconvert $path ; elif [[ -f $replacement ]] ; then echo Warning: $path does not exist however $replacement does, using $replacement && objectconvert $replacement ; else fatal ; fi && if [[ -f $path ]] ; then printf "path $(ls -Ls $path)\nobject $(ls -Ls $object)\nreplacement $(ls -Ls $replacement)\noutput $(ls -Ls ./$object'bject') \n" ; fi

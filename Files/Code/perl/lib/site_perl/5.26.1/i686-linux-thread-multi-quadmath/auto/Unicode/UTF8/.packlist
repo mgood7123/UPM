@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Unicode/UTF8.pm relocate_as=../../../Unicode/UTF8.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Unicode/UTF8.pod relocate_as=../../../Unicode/UTF8.pod
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Unicode/UTF8/UTF8.so relocate_as=UTF8.so
+/UPM/Files/Code/perl/man/man3/Unicode::UTF8.3 relocate_as=../../../../../../../man/man3/Unicode::UTF8.3

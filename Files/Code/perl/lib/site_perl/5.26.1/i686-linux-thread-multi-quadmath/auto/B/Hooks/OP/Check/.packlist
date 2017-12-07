@@ -1,0 +1,5 @@
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/B/Hooks/OP/Check.pm relocate_as=../../../../../B/Hooks/OP/Check.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/B/Hooks/OP/Check/Install/Files.pm relocate_as=../../../../../B/Hooks/OP/Check/Install/Files.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/B/Hooks/OP/Check/Install/hook_op_check.h relocate_as=../../../../../B/Hooks/OP/Check/Install/hook_op_check.h
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/B/Hooks/OP/Check/Check.so relocate_as=Check.so
+/UPM/perl-5.26.1/dir./perl/man/man3/B::Hooks::OP::Check.3 relocate_as=../../../../../../../../../man/man3/B::Hooks::OP::Check.3

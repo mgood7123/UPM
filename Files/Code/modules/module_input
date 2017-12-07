@@ -1,0 +1,129 @@
+set -o pipefail
+#         self.special_chars = {
+#             'white': '\x0300', 'black': '\x0301', 'blue': '\x0302',
+#             'navy': '\x0302', 'green': '\x0303', 'red': '\x0304',
+#             'brown': '\x0305', 'maroon': '\x0305', 'purple': '\x0306',
+#             'orange': '\x0307', 'olive': '\x0307', 'gold': '\x0307',
+#             'yellow': '\x0308', 'lightgreen': '\x0309', 'lime': '\x0309',
+#             'teal': '\x0310', 'cyan': '\x0311', 'lightblue': '\x0312',
+#             'royal': '\x0312', 'lightpurple': '\x0313', 'pink': '\x0313',
+#             'fuchsia': '\x0313', 'grey': '\x0314', 'gray': '\x0314',
+#             'lightgrey': '\x0315', 'silver': '\x0315',
+#             # Even more special...
+#             'bold': '\x02', 'b': '\x02', 'italic': '\x1d', 'i': '\x1d',
+#             'reset': '\x0f', 'r': '\x0f', 'clear': '\x03', 'c': '\x03',
+#             'reverse': '\x16', 'underline': '\x1f', 'u': '\x1f'
+
+. ./modules/module_array
+. ./modules/module_interperator
+# declare -p IRC_message
+#    WHOWAS Mermaid 9                ; return at most, the 9 most recent
+#                                    entries in the nick history for
+#                                    "Mermaid";
+if [[ "$IRC_message" == "/"* ]]; then
+        if [[ "$IRC_message" == "/add "* ]]; then
+add()
+    {
+        shift 1
+        ch=($@)
+        chl="$(cat ./modules/autojoin)"
+        for i in ${ch[@]}
+            do
+                chl+="$(echo -e "\n$i")"
+                chl="$(echo "$chl" | sort -u)"
+        done
+        declare -p chl
+        echo "$chl" > ./modules/autojoin
+        echo "Channels Added and Sorted" >&1        
+    }
+add $IRC_message
+        elif [[ "$IRC_message" =~ "/checkadmin "* ]]; then
+            adm() { admin_info=$(echo "who $2" >&1 >&4 ; wait) ; }
+            adm $IRC_message
+            declare -p admin_info
+        elif [[ "$IRC_message" == "/channel" ]]; then
+            export IRC_channels=($(printf '%b\n' ${IRC_channels[@]} | sort -u))
+            export IRC_channels=($(for i in ${!IRC_channels[@]} ; do echo "${IRC_channels[i]}[$i]" | sed "s/${IRC_channelsoriginal[i]}.*/${IRC_channelsoriginal[i]}[$i]/" | sed "s/\[.*/[$i]/" | tr '\n' ' ' ; done))
+            printf '%b' "${IRC_RED}Current Channel is $IRC_channel\n${IRC_RED}Available channels are $(declare -p IRC_channels IRC_channel_previous | sed 's/declare .* IRC_channels=(//' | sed 's/declare .* IRC_channel_previous=(//' | sed 's/)//')${IRC_Color_Special}\n" >&2 #irc output
+        elif [[ "$IRC_message" == "/join "* ]]; then
+            if [[ -z $IRC_channel_previous ]] ; then
+                IRC_channel_previous[0]="$IRC_channel"
+            else
+                IRC_channel_previous+=("$IRC_channel")
+            fi
+            export IRC_channel="$(printf "$IRC_message" | grep "/join" | sed 's/.*\/join //')"
+            arrayadd "$IRC_channel" >&2
+            arrayget "$IRC_channel" >&2
+            arrayjoin "$IRC_channel" >&2
+            echo "$IRC_message" | sed 's/^\///g' >&4
+        elif [[ "$IRC_message" == "/nick "* ]]; then
+            export IRC_user="$(printf "$IRC_message" | grep "/nick" | sed 's/.*\/nick //')"
+            export IRC_user_target="$(printf "$IRC_message" | grep "/nick" | sed 's/.*\/nick //')"
+            export IRC_users+=("$(printf "$IRC_message" | grep "/nick" | sed 's/.*\/nick //')")
+            echo "$IRC_message" | sed 's/^\///g' >&4
+        elif [[ "$IRC_message" == "/#"* ]]; then
+                if [[ -z $IRC_channel_previous ]] ; then
+                    IRC_channel_previous[0]="$IRC_channel"
+                else
+                    IRC_channel_previous+=("$IRC_channel")
+                fi
+                export IRC_channela=$(printf "$IRC_message" | grep -o '#[^ ]*' | head -1)
+                export IRC_message=$(printf "$IRC_message" | sed 's_/#[^ ]*__' | sed 's/^ //')
+                if [[ $IRC_message ]]
+                    then
+                        echo "/join $IRC_channela" | sed 's/^\///g' >&4
+                        arrayadd "$IRC_channela" >&2
+                        arrayget "$IRC_channela" >&2
+                        arrayjoin "$IRC_channela" >&2
+                        echo -e "PRIVMSG $IRC_channela :$IRC_message" | sed 's/^\///g' >&4
+                        export IRC_self_b=$(printf '%b' "${IRC_Color_Special}<${IRC_Color_White}${IRC_BOLD}$IRC_channela${IRC_Color_Special}> <${IRC_RED}$IRC_user${IRC_Color_Special}> $IRC_message\n")
+                        export IRC_self_b_no_color=$(printf '%b' "<$IRC_channela> <$IRC_user> $IRC_message\n")
+                        echo "$IRC_self_b" >&2 # irc_output
+                    else
+                        echo "/join $IRC_channela" | sed 's/^\///g' >&4
+                        arrayadd "$IRC_channela" >/dev/null
+                        arrayget "$IRC_channela" >/dev/null
+                        arrayjoin "$IRC_channela" >&2
+                fi
+        elif [[ "$IRC_message" == "/me "* ]]; then
+            export IRC_me="$(printf "$IRC_message" | grep "/me" | sed 's/.*\/me //')"
+            export IRC_me_+=("$(printf "$IRC_message" | grep "/me" | sed 's/.*\/me //')")
+            echo -e "PRIVMSG $IRC_channel :\x01ACTION $IRC_me \x01" | sed 's/^\///g' >&4
+            echo "${IRC_Color_Yellow}* ${IRC_RED}$IRC_user${IRC_Color_Yellow} $IRC_me${IRC_Color_Special}"
+        elif [[ "$IRC_message" == "/modules" ]]; then
+            . ./modules/module_tracker
+            echo "$IRC_modules_color" >&2
+        elif [[ "$IRC_message" == "/info" ]]; then
+            echo "PIDs: SESSION_PID=$IRC_SESSION_PID, READ_PID=$IRC_READ_PID, channel='$IRC_channel', tty=$(tty), user=$IRC_user" >&2
+        elif [[ "$IRC_message" == "/pid" ]]; then
+            echo "PIDs: SESSION_PID=$IRC_SESSION_PID, READ_PID=$IRC_READ_PID" >&2
+        elif [[ "$IRC_message" == "/tty" ]]; then
+            echo "tty=$(tty)" >&2
+        elif [[ "$IRC_message" == "/!"* ]]; then
+        execute &
+        elif [[ "$IRC_message" == "/languages" ]] ; then
+            echo "The languages/interperators i understand are: $(cat ./modules/module_interperator | grep "interperator=" | sed 's/ //g' | sed 's/.*\///g' | sed 's/ //g' | sed 's/interperator=//g' | sed 's/gcc/C/g' | sed 's/g++/C++/g' | sort -u | sed 's/$/,/g' | sed 's/-static//g' | tr '\n' ' ' | sed 's/, $//g')" >&2
+        elif [[ "$IRC_message" == "/bash_cmd"* ]]; then
+            declare -p IRC_command IRC_commands >&2
+        elif [[ "$IRC_message" == "/leave"* || "$IRC_message" == "/part"* ]]; then
+        if [[ -z "$IRC_channel_previous" || ${#IRC_channel_previous[@]} == 1 ]]
+            then
+                echo "error: cannot leave $IRC_channel, please join a new channel then type /$IRC_channel followed by /leave"
+            else
+                echo "/PART $IRC_channel"  | sed 's/^\///g' >&4
+                IRC_channel="${IRC_channel_previous[-2]}"
+                unset IRC_channel_previous[-1]
+            fi
+        ####### on /part, revert to previous channel
+        #######
+        else
+            echo "$IRC_message" | sed 's/^\///g' >&4
+        fi
+    else
+        echo -e "PRIVMSG $IRC_channel :$IRC_message" >&4 #irc input
+        export IRC_self_b=$(echo -e "${IRC_Color_Special}<${IRC_Color_White}${IRC_BOLD}$IRC_channel${IRC_Color_Special}> <${IRC_RED}$IRC_user${IRC_Color_Special}> $IRC_message")
+        export IRC_self_b_no_color=$(echo -e "<$IRC_channel> <$IRC_user> $IRC_message")
+        echo -e "$IRC_self_b " >&2 #irc output
+		send_message '$IRC_message' &
+    fi
+        printf "\r" >&1

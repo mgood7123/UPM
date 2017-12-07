@@ -1,0 +1,16 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/File/ShareDir.pm relocate_as=../../../../../Test/File/ShareDir.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/File/ShareDir/Dist.pm relocate_as=../../../../../Test/File/ShareDir/Dist.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/File/ShareDir/Module.pm relocate_as=../../../../../Test/File/ShareDir/Module.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/File/ShareDir/Object/Dist.pm relocate_as=../../../../../Test/File/ShareDir/Object/Dist.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/File/ShareDir/Object/Inc.pm relocate_as=../../../../../Test/File/ShareDir/Object/Inc.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/File/ShareDir/Object/Module.pm relocate_as=../../../../../Test/File/ShareDir/Object/Module.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/File/ShareDir/TempDirObject.pm relocate_as=../../../../../Test/File/ShareDir/TempDirObject.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Test/File/ShareDir/Utils.pm relocate_as=../../../../../Test/File/ShareDir/Utils.pm
+/UPM/Files/Code/perl/man/man3/Test::File::ShareDir.3 relocate_as=../../../../../../../../man/man3/Test::File::ShareDir.3
+/UPM/Files/Code/perl/man/man3/Test::File::ShareDir::Dist.3 relocate_as=../../../../../../../../man/man3/Test::File::ShareDir::Dist.3
+/UPM/Files/Code/perl/man/man3/Test::File::ShareDir::Module.3 relocate_as=../../../../../../../../man/man3/Test::File::ShareDir::Module.3
+/UPM/Files/Code/perl/man/man3/Test::File::ShareDir::Object::Dist.3 relocate_as=../../../../../../../../man/man3/Test::File::ShareDir::Object::Dist.3
+/UPM/Files/Code/perl/man/man3/Test::File::ShareDir::Object::Inc.3 relocate_as=../../../../../../../../man/man3/Test::File::ShareDir::Object::Inc.3
+/UPM/Files/Code/perl/man/man3/Test::File::ShareDir::Object::Module.3 relocate_as=../../../../../../../../man/man3/Test::File::ShareDir::Object::Module.3
+/UPM/Files/Code/perl/man/man3/Test::File::ShareDir::TempDirObject.3 relocate_as=../../../../../../../../man/man3/Test::File::ShareDir::TempDirObject.3
+/UPM/Files/Code/perl/man/man3/Test::File::ShareDir::Utils.3 relocate_as=../../../../../../../../man/man3/Test::File::ShareDir::Utils.3

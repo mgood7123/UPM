@@ -1,0 +1,7 @@
+/UPM/Files/Code/perl/bin/json_xs relocate_as=../../../../../../../bin/json_xs
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/JSON/XS.pm relocate_as=../../../JSON/XS.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/JSON/XS/Boolean.pm relocate_as=../../../JSON/XS/Boolean.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/JSON/XS/XS.so relocate_as=XS.so
+/UPM/Files/Code/perl/man/man1/json_xs.1 relocate_as=../../../../../../../man/man1/json_xs.1
+/UPM/Files/Code/perl/man/man3/JSON::XS.3 relocate_as=../../../../../../../man/man3/JSON::XS.3
+/UPM/Files/Code/perl/man/man3/JSON::XS::Boolean.3 relocate_as=../../../../../../../man/man3/JSON::XS::Boolean.3

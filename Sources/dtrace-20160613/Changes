@@ -1,0 +1,3673 @@
+Mon Jan 11 21:17:16 2016  fox
+
+     868* driver/intr.c
+        Handle 3.10 (centos 7) kernels for store_gdt.
+
+Mon Dec 28 19:47:46 2015  fox
+
+     867* driver/dtrace.c
+          driver/dtrace_linux.c
+          driver/fasttrap_isa.c
+          Fixes for fasttrap (pid provider):
+
+	  dtrace -n pidXXXX:::entry
+
+	  will work but *WILL* cause any fork/cloned child to terminate
+	  with a SIGTRAP event because we dont latch onto the children
+	  and remove the embedded breakpoints. (Needs more R&D to determine
+	  how to do this in Linux).
+
+	  This should work, but if it fails, send me a dmesg output -
+	  the patching of the page tables may/will fail when allocating
+	  a private buffer - but this may depend on VM, Xen or real HW.
+
+     866* README.md
+          driver/intr_x86-64.S
+          driver/systrace.c
+          driver/systrace_asm.S
+          driver/x_call.c
+          libdtrace/drti.c
+          libproc/common/Psymtab.c
+          tools/load.pl
+          tools/mkport.pl
+          tools/mkrelease.pl
+          Fix for system_unbound_workq vs system_unbound_wq.
+	  Fix silly in Psymtab.c leading to SIGSEGV.
+
+Tue May 19 21:20:33 2015  fox
+
+     865* driver/prov_proc.c
+         Fix for 3.18/19 kernels (not sure I got the change right - 3.16
+	 is not affected, but 3.19 - Ubuntu 15.04 - is).
+        
+Tue Mar  3 22:33:03 2015  fox
+
+     864* README
+          Status.txt
+          archive.sh
+          cmd/ctfconvert/barrier.c
+          cmd/ctfconvert/makefile
+          driver/Makefile
+          driver/ctl.c
+          driver/dtrace.c
+          driver/dtrace_asm.c
+          driver/dtrace_linux.c
+          driver/dtrace_linux.h
+          driver/fbt_linux.c
+          driver/instr_linux.c
+          driver/intr.c
+          driver/intr_x86-64.S
+          driver/prov_proc.c
+          driver/systrace.c
+          driver/systrace_asm.S
+          driver/taskq.c
+          driver/toxic.c
+          driver/x_call.c
+          driver-kmem/Makefile
+          driver-kmem/dtrace_kmem.c
+          driver-kmem/mk
+          libdtrace/dt_names.c
+          makefile
+          s/README
+          s/all
+          s/clone
+          s/execve
+          s/fork
+          s/iopl
+          s/rt_sigreturn
+          s/sigaltstack
+          s/sigreturn
+          s/vfork
+          s/vm86
+          s/z
+          s/z1
+          s/z11
+          s/z2
+          s/z3
+          s/z4
+          s/z5
+          s/z6
+          s/z7
+          s/z8
+          s/z9
+          tests/syscalls.c
+          tests/tests.d
+          tools/build.pl
+          tools/kcore.c
+          tools/load.pl
+          tools/mkdriver.pl
+          tools/mkport.pl
+          tools/mksyscall.pl
+          tools/sudo
+          tools/tests.pl
+          Archive: 1.0155
+
+Wed Aug 20 20:59:48 2014  fox
+
+     863* driver/systrace_asm.S
+          Fix dup symbols for kernels < 3.7.
+
+     862* cmd/ctfconvert/barrier.c
+          cmd/ctfconvert/barrier.h
+          cmd/ctfconvert/ctfmerge.c
+          cmd/ctfconvert/makefile
+          Properly build ctfmerge. We were generating two ctfconvert's.
+
+Tue Aug 19 22:36:14 2014  fox
+
+     861* cmd/ctfconvert/makefile
+          Build ctfmerge.
+
+Fri Aug 15 23:25:42 2014  fox
+
+     860* driver/ctl.c
+          Fix for 3.16.1 kernel and confusion of uid_t vs kuid_t.
+
+Thu Aug  7 21:23:14 2014  fox
+
+     859* .release
+          Add missing driver/systrace_asm.S to the release.
+
+Wed Aug  6 22:22:40 2014  fox
+
+     858* .release
+          Status.txt
+          driver/systrace.c
+	  Fix silly typo left in from debugging 3.7 kernels.
+
+Sat Aug  2 11:36:57 2014  fox
+
+     857* driver/Makefile
+          driver/systrace.c
+          driver/systrace_asm.S
+          tests/syscalls.c
+          tools/load.pl
+          Fix the ptregs issues on >= 3.7 kernels. sys_execve/x32 has
+	  moved to compat_sys_execve.
+
+Sun Jun  8 13:52:17 2014  fox
+
+     856* .release
+          README
+          cmd/ctfconvert/makefile
+          cmd/ctfconvert/strtab.c
+          tools/get-deps.pl
+	  Dont install openssh-server unless its "me".
+
+Sat Apr 12 20:47:38 2014  fox
+
+     855* 
+          /home/fox/src/dtrace/driver/dtrace_asm.c
+        dtrace_asm.c: Avoid arch_local_irq_save/restore due to older kernels.
+
+Sun Mar 23 21:57:52 2014  fox
+
+     854* .release
+          archive.sh
+          Archive: 1.0153
+
+     853* .release
+          README
+          driver/dtrace_asm.c
+          driver/dtrace_linux.c
+          driver/mutex.c
+          driver/prov_common.c
+          driver/xen.c
+          libdtrace/dt_proc_linux.c
+          librtld/rtld_db.c
+          linux/rtld_db.h
+          tools/get-deps.pl
+        dtrace_asm.c: Avoid CLI/STI to avoid issue on Xen kernels. 
+	   (Ubuntu 12.04).
+	Minor changes elsewhere - dt_proc_linux.c is an attempt to 
+	make the "-c" and pid provider work when we launch a
+	process but its not yet finished.
+
+Fri Jan  3 16:11:59 2014  fox
+
+     852* driver/dtrace_linux.c, driver/dtrace_linux.h, driver/prov_proc.c:
+         Additional uid_t/kuid_t fixes.
+
+     851* driver/ctl.c, driver/dtrace.c, driver/dtrace_linux.h:
+          More fixes for uid_t/kuid_t.
+
+     850* driver/ctl.c: Fix for 3.8.0 kernel kuid_t
+
+Sun Nov  3 14:34:37 2013  fox
+
+     849* Archive: 1.0152
+
+     848* tools/readelf.pl: New/experimental script
+
+     847* driver/Makefile: Use -gdwarf-2 debug info so we work on
+          Ubuntu 13.10/gcc-4.8 (else mkctf.sh dies).
+
+Sat Nov  2 18:14:37 2013  fox
+
+     846* ctfconvert/dwarf.c: Silly hack for DWARF-4 issue. I still cant
+          figure out libdwarf vs libdw and how they not only evolve but
+	  the features dont allow one to be implemented from another.
+	  This is a fricking mess.
+
+Sun Oct 20 10:48:45 2013  fox
+
+     845* Archive: 1.0151
+
+Sat Oct 19 17:47:23 2013  fox
+
+     844* driver/dtrace_linux.c: Fix for /proc/dtrace/trace on 3.11 kernel
+          which doesnt like big blobs of output.
+
+Fri Oct 18 22:51:33 2013  fox
+
+     843* driver/systrace.c: Dont GPF on an amd64 kernel with no
+          32-bit syscalls support when catting /proc/dtrace/syscall.
+
+Thu Oct 17 23:20:00 2013  fox
+
+     842* sdt_linux.c, prov_common.c, dtrace_linux.c: Support for
+          dynamic/private SDT probes in loadable modules.
+
+Sat Oct 12 08:07:40 2013  fox
+
+     841* intr.c: Fix for 3.11 kernel (store_gdt)
+
+Sat Aug  3 21:33:35 2013  fox
+
+     840* driver/proc_compat.h: create_proc_entry only if < 2.6.18 kernel.
+          (Centos 5.5 fix)
+
+Thu Jul 11 23:00:12 2013  fox
+
+     839* driver/vminfo.c: Fix for 3.9 kernel.
+
+Sun Jun 23 21:27:38 2013  fox
+
+     838* libproc/common/Psymtab.c: Avoid core dump on "dtrace -c ls".
+          Missing prototype. Cleaned up some other compiler warnings.
+
+	  "dtrace -c ls" still doesnt work.
+
+Sat Jun 22 18:47:16 2013  fox
+
+     837* libdtrace/makefile: Create drti.o with -fPIC to avoid a build
+          error with "ruby".
+
+Thu May 30 23:45:21 2013  fox
+
+     836* tools/mkport.pl: Better detection for 
+          HAVE_ELF_GETSHDRSTRNDX. Without this, Brendan Giggs
+	  "struct sock" test broke.
+	  http://sourceforge.net/apps/trac/elftoolchain/wiki/LibElfIncompatibilityRedHatElfUtils
+	  has the gory details - they changed (fixed) the return code
+	  for elf_getshstrndx which is annoying since we need to know the version
+	  of elfutils to see which API it conforms to. I am seriously unimpressed
+	  that sprawled through the releases - it was a broken API change and
+	  it is a broken API change. WTF are two dyslexically impossible to
+	  read function names used?
+
+Tue May 28 23:10:14 2013  fox
+
+     835* driver/dtrace_linux.c: New fix for dtrace_gethrtime(). For kernels
+          which expose native_sched_clock(), use that for nsec timer accuracy.
+
+Mon May 27 20:49:14 2013  fox
+
+     834* driver/intr_x86-64.S: Fix for when CONFIG_PARAVIRT is not turned on.
+
+Sat May 25 17:05:25 2013  fox
+
+     833* dtrace_linux.c: Fix for dtrace_gethrtime() for later kernels
+          where global 'xtime'/'xtime_cache' isnt available.
+
+Sun May  5 17:03:01 2013  fox
+
+     832* ctfconvert/dwarf.c: Allow DWARF-2 to DWARF-4. This is possibly
+          dangerous without code changes and proper validation.
+
+Sat May  4 19:17:55 2013  fox
+
+     831* cmd/ctfconvert: Some partial changes to move to libdw.
+
+     830* driver/intr.c: Fix FBT probes for i386/x64 due to bug put in
+          for the __arm__ port.
+
+     829* driver/systrace.c: Fix for >=3.8 kernels, since they went and
+          hid sys_call_table (i386/amd64 only - not ARM, yet).
+
+Fri May  3 23:09:37 2013  fox
+
+     828* cmd/convert/dwarf.c: Allow for 
+          struct fred {} xx[10];
+	  (struct lock_class_key)
+
+Thu May  2 22:25:29 2013  fox
+
+     827* Archive: 1.0148
+
+Wed May  1 21:06:11 2013  fox
+
+     826* driver/systrace.c: Fix stupid typo for x86_64 whereby
+          syscall:::return probes may not fire if i386 syscall
+	  entry doesnt exist. (I said it was a stupid typo).
+
+Sun Apr 28 08:59:18 2013  fox
+
+     825* Archive: 1.0147
+
+     824* driver/systrace.c: Re-enable syscall::: for x86 arch.
+
+Tue Apr 23 22:32:39 2013  fox
+
+     823* tools/load.pl: Fix for missing ia32_sys_call_table on amd64
+          kernel.
+
+Sun Mar 17 07:13:40 2013  fox
+
+     822* libdtrace/dt_subr.c: Fix for sysconf(_SC_CPUID_MAX) returning 1
+          more than the actual cpus (this is a 'max' not a counter).
+
+     821* driver/taskq.c: Fixes for ARM.
+
+     820* driver/dtrace_linux.c: Be careful when kernel not compiled
+          with CONFIG_PROFILE (ARM) as we would die on a driver reload.
+
+     819* driver/dtrace_linux.c: Fix xtime_cache_ptr so that
+          the timestamp function works on Ubuntu 12.04 (or any >= 3.4
+	  kernel).
+
+Wed Mar  6 22:49:14 2013  fox
+
+     818* dtrace.c: dtrace_probe: When checking for Xen probes with
+     interrupts disabled, be careful of deref of null ptr.
+
+Fri Mar  1 21:53:13 2013  fox
+
+     817* linux/sys/regset.h: Fix for i386 build after rearranging for
+          ARM.
+
+Thu Feb 21 23:25:12 2013  fox
+
+     816* Various: Changes to compile on 3.6.8/ARM/RaspberryPi kernel.
+          ARM is still no good to run. This build *should* compile
+	  apart from the very last section on divmod64.c processing,
+	  but am releasing to keep current. Theres still a lot
+	  of execution time work to do.
+
+Mon Feb 11 21:26:31 2013  fox
+
+     815* libdtrace/dt_link.c: Start to implement dt_modtext for ARM.
+
+     814* cmd/dtrace/dtrace.c: Sign extension fix for ARM/getopt.
+
+     813* driver/dtrace_isa.c: Fix use of previous_esp because it
+          disappears in later kernels.
+
+     812* driver/dcpc.c: Fix #elseif issue.
+
+Sun Feb 10 00:43:12 2013  fox
+
+     811* Various: User-mode DTrace compiles on ARM (dtrace cmd runs
+          but does not currently get passed the USDT behavior); some
+	  stuff stubbed out in libproc.
+
+	  Kernel does not compile on ARM at present.
+
+     810* libdtrace/dt_link.c: Fix/placeholders for ARM.
+
+     809* linux/sys/elf_arm.h: New file.
+
+     808* tests/makefile: Build sys32 for ARM.
+
+     807* tools/libgcc.pl: Dont do any checks if on ARM.
+
+Tue Feb  5 21:42:17 2013  fox
+
+     806* driver/dtrace_linux.c: Fix "pte" unref for <=2.6.24 kernels.
+
+     805* driver/xen.c: Avoid invoking Xen include file if we dont have Xen.
+
+     804* driver/vminfo.c: Conditionalise UNEVICTABLE_MLOCKFREED for 3.7
+
+Mon Feb  4 21:19:52 2013  fox
+
+     803* driver/dtrace_linux.c: Fix for 2.6.18 kernel caused by
+          Xen call to set_pte_atomic.
+
+     802* linux/sys/regset.h: Fix for greg_t conflict with 3.7 kernel.
+
+     801* driver/xen.c: Fix compile issues on 2.6.32 which lack the Xen interface
+          we need.
+
+Fri Jan 25 21:30:43 2013  fox
+
+     800* bug.sh: Remove the dtrace@crisp.demon.co.uk address
+
+Thu Jan 17 22:13:57 2013  fox
+
+     799* README: Fix one of the github addresses.
+
+Wed Dec 19 22:50:45 2012  fox
+
+     798* libdtrace/dt_open.c: Change /usr/ccs/lib/cpp to "cpp".
+
+Mon Dec 10 22:23:10 2012  fox
+
+     797* driver/intr.c: 'Fix' for i386 to avoid use of undef structures in
+          Xen hypercall. Not verified. But Apurba reported the issue.
+
+     796* libdtrace/dt_module.c: Fix for core dump on i386 when doing usdt.
+
+Fri Nov 30 19:45:05 2012  fox
+
+     795* intr.c: Fix for xen on i386 (not currently supporting this).
+
+Thu Nov 29 20:53:05 2012  fox
+
+     794* Add 'safe' support - make it work, but turn off by default.
+          You can see the setting in /proc/dtrace/stats. 
+
+	  echo safe=1 >/proc/dtrace/stats
+
+	  to turn it on - in which case, probes whilst interrupts are
+	  disabled, are silently dropped.
+
+Tue Nov 27 22:44:19 2012  fox
+
+     793* driver/dtrace.c, driver/dtrace_linux.c: Add safe mode support,
+          but doesnt seem to fire. (See /proc/dtrace/stats to watch
+	  the counters for dropped/safe probes).
+
+     792* libdtrace/dt_module.c: Ensure we give kernel stack
+          traces even if we dont load linux.ctf file.
+
+Mon Nov 26 23:18:25 2012  fox
+
+     791* driver/dtrace_isa.c: Avoid GPF when doing
+           dtrace -n syscall:::'{stack();}'
+	  since we have no stack frame to play with. Also, add
+	  GPF protection in case we walk off end of stack.
+
+Sun Nov 25 20:13:07 2012  fox
+
+     790* driver/dtrace_isa.c: Fix for stack() - we could panic the
+          kernel, or for some kernels, not provide a stack.
+
+     789* driver/intr.c, driver/intr_x86-64.S, driver/xen.c, driver/x_call.c
+          Attempt to get Xen IPI to work, but it wont. This means
+	  using FBT or fast firing probes can result in kernel panics.
+
+Tue Nov 13 21:59:44 2012  fox
+
+     788* driver/intr.c, driver/intr_x86-64.S: Fix Xen interrupt
+          patching, and conditionalise/verify we can compile and
+	  run on non-Xen kernels.
+
+Fri Nov  9 22:55:23 2012  fox
+
+     787* driver/intr_x86-64.S: Fix for Xen interrupts; handle
+          kernel traps properly for passthru. (fbt -- int3 and int1
+	  now appear to work properly).
+
+Sun Nov  4 21:35:49 2012  fox
+
+     786* taskq.c, dtrace_linux.c: Avoid GPF if we directly load the
+          driver.
+
+     785* driver/intr.c: Updates for Xen compatibility.
+
+Sat Oct 20 22:29:22 2012  fox
+
+     784* driver/intr.c: Fix for CONFIG_PARAVIRT (Amazon EC2 instance)
+          Dont inline sgdt/sidt if in paravirt mode - the instructions
+	  are not valid.
+
+     783* driver/*: Add wp_disable/wp_enable calls and stop using
+          memory_set_rw to turn off write protected pages as this
+	  doesnt work in virtualised kernels (Amazon). Thanks
+	  to Eric Chaves for giving me access to an EC2 instance
+	  to debug the issues here.
+
+     782* driver/dtrace.c, libdtrace/dt_open.c dt_names.c, etc/io.d
+          Add initial support for the fds[] array. The call of
+	  d_path() function is not done in a mutex free environment.
+	  If you use this on the read/write/... syscalls, all should be
+	  well, but calling it from low level context could deadlock
+	  the CPU. This is an initial experiment.
+
+	  Comment out the io.d stuff because it may cause dtrace to
+	  fail on hosts where we dont have the full linux.ctf file.
+
+Sun Oct 14 21:54:24 2012  fox
+
+     781* libdtrace/dt_parser.c: Allow use of variables stored
+          in the linux-`uname -r`.ctf file (eg cur_thread) without
+	  prefixing with "linux`..."
+
+     780* driver/ctf_struct.c: Add <linux/fdtable.h> for etc/io.d
+
+Tue Oct  9 22:07:16 2012  fox
+
+     779* ctf_struct.c: Add support for <linux/migrate.h> which can
+          cause ctfconvert to fail due to a missing structure(?)
+	  (Dan Mick)
+
+     778* tools/mkport.pl: Add support for HAVE_LINUX_MIGRATE_H
+
+Thu Aug 23 07:47:40 2012  fox
+
+     777* tools/mkport.c, libproc/common/Pcontrol.c:
+          Fix for PTRACE_O_TRACEEXEC which may not exist
+	  in <sys/ptrace.h> (Centos 5.3).
+
+     776* driver/x_call.c: Fix for IPI on archlinux-3.4/i386
+
+Wed Aug 22 23:57:50 2012  fox
+
+     775* driver/dtrace_linux.c, tools/load.pl: Remove some of the 
+     	  legacy symbols as we dont need them anymore.
+
+Mon Aug 20 22:03:03 2012  fox
+
+     774* driver/fbt_linux.c: Better fix for skipping .init section
+          of drivers loaded after dtrace - avoids paniccing if
+	  we probe on them (eg 'dtrace -n fbt:isofs::').
+
+     773* driver/signal.c: Put in the missing assembler code for i386.
+
+Sun Aug 19 16:05:01 2012  fox
+
+     772* scripts/dt.pl: Rename to dt.
+
+     771* scripts/dt.pl: Add 'dt func <pid>'
+
+     770* archive: 1.0145
+
+     769* libproc/common/Pcontrol.c: Some changes to Pxcreate to handle
+          parent/child sync with a forked child from 'dtrace -c cmd'.
+
+Sat Aug 18 16:15:47 2012  fox
+
+     768* driver/signal.c, fasttrap_isa.c, dtrace_subr.c, and others:
+          Intercept process signal delivery. If we are inside the
+	  scratch area for the PID provider, reset PC to the original
+	  instruction. This stops user app core dumping on return from
+	  a signal handler because we would return to the scratch area
+	  but the scratch area will most likely be overwritten with
+	  a later instruction.
+
+Fri Aug 17 08:46:57 2012  fox
+
+     767* driver/x_call.c: Fix for Debian-6 - find any apic outlet to
+          invoke.
+
+     766* tools/mksyscall.pl: Fix for Debian-6.
+
+     765* systrace.c: Fixes for Debian-6.
+
+Sat Aug 11 10:05:56 2012  fox
+
+     764* fasttrap_isa.c: Fix the last issue properly - 2 styles
+          of indexed instructions werent being handled
+	  properly. Now they are.
+
+     763* archive: 1.0144
+
+Thu Aug  9 22:48:18 2012  fox
+
+     762* fasttrap_isa.c, fasttrap.c: Fix handling of 
+             41 ff 14 c4             callq  *(%r12,%rax,8)
+	  instruction.
+
+	  Add private page for the scratch buffer trampoline.
+
+Mon Aug  6 20:56:11 2012  fox
+
+     761* Archive: 1.0143
+
+     760* driver/systrace.c: Fix for 32b binaries on 64b kernel for
+          Centos/RedHat releases.
+
+Sun Aug  5 11:50:41 2012  fox
+
+     759* tools/mkport.h: Fix for FUNC_DUMP_TRACE_ARGS on centos5.6.
+
+     758* dtrace_asm.c: dtrace_casptr: Add a check that target is writable
+          and avoid paniccing kernel when it isnt (eg syscall tracing,
+	  caused by mem_set_writable code not working). Hm. Undo
+	  this change - we can get deadlock if we trigger a violation.
+	  Or something else - not sure what it is.
+
+     757* fasttrap_isa.c, dtrace_linux.c: When patching in PID provider
+          instructions, ensure page is executable. 
+	  Centos5.3 2.6.18-128.el5 fix
+
+Sat Aug  4 15:16:00 2012  fox
+
+     756* cmd/ctfconvert: Doesnt depend on -lbfd
+
+     755* libdtrace/dt_link.c: Allow us to avoid deleting the temp file.
+          Fix file perms issue.
+
+     754* libdtrace/dt_subr.c: dt_alloc: Use calloc() and not malloc()
+          as this can cause bad ELF file generation.
+
+     753* linux/sys/regset.h: Reorder the amd64 registers to match
+          the interrupt trap, so that single stepping pid probes work
+	  properly.
+
+     752* driver/fasttrap.c: Significant speed up for /proc/dtrace/fasttrap.
+          Not ideal or linear, but better than before.
+
+Fri Aug  3 11:40:18 2012  fox
+
+     751* driver/intr_x86-64.S, intr_x86-32.S: Dont corrupt RAX register on 
+          an INT3 trap. Was breaking pid provider/fasttrap.
+
+Thu Aug  2 08:25:51 2012  fox
+
+     750* driver/x_call.c: xcall_init() Ensure xcalls[] is setup even
+          if no APIC (Centos 5.5 issue).
+
+Wed Aug  1 15:24:01 2012  fox
+
+     749* libproc/common/Psymtab.c: Fix for _dl_initial_error_catch_tsd on
+          Centos 5.3.
+
+     748* driver/taskq.c: Fix for centos 5.3 (2.6.18-129) where invoking
+          workqueue callback derefs null ptr.
+
+     747* cmd/ctfconvert/tdata.c: Avoid core dump in tdesc_layouthash
+          if we have a struct/union with no members (fwd def/ref?)
+
+Tue Jul 31 22:00:40 2012  fox
+
+     746* driver/taskq.c: Fix for centos 5 GPL function issue.
+
+     745* Psymtab.c: Fix for older kernels where AT_BASE auxv vector
+          is not defined, so couldnt use 'dtrace -n pidXXX:::' on them.
+	  (Centos 5).
+
+     744* dtrace_linux.c: mem_set_writable: Fix (clflush) for centos
+          kernel.
+
+Mon Jul 30 08:28:16 2012  fox
+
+     743* Archive: 1.0142
+
+     742* driver/dtrace_linux.c: Fix issue with determining data model of 32b
+          proc on 64b kernel.
+
+     741* ctl.c, ctf_struct.h: Build fixes for older kernels.
+
+     740* taskq.c: Add older kernel support.
+
+Sun Jul 29 18:06:43 2012  fox
+
+     739* libproc/common/Psymtab.c: Fix for reading /proc/pid/auxv for
+          a 32b proc on a 64b kernel.
+
+     738* driver/dtrace_linux.c: dtrace_data_model: Implement this
+          for 64b systems running 32b binaries.
+
+     737* driver/dtrace_linux.c: Fix issue affecting 32b binaries
+          on 32b kernel (fasttrap miscomputing instr sizes).
+
+Sat Jul 28 08:41:53 2012  fox
+
+     736* All drivers: Add ".owner = THIS_MODULE", to protect from
+          attempts to unload driver whilst still have open references.
+
+     735* prov_common.c: Add proc:::fault probe.
+
+     734* Psymtab.c: Fix last change; wasnt handling 64b binaries properly.
+
+Fri Jul 27 13:27:25 2012  fox
+
+     733* Archive: 1.0141
+
+     732* libproc/common/Pcontrol.c: Fix for setting the model of
+          a spawned process (32 vs 64 bit).
+
+     731* driver/ctl.c: Temp comment out the rcu_read_lock calls.
+
+     730* driver/ctl.c: Avoid direct reference to find_task_by_vpid.
+
+     729* driver/ctl.c: Add permission checking and update comments.
+
+     728* driver/systrace.c: Bug fix for /proc/dtrace/syscall - SIGSEGV
+          and confusion on 32b kernel.
+
+     727* libproc/common/Pcontrol.c: Use the /dev/dtrace_ctl driver instead
+          of ptrace(). We can now use PID provider on stopped jobs or even
+	  procs being debugged in a debugger.
+
+Thu Jul 26 08:33:03 2012  fox
+
+     726* archive: 1.0140
+
+     725* x_call.c: fix the xcalls[][] array. Some draconian measures
+          for dtrace_ack_apic() to avoid crashing VirtualBox.
+
+     724* x_call.c: Dynamically allocate xcalls[][] array according
+          to CPUs available, not max possible, to reduce memory footprint.
+
+     723* x_call.c: Redo native_apic_write_mem, for maximum portability
+          across releases. May not be brilliant if we have machines
+	  without APICs (embedded?) but lets worry about them when
+	  we find them. Fix #pragma warning.
+
+     722* missing.c, dtrace_linux.c: Rename clflush() and call it
+          dtrace_clflush() to avoid kernel version conflicts.
+
+     721* liblinux.c/proc2.c: When getting proc status, handle suspended
+          procs.
+
+Wed Jul 25 23:19:13 2012  fox
+
+     720* driver/taskq.c: Dont GPF if on older kernel and cannot find
+          __alloc_workqueue_key_ptr. Works on Ubuntu 8 (2.6.28)
+
+     719* driver/x_call.c: Fix up some portability issues. Getting difficult
+          to ensure this works on all kernels, so having to be more
+	  draconian.
+
+Tue Jul 24 22:45:32 2012  fox
+
+     718* driver/x_call.c: GPL fix for 2.6.28 (Ubuntu 8/32) kernel.
+
+Mon Jul 23 23:32:39 2012  fox
+
+     717* driver/x_call.c: Fix compile issue for 2.6.28 kernel (Ubuntu 8)
+
+Sun Jul 22 17:30:38 2012  fox
+
+     716* Archive: 1.0139
+
+     715* Various: Tidied up some compiler warnings.
+
+     714* taskq.c, taskq.h, dtrace_linux.c, dtrace.c, fasttrap.c, 
+          Fix the PID provider. It may not be perfect and needs lots of 
+	  testing, but some basic stuff works. Added the taskq_create()
+	  and timeout functions to aid in probe garbage collection.
+
+Fri Jul 20 00:15:04 2012  fox
+
+     713* tools/get-deps-fedora.sh: Add in 'make'.
+
+Sat Jul 14 08:32:08 2012  fox
+
+     712* fasttrap_isa.c: FASTTRAP_T_COMMON: Setup addr for the
+          trapped instruction. (Previously, we had a TODO() item)
+
+     711* Pcontrol.c: Pread_live: do ptrace(PTRACE_ATTACH)/waitpid to
+          read someone elses memory, even if we are root. Seems to
+	  make pid provider work *much* better.
+
+     710* driver/systrace.c: Fix typo for ia32_execve.
+
+Wed Jul 11 23:02:16 2012  fox
+
+     709* driver/fasttrap_linux.c: Oops. Forgot to implement the ioctl()
+          interface, so PID provider couldnt get off the ground.
+
+     708* tools/load.pl: Make /dev/fasttrap world read/writable (not sure if
+          this is safe - but fasttrap will do its own perms checkings).
+
+     707* liblinux/proc2.c: Stupid read() call for /proc/%d/exe wrong way around.
+
+Tue Jul 10 23:28:21 2012  fox
+
+     706* liblinux/gmatch.c: Result of match was reversed. Stopped pid
+          provider from kicking in.
+
+
+Sun Jul  8 16:53:33 2012  fox
+
+     705* driver/tcp.c: Add udp:::send and udp:::receive (crude).
+
+     704* dtrace_linux.c: Fix the pmd hacks.
+
+     703* tcp.c: Add the accept and send/receive probes.
+
+Thu Jul  5 22:42:36 2012  fox
+
+     702* tcp.c: Add tcp::connect-established.
+
+     701* prov_common.c: Add prov_add_callback, so we can start handling
+          argument specific callbacks.
+
+Wed Jul  4 16:03:51 2012  fox
+
+     700* systrace.c: Cater for x32 syscalls not being enabled.
+
+Sun Jul  1 16:22:42 2012  fox
+
+     699* driver/dtrace_linux.c: Specialise last fix for 3.2/3.3 kernels.
+          3.4 kernels dont have same glitch in the header files.
+
+     698* driver/dtrace_linux.c: Fix for i386 3.2 and above kernels
+          in page table manipulation.
+
+Fri Jun 29 07:23:53 2012  fox
+
+     697* tools/load.pl: ALlow insmod to be in /usr/bin
+
+     696* vminfo.c: Fix for 3.4 kernels.
+
+     695* systrace.c: Fix for 3.4 kernels.
+
+Sat Jun  2 22:37:18 2012  fox
+
+     694* README: Update install instructions to run tools/get-deps.pl
+
+Thu May 24 18:57:48 2012  fox
+
+     693* makefile: Dont fail on "make install" if build/linux.ctf not available.
+
+     692* dtrace_linux.c: Make par_alloc/par_free do something - remove the
+          stub, because without this, we dont get probes for modules.
+
+     691* x_call.c: Put in a warning if NCPU is too large - can cause
+          problems at driver load time (Centos 6.2 has NCPU==4096 which 
+          equates to more than 40MB of memory for the xcall array).
+
+Mon Apr  9 16:01:07 2012  fox
+
+     690* driver/sdt_linux.c: Avoid compile errors on 3.3 kernels.
+
+Thu Mar  1 21:52:36 2012  fox
+
+     689* driver/x_call.c: Centos 4.7 change
+
+     688* driver/dtrace.c: Avoid native_read_pmc for now - we dont need it
+          anyway.
+
+     687* driver/mutex.c: Put in workaround for Centos 4.7/Ubuntu 10.x
+
+Fri Feb 24 19:21:39 2012  fox
+
+     686* driver/vminfo.c: Use CONFIG_COMPACTION to avoid compile time errors.
+
+Fri Feb 17 23:43:53 2012  fox
+
+     685* driver/x_call.c, driver/dtrace_linux.c: Changes to workaround
+          issues with accessing the GPL symbol apic.
+
+Thu Feb 16 21:00:48 2012  fox
+
+     684* x_call.c: Make it GPL compliant.
+
+Sat Feb 11 10:25:20 2012  fox
+
+     683* driver/dtrace_linux.h: Mark as CDDL driver.
+
+     682* driver/prov_common.c: Mark as CDDL.
+
+     681* Archive: 1.0138
+
+     680* libdtrace/dt_cc.c, dt_impl.h, dt_open.c, 
+          driver/dtrace.c, uts/common/sys/dtrace.h:
+	  Add two experimental actions, so I can play (test1() and test2()).
+
+     679* dtrace_linux.c: par_alloc: Remove temporary stub-out - we werent
+          providing fbt module probes.
+
+Mon Feb  6 21:47:58 2012  fox
+
+     678* libdtrace/dt_pid.c: dt_pid_usdt_mapping: Dont call 
+          pr_open/pr_ioctl (see comment in the code). This allows
+	  us to dtrace against a USDT probe application.
+
+     677* cmd/dtrace/dtrace.c: Add some env var defns to the usage.
+
+Sun Feb  5 10:18:55 2012  fox
+
+     676* driver/intr.c: Fix license.
+
+     675* liblinux/proc2.c: Fix to avoid leaving target USDT proc in
+          a stopped state. (We did this due to bugs in libproc handling
+	  but we shouldnt even if we are buggy). Not detecting 't'
+	  process state properly.
+
+     674* Archive: 1.0137
+
+     673* dtrace_linux.c: Fix clflush issue in <= 2.6.21 kernels
+
+     672* tools/mkport.pl: Possible fix for SMP_CALL_FUNCTION_SINGLE_ARGS for
+          2.6.18 kernel.
+
+     671* driver/dtrace.c, driver/fasttrap_linux.c: Rip out all the fasstrap
+          helpers when unloading the driver, so we dont panic on a reload
+	  if a USDT proc is still running.
+
+Wed Feb  1 20:14:09 2012  fox
+
+     670* x_call.c: Fix for 2.6.24 kernel in cpumask_t
+
+     669* intr.c, tools/mkport.pl: Remove private vmalloc_sync_all if kernel
+          supports it.
+
+     668* linux/sys/privregs.h, tools/mkport.pl: Add autodetect of
+          BX vs EBX register for i386/2.6.24 type kernels.
+
+     667* driver/cyclic_linux.c: Fix for 2.6.24/debian-4 kernel.
+
+     666* driver/intr.c: Fix commenting error for older kernels.
+
+Tue Jan 31 20:31:24 2012  fox
+
+     665* driver/toxic.c: Allow "page_fault" on earlier kernels.
+
+     664* driver/intr.c: Avoid problems when store_gdt/store_idt are
+          not available.
+
+     663* intr.c: Avoid problem when swapper_pg_dir is a #define on older
+          kernels.
+
+     662* mkport.pl, dtrace_linux.c: Dont compile against atomic_notifier_chain_register
+          if its not available.
+
+Mon Jan 30 20:33:20 2012  fox
+
+     661* Archive: 1.0136
+
+     660* driver/dtrace_linux.c: Move intr_init() so we do it last, so
+          we can maximise the effect of ensuring all page tables are in sync.
+
+     659* driver/intr.c: Solution for the big impossible problem. Call
+          vmalloc_sync_all if possible, else a half-hearted emulation.
+	  (We could just copy vmalloc_sync_all from the kernel but its
+	  GPL, so we will think about a better solution based
+	  on the kernel one; only a problem for older i386 kernels).
+
+     658* driver/intr-x86-32.S: Ensure we setup %gs for kernels >= 2.6.31.
+          Else user space apps die, because %gs can be corrupted when
+	  returning back to app.
+
+     657* driver/dtrace.c: Remove workaround for what I thought was a compiler
+          bug. Avoid dtrace/memcpy_with_error - this was working around the
+	  wrong issue. If the page fault handler works properly, then these
+	  two things were bogus.
+
+Wed Jan 25 21:49:03 2012  fox
+
+     656* tools/tty.pl: Fix defunct process leakage.
+
+Wed Jan 11 23:33:51 2012  fox
+
+     655* instr_linux.c: Add -ltr instructions.
+
+Fri Jan  6 22:11:05 2012  fox
+
+     654* instr_linux.c: Add support for detecting rd/wr to GDT and writing
+          to CR3 register. (Trying to find where the page table gets set
+	  in the kernel to debug the page_fault problem for i386).
+
+Mon Jan  2 23:16:35 2012  fox
+
+     653* driver/instr_linux.c: Add support for SIDT instruction and fix
+	  encoding for LIDT.
+
+Sat Dec 31 00:01:52 2011  fox
+
+     652* Archive: 1.0.135
+
+     651* driver/intr.c: Move the interrupt/idt code to its own file.
+          During driver init, swap out the old idt, make updates and
+	  swap back in the new idt. Avoids funny crashes on driver
+	  reload. 
+
+	  Added /proc/dtrace/idt driver to see the IDT table.
+
+     650* Archive: 1.0134
+
+     649* dtrace_linux.c: set_idt_entry: Grab the existing IDT
+          entry and just set the new address; dont lose/change the
+	  dpl or type of the gate.
+
+     648* printf.c, dtrace_linux.c: Move set_console() to printf.c
+
+     647* makefile: Set LANG=C to avoid UTF-8 output from gcc.
+
+Thu Dec 29 10:23:49 2011  fox
+
+     646* driver/intr_x86-32.S: Kernels >= 2.6.31 save the %GS
+          register on the stack, so we need to do this so that pt_regs
+	  agrees. This fixes the horror of Ubuntu 11.10/i686 not
+	  working properly.
+
+Tue Dec 27 15:42:06 2011  fox
+
+     645* tools/get-deps.pl: Fix for Ubuntu 11.10/i686 - very broken
+          default install (missing /usr/include/sys).
+
+     644* linux/sys/elftypes.h: Fix for Ubuntu 11.10/i686.
+
+     643* tests/makefile: Handle 32-bit only system
+
+Sun Dec 25 00:11:37 2011  fox
+
+     642* prov_common.c: Fire for all matching probes, not just the
+          first one, so that proc:::create and proc:::start will fire
+	  together.
+
+     641* prov_common.c: Add support for 
+     	  proc:::create - Fires when a new process is created.
+	  proc:::start - Fires when process is created (same as create)
+	  proc:::end - Fires on process termination
+
+     640* dtrace/dtrace_subr.c: When looking at the invop handlers, broadcast
+          the breakpoint to all invop handlers. This allows two providers
+	  to sit on the same instruction.
+
+     639* fasttrap.c: Basic /proc/dtrace/fasttrap support.
+
+Thu Dec 22 14:43:40 2011  fox
+
+     638* driver/intr_x86-32.S/intr_x86-64.S: We werent allowing 
+          user breakpoint traps to be detected by USDT. This works
+	  again.
+
+     637* Archive: 1.0133
+
+     636* cmd/dtrace/dtrace.c: Add support for -arch [i386|x86_64], similar
+          to Apple's dtrace.
+
+     635* usdt/c/makefile: Fix so that build/simple-c can run from anywhere.
+
+     634* libdtrace/dt_link.c: process_obj: For ELF32, write the SHT_REL entry
+          back to the appropriate section, not the SHT_RELA section. Seems
+	  like a Solaris symmetry bug.
+
+	  We now get USDT probes, but nobody is garbage collection them. Strange....
+
+Wed Dec 21 09:19:53 2011  fox
+
+     633* dtrace.c: Temp remove the module-loaded chain because of fault
+          on a reload.
+
+     632* dtrace_linux.c: prfind(): Map pid to pid structure, and then
+          lookup.
+
+     631* ctl.c, driver_linux.c: Ensure fn_pid_task is setup, so prfind
+          doesnt die on USDT probe.
+
+     630* sys/dtrace.h: Fix for 32b build.
+
+     629* cmd/instr.c: Fix size_t issue.
+
+Mon Dec 19 21:48:57 2011  fox
+
+     628* ctf_struct.c: Avoid referring to user32 struct so we can
+          compile on RH4 kernel.
+
+     627* dtrace_asm.c: Avoid compiler issue for old gcc/linux kernels
+          for VMREAD instruction.
+
+Sun Dec 18 00:17:43 2011  fox
+
+     626* fbt_linux.c: Fix the arg0, .., arg4 args. We were relying
+          on solaris stack layout and not linux. (Thanks Nigel for pointing
+	  this out).
+
+Sat Dec 17 13:53:47 2011  fox
+
+     625* Archive: 1.0132
+
+Fri Dec 16 20:27:53 2011  fox
+
+     624* sys/systm.h: Use correct sysconf() mapping #defines.
+
+Mon Dec 12 23:58:33 2011  fox
+
+     623* dtrace.c, dtrace.h, dtrace_impl.h: Upgrade to Jolent 201111
+          extras. (ECB delayed removal, vmreg support).
+
+Sun Dec 11 21:23:47 2011  fox
+
+     622* mutex.c: Call scheduler periodically to avoid deadlock when
+          number of dtrace's exceeds number of physical cpus.
+
+Fri Dec  9 20:01:25 2011  fox
+
+     621* tools/tail.pl: Tool to do tail -f on any file, but specific
+          char special device files. Defaults to /proc/dtrace/trace.
+
+     620* Archive: 1.0131
+
+     619* dtrace.c: Added some monitoring around the kmem_free in 
+          dtrace_state_destroy. Not needed, but something to watch.
+
+     618* x_call.c: Whilst priming the other cpus for action, attempt
+          to drawin any pending call against ourselves. Reduce the
+	  poll time (ack_wait) a little, to try and gain better performance.
+
+     617* mutex.c: Dont disable interrupts for interrupt level mutexes.
+          (And, by implication, we dont need to restore them). Parameterise
+	  this change.
+	  Every 500m iterations, dump a "taking a long time message". Havent
+	  seen this get hit.
+
+Thu Dec  8 21:44:49 2011  fox
+
+     616* toxic.c: Re-enable more of the functions. We shouldnt have the old
+          problems anymore.
+
+Wed Dec  7 20:57:52 2011  fox
+
+     615* tools/cpustuck.pl: Simple tool to look for stuck cpus.
+
+Sun Dec  4 12:03:45 2011  fox
+
+     614* dtrace.c: Tone down the teardown logic to avoid two
+          dtraces fighting each other in a death match.
+
+     613* mutex.c: Dont break out of mutex_enter, and dont dump
+          stacks, as this can lead to inter-cpu corruption and assertion
+	  failure.
+
+     612* dtrace.c: When hitting an assertion/panic issue, avoid
+          problems if another panic hits at the same time, to avoid
+	  frantic console scrolling (we only allow the message once).
+
+     611* Archive: 1.0130
+
+     610* mutex.c: Dtrace is *NOT* expecting the mutexes to be recursive.
+          By disabling recursion, we fix the "dtrace -l & dtrace -l &"
+	  issue which would cause deadlock or assertions. We increased
+	  the break-out check - we need to turn this off. Under very
+	  heavy load (eg two copies of fbt::: running), the mutex
+	  might believe somethings broke and panic dtrace, effectively
+	  disabling it.
+
+     609* dtrace_subr.c: Dump out the hdlr chain so we can diagnose
+          if fbt is not at the front of the list.
+
+Sat Dec  3 08:56:10 2011  fox
+
+     608* dtrace_linux.c, fbt_linux.c: Arrange for fbt to be first in the
+          invop chain (optimisation).
+
+     607* x_call.c: Remove the per-interrupt xcall state. I think it was
+          potentially wrong, as we were using our interrupt state instead
+	  of the other cpu state. I am not sure it matters, because
+	  we try to call xslave2 during fast-teardown to empty any
+	  pending buffers, so the amount of contention should be reduced.
+
+     606* instr_linux.c: Small parsing optimisation and opcode name fix
+          for repnz.
+
+     605* instr_linux.c: Add ud2 instructions to the INSTR provider. Would allow us to
+          take a probe when a BUG_ON is hit in the kernel. (The
+	  kernel will kill the calling process anyhow and dump a stack,
+	  but at least we could do something useful if we were interested).
+
+     604* prov_common.c: We were incorrectly assuming the file/line info
+          for the BUG_ON/ud2 instruction followed the instruction. This
+	  caused random disassembly failure leading to problems when that
+	  code was executed. (FC16 flush_exec_old function would kill
+	  new processes).
+	  Avoid print mangling when debug enabled for tracing disassembler.
+
+Wed Nov 30 22:12:40 2011  fox
+
+     603* fbt_linux.c: Add an overrun indicator to /proc/dtrace/fbt ("*")
+
+Tue Nov 29 09:00:40 2011  fox
+
+     602* cmd/instr: New utility for getting instruction encodings.
+
+     601* cyclic_linux.c: Avoid race conditions during timer closedown.
+          We might have the timer active whilst trying to kill it, and
+	  corrupt memory leading to a panic later on.
+
+     600* dtrace_linux.c: Search fbt probes before instr, since we are likely
+          to hit them first. (Minor optimisation).
+
+Mon Nov 28 22:18:05 2011  fox
+
+     599* sdt_linux.c, systrace.c: Avoid kernel memcpy function (cleanup
+          rather than a bug fix).
+
+     598* dtrace_linux.c: dtrace_printf/printk: Avoid calling vprintk,
+          since we can get a recursion deadlock if we try and probe
+	  fbt::form*:. Now we are detached from the kernel.
+
+     597* dtrace_linux.c: dtrace_printf: Avoid deadlock if we interrupt
+          our own cpu doing a printf.
+
+Sun Nov 27 17:36:18 2011  fox
+
+     596* dtrace.c, dtrace_linux.c: Add simple lock around dtrace_printf,
+          so we dont get interleaved output. Add "stack" command to
+	  /proc/dtrace/trace. Modify the fast-teardown to try and stop at
+	  a red light, the other cpus. We use the original mechanism but
+	  we try to prevent the flood of probes during teardown. 
+	  Appox 20m probes could happen when fbt::: with 50,000+ probes
+	  are enabled. This reduces it to may 1m. See /proc/dtrace/trace
+	  for the results.
+
+Sat Nov 26 21:40:32 2011  fox
+
+     595* dtrace_linux.c: Add timestamp and cpu# to all /proc/dtrace/trace
+          entries.
+
+Fri Nov 25 17:26:03 2011  fox
+
+     594* driver/dtrace.c: Rework the fast-teardown code since it didnt
+          work reliably. This is potentially much better. We save
+	  up the kmem_free's of the ECBs til the end and free them up
+	  at the end.
+
+     593* cpu_x86.c: Add missing emulation for POPF (0x9d) instruction.
+          Fedora core does that in "not_same" label in this_cpu_cmpxchg16b_emu
+	  subroutine.
+
+Thu Nov 24 23:48:02 2011  fox
+
+     592* cpu_x86.c: Remove curious code handler for iret.
+
+     591* dtrace_linux.c: Map printk to dtrace_printf.
+
+     590* vminfo.c: Got if..endif conditional wrong.
+
+Wed Nov 23 21:04:52 2011  fox
+
+     589* syscalls.c: Avoid hanging on sys64.
+
+     588* systrace.c: Add "*" to show probed syscalls.
+
+     587* vminfo.c: Avoid compile issue on older kernels.
+
+Tue Nov 22 22:30:00 2011  fox
+
+     586* driver/cpu_x86.c: When handling PUSHF instruction, dont leave
+          interrupts disabled. Cause random crashes/kernel assertion issues.
+
+Mon Nov 21 22:25:54 2011  fox
+
+     585* driver/*: Remove some debug left behind. Some portability fixes.
+
+     584* tests/syscalls.c: Add more syscalls. Fix potential hang on
+          sigsuspend.
+
+Sun Nov 20 10:46:20 2011  fox
+
+     583* systrace.c: Add syscall counting stats to /proc/dtrace/stats.
+
+     582* systrace.c: Add /proc/dtrace/syscall so we can see how many hits
+          and do coverage analysis.
+
+Fri Nov 18 20:21:52 2011  fox
+
+     581* intr_x86-64.S: Disable NMIs whilst we are loaded to avoid calamity.
+
+     580* x_call.c: Fix NMI (dont invoke it).
+
+     579* x_call.c: Fix #elif.
+
+Thu Nov 17 22:09:35 2011  fox
+
+     578* dt_module.c: Fix unsigned isue leading to core dump.
+
+     577* dtrace_linux.c, mutex.c: Add better diagnostics/error detection
+          to mutex. Fix issue in dmutex_init which could lead to memory
+	  corruption/kernel core dump.
+
+Tue Nov 15 22:53:23 2011  fox
+
+     576* driver/dtrace_linux.c: dtrace_printf() Add support for %ll
+          specifier. Avoid core dump on printing null string.
+
+	  Add magic number checking to vmem allocate/free functions.
+
+Sun Nov 13 11:45:49 2011  fox
+
+     575* Archive: 1.0128
+
+     574* systrace.c: Fix for rt_sigsuspend in 2.6.26 and above kernels.
+          Was causing build/sys64 to core dump or panic the kernel.
+
+Fri Nov 11 23:03:36 2011  fox
+
+     573* tests/instr.c: Instruction dumper, for diagnosing instruction
+          single stepping issues. We dont build it, but theres a comment
+	  to show how to build it.
+
+Thu Nov 10 23:12:04 2011  fox
+
+     572* fbt_linux.c: /proc/dtrace/fbt now include the probe hit count
+          and an instruction dumper so we can verify if we are handling
+	  all the fbt probes properly when single stepping.
+
+Wed Nov  9 20:37:30 2011  fox
+
+     571* dtrace_linux.c: Remove redundant mtx counters, add extra int3
+          counters. Remove dtrace_printf() mutex since that cannot work.
+
+     570* tests/syscalls.c: Remove non-determinism and random segfaults.
+
+Tue Nov  8 21:53:44 2011  fox
+
+     569* vminfo.c: Fix config issue for fc15/2.6.38 kernel.
+
+Mon Nov  7 23:00:12 2011  fox
+
+     568* mutex.c, linux_types.h, cyclic_linux.c: Revert cyclic_linux.c
+          to using a spinlock - not a mutex or semaphore, since we
+	  run from IRQ context/tasklet context.
+
+	  Revert mutex.c to use pure semaphores, not hand crafted
+	  mutexes. If the kernel is doing lock checking, it will
+	  tell us if we might block in an interrupt routine, which is
+	  bad. (So, why did I do mutex.c at all? Probably got confused
+	  by some other issues).
+
+	  linux_types.h: Wrap the semaphores with the dmutex call
+	  wrappers. Dont really need this.
+
+	  Anyway, I still kept some of the lock-tightening code which
+	  was possibly upsetting the kernels.
+
+Sun Nov  6 00:41:47 2011  fox
+
+     567* tools/tty.pl: Commarise numbers when dumping stats. Dont
+          keep printing the prompt message.
+
+     566* mutex.c: Calling the wrong panic routine!
+
+     565* dtrace_linux.h: Dont map dtrace_panic to panic.
+
+     564* driver/vminfo.c: Compile warnings cleanup; avoid table overflow.
+
+     563* driver/prov_common.c: Avoid table overflow.
+
+     562* driver/dtrace_isa.c: Fix stack() which paniced us because of
+          changes in Linux 2.6.39 and above.
+
+     561* Archive: 1.0127
+
+     560* driver/dtrace_linux.c: Turn off interrupt level dtrace_printf()
+          calls. Might be affecting Liux 3.0 kernel (probably not). But
+	  removes noise from /proc/dtrace/trace.
+
+	  Add mutex protection to the par_alloc family of functions.
+
+	  Add some extra stats to /proc/dtrace/stats.
+
+	  Dont update a PTE entry if what we are doing is the same as it is
+	  (performance optimisation). Add multipage support.
+
+     559* driver/dtrace_linux.h: Add libc_ prototypes.
+
+     558* driver/dtrace_subr.c: Hide dtrace_sync_func since we need the
+          real one to be global for xcall.c to see it.
+
+     557* driver/fbt_linux.c: Put some protection in, in case the par_alloc
+          fails to allocate (normally, because I was testing/disabling par_alloc).
+
+     556* driver/*: Replace mutex calls with dmutex calls (to avoid
+          name clash).
+
+     555* driver/cyclic_linux.c: Replace kernel spinlocks with our
+          mutex calls.
+
+     554* driver/ctf_struct.c: Add cpumask typedef. Trying to fix the
+          ctfconvert issue, but this change doesnt fix it. Need to
+	  dive into the dwarf code to see what gcc on Ubuntu 11.10
+	  is tickling the "cant resolve type" bug.
+
+     553* driver/libc.c: Some simple string functions. I really want
+          "nm -u build/driver/dtracedrv.ko" to be clean. It isnt, but
+	  some of these functions are only called during load time.
+	  We'll defer proper libc cleanup til a later date.
+
+     552* driver/mutex.c: Our simple spinlock mutexes.
+
+     551* linux_types.h: Use our own mutex/dmutex implementation to
+          avoid problems with Linux mutexes trying to preempt us.
+
+     550* cmd/ctfconvert/dwarf.c: Avoid bailing out when hitting a DWARF
+          issue. This may be caused by newer gcc's emitting something
+	  we dont understand. For now, just work around it.
+	  (cpumask is causing the problem).
+
+Sat Nov  5 16:46:29 2011  fox
+
+     549* bug.sh: Dont keep telling people to contact me - just on the
+          first failed build.
+
+Sun Oct 30 12:25:08 2011  fox
+
+     548* dtrace_linux.c: Add a panic notifier (dont need it, just for
+          debugging).
+
+     547* prov_common.c: Dont let us reparse the common provider table
+          multiple times.
+
+     546* tools/tty.pl: New load causing tool.
+
+Wed Oct 26 22:19:06 2011  fox
+
+     545* vminfo.c: Make it work (or at least compile) for <2.6.39 kernels.
+
+     544* prov_common.c: Changes so that we can add support for instruction
+          level providers (ie. vminfo). Change the map[] table to
+	  allow room for expansion (ideally a linked list), and provide
+	  support for instruction level kernel disassembly callbacks.
+
+     543* vminfo.c: New file. vminfo provider. Similar to Solaris, but
+          annotating all the /proc/vmstats counters.
+
+     542* dtrace_linux.c: Move some of the init calls to after the end of
+          syms_write, so we can share the prcom code with the vminfo code.
+
+     541* dtrace_linux.c: Fix PAGE_NX issue for cpu_core_exec[] structure
+          on 3.x kernels.
+
+Tue Oct 11 23:49:58 2011  fox
+
+     540* cmd/ctfconvert/makefile: Fix bad linking for unused ctfdump
+          command.
+
+Mon Oct 10 21:50:42 2011  fox
+
+     539* Fix last change to dtrace_isa.c to get the if/else/endif the
+          right way around. Thanks Nigel.
+
+     538* dtrace_isa.c: Fix for kernels >= 2.6.39, since the stacktrace_ops
+          have lost the .warning/.warning_symbol members.
+
+Fri Oct  7 19:53:05 2011  fox
+
+     537* mkport.pl, ctfconvert/dwarf.c: Handle missing cplus_demangle()
+          function. Reported on SLE11.
+
+Mon Jul 18 23:15:08 2011  fox
+
+     536* driver/systrace.c: Fix for execv on 2.6.38 kernels.
+
+Wed Jul 13 21:30:01 2011  fox
+
+     535* dt_lex.l: Handle // comments at outer scope.
+
+     534* tests/tests.d: Better use of timestamps to exit test after 5s
+          to avoid problems with dropped probes.
+
+Tue Jul 12 07:07:55 2011  fox
+
+     533* driver/prov_common.c: Avoid null ptr deref for some probes.
+
+Fri Jul  8 09:19:49 2011  fox
+
+     532* prov_common.c: Provide common framework, similar to notifier.c
+          but more generic for more Solaris defined probes.
+
+Sat Jun 25 23:44:06 2011  fox
+
+     531* notifier.c: New provider to intercept the notifier chains.
+
+Fri Jun 24 20:12:27 2011  fox
+
+     530* tools/load.pl: Use uname -r to find the right build dir when
+          we have multiplate build/ directories in the same build area.
+
+     529* x_call.c: Fix the targetted cpu scenario.
+
+Thu Jun 23 20:37:10 2011  fox
+
+     528* driver/systrace.c: Fix for i386 sigreturn() syscall.
+
+Wed Jun 22 21:18:17 2011  fox
+
+     527* tests/syscalls.c: i386 now invokes sigreturn() syscall - which is
+          panicing the 64b kernel...off to fix that.
+
+Tue Jun 21 22:44:58 2011  fox
+
+     526* tools/mksyscalls.pl: Better unistd.h detection and tbl file generation.
+
+Mon Jun 20 20:17:31 2011  fox
+
+     525* tools/mksyscalls.pl: Updates for 2.6.18 kernel.
+
+     524* dtrace_linux.c, x_call.c: Fixes for 2.6.18 kernel and >8 cpus.
+
+     523* driver/intr_x86*.S: Add cnt_nmi1/cnt_nmi2 so we can see if we are
+          called.
+
+     522* doc/security.txt: Update the security instructions.
+
+Sun Jun 19 00:13:41 2011  fox
+
+     521* dtrace_linux.c, x_call.c, intr_x86*.S: Add support for NMI interrupts
+          when IPI is not responding.
+
+     520* Archive: 1.0126
+
+     519* tools/mkport.pl: Try the /lib/modules/ver/build dir for probing
+          when theres no /lib/modules/ver/source directory (for Centos 4).
+
+     518* driver/x_call.c: Lockless implementation. Use NCPU*NCPU*2
+          xcalls array to avoid interference with parallel xcalls from
+	  other cpus or our own interrupt routines.
+
+     517* Archive: 1.0125
+
+Fri Jun 17 22:15:28 2011  fox
+
+     516* systrace.c: Fix execve() for 32b apps on 64b kernel.
+
+Thu Jun 16 23:19:02 2011  fox
+
+     515* Archive: 1.0124
+
+     514* dtrace_linux.c: Provide multi cpu stack dumping via NMI code in
+          kernel.
+
+     513* x_call.c: Use cmpxchg instruction to ensure visibility between
+          cpus.
+
+Sun Jun 12 00:01:13 2011  fox
+
+     512* mkport.pl, dtrace_isa.c: Handle dump_trace() specially with
+          respect to number of args.
+
+     511* driver/sdt_linux.c: Fix stupid issue in io::: probe on
+          AS4 (2.6.9 kernels).
+
+Sat Jun 11 14:52:06 2011  fox
+
+     510* archive: 1.0123
+
+     509* systrace.c: Implement the 64b/32b ptregs syscalls.
+
+Wed Jun  8 22:42:07 2011  fox
+
+     508* tests/syscall.c: dummy app to allow us to put in lots of syscalls.
+          Am debugging whether "dtrace -n syscall:::" can crash system for
+	  some syscalls, especially the pt_regs calls for a 32b binary
+	  on a 64b kernel.
+
+     507* dtrace_isa.c: Fix for 2.6.38 kernel.
+
+Tue Jun  7 22:00:51 2011  fox
+
+     506* systrace.c: Fix 32b syscalls on 64b kernels (forgot to finish
+          this off last night).
+
+Mon Jun  6 22:23:23 2011  fox
+
+     505* Archive: 1.0122
+
+     504* systrace.c: Fix for 64-bit. Looks like it works, but need to
+          cleanup the ptregs calls - dont think we need the special
+	  patching code.
+
+	  Tested on Ubuntu 10.04 only so far.
+
+     503* systrace.c: Revamp for 32-bit kernels, so that we dont
+          get occasional ERESTART issues on syscalls.
+
+	  This took a lot of effort to get going, but the code is
+	  better for 32-bit kernels. Now off to refix the 64-bit
+	  kernels.
+
+Sat May 14 08:38:13 2011  fox
+
+     502* systrace.c: Fix bug where we overwrote the saved underlyer
+          when doing a syscall trace, and another /usr/sbin/dtrace does
+	  something unrelated (like 'dtrace -l').
+
+Tue May 10 23:05:18 2011  fox
+
+     501* systrace.c: Avoid two user-mode dtraces causing syscall interception
+          to point to itself and hang/panic/stack overflow the kernel.
+
+Mon Apr 25 12:14:15 2011  fox
+
+     500* dtrace_linux.c: dtrace_xcall: Take out the local_irq_enable causing
+          load-time kernel warnings to be displayed.
+
+     499* systrace.c: Fix 32-bit syscalls on 64-bit kernel causing possible
+          coredumps (saw this on exit/exitgroup syscall).
+
+     498* dtrace_linux.c: Disable the new xcall code - it wont/cannot work
+          since if we fire a timer on another cpu, the timer may not
+	  fire until we exit the current interrupt. The other
+	  code seems better, (having enabled irq's), lets see how well.
+
+Sun Apr 24 12:06:54 2011  fox
+
+     497* Archive: 1.0121
+
+     496* tests/tests.d: Some more random tests.
+
+     495* driver/systrace.c: Rework the syscall trampoline code to
+          avoid RAX/EAX corruptions, along with some other fixes.
+
+     494* driver/dtrace_linux.c: Implement out own safe dtrace_xcall
+          using cross-cpu timers. Not brilliant, but seems to avoid
+	  deadlocks or kernel warnings. We have a deadman timeout to
+	  avoid real deadlocks. (We occasionally see the impossible in a 
+	  VM where timers dont fire or fire too late; I think we handle
+	  this ok). dtrace_xcalls are not that frequent, so it should have
+	  minimal performance decrease.
+
+Tue Apr 19 21:04:57 2011  fox
+
+     493* driver/systrace.c: Rewrite syscall wrappers to handle OpenSuse
+          kernel - this method appears to be better/more generic for
+	  all other platforms.
+
+	  Code is looking messy - dups of functions and horrible 32/64 
+	  ifdefs and will look to clean up at a later date.
+
+Mon Apr 18 22:30:20 2011  fox
+
+     492* tools/load.pl: Add in support for vmalloc_exec.
+	  dtrace_linux.c: Add support for vmalloc_exec.
+
+Fri Apr 15 22:06:53 2011  fox
+
+     491* tools/mkport.pl: Updates for OpenSuse 11.
+
+Thu Apr 14 21:51:25 2011  fox
+
+     490* mksyscall.pl: Fix for opensuse syscall table finding.
+
+     489* tools/mkport.pl, dt_impl.h: Add support for yytext[] array which
+          some lex/flex's will generate for us.
+
+Sun Apr 10 10:11:43 2011  fox
+
+     488* Archive: 1.0120
+
+     487* driver/dtrace.c: Fix gcc 4.2.4 compiler bug in dtrace_probe().
+
+     486* dtrace_isa.c: dtrace_copyinstr: Fix the direction of copying.
+
+Sat Apr  9 08:32:59 2011  fox
+
+     485* dtrace.c: dtrace_probe(): Implement reentrancy avoidance mechanism.
+
+     484* dtrace.c, dtrace_asm.c, dtrace_impl.h: Add support for the
+          illval error/ptr for a faulted return, so that arg5 on an ERROR
+	  probe has access to it.
+
+Thu Apr  7 22:26:26 2011  fox
+
+     483* intr_x86-64.S: Better detection in dtrace_memcpy_with_error
+     	  that we had been aborted (%rcx != 0)
+
+     482* driver/dtrace.c: dtrace_load##bits: More accurate
+          transcription of fault handling when we have a bad address. Werent
+	  quite copying what on/usr/src/uts/i86pc/ml/locore.s does -
+	  we needed to set the CPU_DTRACE_NOFAULT flag because the
+	  dtrace_memcpy_with_error() wont be processed by the Linux
+	  exception table, so we need to avoid propagating the page faults.
+
+Wed Apr  6 22:22:26 2011  fox
+
+     481* intr_x86-32.S, intr_x86-64.S: Fix sillyness when taking a handled
+          page fault where we forgot to remove the error code.
+
+Mon Apr  4 20:48:25 2011  fox
+
+     480* prov_common.c: Handle the BUG_ON instruction.
+
+Sun Apr  3 13:36:39 2011  fox
+
+     479* Archive: 1.0119
+
+     478* sdt_linux.c: Avoid 'dtrace -n io:::' panicing kernel on the
+          io:::return probes.
+
+     477* etc/io.d, etc/sched.d: Avoid need to delete the files - we rely
+          on pragma depends_on module linux to handle a missing linux.ctf
+	  file.
+
+Sat Apr  2 18:09:03 2011  fox
+
+     476* intr_x86-32.S: Refactor to use same macro as intr_x86-64.S
+
+     475* makefile, tools/tests.pl: Add actual testing for specific 
+          probe scenarios and interrupt handlers.
+
+     474* intr_x86-64.S, dtrace_linux.c: Fixes for page fault issues
+          (cpu_table wasnt set up properly). Rewrote interrupt routines
+	  to use a common macro.
+
+Wed Mar 30 20:59:41 2011  fox
+
+     473* intr_x86-32.S: Add missing dtrace_int11 code.
+
+     472* dtrace_linux.c: Remove temp debug code which broke i386 build.
+
+     471* Archive: 1.0118
+
+Tue Mar 29 23:00:47 2011  fox
+
+     470* driver/dtrace_isa.c: Add some safety checks around the stack
+          probing so we cannot trigger a kernel pgfault (but a Dtrace intercepted
+	  one is ok).
+
+     469* driver/dtrace_linux.c: Add fixed dtrace_int13_handler and add
+          dtrace_int11_handler (not sure we need this, for segment-not-present).
+	  Add counters to /proc/dtrace/stats to allow us to see these firing.
+
+     468* driver/instr_linux.c: Add support for LIDT instruction probes
+          (either it doesnt work, or there arent any in 64-bit space which
+	  the disassembler finds; will fix later - I wanted it to help debug
+	  early version of the pgfault handler problem).
+
+     467* driver/intr_x86-64.S: Fix pgfault interrupt to understand the
+          fault code on the stack.
+
+Tue Mar 22 19:29:23 2011  fox
+
+     466* cmd/ctfconvert: Some changes to try and support this on RHEL4, but it
+          wont work since RH4 doesnt have a good libdwarf.so on the system.
+
+	  libdwarfext.h: Added to provide missing definitions. Not needed for
+	  other platforms.
+
+     465* tools/mkport.pl: Fix typo on elf_getshstrndx
+
+Sun Mar 20 13:07:00 2011  fox
+
+     464* tools/mkport.pl: Fix HAVE_ELF_GETSHDRSTRNDX detection for
+          FC-14 (which fixes the etc/shed.d issue).
+
+     463* mkctf.sh: Force ue of dwarf-2 so that Fedora-14 doesnt
+          bomb out since its defaulting to dwarf-3.
+
+     462* dtrace_isa.c: Fix for 2.6.38 kernels.
+
+     461* cyclic_linux.c: Add support for 2.6.38 kernels.
+
+     460* usdt/c/makefile: Add -x nolibs to avoid build problems on etc/sched.d
+
+Fri Mar 18 23:20:47 2011  fox
+
+     459* Archive: 1.0117
+
+     458* driver/dtrace.c: Add some annotations for debugging illaddr
+          traps.
+
+     457* driver/ctf_create.c, driver/ctf_create.h: Fix the buf_t
+          definition so that it works with etc/io.d. 
+
+	  etc/io.d: Now works to trace elements of fileinfo_t, dev_t, and
+	  bufinfo_t (io probe provider).
+
+	  sdt_linux.c: Properly handle the buf_t type for io provider.
+
+	  Note: some fields may not yet be populated or populated properly
+	  but at least we now get device names and path names and a few
+	  other key fields.
+
+	  The following now "works":
+
+	  dtrace -n io:::start'{printf("%x %x %x %s %s %p", 
+	  	args[1]->dev_major, args[1]->dev_minor, 
+		args[1]->dev_instance, args[2]->fi_pathname, 
+		args[1]->dev_pathname, arg2);exit(0);}'
+
+Tue Mar  8 22:02:52 2011  fox
+
+     456* usdt/c/makefile: Fix circular dependency on linux.ctf file. We wont
+          have built it yet, but we dont need it yet, either.
+
+Mon Mar  7 23:12:26 2011  fox
+
+     455* sdt_linux.c: Fix the io::start/done to populate bcount and size.
+          Add buf_t.b_addr also.
+
+	  I still dont like this emulation of io::start/done - its intercepting
+	  the VFS read/write syscalls, and I need to see if Solaris is doing
+	  this at a lower level. But the demo/io/whoio.d script now works
+
+Sun Mar  6 12:43:06 2011  fox
+
+     454* driver/sdt_linux.c: Correct the bcount for io::start/done.
+
+Fri Mar  4 23:29:07 2011  fox
+
+     453* driver/dtrace_linux.c, driver/ctf_struct.c: Expose some
+          new structures so that etc/sched.d can work, and we can return
+	  the "cpu" we hit a probe on.
+
+Wed Mar  2 18:52:46 2011  fox
+
+     452* Archive: 1.0116
+
+     451* makefile: Allow DESTDIR prefix for installing into 
+          non-system areas.
+
+	  sebastian AT pipping DOT org
+
+Tue Feb 22 23:36:43 2011  fox
+
+     450* libdtrace/dt_module.c: Ensure the ctf file is loaded with a distinct
+          name from /proc/kallsyms.
+
+Thu Feb 17 23:36:52 2011  fox
+
+     449* dt_module.c: Allow us to read linux-XXX-generic.ctf from the
+          dtrace build dir when debugging. 
+
+	  We have a catch-22 during build because when we build the USDT
+	  stuff, we invoke dtrace without the linux.ctf file being ready.
+	  But etc/sched.d currently needs this for dtrace_cpu_t.
+
+	  Will need to change the order of building to resolve this, but
+	  am unhappy that we cannot put good conditionals into sched.d
+	  (like #if or "#pragma D depends_on type XXX").
+
+Tue Feb 15 21:37:43 2011  fox
+
+     448* libdtrace/dt_module.c: Fix for HAVE_ELF_C_READ_MMAP
+
+     447* tools/mkport.pl: Fix for HAVE_ELF_C_READ_MMAP
+
+     446* tools/mksyscall.pl: Picking up the 64-bit unistd.h for the 64/32 table.
+
+Sun Feb 13 15:19:12 2011  fox
+
+     445* libdtrace: Move references to /usr/lib into dt_get_libdir() function.
+
+     444* driver/linux_pure.c, driver/dtrace.c: remove: linux_pure.c
+
+     443* Archive: 1.0115
+
+     442* dtrace_linux.c, tools.pl, systrace.c: Add in ia32_sys_call_table as
+          an external symbol so we can intercept 32b syscalls on AS4/64b kernels.
+
+     441* driver/systrace.c: Fix problems with not handlign 32b syscalls on 64b 
+          kernels.
+
+Sun Feb  6 09:05:12 2011  fox
+
+     440* Archive: 1.0114
+
+     439* systrace.c: When creating probes, give a module name (x64 or x32)
+          so we can distinguish 64b syscalls from 32b ones. Avoids
+	  rampant probe creation as we kept creating the probes
+	  on every use of dtrace.
+
+Sat Feb  5 10:24:19 2011  fox
+
+     438* dtrace_linux.c: Init syscalls before fbt/instr provider. We can 
+          reduce memory this way. Bizarre. But true.
+
+     437* Archive: 1.0113
+
+     436* dtrace_linux.c: Fix par_free. Now correctly handles modules being
+          loaded/unloaded for fbt tracing.
+
+Fri Feb  4 22:09:23 2011  fox
+
+     435* fbt_linux.c, instr_linux.c: par_alloc/par_lookup: We had a collision
+          on modules registered by the two providers because they seem the
+	  same mem addresses. Add support or 'domains' to allow us to
+	  distinguish the clashing entries. This should fix the issue where
+	  the instr provider stops fbt from providing fbt probes for a module.
+
+Thu Feb  3 22:10:03 2011  fox
+
+     434* dtrace.c: Add support for module_loaded notifier.
+
+Sun Jan 30 22:07:28 2011  fox
+
+     433* systrace.c: Initial attempt at supporting 32b/64b mode. Not yet
+          finished, but now have two syscall tables to look after.
+
+     432* mksyscall.pl: Generated sorted and expanded syscall tables. i386 and
+          amd64 have no commonality of syscalls, and we cannot rely on
+	  #includes to access the symbol syscall names.
+
+Wed Jan 26 23:36:19 2011  fox
+
+     431* mksyscall.pl: Generate both 32 and 64 bit sys call table 
+          irrespective of kernel.
+
+Sun Jan 23 09:12:58 2011  fox
+
+     430* cmd/dtrace/makefile: Always use -lelf and stop trying to be
+          too clever. Try and fix the USDT link time problems.
+
+     429* tools/mkport.pl: Fix silly in "my" definitions.
+
+Sat Jan 22 09:33:14 2011  fox
+
+     428* tools/yacc.pl: New file to handle bison/yacc discrepancies.
+
+Thu Jan 20 22:18:52 2011  fox
+
+     427* Archive: 1.0112
+
+     426* various: fixes for Linux 2.6.37 - rejig some mutex/semaphore
+          defines, fix ioctl/unlocked_ioctls, comment out unneeded ioctls,
+	  fix some driver warnings.
+
+Wed Jan 19 22:10:14 2011  fox
+
+     425* dt_link.c: Avoid the '#undef linux' as this can cause a bad
+          i386 simple.o being generated, and stopping the build process.
+	  May want to investigate further if I break amd64 support.
+
+Mon Jan 17 21:43:03 2011  fox
+
+     424* cmd/dtrace/makefile: Fix invocation of "-lelf" so we pick up the
+          right library.
+
+     423* linux_types.h: Change MUTEX_DEFINE to be optionally DEFINE_MUTEX
+          instead of DECLARE_MUTEX.
+
+     422* instr_linux.c: Remove redundant ioctl/compile error.
+
+     421* ctf_impl.h: Include linux/slab.h if we have it, for kmalloc.
+
+     420* mkport.pl: Add support for linux/slab.h
+
+     419* driver/ctf_mod.c: Remove redundant ioctl (compile issues).
+
+     418* dt_module.c, tools/mkport.c: Handle not having ELF_C_READ_MMAP.
+
+Sat Oct 16 21:36:01 2010  fox
+
+     417* linux_types.h: Some cleanups due to Ubuntu 10.10
+
+     416* libproc/common/pr_stat.c: Similar to the below - handle
+          missing blksize_t typedef.
+
+     415* libproc/common/Pcore.c: Horrible hack because the glibc
+          in Ubuntu 10.10 is broken (or maybe correct) compared to Ubuntu
+	  10.04. We cannot get things to compile on both systems without
+	  the "extern size_t pread64();" hacks you will see in there.
+
+Fri Oct 15 23:11:15 2010  fox
+
+     414* dt_grammar.y: Add more aliases for token idents.
+
+Thu Oct 14 23:59:33 2010  fox
+
+     413* scripts/bkl.d: Simple big kernel log script.
+
+Sun Oct  3 19:24:38 2010  fox
+
+     412* mkport.pl, dt_module.c: Allow for elf_getshstrndx if 
+          elf_getshdrstrndx is not available.
+
+Sat Sep 18 21:24:49 2010  fox
+
+     411* dt_grammar.y: Try and avoid enum names in bison error messages
+          (such as DT_TOK_IDENT).
+
+Wed Sep 15 23:20:31 2010  fox
+
+     410* dt_module.c: Changes so that we can refer to "kernel`symbol" in
+          D scripts. At present, we fake all symbols in /proc/kallsyms
+	  to look like functions. (Not a good move, but sufficient for
+	  now).
+
+Sat Sep  4 21:29:24 2010  fox
+
+     409* dt_module.c: Fix loading of /proc/kallsyms so that "stack()"
+          prints out all symbols. (We werent sorting the data from
+	  /proc/kallsyms so we lost some of the stack names).
+
+     408* Archive: 1.0111
+
+     407* libdtrace/dt_link.c: Dont use 'linux' to enable my code changes;
+          usdt/c doesnt seem to want this anymore. Why? No idea. Could be
+	  my build environment was impure before, but is sane now. Or maybe
+	  vice-versa.
+
+Tue Aug 31 21:18:28 2010  fox
+
+     406* dt_module.c: Some performance optimisations.
+
+     405* driver/ctf_struct.c, ctf_struct.h, sdt_linux.c: Refactor the public
+          structures.
+
+Mon Aug 30 19:52:32 2010  fox
+
+     404* Archive: 1.0110
+
+     403* driver/ctf_struct.c: Add more structs so that io.d will work
+          properly.
+
+     402* makefile: Add /usr/lib/dtrace/linux-`uname -r`.ctf and remove
+          types.d; fix issues with io.d
+
+     401* libdtrace/dt_module.c: Load /usr/lib/dtrace/linux-`uname -r`.ctf on
+          startup to get the CTF symbols for the kernel.
+
+Tue Aug 24 23:08:48 2010  fox
+
+     400* cmd/ctfconvert/dwarf.c: Workaround for pathological GCC 
+          structure members which would cause us to abort.
+	  (Set GCC_WORKAROUND to a non-blank value to see the errors you 
+	  might get). If you compile the driver with -g (edit driver/Makefile),
+	  then you can do this:
+
+	  build/ctfconvert -L lab1 -o /tmp/ctf build/driver/cpu_x86.o
+
+	  to get a file to play with. (Use ctfdump to see whats in it).
+
+	  Next up is to have a compile-only file with debug symbols
+	  so we can generate a kernel CTF image, to store in /usr/lib/dtrace.
+
+Mon Aug 23 21:52:56 2010  fox
+
+     399* cmd/ctfconvert: Add 'ctfdump' utility to list out the CTF sections.
+
+     398* Archive: 1.0109
+
+     397* cmd/ctfconvert: New binary to support CTF/.SUNW_ctf sections.
+          You need the libdwarf-dev and binutils-dev package for this to
+	  work.
+
+Mon Aug 16 21:48:52 2010  fox
+
+     396* dtrace.c: Rework the dtrace_loadNNbits functions to avoid taking
+          a segmentation violation if user is being nasty (or a bug
+	  in a translator), by using the Linux validation framework.
+	  This gives us a win over Solaris as we dont have to check toxic
+	  ranges. Could optimise further for the 8/16/32 bit case to avoid
+	  the call to dtrace_memcpy_with_error(), but probably
+	  most of the time its a 64-bit move (on a 64b kernel) so not
+	  a big loss. Maybe we will optimise one day when we can profile
+	  if it is a real rather than an imaginary problem.
+
+Sun Aug 15 09:31:16 2010  fox
+
+     395* driver/dtrace_isa.c: Fix invocation of call to __range_not_ok 
+          which was born in 2.6.31 kernels.
+
+Tue Aug 10 21:58:37 2010  fox
+
+     394* Psymtab.c: avoid core dump when ^C-ing dtrace after dumping ustack().
+
+Mon Aug  9 23:27:04 2010  fox
+
+     393* Archive: 1.0108
+
+     392* dtrace_isa.c: Better ustack handling - try and walk the stack
+          better to avoid false positives.
+
+     391* Psymtab.c: Dont use a.out for the app name in stack dumps, use
+          /proc/pid/exe. 
+
+Sun Aug  8 10:46:01 2010  fox
+
+     390* mkport.pl: Wasnt picking up stacktrace.h properly from later kernels.
+
+Sat Aug  7 10:38:52 2010  fox
+
+     389* archive: 1.0107
+
+     388* intr_x86-32.S: Fix assembler sillyisms for dtrace_memcpy_with_error.
+
+     387* dtrace_isa.c: Use same logic for 32-bit kernels as 64-bit when
+          doing dtrace_getupcstack.
+
+     386* libdtrace/dt_module.c: Fix the way we load /proc/kallsyms to 
+          get the correct symbol sizes, to help ustack().
+
+     385* dtrace_isa.c: Remove the dwarf test code and use a different algorithm
+     	  for 64-bit stacks - more in line with what the kernel does on stack dumps.
+	  (stack() function).
+
+Fri Aug  6 21:55:59 2010  fox
+
+     384* intr_x86-32.S/intr_x86-64.S: Add dtrace_memcpy_with_error to
+          detect GPF in D programs.
+
+     383* etc/linux.d: Add uid_t type so we can access "uid" function.
+
+Thu Aug  5 23:53:55 2010  fox
+
+     382* dtrace_isa.c: Change the copyin/out functions to handle
+          user level segmentation violations and report back to the user.
+
+Wed Aug  4 23:10:26 2010  fox
+
+     381* libproc/Pcontrol.c: Dont ptrace(ATTACH) to a proc if we want readonly
+          mode. (Avoid ustack() hanging procs).
+
+     380* dtrace.h, dt_consume.c: Add stacksymbols option from Apple to turn
+          off symbolic stack traces. (Debugging or speed up).
+
+     379* dtrace_asm.c: Avoid kernel GPF if given a bad user addr to copy.
+          Not perfect as we should generate a DTRACE fault - but cannot
+	  simulate this just yet.
+
+Tue Aug  3 20:54:35 2010  fox
+
+     378* scripts/dt.pl: Add timestamps, support for signals and show
+          filenames in "files" subsystem.
+
+     377* dtrace.c: Fix handling of DIF_VAR_PPID to avoid GPF.
+
+Mon Aug  2 20:13:02 2010  fox
+
+     376* dtrace_linux.c, dtrace_linux.h: Create our own read_cr2_register()
+          function to avoid OS dependencies.
+
+Sun Aug  1 22:23:22 2010  fox
+
+     375* cmd/dtrace/dtrace.c: Avoid core dump if doing "dtrace -S -v -s script"
+          and no CTF data for the internal SDT probe.
+
+Fri Jul 30 09:07:10 2010  fox
+
+     374* privregs.h: Fix register names for sdt_linux.c (32-bit kernels).
+
+Thu Jul 29 00:10:39 2010  fox
+
+     373* dtrace_isa.c: Fix dtrace_copyin: Had args reversed in copy_from_user.
+          Cause copyinstr() to panic the kernel.
+
+     372* archive: 1.0106
+
+     371* privregs.h, sdt_linux.c: Get the proper args to the calling function
+          for the probe from user space. Now io::start has the right
+	  arg0, arg1, ..., but we still havent made available a working
+	  io.d and no fileinfo_t (etc) args.
+
+Wed Jul 28 08:42:55 2010  fox
+
+     370* libdtrace/dt_lex.l: Better // handling.
+
+     369* libdtrace/dt_lex.l: #define ECHO as nothing to avoid writing to
+          stdout.
+
+     368* scripts/mkinstall.pl: Install /usr/lib/dtrace/ regs.d, signal.d,
+          unistd.d
+
+     367* instr_linux.c: Same as #366 - avoid aliasing issues.
+          These changes fixed an issue where a fbt::do_sync_read:return
+	  would never fire, because the SDT provider was stealing the probe
+	  despite it not having been enabled.
+
+     366* sdt_implh, sdt_linux.c: Mark a probe as enabled or not so
+          we avoid aliasing issues if fbt is probing the same instruction.
+
+     365* archive: 1.0104 (build.pl was missing)
+
+Tue Jul 27 19:47:26 2010  fox
+
+     364* cpu_x86.c: Add a NOP instruction after the instruction we are
+          going to single step, since some instructions may execute
+	  that even if the single-step trap flag is set. E.g.
+	  "MOV %CR3,%EAX".
+
+Mon Jul 26 15:38:00 2010  fox
+
+     363* uncompress.c, mkport.pl: Allow us to not have zlib functions in 
+          kernel. Dtrace mostly works without this, but may affect the 
+	  ctf functions.
+
+     362* tools/mkport.pl: Fix for Debian 4-i386 kernel (smp_call_function_single)
+
+     361* dtrace_isa.c: Fix for Debian 4-i386 kernel (2.6.24)
+
+Sun Jul 25 20:18:41 2010  fox
+
+     360* archive: 1.0103
+
+     359* sdt_linux.c: Add io::start and io::done exits.
+
+     358* prov_common.c: Add dtrace_function_size() utility.
+
+     357* driver/dis_tables.c: Grab this from Darwin-10.6.4. It has the
+          fixes needed to support multibyte nop instructions and a silly
+	  coding error in handling mode operations.
+
+Fri Jul 16 23:56:16 2010  fox
+
+     356* fbt_linux.c, prov_common.c: Migrate the function parser code
+          to a reusable function so we can share it with other providers.
+
+Thu Jul 15 21:00:35 2010  fox
+
+     355* archive: 1.0102
+
+     354* Better parsing for SMP_CALL_FUNCTION_SINGLE_ARGS and SMP_CALL_FUNCTION_ARGS
+
+     353* toxic.c: Add ia32_sysenter_target for x86-64 kernels when 32 bit
+          apps invoke a i386 SYSENTER syscall.
+
+Wed Jul 14 20:51:58 2010  fox
+
+     352* dtrace_linux.c: dtrace_int13_handler: Annotate a dtrace induced
+          segmentation violation so that the error can be propagated to
+	  the user.
+
+     351* dtrace_linux.h, dtrace_linux.c: Try and handle smp_call_function()
+          with 3 or 4 args depending on kernel version.
+
+Tue Jul 13 20:57:56 2010  fox
+
+     350* driver/systrace.c: Fix sigaltstack for 2.6.32/64 bit kernel.
+
+     349* driver/systrace.c: Fix fork/vfork() for 2.6.32/64 bit kernel.
+          scripts/fork.d is crashing the kernel on the copyinstr.
+
+     348* driver/systrace.c: Fix iopl() syscall for 2.6.32/64 bit kernel.
+
+     347* driver/systrace.c: Fix rt_sigreturn() for 2.6.32/64 bit kernel.
+
+     346* driver/systrace.c: Fix execve() for 2.6.32/64 bit kernel.
+
+Mon Jul 12 22:24:58 2010  fox
+
+     345* systrace.c: Fix clone() syscall for 2.6.32/64 bit kernel.
+
+Sun Jul 11 21:40:15 2010  fox
+
+     344* dtrace_linux.c: dtrace_xcall: Dont call on_each_cpu as its not
+          interrupt safe.
+
+Sat Jul 10 21:40:00 2010  fox
+
+     343* Archive: 1.0101
+
+     342* Release: 20100710
+
+     341* ctl.c, dtrace_linux.c: Changes for Centos 5.5 (
+          (Nathan Slingerland at RotateRight, LLC)
+
+     340* dt_lex.l: Add support for C++ // comments.
+
+     339* dtrace_linux.c: When doing an ioctl, pass down CRED() so we can
+          probe memory if we are root.
+
+Tue Jul  6 11:56:02 2010  fox
+
+     338* libdtrace/dt_dis.c: Fix typo where we get a double "0x" in the output
+          for "-S -s" switches.
+
+Mon Jul  5 21:07:32 2010  fox
+
+     337* dtrace_isa.c: Uncomment dtrace_getarg() - but its not good for
+          now. This allows tests/dt021 to "run" (but not properly).
+
+Sun Jul  4 21:30:37 2010  fox
+
+     336* dtrace_linux.c: __validate_ptr, using "=a" instead of "=&a"
+          when calling this inline asm. Seems to cure the problem on
+	  line 1259 (instr_in_text_seg) where we GPF'd if we didnt
+	  have a print statement.
+
+Sat Jul  3 22:03:17 2010  fox
+
+     335* common/ctf/ctf_create.c: Update from OpenSolaris. This fixes the
+          tests/dt020 bug.
+
+     334* load.pl, makefile: Add "/sbin" to insmod and rmmod. 
+          (slingn@rotateright.com)
+	   
+Wed Jun 30 23:16:29 2010  fox
+
+     333* driver/dis_tables.h: Set OPLEN to a teeny number if not disassembling
+          since we might break the interrupt stack frame.
+
+Fri Feb 12 22:10:46 2010  fox
+
+     332* libdtrace/i386/dt_isadep.c: Fix references to text[] array as
+          pointed our by Sanjay. (sanjay3000-at-gmail.com)
+
+Tue Jan  5 22:09:05 2010  fox
+
+     331* tools/load.pl: Allow i386die_chain as a synonym for die_chain for 2.6.16
+          kernels. <aacosta@gmv.com>
+
+Wed Dec 23 10:26:39 2009  fox
+
+     330* dtrace_linux.c: mem_set_writable: Patch from Soumendu to fix problem on
+          2.6.27.39.x86_64 kernel. satapathy.soumendu&at;gmail.com.
+
+Sat Oct 10 15:51:22 2009  fox
+
+     329* libproc/*: Rename dprintf to p_dprintf to avoid glibc issues.
+
+     328* dtrace_linux.c, dtrace_isa.c: Fixes for 2.6.31 (hopefully 2.6.32)
+          kernels. May have broken older kernels.
+
+Mon Aug  3 23:18:25 2009  fox
+
+     327* dtrace_isa.c: Fix for oldrsp in 2.6.30.4 kernel.
+
+Fri Jul 24 20:13:15 2009  fox
+
+     326* Archive: 1.0100
+
+     325* Below two changes for RH 2.6.18-92.1.13.el5xen kernel
+          (Oracle platform)
+
+     324* intr_x86-32.S: Add conditional if __KERNEL_PERCPU does not
+          exist in this kernel.
+
+	  missing.c: Add checks for strcmp/strlen to avoid asm/string.h
+	  conflicts.
+
+	  profile.c: Add missing strcasecmp() prototype.
+
+     323* missing.c: smp_call_function_single: Only defined if SMP, not
+          a kernel version specific function.
+
+	  tools/mkport.pl: Add special detection for smp_call_function_single
+	  since theres a variety of scenarios to support.
+
+Thu Jul 23 20:07:18 2009  fox
+
+     322* Pcontrol.c, Putil.c: Rename dprintf to p_dprintf to avoid glibc
+          clashes.
+
+Mon Jul 20 21:10:50 2009  fox
+
+     321* driver/dwarf.c: Subroutine code for stack walking and for the
+          build/dwarf userland binary.
+
+     320* Archive: 1.0099
+
+Tue Jul 14 21:15:07 2009  fox
+
+     319* toxic.c: Add level3_kernel_pgt and level2_kernel_pgt because
+          these are data areas, not code areas. (Nicolos.Willams@sun.com)
+
+Fri Jul 10 22:50:35 2009  fox
+
+     318* dtrace_linux.c: Patch to handle smp_call_function_single() when
+          invoking current cpu by <Nicolas.Williams@sun.com>
+
+	  strcasecmp: Fix const correctness.
+
+	  dtrace_isa.c: fix call to dump_trace on 2.6.18 kernel.
+
+Sun Jun 28 18:08:39 2009  fox
+
+     317* dtrace_linux.c: instr_in_text_seg: Use strncmp instead of strcmp
+          to avoid potential GPF. Dont know why this may help, but its
+	  a useful addition.
+
+	  <lahti@student.chalmers.se>
+
+Sat Jun 27 20:23:53 2009  fox
+
+     316* dtrace_isa.c, dtrace_linux.c: Make stack() work - using the
+          kernels dump_trace code - if its present, else a cheaper
+	  stack walker.
+
+	  We have problems getting a stack on syscall::: provider.
+
+Tue Jun 23 23:52:03 2009  fox
+
+     315* dtrace_linux.c: Disable the GPF interrupt hook for now -- we
+          dont need it, and on a 32b kernel, reloading dtrace lots
+	  of times can crash the kernel.
+
+     314* tools/build.pl: Detect if we have bison/yacc/flex.
+
+Mon Jun 22 21:03:36 2009  fox
+
+     313* Archive: 1.0098
+
+     312* dt_proc.c: Handle -p <pid> command line switch.
+
+Sun Jun 21 21:27:25 2009  fox
+
+     311* Archive: 1.0097
+
+     310* dt_proc.c, Pcontrol.c: Make dtrace -c <cmd> work.
+
+Wed Jun 17 23:29:46 2009  fox
+
+     309* Archive: 1.0094
+
+     308* libdtrace/makefile: Put dt_grammar.h in the build dir so that
+          it is not part of the release, to avoid polluting peoples
+	  systems with my yacc or bison build.
+
+Tue Jun 16 22:00:24 2009  fox
+
+     307* dtrace_linux.c: lx_get_curthread_id: Use current->pid, rather
+          than zero. <mauritz.sundell@viem.se>
+
+Sun Jun 14 09:58:36 2009  fox
+
+     306* Archive: 1.0093
+
+     305* dtrace_linux.c: We need to preallocate and change the
+          process shadowing code, so that when we use predicates such
+	  as
+
+	  dtrace -n 'syscall::: /pid == NNN/ {}'
+
+	  that we can actually intercept the targetted process and not
+	  confuse dtrace_probe when we share the shadow structure.
+
+     304* Various: change dprintf() to be dprintf1() because GLIBC
+          likes to break working apps and defines a POSIX dprintf().
+	  POSIX like to break working apps too, and should be ashamed
+	  of themselves.
+
+     303* systrace.c, dtrace_linux.c: Make the pt_regs available to 
+          dtrace_probe() so we can access register specific state.
+	  Handle nesting of interrupts (so we dont destroy the
+	  pt_regs pointer in the event of an interrupt on a syscall).
+
+     302* dtrace.c, dtrace_linux.c: Add 'ipl' probe function support.
+
+Fri Jun 12 19:51:37 2009  fox
+
+     301* dtrace_linux.c: Avoid proc shadowing - dont think we need
+          this and can do it with per-cpu allocation instead.
+	  (par_setup_thread1).
+
+     300* cpu_x86.c: Fixed the issue with CALLR and the other call
+          instructions which manipulate the stack as we step over them.
+	  32 and 64 bit kernels should be safe - til we hit another
+	  instruction we have never seen before.
+
+     299* Archive: 1.0092
+
+Wed Jun 10 18:34:03 2009  fox
+
+     298* dtrace_linux.c: Remove dependency on init_mm for 2.6.30 kernel.
+
+Tue Jun  9 21:32:20 2009  fox
+
+     297* cpu_x86.c: Add support for stepping over 0x7n Jump relative
+          instructions for the instruction provider.
+
+Mon Jun  8 22:39:17 2009  fox
+
+     296* instr_linux.c: Instruction provider. Not fully tested/debugged.
+
+     295* dtrace_linux.c: Fix for 2.6.29 task_struct/cred structure compile.
+
+Sun Jun  7 11:12:40 2009  fox
+
+     294* Archive: 1.0091
+
+     293* dtrace.h, dtrace.c, cpu_var.h: Add some dtrace fixes from
+          opensolaris-20090607.
+
+     292* fbt_linux.c: Added /proc/dtrace/fbt so we can get info about
+          probes. This is CPU intensive and O(N^2) in performance, so treat
+	  with care. This is to help debug or add perf stats.
+
+Thu Jun  4 22:08:45 2009  fox
+
+     291* strings.h: Dont undef __USE_BSD. Dont know why Sun insist on using
+          the legacy strings.h and not ISO string.h. Oh well.
+
+Sun May 31 10:39:20 2009  fox
+
+     290* dtrace_linux.c, intr_x86*.S: Add support for INT13 (GPF), so
+          we can disable ourselves when we run into issues.
+
+     289* toxic.c: Add system_call: This is a very special kernel
+          entry point and if we probe it, we may get a kernel double-fault
+	  because the stack wont be ready for kernel space.
+
+Fri May 29 19:50:52 2009  fox
+
+     288* driver/cpu_x86.c: New file - put the single step cpu specific code
+          in here, from dtrace_linux.c.
+
+	  Add support for 0xEn opcodes (call/jump/loop instructions).
+
+Thu May 28 23:55:45 2009  fox
+
+     287* dtrace_linux.c: Handle the FF .. opcodes (indirect jump/calls).
+          fbt::__delay: now works on my Ubuntu 32bit kernel.
+
+	  (Not yet proven for 64bit kernels).
+
+Wed May 27 20:25:44 2009  fox
+
+     286* instr_size.c: Workaround for LOCK/REPZ/REPNZ prefix instructions.
+
+Mon May 25 21:44:26 2009  fox
+
+     285* fbt_linux.c, dtrace_linux.c: Enable more 32-bit instructions
+          for :entry traces. Not all have been validated yet, but
+	  the code has been left in a safe state.
+
+     284* dtrace_linux.c: Dont do RIP addressing mode for 32-bit cpu.
+
+Sat May 23 19:18:09 2009  fox
+
+     283* intr_x86-32.S, intr_x86-64.S: Add a dummy mcount function
+          in case kernel is compiled with -pg. We mustnt call into
+	  the kernels mcount else we hit a recursion error.
+
+     282* fbt_linux.c: Re-enable more x86-64 opcodes which were disabled
+          whilst debugging the interrupt handlers.
+
+     281* fbt_linux.c, dtrace_linux.c, cpuvar.h: Compute modrm byte
+          during analysis phase, not during an interrupt, to lower overhead
+	  of RIP addressing mode handler.
+
+     280* Archive: 1.0090
+
+Thu May 21 23:10:10 2009  fox
+
+     279* systrace.c: Fix for write-protected interrupt handlers.
+	  (patch_enable).
+
+Wed May 20 21:55:34 2009  fox
+
+     278* dtrace_linux.c: Move /dev/dtrace into /proc/dtrace and segregate
+          the debug streams into separate entries (debug, security, stats, trace).
+	  This is easier to handle >4K reads for the trace buffer.
+
+Sun May 17 20:51:17 2009  fox
+
+     277* intr_x86-64.S: Allow us to probe an IRET instruction.
+          (irq_return)
+
+Sat May 16 22:19:52 2009  fox
+
+     276* dtrace_linux.c: Add support for RIP relative addressing mode
+          single step.
+
+     275* dtrace_linux.c: Add dtrace_memcpy to avoid reentrancy issues when
+          we probe memcpy(). This happens because we use this inside our
+	  single step handler.
+
+     274* fasttrap.c: Avoid kernel panic when invoking a USDT since
+          we are tuned to the number of cpus, not the max of cpus we
+	  could have.
+
+Fri May 15 21:56:07 2009  fox
+
+     273* Archive: 1.0089
+
+     272* tools/load.pl, makefile: Load /etc/dtrace.conf into the kernel 
+          if present. SUDO when appropriate because now we need to be 
+	  root to talk to the kernel.
+
+	  Please edit /etc/dtrace.conf - it contains my uid in there which
+	  isnt appropriate for your system, but change according to taste.
+
+	  It wont get overwritten in a new 'make install', so its
+	  persistent.
+
+     271* dtrace.c, dtrace_linux.c: Fix security policy issues.
+
+Thu May 14 21:30:46 2009  fox
+
+     270* fbt_linux.c: Allow opcode 0x48 for 64-bit. More than doubles 
+     	  Ubuntu 8.10 / 2.6.27.8 kernel probes. We can allow them all 
+	  through but just taking it slowly.
+
+Wed May 13 21:27:06 2009  fox
+
+     269* dtrace_linux.c: Add security parsing for /dev/dtrace.
+
+Tue May 12 20:34:40 2009  fox
+
+     268* Archive: 1.0088
+
+     267* driver/*: Fix compilation issues with earlier kernels regarding
+          placement of semaphores and atomic_t and related issues with
+	  mutex macros.
+
+Mon May 11 20:42:02 2009  fox
+
+     266* Archive: 1.0087
+
+     265* dtrace_linux.c: par_alloc: We had some static initialisation
+          in here which was breaking predicates for processes.
+	  The process shadowing was broken - we kept cleaning out
+	  the predicate hints. Now, when doing
+
+	  dd if=/dev/zero of=/dev/null
+
+	  dtrace -n 'syscall::read: /pid == 7331/ {printf("pid=%d", pid);}'
+
+	  we get consistent read:entry + read:return pairs, and we
+	  dont just stop probe collecting.
+
+	  Thanks to <mauritz.sundell@viem.se> for pointing out this
+	  obvious silliness on my behalf.
+
+     264* dtrace_linux.c, fbt_linux.c, sdt_linux.c: If we have a recursive
+          probe, then when we disable the probe, dont let it fire !
+	  Else we get multiple recursions leading to a cpu triple fault.
+
+	  This seems to fix the 32-bit instability issue, and let me see
+	  where the recursion issue has happened.
+
+Sun May 10 21:47:15 2009  fox
+
+     263* linux_types.h, driver/*: Use semaphores instead of mutexes
+          since mutexes arent available in interrupt context.
+
+Sat May  9 09:57:35 2009  fox
+
+     262* libdtrace/makefile: Put dt_lex.c in the build dir since it 
+          depends on the version of flex we are using.
+
+     261* Archive: 1.0086
+
+     260* dtrace_linux.c: Some portability cleanups - so we can handle
+          the differing kernels.
+
+     259* utils/make_kernel.pl, Makefile: Allow us to cross build/validate
+          i386 kernels on a 64 bit machine. (For my benefit only).
+
+     258* dtrace_linux.c: Fixes for 2.6.22/i386 set_idt_entry.
+
+Thu May  7 22:29:11 2009  fox
+
+     257* dtrace_linux.c: Fix compile issue for 2.6.22/i386 on desc_defs.h
+          include.
+
+Wed May  6 20:29:31 2009  fox
+
+     256* dtrace_linux.c: dtrace_gethrtime: Never call do_gettimeofday, since
+          we will block if that is interrupted.
+
+	  dtrace_linux.c: Comment out the register_die_notifier code since
+	  we no longer need it. We are directly attached.
+
+	  Allow /dev/dtrace to be read to print out some debug stats.
+	  Nothing useful.
+
+Sat May  2 14:22:15 2009  fox
+
+     255* Archive: 1.0085
+
+     254* dtrace_linux.c: Use direct INT3 vector attachments to avoid
+          long toxic lists.
+
+	  intr_x86-64.S: New file for the INT3 interrupt handler.
+
+Mon Apr 27 20:07:36 2009  fox
+
+     253* Archive: 1.0084
+
+Sun Apr 26 11:22:44 2009  fox
+
+     252* cpu_64bit.c, fbt_linux.c: Add support for XOR REG,REG
+
+Sat Apr 25 23:00:24 2009  fox
+
+     251* fbt_linux.c: Fix handling of module sections for pre-2.6.19
+          kernels. We couldnt properly validate if symbols in .text section.
+
+	  Add support for PUSH %RCX entry point; change amd64 
+	  entry point so we only accept first instruction in function,
+	  like we do for i386.
+
+Fri Apr 24 21:45:05 2009  fox
+
+     250* fbt_linux.c: Fix issue with 64-bit entry probe searching.
+          Should never have worked for funcs which start PUSH %RBP, but
+	  did.
+
+Thu Apr 23 21:15:58 2009  fox
+
+     249* scripts/dt.pl -- make it more usable. This is to replace
+          the various scripts/*.d test examples.
+
+     248* dtrace_isa.c: Use copy_from_user to avoid kernel panic if
+          copyinstr() called on an argument which isnt a pointer type
+	  arg to a syscall.
+
+Wed Apr 22 21:00:26 2009  fox
+
+     247* driver/cyclic_linux.c: Use old timers for non-hrtimer
+          aware kernels.
+
+Tue Apr 21 08:13:00 2009  fox
+
+     246* dtrace_linux.c: Allow us to read/write from /dev/dtracedrv for
+          debugging.
+
+     245* Archive: 1.0083
+
+     244* driver/systrace.c: More surgery to ensure we pick up
+          the right syscall for all syscalls, and avoid dependency
+	  on GCC local variable allocations for finding the syscall.
+	  Also get rid of a few magic numbers in dtrace_systrace_syscall
+	  which were causing some of the troubles.
+
+     243* driver/systrace.c: Put in the handler for 2.6.9 special
+          case for execve requiring pt_regs passing by value.
+
+Mon Apr 20 23:41:08 2009  fox
+
+     242* driver/systrace.c: Replace the assembler sequence for
+          execve() and rt_sigreturn() with a patch sequence to
+	  allow for more generic kernel version handling.
+
+Sun Apr 19 00:02:12 2009  fox
+
+     241* dt_subr.c: dt_sysconf: Was returning wrong number of cpus.
+
+     240* Archive: 1.0082
+
+Sat Apr 18 12:45:26 2009  fox
+
+     239* driver/cyclic_linux.c: Handle API/struct changes in 2.6.28 
+          kernels.
+
+     238* driver/cyclic_linux.c: Fix the hrtimer restart issue
+          which was crashing the kernel (not increasing the time
+	  locks the kernel since timer keeps refiring).
+
+Thu Apr 16 20:20:57 2009  fox
+
+     237* dtrace_linux.c: Tidy up the syms[] array which is filled in
+          from userspace to bootstrap us.
+
+     236* Archive: 1.0080
+
+     235* dtrace_linux.c: Fix typo in on_notifier_list, and avoid
+          repeated calls to get_proc_addr when entries dont exist.
+
+     234* tools/load.pl: Try /boot/System.map-`uname -r` for symbols
+          which may be missing (AS4). Remove sys_syscall which isnt
+	  valid at all.
+
+Tue Apr 14 20:17:10 2009  fox
+
+     233* cyclic_linux.c: Emergency patch to disable cyclic timer
+          til i fix the crashing...
+
+     232* Remove all compiler warnings for the driver (still working on
+          init_mm), so I can see wood-for-trees on 2.6.9;
+	  kernel 2.6.28+ is clean, but 2.6.9 has a few noisy differences.
+
+     231* driver/cyclic_linux.c: Remove warnings and fix way
+          hrtimer callbacks work (based on 2.6.28)
+
+     230* Various: cleanup the exit functions for the drivers, since
+          Linux 2.6.9 doesnt like calls to misc_deregister() if we
+	  never registered the structure.
+
+	  dtrace_linux.c:
+	  Remove redundant calls to remove_proc_entry() which can panic
+	  2.6.9.
+
+Mon Apr 13 11:03:10 2009  fox
+
+     229* dtrace_linux.c: par_alloc. Allocate memory with GFP_ATOMIC since
+          we may be in interrupt context and AS4 doesnt like us.
+
+     228* cpuvar.h, fasttrap_impl.h: Avoid struct padding for Linux
+          2.6.9 where we end up with a negative array size since
+	  sizeof(mutex_t) is > 64 bytes.
+
+     227* fbt_linux.c: Avoid possible GPF when loading driver and trawling
+          the available modules.
+
+     226* Archive: 1.0079
+
+     225* driver/dtrace_linux.c: Fix re-entrancy problem for fbt:::
+          due to kprobes notifier wanting to be first.
+
+Tue Apr  7 23:55:48 2009  fox
+
+     224* systrace.c: Fix calling sequence for fork/vfork/iopl/sigaltstack.
+
+Mon Apr  6 21:54:17 2009  fox
+
+     223* Archive: 1.0078
+
+     222* systrace.c: We broke 32-bit syscalls. Now fixed.
+
+     221* makefile: Move to tools/build.pl, so we can start to extend
+          for other cpu types.
+
+     220* systrace.c: Fix silly assemblerism.
+
+     219* dtrace_linux.c, fasttrap.c, missing.c: Add support for AS4
+          2.6.9+patches kernel.
+
+Sun Apr  5 18:05:55 2009  fox
+
+     218* systrace.c: Fix fork/vfork/sigaltstack - forgot to put the
+          switch statement into get_interposer.
+
+     217* usdt/c/makefile: Keep the src dir clean - all objects now in the build dir.
+
+Sat Apr  4 10:44:41 2009  fox
+
+     216* Archive: 1.0077
+
+     215* systrace.c: Add handlers for fork/vfork/iopl/sigaltstack.
+
+     214* systrace.c: Fix amd64 clone() syscall handler.
+
+     213* Archive: 1.0076
+
+Sun Mar 29 15:27:08 2009  fox
+
+     212* Archive: 1.0074
+
+     211* fbt_linux.c: Fix for 2.6.29
+
+     210* dtrace.c: Fixes for 2.6.29
+
+     209* linux_types.h: Fix for including <sys/cred.h> on 2.6.29
+          kernel.
+
+Sun Mar 22 09:28:26 2009  fox
+
+     208* Archive: 1.0073
+
+     207* dtrace_linux.c: Undo last change - it wasnt what the problem was.
+          Problem is that an SMP kernel may say we have 64 cpus, when we
+	  only have 1 or 2, so buffer allocation went thru the roof -- 
+	  64 * 4MB of RAM, and we OOM'ed. Now we utilise number of online
+	  cpus at driver load time. (We need to do work if we online
+	  cpus whilst system is up, since the arrays will be too small).
+
+     206* dtrace.c: Do some rough memory calcs when allocating the state 
+          buffers to avoid starvation on 512MB systems.
+
+     205* ctl.c: Fix to compile on 2.6.18.
+
+     204* dtrace_linux.c: Fix PTE modifications for x86-64 which uses
+          a 4-level page table and for which later kernels try hard
+	  to stop us from patching the syscall table.
+
+     203* fbt_linux.c: Re-put-back the sanity check on kernel functions
+          so we dont crash when we hit code in non-standard .text sections.
+
+Wed Mar 11 23:30:11 2009  fox
+
+     202* tools/load.pl: Add more diagnostics if things go wrong.
+
+     201* tools/load.pl: Add missing -mem_alloc switch.
+
+     200* dtrace_asm.c: Fix the 64-bit assembler to avoid call frame
+          issues with differing compilers. 
+
+	  "dtrace -n fbt:::" works again for 64-bit.
+
+Mon Mar  9 20:44:28 2009  fox
+
+     199* dtrace_linux.c: Support for non ATOM_NOTIFIER_HEAD kernels.
+          (AS4)
+
+Sun Mar  8 00:39:01 2009  fox
+
+     198* fbt_linux.c: Fix 64-bit fbt.
+
+     197* cpu_32bit.c, fbt_linux.c: Emulate PUSH EAX instruction.
+
+     196* cpu_32bit.c, fbt_linux.c: Emulate PUSH $nn instruction.
+
+     195* cpu_32bit.c, fbt_linux.c: Emulate CLI instruction.
+
+     194* Archive: 1.0070
+
+     193* toxic.c: Add __mutex_* functions to the list since we
+          invoke mutex_lock/mutex_unlock and these are part of
+	  the implementation.
+
+	  dtrace -n fbt:::
+
+	  seems to work now - at least under lighter load.
+
+     192* fbt_linux.c: Dont include functions from the .exit section
+          of a module.
+
+     191* fbt_linux.c, dtrace_linux.c: Add on_notifier_list() to 
+          detect if a target probe point is on one of our notifier
+	  chains, and will cause kernel mayhem if we probe it.
+
+Sat Mar  7 09:02:09 2009  fox
+
+     190* missing.c: Add strlen(), and strncmp() for older kernels/gcc's.
+
+     189* fbt_linux.c: When examining module symbols, ignore any in
+          the ".init" sections, else we can be trying to touch reclaimed
+	  pages.
+
+     188* fbt_linux.c: Dont allow us to create probes for module "init"
+          functions which are likely sitting in unmapped pages. This
+	  caused problems in dtrace_close() as we tried to unpatch them,
+	  but they may not be mapped or contain data since the pages would
+	  have been freed.
+
+     187* tools/load.pl, dtrace_linux.c: Add a -mem_alloc option
+          to turn on memory tracing. (Its too voluminous if enabled
+	  with -here).
+
+     186* fbt_linux.c:fbt_disable: Dont unpatch a probe we never
+          enabled in the first place (eg, because kernel unmapped
+	  a .init section).
+
+     185* Archive: 1.0069
+
+     184* toxic.c: Add do_int3, since this is the core of the
+          kernel for invoking us when a probe fires.
+
+     183* dtrace_linux.c: par_setup_thread: Hack for the moment to
+          avoid reentrancy issues in dtrace_probe.
+
+Fri Mar  6 14:09:04 2009  fox
+
+     182* toxic.c: Remove non-toxic functions (not all, but many).
+          Add notifier_call_chain.
+
+     181* cpu_32bit.c: Fix "SUBL $0,%ESP".
+
+     180* cpu_32bit.c: Fix "MOV %ESP,%EAX" emulation which was
+          causing kernel to die when we trace local_bh_disable.
+
+Thu Mar  5 23:31:02 2009  fox
+
+     179* cpu_32bit.c: Fix "TEST %EAX,%EAX" emulation.
+
+Tue Mar  3 10:33:15 2009  fox
+
+     178* dtrace_linux.c: dtrace_gethrtime() Fix bug stopping us probe
+          nr_active and friends and other timer related functions, since
+	  we deadlocked inside our probe interrupt. Need to fix dtrace_gethrtime
+	  since we do a read from a multiword item, and this can change
+	  whilst we read it, leading to potentially non-monotonic
+	  clock.
+
+     177* Archive: 1.0068
+
+     176* systrace.c, fbt_linux.c, dtrace_linux.c: For fbt probes,
+          the i386 kernel is write protected; make pages writable,
+	  to avoid paniccing the driver.
+
+Sun Mar  1 00:10:21 2009  fox
+
+     175* Archive: 1.0067
+
+     174* toxic.c: Added to allow filtering of bad probe funcs in the
+          kernel. Not finished yet (for my kernel).
+
+     173* dtrace.c, fbt_linux.c: Add support for fbt:kernel:... so
+          we can start tracing real kernel functions. This is dangerous
+	  at this time (wait for next update?) since you can trace
+	  anything - including the bits of the kernel dtrace depends on.
+	  Next step is to hide those symbols we depend on so you can
+	  do:
+
+	  dtrace -n fbt:kernel::
+
+     172* cpu_32bit.c: Add support for 89 c0..c7 (mov %eax,reg)
+
+     171* Archive: 1.0066
+
+     170* dtrace_asm.c: Fix dtrace_interrupt_disable - we broke
+          the C/asm interface semantics - would crash a real cpu, but
+	  not vmware for some reason.
+
+Sat Feb 28 22:45:59 2009  fox
+
+     169* makefile: recreate build symlink each time in case of kernel
+          upgrade.
+
+Fri Feb 27 20:16:31 2009  fox
+
+     168* makefile: Add a 'build' number when we create a release in case
+          we release multiple times per day.
+
+     167* fbt_linux.c, cpu_32bit.c: Add support for 
+
+     	XOR reg,reg
+	JMP nnnn
+
+	instructions
+
+     166* driver/cpu_emulate.c: Split into cpu_32bit.c and cpu_64bit.c
+
+     165* Archive: 1.0065
+
+     164* dtrace_asm.c: Fix nesting of interrupt disable for i386.
+
+Wed Feb 25 19:11:10 2009  fox
+
+     163* load.pl: If we have an error, tell them a little more about
+          why the driver load failed.
+
+     162* makefile: Add a dependency checker before people build.
+
+Mon Feb 23 21:45:13 2009  fox
+
+     161* cpu_emulate.c: Emulate SUB $4,ESP
+
+     160* cpu_emulate.c: Emulate TEST EAX,EAX
+
+     159* cpu_emulate.c: Fix SUB $nn,ESP where nn == 0x18
+
+Sun Feb 22 11:31:20 2009  fox
+
+     158* cpu_emulate.c: Add support for SUB $8,ESP
+
+     157* cpu_emulate.c: Fix problem with SUB $12,ESP instruction
+
+     156* Archive: 1.0064
+
+     155* systrace.c: Fix for sys_clone - now we dont get the core dumps.
+
+     154* systrace.c: Fix for sigreturn needing a proper call frame so
+          it can patch the registers. [i386 only]
+
+	  This appears to work
+
+	  dtrace -n syscall:::
+
+Sat Feb 21 10:25:07 2009  fox
+
+     153* cpu_emulate.c: Emulate PUSH ESI.
+          We need to avoid having a zillion case/defines where we
+	  can use the CPU opcode decoding to get big-bang-for-buck.
+	  We need to pass in the missing opcode so we can decide
+	  which is better to do.
+
+     152* dtrace_linux.c: Use vmalloc for large buffer allocations to avoid
+          smacking the kernel badly with our large probe buffer.
+
+     151* cpu_emulate.c: Emulate PUSH EDI
+
+Fri Feb 20 20:12:05 2009  fox
+
+     150* cpu_emulate.c: Emulate PUSH EBX
+
+     149* makefile+tools/bug.sh: Add a .release file, so we know
+          what people are building on when reporting a bug.
+
+     148* drivers/missing.c: Fix for 2.6.23.1-42.fc8 missing
+          find_task_by_vpid.
+
+Thu Feb 19 21:55:51 2009  fox
+
+     147* cpu_emulate.c: Add support for "SUB $12,ESP" - where the
+          reti stack frame overlapped our saved regs. Special case.
+	  We can merge this with the generic (>12) case later.
+	  Still need to handle "SUB $8,ESP" and "SUB $4,ESP"...which
+	  should be easier for we have the $12 code.
+
+     146* Few cleanups and fixes for AS4 release.
+
+Wed Feb 18 21:58:50 2009  fox
+
+     145* dt_link.c: Fix properly for 32 + 64 bit architectures.
+          Same reason as below. Also create a temp file to contain
+	  the intermediate linker object rather than rely on /dev/fd/NNN.
+
+Tue Feb 17 22:07:40 2009  fox
+
+     144* dt_link.c: When writing the USDT output object file, use
+          a section type of SHT_PROGBITS and not SHT_SUNW_dof, since
+	  some older binutils/ld will not like what we did (too
+	  over zealous validation).
+
+Mon Feb 16 22:59:10 2009  fox
+
+     143* Archive: 1.0061
+
+     142* cpu_emulate.c: Add support for "SUB $nnn,%ESP"
+
+Sun Feb 15 10:47:15 2009  fox
+
+     141* fbt_linux.c, dtrace_linux.c: Use INT3 traps for entry/return
+          Need to handle more than just LEAVE/RET for FBT on i386.
+	  Fix INT3 handler to emulate the blotted-out instruction.
+
+     140* Archive: 1.0060
+
+Sun Feb  8 10:02:02 2009  fox
+
+     139* Archive: v1.0059
+
+     138* cpu_emulate.c: The fbt for i386 wont work on Linux since gcc
+          generates lots of differing instructions for a function
+	  (also, potentially inline assembler). We need to do more
+	  of a job for i386. So start to handle the new instructions
+	  we are seeing in the various kernel functions.
+
+Sat Feb  7 22:08:31 2009  fox
+
+     137* dtrace_linux.c: Fix FBT so it works for x86-64
+          Not working properly for 32bit kernel yet.
+
+Fri Feb  6 11:09:54 2009  fox
+
+     136* Archive: 1.0057
+
+     135* drivers/include -> ./include due to new build structure.
+          build/ is a symlink to build-`uname -r`. 
+	  drivers/dtrace/* -> driver
+
+     134* makefiles: Allow us to label the build dir with the appropriate
+          kernel version, so we can do multiple kernel builds.
+
+Thu Feb  5 10:35:22 2009  fox
+
+     133* Archive: 1.055
+
+     132* fasttrap.c: Werent initting the fasttrap_proc_t mutex, so
+          we died if a USDT process exited.
+
+     131* Fix dtrace_casptr for i386 which would cause copyinstr
+          to fail.
+
+Wed Feb  4 21:17:32 2009  fox
+
+     130* Various: changes to better manage multikernels. Compiled
+          against 2.6.9, 2.6.24, 2.6.26, 2.6.28
+
+Tue Feb  3 13:03:37 2009  fox
+
+     129* Archive: 1.0054
+
+     128* systrace.c: Re-engineered to the syscall table patcher --
+          now works inside vmware and a real 32bit cpu.
+
+	  Kernel can still panic if you do some syscall tracing
+	  and try and do copyinstr(arg0) - need to find out why.
+
+Mon Feb  2 17:27:39 2009  fox
+
+     127* ctl.c: Disable the hunt_init/hunt_cleanup code for the moment
+          as its crashing the x86 cpu (32b).
+
+     126* dtrace_asm.c: Found an issue with the membar functions which
+          dont work on a real x86(32b) cpu, but do on a VMware
+	  session on a 64b processor, and in 64bit mode. Use SFENCE
+	  instruction.
+
+     125* Archive: 1.0053
+
+     124* Now works on Ubuntu 2.6.24-16 (32bit) kernel
+
+     123* sys/privregs.h: Move the horrors of register and regs/pt_regs
+          into here. Need to cater for older kernels and i386/x86-64 too.
+
+Sun Feb  1 15:28:56 2009  fox
+
+     122* Various: tidy up some kernel compile warnings; remove some
+          unneeded zero length headers. 
+
+	  Arrange for proc_exit notification to wipe out fasttrap
+	  probes.
+
+     121* Various: refactor datamodel computation because we may treat
+          a 64b proc as a 32b one and access the wrong values for 
+	  copyinstr().
+
+	  We still have some USDT issues: dtrace doesnt know the target
+	  proc exited, so leaves the probes behind.
+
+     120* Archive: 1/0052
+
+Sat Jan 31 10:42:32 2009  fox
+
+     119* fasttrap_isa.c: Changes to compile on 32bit kernel (tested on
+          2.6.28 kernel).
+
+Fri Jan 30 22:48:51 2009  fox
+
+     118* dt_lex.l: Compat support for AS4 version of flex.
+
+Tue Jan 27 23:22:35 2009  fox
+
+     117* Archive: 1.0051
+
+Mon Jan 26 22:42:20 2009  fox
+
+     116* dtrace_linux.c: Fix uwrite() interface.
+
+Sun Jan 18 18:51:13 2009  fox
+
+     115* dtrace_linux.c: Put in a trap handler for INT3 and pass onto
+          to dtrace. Not there yet....
+
+Thu Jan 15 20:56:19 2009  fox
+
+     114* Archive: 1.0050
+
+     113* tests/dt019: Simple usdt example we are trying to make work.
+
+     112* fasttrap.c: Avoid kernel panic when we find the target to intercept.
+          Still not write because we commented out uread/uwrite.
+
+Tue Jan 13 23:52:50 2009  fox
+
+     111* Archive: 1.0049
+
+     110* fasttrap.c: Define fasttrap_max so that USDT starts to work.
+          libdtrace/: Lots of hackery to allow us to launch a process.
+	  (Not yet working to completion yet)
+
+Sun Dec 28 00:02:27 2008  fox
+
+     109* dtrace_linux.c: Remove old no-longer needed kernel dependencies
+          so we can compile on 2.6.28
+
+     108* drivers/dtrace/systrace.c: Fixes to build on 2.6.27.10 kernel
+          for 32-bit.
+
+     107* dt_link.c: Generate correct ELF patchups for 32-bit libc6 code.
+          (usdt now builds the user space simple executable)
+
+Sat Dec 27 04:35:47 2008  fox
+
+     106* liblinux/getopt.c: Add this because some getopt()s are doing
+          weird stuff compared to GNU getopt.
+
+Sat Dec 20 22:34:13 2008  fox
+
+     105* makefile, tools/build.pl: Handle i686 (32-bit) platform.
+
+Sat Dec 13 08:45:52 2008  fox
+
+     104* systrace.c: Avoid panicing 2.6.27.8 kernel due to bad
+          syscall name.
+
+     103* ctl.c: Fix crash on unloading driver.
+          <ppluzhnikov@google.com>
+
+Fri Dec 12 21:03:00 2008  fox
+
+     102* ctl.c: Fix find_task_by_pid, and improve make-me script.
+
+     101* Archive: 1.0048
+
+     100* dtrace_linux.c: Suggestion to use find_task_by_vpid vs
+          find_task_by_pid to avoid kernel-ifdefs.
+          <ppluzhnikov@google.com>
+
+      99* drivers/dtrace/dtrace_asm.c, sdt_linux.c, dtrace_isa.c
+          Some more OpenSolaris 20081211 alignment changes. Nothing
+	  functional fixed, since many of the ON source changes are
+	  more in the Sun kernel code than the common stuff here.
+
+      98* drivers/dtrace/dtrace.c: Merge in changes from OpenSolaris 20081211.
+
+Wed Dec 10 10:46:25 2008  fox
+
+      97* tools/mksyscalls.pl: [PATCH] Add verbosity flag; print KGDB module load address.
+          <ppluzhnikov@google.com>
+
+      96* tools/mksyscalls.pl: Change to find unistd.h which keeps moving.
+          <ppluzhnikov@google.com>
+
+Mon Dec  8 22:07:48 2008  fox
+
+      95* dtrace_linux.c: Patch for on_each_cpu, smp_call_function, and
+          asm/stacktrace.h
+          <ppluzhnikov@google.com>
+
+Thu Dec  4 20:53:33 2008  fox
+
+      94* drivers/dtrace/dtrace_isa.c: Fix to handle kernel 2.6.26 and
+          above.
+          (ppluzhnikov@google.com).
+
+      93* drivers/dtrace/dtrace.c: Fix dtrace_errlock bad mutex defn.
+          (ppluzhnikov@google.com).
+
+Wed Dec  3 23:16:40 2008  fox
+
+      92* Archive: 1.0046
+
+      91* drivers/dtrace/ctl.c: We now have a /proc/$$/ctl driver visible.
+          It doesnt do anything yet, but we have now patched a running
+	  kernel.
+
+Wed Nov 12 22:10:51 2008  fox
+
+      90* usdt/*/makefile: Use our compiled dtrace, rather than anything in
+          the environment.
+
+Sun Oct 26 16:54:54 2008  fox
+
+      89* dtrace_linux.c: Enable /dev/sdt
+
+Sat Oct 25 10:18:22 2008  fox
+
+      88* fasttrap.c: Can now run a USDT enabled app, but not showing up
+          on 'dtrace -l'. No longer hangs/crashes the kernel.
+
+Sun Oct 19 09:58:28 2008  fox
+
+      87* dt_link.c: Now generates correct binary, but drti.o isnt
+          correct yet.
+
+      86* Archive: 1.0045
+
+Sun Oct 12 09:47:14 2008  fox
+
+      85* drti.c: Allow us to specify $DTRACE_DRTI_O so we can find
+          the drti.o object file;
+
+	  linux_types.h: Fix include issues for dlfcn.h.
+
+	  dtrace_linux.c: Now invoke the dtrace_ioctl_helper function.
+
+Sat Oct 11 10:00:48 2008  fox
+
+      84* drivers/dtrace.c, dtrace_linux.c: Start to enable the 
+          /dev/dtrace_helper driver, needed for USDT.
+
+Thu Oct  9 22:36:16 2008  fox
+
+      83* linux_types.h: Add _LITTLE_ENDIAN definition, else dt_link.c
+          generates bad ELF .o files.
+
+Wed Oct  8 22:38:54 2008  fox
+
+      82* libdtrace/dt_link.c: Some changes to allow dtrace -G to work.
+          Not there yet.
+
+      81* usdt/ New directory to create a simple USDT so we can
+          get things sorted.
+
+Sat Aug  2 11:58:07 2008  fox
+
+      80* Archive: 1.0042
+
+      79* dt_module.c: Fixes for 64b kernels - we can now see kernel stack
+          traces.
+
+Tue Jul 29 21:27:11 2008  fox
+
+      78* makefile: Build libelf/Gelf structures properly for 32b machines.
+
+Sun Jul 27 08:56:23 2008  fox
+
+      77* dtrace_isa.c: Add in support for getstack to handle stack()
+          calls. Not brilliant with -fomit-frame-pointer in the kernel,
+	  but that will teach people to use this option :-(
+
+      76* dt_module.c: Add support for reading /proc/kallsyms so we
+          can get kernel level stack traces.
+
+Thu Jul 24 08:54:01 2008  fox
+
+      75* dtrace.c: dtrace_probe: Fix issue with 32-bit arguments
+          not being sign extended when stored in return struct. Without
+	  this, arg0 is never < 0 for failed syscalls.
+
+      74* load.pl: rewrite load shell script as perl as we want to do some
+          extra things for some kernels.
+
+      73* fbt_linux.c: Add support for i386/modules[] on 2.6.23.1
+
+Wed Jul 23 07:32:30 2008  fox
+
+      72* fbt_linux.c: Implement work around for 2.6.23.1 kernel
+          without public sys_call_table.
+
+      71* dtrace_linux.c: par_alloc should memset the memory
+          to zero to avoid firing a signal when it wasnt asked for.
+
+      70* systrace.c, dtrace.c: Implement support for raise/stop actions
+          which can send a signal to a process.
+
+      69* load: Detect missing symbols and try to warn user something
+          may fail.
+
+Wed Jul 16 22:55:01 2008  fox
+
+      68* systrace.c: Avoid bogus syscalls which can index
+          off the end of the array. Likely due to bad stack reference.
+	  Avoids SIGKILL near kernel panic when it happens.
+	  Trying to bootstrap ustack() call which involves 
+	  examining to the proc in user space to grab the symbol
+	  table. Race condition (which is catered for) -- the proc
+	  may no longer exist by the time dtrace is running.
+
+Sun Jul 13 10:53:44 2008  fox
+
+      67* Archive: 1.0037
+
+      66* Pisadep.c: Got rid of most of our stubs and use proper libproc
+          code. This code wont work since its depending on Solaris /procfs
+	  but we can start to work our way through this.
+
+Sat Jul 12 10:59:36 2008  fox
+
+      65* Archive: 1.0039
+
+      64* libproc: Upgrade complete.
+
+      63* libproc: Start upgrade to Solaris 20080623, since we cannot
+          call ustack() without starting to emulate /procfs on Solaris.
+
+      62* dtrace_isa.c: Fix issue with coying to/from user space.
+          arg0/arg1/... now works.
+
+Sun Jul  6 10:29:42 2008  fox
+
+      61* Archive: 1.0035
+
+      60* fasttrap_isa.c: Merged/compiled in - we have some TODOxxx items
+          to fix before we can use this.
+
+      59* fasttrap.c: Now compiles, but need to implement timeout()
+          function. Next, get fasttrap_isa.c to compile.
+
+Sat Jul  5 14:53:52 2008  fox
+
+      58* dtrace.c, dtrace_linux.c: Implement a parallel shadow to curthread
+          so we dont die when doing thread local variables (dt9 test).
+	  We now need a garbage collector - otherwise we may leak memory,
+	  or have an issue when a new thread comes along on the same address.
+
+	  dt9: demo/vars/rtime.d no longer panics the kernel.
+
+Fri Jul  4 20:35:34 2008  fox
+
+      57* dt_lex.l: Another attempt at fixing the lexing issues with
+          flex.
+
+      56* dtrace.c, fasttrap.c: Upgrade to latest ON Solaris release
+          20080623.
+
+Thu Jul  3 23:16:19 2008  fox
+
+      55* Move cmd/dtrace/demo to toplevel dir so its more accessible.
+          Create tools/runtests.sh so we can start proving the quality
+	  of the yacc/lex port.
+
+      54* Archive: 1.0032
+
+      53* profile.c: Now shows up in dtrace -l; allow us to talk to
+          /dev/dtrace_profile driver to change max profile probes.
+
+Wed Jul  2 20:46:02 2008  fox
+
+      52* profile.c: Add missing profile driver. Not yet proven and the
+          omni support is missing...
+
+      51* utils/libgcc.pl: Script to locate your libgcc.a file rather than
+          me supply one.
+
+      50* Mojmir Svoboda: Fix for raw_local_irq_disable() /
+          raw_local_irq_enable() to be more backward kernel compliant.
+	  Mojmir suggests issues with kmem_cache_create - I think kernel
+	  code changed function calling so need to incorporate a kernel
+	  specific fix.
+
+Tue Jul  1 21:53:15 2008  fox
+
+      49* dt_lex.l: Lets hope this works because I am mightily sick
+         of flex - getting it to work on all platforms. Its an
+	 embarrassment.
+
+      48* Archive: 1.0031
+
+      47* put dtrace binary in build/ directory.
+
+      46* dt_lex.l, makefile, dt_impl.h: Get lex to build us properly so
+          we can parse the scripts.
+
+Mon Jun 30 20:50:07 2008  fox
+
+      45* cyclic_linux.c: Enable linux cyclic timer code.
+
+Sun Jun 29 11:50:58 2008  fox
+
+      44* Archive: 1.0030
+
+      43* dtrace_linux.c: syscall tracing finally working on 32-bit kernel.
+
+      42* Archive: 1.0029
+
+      41* liblinux/proc2.c: Fix gethrtime and pthread_cond_reltimedwait_np()
+          to avoid dtrace eating lots of cpu and filling /var/log/messages.
+
+Thu Jun 26 22:51:51 2008  fox
+
+      40* i386 kernel sys_call_table patching now works, just need to get the
+          syscall collector to work.
+
+Mon Jun 23 23:13:08 2008  fox
+
+      39* divmod64.c: Fix the 64-bit divide issue.
+
+Wed Jun 18 23:19:11 2008  fox
+
+      38* Archive: 1.0027
+
+      37* More 32-bit portability changes.
+
+Tue Jun 17 23:02:33 2008  fox
+
+      36* Various: changes to build 32-bit dtrace + driver
+
+Mon Jun 16 22:57:02 2008  fox
+
+      35* cyclic.c: Need the full whack from Solaris. Without this, the
+          D Engine will kill us after a while because it thinks we are hanging
+	  and may endanger the system stability.
+
+	  We could just write our own, but its doing a lot of complex
+	  and well thought out issues to do with accuracy and 
+	  cpu alignment, and its not worth hacking this. FreeBSD has
+	  its own (slightly simplified) version of the Solaris code.
+
+Sun Jun 15 09:39:19 2008  fox
+
+      34* dtrace_linux.c, fbt_linux.c: Add a (slow/horrid) parallel 
+          allocator. Avoids reprobing modules.
+
+      33* Archive: 1.0026
+
+      32* syscall tracing now working !
+
+Sat Jun 14 00:20:36 2008  fox
+
+      31* Archive: 1.0025
+
+      30* dtrace.c: Fix kernel panic when creating an ecb event.
+          dt4 now works for BEGIN/END functionality but syscalls not
+	  being triggered.
+
+Mon Jun  9 22:05:12 2008  fox
+
+      29* Archive: 1.0024
+
+      28* fbt_linux.c, dtrace_linux.c: Implement a validate_ptr() function
+          since we were dying due to bad VM inside the kernel.
+
+Mon Jun  2 21:42:23 2008  fox
+
+      27* fbt_linux.c: Avoid issue with call to __symbol_get() cause
+          incremented mod ref count, which stops us unloading.
+
+Sun Jun  1 00:17:23 2008  fox
+
+      26* Archive: 1.0021
+
+Thu May 29 23:07:39 2008  fox
+
+      25* dtrace_linux.c: Create the cpu_list[] structure which dtrace wants.
+          Avoids kernel panic when we hit DTRACEIOC_GO.
+
+      24* drivers/dtrace/dtrace.c: More merge-in from ON solaris.
+
+      23* Archive: 1.0020
+
+Wed May 28 22:31:37 2008  fox
+
+      22* drivers/dtrace/dtrace_ioctl.c: Remove this - integrate back in
+          with dtrace.c since we are now more aligned and nearly working.
+
+Mon May 26 14:31:54 2008  fox
+
+      21* drivers/dtrace/*: Fix issue where 'dtrace -l' would keep
+          adding the same probes. Needed to mimic the init/attach/open
+	  cycle of a proper solaris driver. Fixed various crashes due
+	  to this, and allows driver to unload properly - no issues in simple
+	  testing, but basic probe placement is not working yet - cannot 
+	  plant the probes. Not sure why..yet.
+
+Sun May 25 00:35:12 2008  fox
+
+      20* drivers/dtrace.c: Update to latest opensolaris code to help
+          find bugs in driver.
+
+      19* Archive: 1.0018
+
+Tue May 20 23:50:24 2008  fox
+
+      18* cmd/dtrace/dtrace.c: Incorporate getopt() fixes from Apple/Darwin.
+          Fixes 'dtrace -n BEGIN', but note this will presently crash your
+	  kernel if you run it !
+
+Tue May 13 21:56:09 2008  fox
+
+      17* cmd/dtrace/dtrace.c: Fix issue with getopt() not working when
+          presented with this command line:
+
+	  cmd/dtrace/dtrace cmd/dtrace/demo/agg/denorm.d /bin/ls
+
+      16* Update the cmd/dtrace demo to the latest version. They broke
+          backwards compatibility ! Why ?! The #pragma changed syntax.
+	  Thats very very naughty of them. I do hate lex+flex.
+
+Sun May 11 20:54:47 2008  fox
+
+      15* Update libdtrace to latest opensolaris version.
+          Update cmd/dtrace/dtrace.c to latest verison.
+
+Mon May  5 09:48:18 2008  fox
+
+      14* /dev/ctf driver now loads but theres lots of inter-driver
+          dependencies which are a pain to manage, so may try
+	  and create a consolidated driver.
+
+      13* Archive: 1.0010
+
+Mon Apr 28 20:36:54 2008  fox
+
+      12* Archive: 1.0008
+
+      11* Fix dt_lex.l and dt_grammar.y compile fixed so we dont copy
+          files from my install tree to the remote install tree.
+	  Fixes problem with dtrace plainly not working at all.
+
+      10* dt_grammar.y: Some minor tweaks to handle compiling with
+          bison. Sun have an error in their file (missing ';').
+
+Sun Apr 27 00:03:52 2008  fox
+
+       9* Archive: 1.0007
+
+       8* Archive: 1.0006
+
+       7* Put all binaries into the build/ dir rather than littering the
+          source. Not done for drivers yet, since Linux kernel build
+	  pollutes us. Also made code do a clean build from start to finish.
+	  Ignore warnings - will address these over the course of time.
+
+       6* Archive: 1.0005
+
+       5* Various changes for clean build on FC8/2.6.24.4 kernel. Slightly
+          broken Ubuntu...to fix next. First part of the driver works, and
+	  making some changes to allow cmd/dtrace to talk to the driver.
+
+Mon Apr 21 22:10:40 2008  fox
+
+       4* Surprise: my first kernel panic. /dev/dtrace is the interface
+          and if you cat it ... surprise !
+
+Sun Apr 20 20:51:52 2008  fox
+
+       3* Now builds under ubuntu 2.6.22-14-generic kernel and
+          RedHat FC* 2.6.24.4-64.fc8. More portability.
+
+	  If you load the driver, you will have 
+
+	  /proc/dtrace/helper
+	  /proc/dtrace/dtrace
+
+	  entries. (Non functional since no plumbing at present).
+
+Sat Apr 19 23:08:09 2008  fox
+
+       2* drivers/dtracedrv.ko finally links correctly. However theres still
+          quite a few stubs and broken definitions, so be careful - will
+	  likely crash your kernel.
+
+Wed Apr  9 21:56:09 2008  fox
+
+       1* dt_lex.l: Fix flex/lex issues - now parses strings properly and
+           dtrace -x nolibs -n BEGIN -e -S
+	   seems to work - or at least it doesnt core dump or generate
+	   a diagnostic.
+

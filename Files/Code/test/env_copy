@@ -1,0 +1,36 @@
+_zedlmt() { od -t x1 -w1 -v  | sed -n '
+    /.* \(..\)$/s//\1/
+    /00/!{H;b};s///
+    x;s/\n/\\x/gp;x;h'
+}
+_pidenv() { ps -p $1 >/dev/null 2>&1 &&
+        [ -z "${1#"$psrc"}" ] && . /dev/fd/3 ||
+        cat <&3 ; unset psrc pcat
+} 3<<STATE
+        $( [ -z "${1#${pcat=$psrc}}" ] &&
+        pcat='$(printf %%b "%s")' || pcat="%b"
+        xeq="$(printf '\\x%x' "'=")"
+        for x in $( _zedlmt </proc/$1/environ ) ; do
+        printf "%b=$pcat\n" "${x%%"$xeq"*}" "${x#*"$xeq"}"
+        done)
+#END
+STATE
+#output like printenv for any running process
+_pidenv $1
+
+#save human friendly env file
+_pidenv $1 >/preparsed/env/file 
+
+#save unparsed file for sourcing at any time
+_pidenv ${pcat=$1} >/sourcable/env.save 
+
+#.dot source any pid's $env from any file stream    
+_pidenv ${pcat=$1} | sh -c '. /dev/stdin'
+
+#feed any pid's env in on a heredoc filedescriptor
+su -c '. /dev/fd/4' 4<<ENV
+    $( _pidenv ${pcat=$1} )
+ENV
+
+#.dot sources any $pid's $env in the current shell
+_pidenv ${psrc=$1} 

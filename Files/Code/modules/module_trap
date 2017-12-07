@@ -1,0 +1,3 @@
+echo trap
+trap ". ./modules/module_finish" INT
+echo trap_1

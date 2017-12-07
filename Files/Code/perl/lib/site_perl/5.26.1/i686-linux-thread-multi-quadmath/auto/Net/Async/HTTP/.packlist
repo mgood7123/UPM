@@ -1,0 +1,5 @@
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/Net/Async/HTTP.pm relocate_as=../../../../../Net/Async/HTTP.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/Net/Async/HTTP/Connection.pm relocate_as=../../../../../Net/Async/HTTP/Connection.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/Net/Async/HTTP/StallTimer.pm relocate_as=../../../../../Net/Async/HTTP/StallTimer.pm
+/UPM/perl-5.26.1/dir./perl/man/man3/Net::Async::HTTP.3 relocate_as=../../../../../../../../man/man3/Net::Async::HTTP.3
+/UPM/perl-5.26.1/dir./perl/man/man3/Net::Async::HTTP::Connection.3 relocate_as=../../../../../../../../man/man3/Net::Async::HTTP::Connection.3

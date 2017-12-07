@@ -1,0 +1,74 @@
+#!/bin/sh
+
+# This script is designed to provide a handy summary of the configuration
+# information being used to build perl. This is especially useful if you
+# are requesting help online or via email.
+
+# Note that the text lines /^Summary of/ .. /^\s*$/ are copied into Config.pm.
+cat <<'!NO!SUBS!'
+Summary of my perl5 (revision 5 version 26 subversion 1) configuration:
+   
+  Platform:
+    osname=linux
+    osvers=4.9.20-nrj-desktop-1rosa-i586
+    archname=i686-linux-thread-multi-quadmath
+    uname='linux universal-k53by 4.9.20-nrj-desktop-1rosa-i586 #1 smp preempt sun apr 2 11:43:26 utc 2017 i686 i686 i686 gnulinux '
+    config_args='-d -Dprefix=./perl5.26.1 -Dinstallprefix=./perl5.26.1 -Dmyarchname=i686-linux -Dusemultiplicity -Dusethreads -Duseithreads -Duseperlio -Dusequadmath -Duseposix -Dusemallocwrap -Duselargefiles -Dusevendorprefix -Dvendorprefix=.../../vendor -Dstartperl=#!./perl/bin/perl -Dperladmin=smallville7123@gmail.com -Dotherlibdirs=.../../vendor/lib/vendor_perl/site_perl/5.26.1/i686-linux-thread-multi-quadmath:.../../vendor/lib/vendor_perl/site_perl/5.26.1:.../../custom/lib/site_perl/5.26.1/i686-linux:.../../custom/lib/site_perl/5.26.1:.../../custom/lib/5.26.1/i686-linux:.../../custom/lib/5.26.1 -Dmyhostname=rosa-k53by -Dlibpth=~/perllib /usr/local/lib /usr/lib /lib -Duserelocatableinc -Dldflags=-fstack-protector-strong -L~/perllib -L/usr/local/lib -L/usr/lib -L/lib -Dlddlflags=-shared -g -O2 -L~/perllib -L/usr/local/lib -L/usr/lib -L/lib -fstack-protector-strong -Ddynamic_ext=  -Dcf_email=smallville7123@gmail.com -Darchname=i686-linux -Daphostname=/bin/hostname -Dusefaststdio'
+    hint=recommended
+    useposix=define
+    d_sigaction=define
+    useithreads=define
+    usemultiplicity=define
+    use64bitint=undef
+    use64bitall=undef
+    uselongdouble=undef
+    usemymalloc=n
+    default_inc_excludes_dot=define
+    bincompat5005=undef
+  Compiler:
+    cc='cc'
+    ccflags ='-D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_FORTIFY_SOURCE=2'
+    optimize='-O2'
+    cppflags='-D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -I/usr/local/include'
+    ccversion=''
+    gccversion='5.4.1 20170404 (ROSA)'
+    gccosandvers=''
+    intsize=4
+    longsize=4
+    ptrsize=4
+    doublesize=8
+    byteorder=1234
+    doublekind=3
+    d_longlong=define
+    longlongsize=8
+    d_longdbl=define
+    longdblsize=12
+    longdblkind=3
+    ivtype='long'
+    ivsize=4
+    nvtype='__float128'
+    nvsize=16
+    Off_t='off_t'
+    lseeksize=8
+    alignbytes=16
+    prototype=define
+  Linker and Libraries:
+    ld='cc'
+    ldflags ='-fstack-protector-strong -L~/perllib -L/usr/local/lib -L/usr/lib -L/lib'
+    libpth=~/perllib /usr/local/lib /usr/lib /lib /usr/local/lib /usr/lib
+    libs=-lpthread -lnsl -ldl -lm -lcrypt -lutil -lc -lquadmath
+    perllibs=-lpthread -lnsl -ldl -lm -lcrypt -lutil -lc -lquadmath
+    libc=libc-2.24.so
+    so=so
+    useshrplib=false
+    libperl=libperl.a
+    gnulibc_version='2.24'
+  Dynamic Linking:
+    dlsrc=dl_dlopen.xs
+    dlext=so
+    d_dlsymun=undef
+    ccdlflags='-Wl,-E'
+    cccdlflags='-fPIC'
+    lddlflags='-shared -g -O2 -L~/perllib -L/usr/local/lib -L/usr/lib -L/lib -fstack-protector-strong'
+
+!NO!SUBS!

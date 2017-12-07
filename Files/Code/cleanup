@@ -1,0 +1,42 @@
+printf "Generating PID list...\n"
+pidp=($(ps ))
+PID=(
+    $(
+        for i in ${pidp[@]}
+        do
+            echo $i | grep -v "[a-Z:]" | tr '\n' ' '
+        done
+        )
+    )
+for i in ${PID[@]}
+do
+    if [[ $(ps $i | grep 'cat ./stout') ]]
+        then
+            echo "killing process PID: $i"
+    elif [[ $(ps $i | grep -v "PID TTY" | wc -l) == 0 ]]
+        then
+            echo Cannot kill process PID $i because it no longer exists
+    else
+        echo "cannot kill process PID: $i, this is" ; ps $i | grep -v "PID TTY"
+    fi
+done
+echo 1
+gpid=$(ps -j --forest $(echo $$) | grep -v "CMD" | grep -v "PID" | cut -d ' ' -f2 | tr '\n' ' ')
+declare -p gpid
+ps -jf --forest | grep -v "CMD" | grep --colour=always $gpid
+echo 3
+ps -j --forest | grep -v "CMD" | grep --colour=always $gpid
+echo 4
+pidlist=($(ps -j | grep -v "CMD" | grep --colour=always $gpid | grep -v "PID" | cut -d ' ' -f1 | tr '\n' ' '))
+for b in ${pidlist[@]}
+do
+    if [[ $(ps $b | grep 'cat ./stout') ]]
+        then
+            echo "killing process PID: $b"
+    elif [[ $(ps $b | grep -v "PID TTY" | wc -l) == 0 ]]
+        then
+            echo Cannot kill process PID $b because it no longer exists
+    else
+        echo "cannot kill process PID: $b, this is" ; ps -j --forest $b | grep -v "PID TTY"
+    fi
+done

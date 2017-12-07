@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Spiffy.pm relocate_as=../../../Spiffy.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Spiffy.pod relocate_as=../../../Spiffy.pod
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Spiffy/mixin.pm relocate_as=../../../Spiffy/mixin.pm
+/UPM/Files/Code/perl/man/man3/Spiffy.3 relocate_as=../../../../../../man/man3/Spiffy.3

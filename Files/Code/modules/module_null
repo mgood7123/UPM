@@ -1,0 +1,16 @@
+# declare -p SESSION_PID READ_PID
+export IRC_FINB=0
+if [[ -z $IRC_RESET ]] ; then
+    echo "RESET, YOU HAVE 10 SECONDS"
+    sleep 10
+    kill $IRC_SESSION_PID >/dev/null 2>&1
+    kill $IRC_READ_PID >/dev/null 2>&1
+    irc_session <&1 >&4 & # Feed nc with user input
+    export IRC_SESSION_PID=$!
+    irc_read    <&3     & # Handle pings from IRC
+    export IRC_READ_PID=$!
+    export IRC_RESET=1
+fi
+export IRC_FINB=1
+# declare -p FINB
+# echo "finishedB"

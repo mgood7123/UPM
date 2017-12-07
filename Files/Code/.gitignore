@@ -1,0 +1,12 @@
+/*.json
+!/example.json
+*.pyc
+*.txt
+*.db
+@*
+*~
+*.out
+blocks
+daemon
+*.sh
+*.xml

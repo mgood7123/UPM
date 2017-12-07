@@ -1,0 +1,2 @@
+coproc IRC_NC { nc $IRC_server $IRC_port
+}

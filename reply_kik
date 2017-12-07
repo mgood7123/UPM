@@ -1,0 +1,37 @@
+#!/bin/bash
+
+export CR=$'\x0d'
+reply() {
+	HEADERS=()
+	RECEIVE_LENGTH=0
+	read REQUEST_LINE # first HTTP line
+
+	while read HEADER VALUE && [ "$VALUE" != "" ]
+	do
+		VALUE=${VALUE%$CR} # trim carriage return
+		VALUE=${VALUE,,}
+		HEADER=${HEADER,,}
+		if [ "$HEADER" = "content-length:" ]
+		then
+			RECEIVE_LENGTH=$VALUE
+		fi
+		HEADERS+=("$HEADER$VALUE")
+	done
+
+	FILE=$(mktemp)
+	timeout 60 dd bs=4096 count=$RECEIVE_LENGTH iflag=count_bytes of=$FILE
+
+	# just echo it back
+	echo "HTTP/1.1 200 OK"
+	echo "Content-Type: $(mimetype -b $FILE)"
+	echo "Content-Length: $(stat -c %s $FILE)"
+	echo "Connection: close"
+	echo ""
+	cat $FILE
+	echo ""
+
+	rm $FILE
+}
+export -f reply
+
+nc -l -p $1 --continuous -e "bash -c reply"

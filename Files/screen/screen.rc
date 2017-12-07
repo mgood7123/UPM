@@ -1,0 +1,9 @@
+cat .screenrc
+screen -t folder1 1 watch ls /path/to/folder1
+screen -t folder2 2 watch ls /path/to/folder2
+sessionname Hello
+split
+select 1
+focus
+select 2
+startup_message off

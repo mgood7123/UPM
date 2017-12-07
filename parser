@@ -1,0 +1,31 @@
+#parser
+declare -p INPUT
+for i in ${1..$(printf '%b' "\n${INPUT[@]}" | tr ' ' '\n' | wc -l)}
+do
+echo $i
+if [[ "${INPUT[i]}" =~ "rm" ]]
+    then
+    printf "remove "
+    next=$i
+    echo
+fi
+if [[ $next == 1 ]]
+then
+if [[ "${INPUT[i]}" =~ "-r" ]]
+        then
+        printf "recursively "
+        echo
+        next=$i
+    fi
+fi
+if [[ $next == 2 ]]
+then
+if [[ "${INPUT[i]}" =~ "-f" ]]
+        then
+        printf "forcibly "
+        echo
+        next=$i
+    fi
+fi
+done
+unset next

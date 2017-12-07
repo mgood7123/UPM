@@ -1,0 +1,19 @@
+# readlink -e ./ #VALID
+# readlink -e ../ #INVALID
+# readlink -e /bin #INVALID
+# readlink -e /usr/../bin #INVALID
+# readlink -e ./files/../../ #INVALID
+# readlink -e ./files/../.././rosa/files/../../ #INVALID
+# readlink -e files/../.././rosa/files/../../ #INVALID
+# readlink -e /home/rosa/files/../.././rosa/files/special/../special/files/../../../../ #INVALID
+# readlink -e /home/rosa/files/../.././rosa/files/special/../special/files/../../../../rosa/files/special/ #VALID
+# readlink -e ~/files/../.././rosa/files/../../ #INVALID
+for i in $(cat -n "$1" | tr ' ' '\n' | grep "\./"| sed 's/.*\.\//.\//g' | sed 's/\/ .*/\//g' | sed 's/ .*//' ; cat -n "$1" | tr ' ' '\n' | grep "\.\./" | sed 's/.*\.\.\//\.\.\//g' | sed 's/\/ .*/\//g' | sed 's/ .*//' ; cat -n "$1" | tr ' ' '\n' | grep ^"/" | tr '\n' ' ')
+    do
+        echo "$i -> $(readlink -e $i)"
+done
+#cat -n "$1" | grep "\./" ; cat -n "$1" | grep "\.\./" ; cat -n "$1" | grep "/"
+# for i in $(cat "$1" | sed ':loop; s/\(([^)]*\) \([^)]*)\)/\1¬\2/; t loop' | tr ' ' '\n' | grep "=")
+#     do
+#         echo "$i"  | tr '¬' ' '
+# done

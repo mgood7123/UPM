@@ -1,0 +1,79 @@
+
+./include/unistd.h:
+    60	#define __NR_setup	0	/* used only by init, to get system going */
+    61	#define __NR_exit	1
+    62	#define __NR_fork	2
+    63	#define __NR_read	3
+    64	#define __NR_write	4
+    65	#define __NR_open	5
+    66	#define __NR_close	6
+    67	#define __NR_waitpid	7
+    68	#define __NR_creat	8
+    69	#define __NR_link	9
+    70	#define __NR_unlink	10
+    71	#define __NR_execve	11
+    72	#define __NR_chdir	12
+    73	#define __NR_time	13
+    74	#define __NR_mknod	14
+    75	#define __NR_chmod	15
+    76	#define __NR_chown	16
+    77	#define __NR_break	17
+    78	#define __NR_stat	18
+    79	#define __NR_lseek	19
+    80	#define __NR_getpid	20
+    81	#define __NR_mount	21
+    82	#define __NR_umount	22
+    83	#define __NR_setuid	23
+    84	#define __NR_getuid	24
+    85	#define __NR_stime	25
+    86	#define __NR_ptrace	26
+    87	#define __NR_alarm	27
+    88	#define __NR_fstat	28
+    89	#define __NR_pause	29
+    90	#define __NR_utime	30
+    91	#define __NR_stty	31
+    92	#define __NR_gtty	32
+    93	#define __NR_access	33
+    94	#define __NR_nice	34
+    95	#define __NR_ftime	35
+    96	#define __NR_sync	36
+    97	#define __NR_kill	37
+    98	#define __NR_rename	38
+    99	#define __NR_mkdir	39
+   100	#define __NR_rmdir	40
+   101	#define __NR_dup	41
+   102	#define __NR_pipe	42
+   103	#define __NR_times	43
+   104	#define __NR_prof	44
+   105	#define __NR_brk	45
+   106	#define __NR_setgid	46
+   107	#define __NR_getgid	47
+   108	#define __NR_signal	48
+   109	#define __NR_geteuid	49
+   110	#define __NR_getegid	50
+   111	#define __NR_acct	51
+   112	#define __NR_phys	52
+   113	#define __NR_lock	53
+   114	#define __NR_ioctl	54
+   115	#define __NR_fcntl	55
+   116	#define __NR_mpx	56
+   117	#define __NR_setpgid	57
+   118	#define __NR_ulimit	58
+   119	#define __NR_uname	59
+   120	#define __NR_umask	60
+   121	#define __NR_chroot	61
+   122	#define __NR_ustat	62
+   123	#define __NR_dup2	63
+   124	#define __NR_getppid	64
+   125	#define __NR_getpgrp	65
+   126	#define __NR_setsid	66
+   134		: "0" (__NR_##name)); \
+   147		: "0" (__NR_##name),"b" (a)); \
+   160		: "0" (__NR_##name),"b" (a),"c" (b)); \
+   173		: "0" (__NR_##name),"b" (a),"c" (b),"d" (c)); \
+
+./lib/_exit.c:
+     6		__asm__("int $0x80"::"a" (__NR_exit),"b" (exit_code));
+
+./lib/open.c:
+    13			:"0" (__NR_open),"b" (filename),"c" (flag),

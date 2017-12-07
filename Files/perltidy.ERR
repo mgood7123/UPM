@@ -1,0 +1,54 @@
+Perltidy version is 20170521
+
+1: Global symbol "$pid" requires explicit package name (did you for ...
+                 ------ ^                                              
+found bareword where operator expected (previous token underlined)
+1:	Unexpected '(' after package name 'package name'
+
+1: Global symbol "$pid" requires explicit package name (did you for ...
+                                          ------------ ^               
+found ( where operator expected (previous token underlined)
+
+1: Global symbol "$pid" requires explicit package name (did you for ...
+                                                       ^
+1: ... (did you forget to declare "my $pid"?) at - line 25.
+                                           ^
+1: ... did you forget to declare "my $pid"?) at - line 25.
+                                           ^
+Found 1 extra '?' between '(' on line 1 and ')' on line 1
+    The most recent un-matched '?' is on line 1
+
+1: ... d you forget to declare "my $pid"?) at - line 25.
+                                         - ^            
+found bareword where operator expected (previous token underlined)
+
+2: Global symbol "$sum" requires explicit package name (did you for ...
+   ^                                                                   
+found bareword where operator expected
+
+Missing ';' above?
+
+2: Global symbol "$sum" requires explicit package name (did you for ...
+                 ------ ^                                              
+found bareword where operator expected (previous token underlined)
+2:	Unexpected '(' after package name 'package name'
+
+2: Global symbol "$sum" requires explicit package name (did you for ...
+                                          ------------ ^               
+found ( where operator expected (previous token underlined)
+
+2: Global symbol "$sum" requires explicit package name (did you for ...
+                                                       ^
+2: ... (did you forget to declare "my $sum"?) at - line 37.
+                                           ^
+2: ... did you forget to declare "my $sum"?) at - line 37.
+                                           ^
+Found 1 extra '?' between '(' on line 2 and ')' on line 2
+    The most recent un-matched '?' is on line 2
+
+Missing ';' above?
+3:	Unexpected '(' after package name 'package name'
+
+3: Global symbol "$sum" requires explicit package name (did you for ...
+                                                       ^
+No further warnings will be given

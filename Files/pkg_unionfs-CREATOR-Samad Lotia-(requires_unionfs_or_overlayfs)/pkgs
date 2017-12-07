@@ -1,0 +1,67 @@
+#!/bin/sh
+
+CONFIG_FILE="/etc/sysconfig/pkgs_startup"
+PKG_LOADER="/git/UPM/manager"
+
+case "${1}" in
+	start)
+		# setup the union mounts before loading any packages
+
+		echo -n "Setting up package management for directories:"
+		# mount read-only unions
+		for dir in /bin /sbin /lib /usr/include /usr/man /usr/share; do
+			echo -n " ${dir}"
+			mount -n -t unionfs -o "ro,dirs=$dir" none "$dir"
+		done
+		
+		# mount read-write unions
+		for dir in /etc /var; do
+			echo -n " ${dir}"
+			mount -n -t unionfs -o "rw,dirs=$dir" none "$dir"
+		done
+		echo
+
+		# begin loading packages
+
+		echo -n "Loading packages:"
+		if [ ! -r "${CONFIG_FILE}" ]; then
+			echo " \`${CONFIG_FILE}' not found"
+			exit 1
+		fi
+
+		while read pkg version; do
+			# ignore comments
+			case "$pkg" in
+				""|"#"*) continue ;;
+			esac
+
+			# load the package
+			${PKG_LOADER} load ${pkg} ${version}
+
+			# check the result of the package loader
+			if [ $? -eq 0 ]; then
+				echo -n " ${pkg}"
+			else
+				failed="${failed} ${pkg}"
+			fi
+		done < ${CONFIG_FILE}
+		echo
+
+		if [ -n "${failed}" ]; then
+			echo "WARNING: Failed to load${failed}"
+		fi
+		;;
+	not)
+		cd /pkgs
+		for pkg in *; do
+			result=`grep ${pkg} ${CONFIG_FILE}`
+			if [ "${result}" == "" ]; then
+				echo ${pkg}
+			fi
+		done
+		;;
+	*)
+		echo "Usage: ${0} {start}"
+		exit 1
+		;;
+esac

@@ -1,0 +1,33 @@
+
+./init/main.c:
+    17	static inline _syscall0(int,fork)
+    18	static inline _syscall0(int,pause)
+    19	static inline _syscall0(int,setup)
+    20	static inline _syscall0(int,sync)
+
+./include/linux/sched.h:
+   147	 * Entry into gdt where to find first TSS. 0-nul, 1-cs, 2-ds, 3-syscall
+
+./include/unistd.h:
+   128	#define _syscall0(type,name) \
+   141	#define _syscall1(type,name,atype,a) \
+   154	#define _syscall2(type,name,atype,a,btype,b) \
+   167	#define _syscall3(type,name,atype,a,btype,b,ctype,c) \
+
+./lib/dup.c:
+     4	_syscall1(int,dup,int,fd)
+
+./lib/setsid.c:
+     4	_syscall0(pid_t,setsid)
+
+./lib/execve.c:
+     4	_syscall3(int,execve,const char *,file,char **,argv,char **,envp)
+
+./lib/close.c:
+     4	_syscall1(int,close,int,fd)
+
+./lib/write.c:
+     4	_syscall3(int,write,int,fd,const char *,buf,off_t,count)
+
+./lib/wait.c:
+     5	_syscall3(pid_t,waitpid,pid_t,pid,int *,wait_stat,int,options)

@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Regexp/Lexer.pm relocate_as=../../../../Regexp/Lexer.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Regexp/Lexer/TokenType.pm relocate_as=../../../../Regexp/Lexer/TokenType.pm
+/UPM/Files/Code/perl/man/man3/Regexp::Lexer.3 relocate_as=../../../../../../../man/man3/Regexp::Lexer.3
+/UPM/Files/Code/perl/man/man3/Regexp::Lexer::TokenType.3 relocate_as=../../../../../../../man/man3/Regexp::Lexer::TokenType.3

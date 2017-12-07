@@ -1,0 +1,275 @@
+<b>User Defined Tracing - How it works</b>
+
+<p>
+USDT is a mechanism for user land applications to embed their
+own probes into executables. For example, a Perl or Python 
+interpreter might use it to gain access to stack traces of applications
+which are already started.
+
+<p>
+The goal of the DTrace team was near zero overhead when not invoked.
+This works well - even commercial applications can embed
+probes and not worry about performance or run time dependencies.
+
+<p>
+The steps involved in a USDT probe are as follows:
+
+<ul>
+  <li>Add probe calls, via DTRACE_PROBE macros to the source code
+  of the application.</li>
+  <li>Compile code to object file (*.o)</li>
+  <li>Use dtrace command line tool to convert the object file. This involves
+  stubbing out the assembler function calls, and creating a table
+  in the ELF file enumerating the probes.
+  </li>
+  <li>Create (link) the application binary, with a special object file
+  (drti.o). drti.o runs before main() and takes the table
+  of probes, and lets the kernel know (via an ioctl() to the dtrace
+  driver) of the probes.</li>
+  <li>Run the application: drti.o takes control and issues the ioctl()
+  of the probes. Whilst the application is running, you can use "dtrace -l"
+  to see the probes. Probes are a function of the pid provider, so you
+  will see a new suite of probes for each process running with USDT, and
+  as many probes as there are DTRACE_PROBE calls in the source code.</li>
+  <li>Whilst the application is running, you can use dtrace to monitor
+  these probes at any granularity you like (eg all probes from the process,
+  or specific probes from all such processes).</li>
+  <li>When a dtrace monitors the probe, the site where the call instruction
+  is placed is modified and an INT3 (breakpoint instruction) is placed
+  at the site of what was the original CALL instruction. When the breakpoint
+  is hit, the dtrace driver takes control and actions the probe.
+  This is very similar to how a kernel FBT probe works, except the
+  breakpoint happened in user space. At the point of breakpoint execution,
+  any D script associated with the probe is invoked. The target application
+  is frozen until the D script completes, allowing it to take a
+  static snapshot of any details it likes. Typically, this might include
+  taking a user stack dump (ustack()).
+  </li>
+  <li>Terminating a dtrace which is probing the application will
+  remove the breakpoints and restore the NOP instructions.</li>
+</ul>
+
+<p>
+<h2>Annotating a program with custom probes</h2>
+<p>
+DTrace provides a bunch of DTRACE_PROBEn() macros which allow
+you to place probes in source code. The macros allow for zero to 4 arguments
+to be passed. DTrace also allows you to provide application specific
+macros. The following example shows using the raw macros.
+
+<pre>
+# include &lt;stdio.h>
+# include &lt;sys/sdt.h>
+
+int main(int argc, char **argv)
+{
+	while (1) {
+		printf("here on line %d\n", __LINE__);
+		DTRACE_PROBE1(simple, saw__line, 0x1234);
+		printf("here on line %d\n", __LINE__);
+		DTRACE_PROBE1(simple, saw__word, 0x87654321);
+		printf("here on line %d\n", __LINE__);
+		DTRACE_PROBE1(simple, saw__word, 0xdeadbeef);
+		printf("here on line %d\n", __LINE__);
+		sleep(1);
+		}
+}
+</pre>
+
+
+<p>
+The DTRACE_PROBEx macros translate into a function call.
+To gain near-zero overhead, during linking, the function call
+is replaced by a series of NOP instructions. Heres an example disassembly
+of the above
+
+<pre>
+#define	DTRACE_PROBE1(provider, name, arg1) {				\
+	extern void __dtrace_##provider##___##name(unsigned long);	\
+	__dtrace_##provider##___##name((unsigned long)arg1);		\
+}
+</pre>
+
+The macro looks a little ugly, but its basically putting in a C
+function call to a parameterised function name, e.g.
+__dtrace__simple__saw__word, in the example above. Theres a number
+of macros depending on the number of arguments (1..5).
+In the example above, its as if we did something like:
+
+<pre>
+	__dtrace__simple__saw__word(0x12345678);
+</pre>
+
+The function __dtrace__simple__saw__word never exists - its simply a place
+holder.
+
+<pre>
+0000000000400e7c &lt;main>:
+  400e7c:       55                      push   %rbp
+  400e7d:       48 89 e5                mov    %rsp,%rbp
+  400e80:       48 83 ec 10             sub    $0x10,%rsp
+  400e84:       89 7d fc                mov    %edi,0xfffffffffffffffc(%rbp)
+  400e87:       48 89 75 f0             mov    %rsi,0xfffffffffffffff0(%rbp)
+  400e8b:       be 07 00 00 00          mov    $0x7,%esi
+  400e90:       bf df 11 40 00          mov    $0x4011df,%edi
+  400e95:       b8 00 00 00 00          mov    $0x0,%eax
+  400e9a:       e8 01 f9 ff ff          callq  4007a0 &lt;printf@plt>
+  400e9f:       bf 34 12 00 00          mov    $0x1234,%edi
+  400ea4:       90                      nop
+  400ea5:       90                      nop
+  400ea6:       90                      nop
+  400ea7:       90                      nop
+  400ea8:       90                      nop
+  400ea9:       be 09 00 00 00          mov    $0x9,%esi
+  400eae:       bf df 11 40 00          mov    $0x4011df,%edi
+  400eb3:       b8 00 00 00 00          mov    $0x0,%eax
+  400eb8:       e8 e3 f8 ff ff          callq  4007a0 &lt;printf@plt>
+  400ebd:       bf 21 43 65 87          mov    $0x87654321,%edi
+  400ec2:       90                      nop
+  400ec3:       90                      nop
+  400ec4:       90                      nop
+  400ec5:       90                      nop
+  400ec6:       90                      nop
+  400ec7:       be 0b 00 00 00          mov    $0xb,%esi
+  ....
+</pre>
+
+<p>
+When an application is built, dtrace is run on the
+object files to rewrite the objects, stubbing out the calls
+for probes, and creating a table in the executable of the
+places where the stubs are located. (The code
+for this is located in libdtrace/dt_link.c).
+
+<p>
+When the application is started up, a piece of code is
+executed (before main() is called). [Code located in
+libdtrace/drti.c]. This code looks at the current system,
+to see if dtrace is loaded into the kernel and communicates
+with the /dev/dtrace/helper driver to inform it that new
+probes are available in this process.
+
+<p>
+Voila! We are done. Or nearly.
+
+<p>
+At this point, whilst the application is running, 'dtrace -l'
+should reveal your new probes.
+
+<b>The Kernel</b>
+
+When a user elects to monitor the probe, the patched (NOP-ed) code
+will be change into a call back into the kernel to notify the
+function/probe is being invoked.
+
+Cancellation of the probe will undo the patched code and we are done.
+
+You can see these user level code segment modifications in the
+example usdt/c/simple.c code. It computes a checksum of the main()
+function and periodically dumps the checksum. If you attach to the
+probes with dtrace, the checksum will change, and as you Ctrl-C dtrace,
+the checksum will be restored.
+
+<h2>Apple/Mac OS X</h2>
+<p>
+
+Apple has done some enhancements to dtrace, which are interesting and 
+simplify the mechanism for creating a USDT enabled application.
+With Apple's dtrace mechanism, only two commands are needed to generate
+a probable executable:
+
+<pre>
+$ dtrace -h -s simple_probes.d
+$ gcc -I../../uts/common -o simple simple.c
+</pre>
+
+The dtrace command generates the header file, containing the probe
+definitions, e.g.
+
+<pre>
+define SIMPLE_SAW_LINE(arg0) \
+do { \
+        __asm__ volatile(".reference " SIMPLE_TYPEDEFS); \
+        __dtrace_probe$simple$saw__line$v1$696e74(arg0); \
+        __asm__ volatile(".reference " SIMPLE_STABILITY); \
+} while (0)
+</pre>
+
+The use of ".reference" is interesting, since this is doing the work
+of the traditional phase used to create an ELF object file with
+the probe table information.
+
+<h2>Issues</h2>
+<p>
+DTrace relies on the DTRACE_PROBE macros to create the assembler
+sequence to call a dummy function. When a probe is activated, the 
+CALL instruction (which has now been NOP'ed) is replaced with a breakpoint
+instruction. When the breakpoint is taken, all the registers and stack are
+set up as if we were going to invoke the dummy function, and are available
+as arguments to the probe (arg0, arg1, etc). When dtrace is not running,
+there is some overhead to compute those arguments, even though a breakpoint
+is not taken. So, it is best to keep the function arguments to be simple,
+and not involve complex or time consuming calculations.
+
+<p>
+DTrace probes an IS_ENABLED macro to help reduce overhead. For each
+probe you create, a macro is defined, allowing code like this:
+
+<pre>
+if (SIMPLE_ENTRY_ENABLED()) {
+	DTRACE_PROBE1(...);
+}
+</pre>
+
+where the prefix "SIMPLE" is provided by the header definition for the 
+provider.
+
+<h2>What people are using USDT for</h2>
+<p>
+The dtrace providers in the kernel are varied and powerful. But it
+requires device driver and kernel internals knowledge to use or enhance
+them. USDT has enormous potential for user land applications. Here are
+some common examples, easily found on the web.
+
+<h3>Perl, Ruby, Python, TCL, etc</h3>
+<p>
+Adding USDT probes to script languages like these, allow for performance
+monitoring at the script level, rather than the implementation level.
+Getting a stack trace, when a probe is hit in a Perl script, should
+result in the Perl stack, not the virtual machine emulator, which is typically
+unfathomable.
+
+<h3>HTTP</h3>
+<p>
+There is probably a wealth of things which could be probed in a running 
+http server, e.g. raw requests, form submissions, and other things
+which are HTTP server specific.
+
+<p>
+I have seen references to HTTP providers, which can be useful 
+
+<h2>References and Links</h2>
+
+<ul>
+  <li>http://chrisa.github.com/blog/2011/12/04/libusdt-runtime-dtrace-providers/
+  I havent check this out, but the ability to dynamically create a probe point
+  at runtime is very useful, e.g. in a runtime interpreter or JIT type of
+  application.
+  </li>
+  <li>http://dtrace.org/blogs/ahl/2006/05/08/user-land-tracing-gets-better-and-better/
+  Adam is one of the original authors of dtrace, and reflects on some
+  enhancements to USDT (in the 2006/7 timeframe). Unfortunately, many
+  of the links referred to in this article are now defunct.
+  </li>
+  <li>
+  http://www.ibm.com/developerworks/aix/library/au-dtraceprobes.html?ca=drs-
+  Nice summary and examples of USDT, similar to this document.
+  </li>
+  <li>
+  http://prefetch.net/blog/index.php/2005/11/30/viewing-http-requests-with-dtrace-apache-top/
+  Interesting example of monitoring an Apache server to monitor HTTP requests.
+  </li>
+  <li>http://blogs.oracle.com/binujp/entry/dtrace_provider_for_python
+  Shows examples of using the Python provider to see into the execution of
+  a Python script.</li>
+</ul>

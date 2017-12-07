@@ -1,0 +1,9 @@
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/IO/Socket/SSL.pm relocate_as=../../../../../IO/Socket/SSL.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/IO/Socket/SSL.pod relocate_as=../../../../../IO/Socket/SSL.pod
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/IO/Socket/SSL/Intercept.pm relocate_as=../../../../../IO/Socket/SSL/Intercept.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/IO/Socket/SSL/PublicSuffix.pm relocate_as=../../../../../IO/Socket/SSL/PublicSuffix.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/IO/Socket/SSL/Utils.pm relocate_as=../../../../../IO/Socket/SSL/Utils.pm
+/UPM/perl-5.26.1/dir./perl/man/man3/IO::Socket::SSL.3 relocate_as=../../../../../../../../man/man3/IO::Socket::SSL.3
+/UPM/perl-5.26.1/dir./perl/man/man3/IO::Socket::SSL::Intercept.3 relocate_as=../../../../../../../../man/man3/IO::Socket::SSL::Intercept.3
+/UPM/perl-5.26.1/dir./perl/man/man3/IO::Socket::SSL::PublicSuffix.3 relocate_as=../../../../../../../../man/man3/IO::Socket::SSL::PublicSuffix.3
+/UPM/perl-5.26.1/dir./perl/man/man3/IO::Socket::SSL::Utils.3 relocate_as=../../../../../../../../man/man3/IO::Socket::SSL::Utils.3

@@ -1,0 +1,4 @@
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Lexical/SealRequireHints.pm relocate_as=../../../Lexical/SealRequireHints.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Lexical/SealRequireHints/SealRequireHints.bs relocate_as=SealRequireHints.bs
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Lexical/SealRequireHints/SealRequireHints.so relocate_as=SealRequireHints.so
+/UPM/perl-5.26.1/dir./perl/man/man3/Lexical::SealRequireHints.3 relocate_as=../../../../../../../man/man3/Lexical::SealRequireHints.3

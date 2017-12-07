@@ -1,0 +1,10 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/IO/Handle/Iterator.pm relocate_as=../../../../../IO/Handle/Iterator.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/IO/Handle/Prototype.pm relocate_as=../../../../../IO/Handle/Prototype.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/IO/Handle/Prototype/Fallback.pm relocate_as=../../../../../IO/Handle/Prototype/Fallback.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/IO/Handle/Util.pm relocate_as=../../../../../IO/Handle/Util.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/IO/Handle/Util/Overloading.pm relocate_as=../../../../../IO/Handle/Util/Overloading.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/IO/Handle/Util/Tie.pm relocate_as=../../../../../IO/Handle/Util/Tie.pm
+/UPM/Files/Code/perl/man/man3/IO::Handle::Iterator.3 relocate_as=../../../../../../../../man/man3/IO::Handle::Iterator.3
+/UPM/Files/Code/perl/man/man3/IO::Handle::Prototype.3 relocate_as=../../../../../../../../man/man3/IO::Handle::Prototype.3
+/UPM/Files/Code/perl/man/man3/IO::Handle::Prototype::Fallback.3 relocate_as=../../../../../../../../man/man3/IO::Handle::Prototype::Fallback.3
+/UPM/Files/Code/perl/man/man3/IO::Handle::Util.3 relocate_as=../../../../../../../../man/man3/IO::Handle::Util.3

@@ -1,0 +1,12 @@
+/home/universalpackagemanager/UPM/Files/Code/perl/lib/site_perl/5.26.1/Thread/Tie.pm relocate_as=../../../../Thread/Tie.pm
+/home/universalpackagemanager/UPM/Files/Code/perl/lib/site_perl/5.26.1/Thread/Tie/Array.pm relocate_as=../../../../Thread/Tie/Array.pm
+/home/universalpackagemanager/UPM/Files/Code/perl/lib/site_perl/5.26.1/Thread/Tie/Handle.pm relocate_as=../../../../Thread/Tie/Handle.pm
+/home/universalpackagemanager/UPM/Files/Code/perl/lib/site_perl/5.26.1/Thread/Tie/Hash.pm relocate_as=../../../../Thread/Tie/Hash.pm
+/home/universalpackagemanager/UPM/Files/Code/perl/lib/site_perl/5.26.1/Thread/Tie/Scalar.pm relocate_as=../../../../Thread/Tie/Scalar.pm
+/home/universalpackagemanager/UPM/Files/Code/perl/lib/site_perl/5.26.1/Thread/Tie/Thread.pm relocate_as=../../../../Thread/Tie/Thread.pm
+/home/universalpackagemanager/UPM/Files/Code/perl/man/man3/Thread::Tie.3 relocate_as=../../../../../../../man/man3/Thread::Tie.3
+/home/universalpackagemanager/UPM/Files/Code/perl/man/man3/Thread::Tie::Array.3 relocate_as=../../../../../../../man/man3/Thread::Tie::Array.3
+/home/universalpackagemanager/UPM/Files/Code/perl/man/man3/Thread::Tie::Handle.3 relocate_as=../../../../../../../man/man3/Thread::Tie::Handle.3
+/home/universalpackagemanager/UPM/Files/Code/perl/man/man3/Thread::Tie::Hash.3 relocate_as=../../../../../../../man/man3/Thread::Tie::Hash.3
+/home/universalpackagemanager/UPM/Files/Code/perl/man/man3/Thread::Tie::Scalar.3 relocate_as=../../../../../../../man/man3/Thread::Tie::Scalar.3
+/home/universalpackagemanager/UPM/Files/Code/perl/man/man3/Thread::Tie::Thread.3 relocate_as=../../../../../../../man/man3/Thread::Tie::Thread.3

@@ -1,0 +1,1 @@
+strace tput sc ; strace tput cup 0 0 ; strace tput el ; strace printf test ; strace tput rc

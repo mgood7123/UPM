@@ -1,0 +1,15 @@
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/HTML/Entities.pm relocate_as=../../../HTML/Entities.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/HTML/Filter.pm relocate_as=../../../HTML/Filter.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/HTML/HeadParser.pm relocate_as=../../../HTML/HeadParser.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/HTML/LinkExtor.pm relocate_as=../../../HTML/LinkExtor.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/HTML/Parser.pm relocate_as=../../../HTML/Parser.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/HTML/PullParser.pm relocate_as=../../../HTML/PullParser.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/HTML/TokeParser.pm relocate_as=../../../HTML/TokeParser.pm
+/UPM/perl-5.26.1/dir./perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/HTML/Parser/Parser.so relocate_as=Parser.so
+/UPM/perl-5.26.1/dir./perl/man/man3/HTML::Entities.3 relocate_as=../../../../../../../man/man3/HTML::Entities.3
+/UPM/perl-5.26.1/dir./perl/man/man3/HTML::Filter.3 relocate_as=../../../../../../../man/man3/HTML::Filter.3
+/UPM/perl-5.26.1/dir./perl/man/man3/HTML::HeadParser.3 relocate_as=../../../../../../../man/man3/HTML::HeadParser.3
+/UPM/perl-5.26.1/dir./perl/man/man3/HTML::LinkExtor.3 relocate_as=../../../../../../../man/man3/HTML::LinkExtor.3
+/UPM/perl-5.26.1/dir./perl/man/man3/HTML::Parser.3 relocate_as=../../../../../../../man/man3/HTML::Parser.3
+/UPM/perl-5.26.1/dir./perl/man/man3/HTML::PullParser.3 relocate_as=../../../../../../../man/man3/HTML::PullParser.3
+/UPM/perl-5.26.1/dir./perl/man/man3/HTML::TokeParser.3 relocate_as=../../../../../../../man/man3/HTML::TokeParser.3

@@ -1,0 +1,22 @@
+rm -v ./asm/tiny2-musl ./main.s
+mkdir ./asm
+PATH=/usr/local/musl/bin:$PATH
+clear
+printf 'Compiling binary...\n\n\n'
+printf 'int main() {}' > ./main.c
+gcc -m32 -g --static main.c -o ./asm/tiny2-musl
+chmod +x ./asm/tiny2-musl
+size ./asm/tiny2-musl
+ls -l ./asm/tiny2-musl
+ldd ./asm/tiny2-musl
+file ./asm/tiny2-musl
+./asm/tiny2-musl
+printf "\nreturn status of ./asm/tiny2-musl: $?\n"
+printf "\nfilesize of ./asm/tiny2-musl:\n\n"
+ls -l --color=auto  ./asm/tiny2-musl
+printf "\n"
+#objdump -d ./asm/tiny2-musl
+gdb -q ./asm/tiny2-musl -ex 'set disassembly-flavor intel' -ex 'disassem /s main' -ex r -ex quit
+echo generating .s file
+gcc -S -m32 -masm=intel -fno-asynchronous-unwind-tables -nostdlib -nostdinc main.c -o main.s
+#cat main.s

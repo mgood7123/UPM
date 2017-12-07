@@ -1,0 +1,7 @@
+/UPM/Files/Code/perl/bin/package-stash-conflicts relocate_as=../../../../../../../bin/package-stash-conflicts
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Package/Stash.pm relocate_as=../../../../Package/Stash.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Package/Stash/Conflicts.pm relocate_as=../../../../Package/Stash/Conflicts.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Package/Stash/PP.pm relocate_as=../../../../Package/Stash/PP.pm
+/UPM/Files/Code/perl/man/man1/package-stash-conflicts.1 relocate_as=../../../../../../../man/man1/package-stash-conflicts.1
+/UPM/Files/Code/perl/man/man3/Package::Stash.3 relocate_as=../../../../../../../man/man3/Package::Stash.3
+/UPM/Files/Code/perl/man/man3/Package::Stash::PP.3 relocate_as=../../../../../../../man/man3/Package::Stash::PP.3

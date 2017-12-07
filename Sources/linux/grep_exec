@@ -1,0 +1,200 @@
+
+./init/main.c:
+     7	 * in NO COPY ON WRITE (!!!), until an execve is executed. This
+   126			_exit(execve("/bin/update",NULL,NULL));
+   141			_exit(execve("/bin/sh",argv,envp));
+
+./grep___NR_:
+    14	    71	#define __NR_execve	11
+
+./boot/boot.s:
+   303		.word	0x9A00		| code read/exec
+
+./kernel/hd.c:
+   153	 * This is the pointer to a routine to be executed at every hd-interrupt.
+
+./kernel/system_call.s:
+    50	.globl _system_call,_sys_fork,_timer_interrupt,_hd_interrupt,_sys_execve
+   169	_sys_execve:
+   172		call _do_execve
+
+./fs/exec.c:
+   108		panic("Impossibly long executable");
+   186					panic("nonexistent page in exec.c");
+   220	 * 'do_execve()' executes a new program.
+   222	int do_execve(unsigned long * eip,long tmp,char * filename,
+   227		struct exec ex;
+   233			panic("execve called from supervisor mode");
+   236		if (!(inode=namei(filename)))		/* get executables inode */
+   252			return -ENOEXEC;
+   258		ex = *((struct exec *) bh->b_data);	/* read exec-header */
+   264			return -ENOEXEC;
+   282			if ((current->close_on_exec>>i)&1)
+   284		current->close_on_exec = 0;
+
+./fs/fcntl.c:
+    25		current->close_on_exec &= ~(1<<arg);
+    51				return (current->close_on_exec>>fd)&1;
+    54					current->close_on_exec |= (1<<fd);
+    56					current->close_on_exec &= ~(1<<fd);
+
+./fs/namei.c:
+    19	#define MAY_EXEC 1
+    26	 * is used to check for read/write/execute permissions on a file.
+   221			if (!S_ISDIR(inode->i_mode) || !permission(inode,MAY_EXEC)) {
+
+./fs/Makefile:
+    19		block_dev.o char_dev.o file_dev.o stat.o exec.o pipe.o namei.o \
+    46	exec.o : exec.c ../include/errno.h ../include/sys/stat.h \
+
+./fs/open.c:
+   133		current->close_on_exec &= ~(1<<fd);
+   178		current->close_on_exec &= ~(1<<fd);
+
+./include/errno.h:
+    27	#define ENOEXEC		 8
+
+./include/linux/sched.h:
+    15	#error "Currently the close-on-exec-flags are in one word, max 32 files/proc"
+    99		unsigned long close_on_exec;
+
+./include/linux/sys.h:
+    12	extern int sys_execve();
+    71	sys_unlink, sys_execve, sys_chdir, sys_time, sys_mknod, sys_chmod,
+
+./include/a.out.h:
+     4	#define __GNU_EXEC_MACROS__
+     6	struct exec {
+    18	#define N_MAGIC(exec) ((exec).a_magic)
+    22	/* Code indicating object file or impure executable.  */
+    24	/* Code indicating pure executable.  */
+    26	/* Code indicating demand-paged executable.  */
+    40	#define _N_HDROFF(x) (SEGMENT_SIZE - sizeof (struct exec))
+    44	 (N_MAGIC(x) == ZMAGIC ? _N_HDROFF((x)) + sizeof (struct exec) : sizeof (struct exec))
+
+./include/unistd.h:
+    71	#define __NR_execve	11
+   195	int execve(const char * filename, char ** argv, char ** envp);
+   196	int execv(const char * pathname, char ** argv);
+   197	int execvp(const char * file, char ** argv);
+   198	int execl(const char * pathname, char * arg0, ...);
+   199	int execlp(const char * file, char * arg0, ...);
+   200	int execle(const char * pathname, char * arg0, ...);
+
+./include/fcntl.h:
+    26	#define F_GETFL		3	/* more flags (cloexec) */
+    33	#define FD_CLOEXEC	1	/* actually anything with low bit set goes */
+
+./grep_SYS_:
+    56	    50	.globl _system_call,_sys_fork,_timer_interrupt,_hd_interrupt,_sys_execve
+    64	   169	_sys_execve:
+    70	./fs/exec.c:
+   144	    12	extern int sys_execve();
+   202	    71	sys_unlink, sys_execve, sys_chdir, sys_time, sys_mknod, sys_chmod,
+   262	    56	    50	.globl _system_call,_sys_fork,_timer_interrupt,_hd_interrupt,_sys_execve
+   270	    64	   169	_sys_execve:
+   322	   144	    12	extern int sys_execve();
+   380	   202	    71	sys_unlink, sys_execve, sys_chdir, sys_time, sys_mknod, sys_chmod,
+
+./syscalls-list-kernel-0.01:
+    15	    71	#define __NR_execve	11
+   138	    50	.globl _system_call,_sys_fork,_timer_interrupt,_hd_interrupt,_sys_execve
+   146	   169	_sys_execve:
+   152	./fs/exec.c:
+   226	    12	extern int sys_execve();
+   284	    71	sys_unlink, sys_execve, sys_chdir, sys_time, sys_mknod, sys_chmod,
+   344	    56	    50	.globl _system_call,_sys_fork,_timer_interrupt,_hd_interrupt,_sys_execve
+   352	    64	   169	_sys_execve:
+   404	   144	    12	extern int sys_execve();
+   462	   202	    71	sys_unlink, sys_execve, sys_chdir, sys_time, sys_mknod, sys_chmod,
+   498	./lib/execve.c:
+   499	     4	_syscall3(int,execve,const char *,file,char **,argv,char **,envp)
+
+./grep_exec:
+     3	     7	 * in NO COPY ON WRITE (!!!), until an execve is executed. This
+     4	   126			_exit(execve("/bin/update",NULL,NULL));
+     5	   141			_exit(execve("/bin/sh",argv,envp));
+     8	    14	    71	#define __NR_execve	11
+    11	   303		.word	0x9A00		| code read/exec
+    14	   153	 * This is the pointer to a routine to be executed at every hd-interrupt.
+    17	    50	.globl _system_call,_sys_fork,_timer_interrupt,_hd_interrupt,_sys_execve
+    18	   169	_sys_execve:
+    19	   172		call _do_execve
+    21	./fs/exec.c:
+    22	   108		panic("Impossibly long executable");
+    23	   186					panic("nonexistent page in exec.c");
+    24	   220	 * 'do_execve()' executes a new program.
+    25	   222	int do_execve(unsigned long * eip,long tmp,char * filename,
+    26	   227		struct exec ex;
+    27	   233			panic("execve called from supervisor mode");
+    28	   236		if (!(inode=namei(filename)))		/* get executables inode */
+    29	   252			return -ENOEXEC;
+    30	   258		ex = *((struct exec *) bh->b_data);	/* read exec-header */
+    31	   264			return -ENOEXEC;
+    32	   282			if ((current->close_on_exec>>i)&1)
+    33	   284		current->close_on_exec = 0;
+    36	    25		current->close_on_exec &= ~(1<<arg);
+    37	    51				return (current->close_on_exec>>fd)&1;
+    38	    54					current->close_on_exec |= (1<<fd);
+    39	    56					current->close_on_exec &= ~(1<<fd);
+    42	    19	#define MAY_EXEC 1
+    43	    26	 * is used to check for read/write/execute permissions on a file.
+    44	   221			if (!S_ISDIR(inode->i_mode) || !permission(inode,MAY_EXEC)) {
+    47	    19		block_dev.o char_dev.o file_dev.o stat.o exec.o pipe.o namei.o \
+    48	    46	exec.o : exec.c ../include/errno.h ../include/sys/stat.h \
+    51	   133		current->close_on_exec &= ~(1<<fd);
+    52	   178		current->close_on_exec &= ~(1<<fd);
+    55	    27	#define ENOEXEC		 8
+    58	    15	#error "Currently the close-on-exec-flags are in one word, max 32 files/proc"
+    59	    99		unsigned long close_on_exec;
+    62	    12	extern int sys_execve();
+    63	    71	sys_unlink, sys_execve, sys_chdir, sys_time, sys_mknod, sys_chmod,
+    66	     4	#define __GNU_EXEC_MACROS__
+    67	     6	struct exec {
+    68	    18	#define N_MAGIC(exec) ((exec).a_magic)
+    69	    22	/* Code indicating object file or impure executable.  */
+    70	    24	/* Code indicating pure executable.  */
+    71	    26	/* Code indicating demand-paged executable.  */
+    72	    40	#define _N_HDROFF(x) (SEGMENT_SIZE - sizeof (struct exec))
+    73	    44	 (N_MAGIC(x) == ZMAGIC ? _N_HDROFF((x)) + sizeof (struct exec) : sizeof (struct exec))
+    76	    71	#define __NR_execve	11
+    77	   195	int execve(const char * filename, char ** argv, char ** envp);
+    78	   196	int execv(const char * pathname, char ** argv);
+    79	   197	int execvp(const char * file, char ** argv);
+    80	   198	int execl(const char * pathname, char * arg0, ...);
+    81	   199	int execlp(const char * file, char * arg0, ...);
+    82	   200	int execle(const char * pathname, char * arg0, ...);
+    85	    26	#define F_GETFL		3	/* more flags (cloexec) */
+    86	    33	#define FD_CLOEXEC	1	/* actually anything with low bit set goes */
+    89	    56	    50	.globl _system_call,_sys_fork,_timer_interrupt,_hd_interrupt,_sys_execve
+    90	    64	   169	_sys_execve:
+    91	    70	./fs/exec.c:
+    92	   144	    12	extern int sys_execve();
+    93	   202	    71	sys_unlink, sys_execve, sys_chdir, sys_time, sys_mknod, sys_chmod,
+    94	   262	    56	    50	.globl _system_call,_sys_fork,_timer_interrupt,_hd_interrupt,_sys_execve
+    95	   270	    64	   169	_sys_execve:
+    96	   322	   144	    12	extern int sys_execve();
+    97	   380	   202	    71	sys_unlink, sys_execve, sys_chdir, sys_time, sys_mknod, sys_chmod,
+   100	    15	    71	#define __NR_execve	11
+   101	   138	    50	.globl _system_call,_sys_fork,_timer_interrupt,_hd_interrupt,_sys_execve
+   102	   146	   169	_sys_execve:
+   103	   152	./fs/exec.c:
+   104	   226	    12	extern int sys_execve();
+   105	   284	    71	sys_unlink, sys_execve, sys_chdir, sys_time, sys_mknod, sys_chmod,
+   106	   344	    56	    50	.globl _system_call,_sys_fork,_timer_interrupt,_hd_interrupt,_sys_execve
+   107	   352	    64	   169	_sys_execve:
+   108	   404	   144	    12	extern int sys_execve();
+   109	   462	   202	    71	sys_unlink, sys_execve, sys_chdir, sys_time, sys_mknod, sys_chmod,
+   110	   498	./lib/execve.c:
+   111	   499	     4	_syscall3(int,execve,const char *,file,char **,argv,char **,envp)
+   113	./grep_exec:
+
+./lib/execve.c:
+     4	_syscall3(int,execve,const char *,file,char **,argv,char **,envp)
+
+./lib/Makefile:
+    28		execve.o wait.o string.o
+
+./grep_syscall:
+    23	./lib/execve.c:
+    24	     4	_syscall3(int,execve,const char *,file,char **,argv,char **,envp)

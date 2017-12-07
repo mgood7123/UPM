@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Hash/FieldHash.pm relocate_as=../../../Hash/FieldHash.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Hash/FieldHash/FieldHash.bs relocate_as=FieldHash.bs
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Hash/FieldHash/FieldHash.so relocate_as=FieldHash.so
+/UPM/Files/Code/perl/man/man3/Hash::FieldHash.3 relocate_as=../../../../../../../man/man3/Hash::FieldHash.3

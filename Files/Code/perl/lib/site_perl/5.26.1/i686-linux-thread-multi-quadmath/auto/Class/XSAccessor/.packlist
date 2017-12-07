@@ -1,0 +1,7 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Class/XSAccessor.pm relocate_as=../../../Class/XSAccessor.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Class/XSAccessor/Array.pm relocate_as=../../../Class/XSAccessor/Array.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Class/XSAccessor/Heavy.pm relocate_as=../../../Class/XSAccessor/Heavy.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Class/XSAccessor/XSAccessor.so relocate_as=XSAccessor.so
+/UPM/Files/Code/perl/man/man3/Class::XSAccessor.3 relocate_as=../../../../../../../man/man3/Class::XSAccessor.3
+/UPM/Files/Code/perl/man/man3/Class::XSAccessor::Array.3 relocate_as=../../../../../../../man/man3/Class::XSAccessor::Array.3
+/UPM/Files/Code/perl/man/man3/Class::XSAccessor::Heavy.3 relocate_as=../../../../../../../man/man3/Class::XSAccessor::Heavy.3

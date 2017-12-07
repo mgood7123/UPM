@@ -1,0 +1,6 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Text/Diff.pm relocate_as=../../../../Text/Diff.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Text/Diff/Config.pm relocate_as=../../../../Text/Diff/Config.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Text/Diff/Table.pm relocate_as=../../../../Text/Diff/Table.pm
+/UPM/Files/Code/perl/man/man3/Text::Diff.3 relocate_as=../../../../../../../man/man3/Text::Diff.3
+/UPM/Files/Code/perl/man/man3/Text::Diff::Config.3 relocate_as=../../../../../../../man/man3/Text::Diff::Config.3
+/UPM/Files/Code/perl/man/man3/Text::Diff::Table.3 relocate_as=../../../../../../../man/man3/Text::Diff::Table.3

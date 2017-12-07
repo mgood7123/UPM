@@ -1,0 +1,33 @@
+#colours
+
+quiet_tput() {
+    # do not report any errors
+    TERM=${TERM:-dumb} tput "$@" 2>/dev/null
+}
+
+# all variables will be exported, no need for explicit keyword
+# (was it necessary in the first place???)
+# do not forget to set +a in the end
+set -a
+
+IRC_Color_None=$(quiet_tput sgr0)
+IRC_Color_Black=$(quiet_tput setaf 0)
+IRC_Color_Red=$(quiet_tput setaf 1)
+IRC_Color_Green=$(quiet_tput setaf 2)
+IRC_Color_Brown_Orange=$(quiet_tput setaf 3)
+IRC_Color_Blue=$(quiet_tput setaf 4)
+IRC_Color_Purple=$(quiet_tput setaf 5)
+IRC_Color_Cyan=$(quiet_tput setaf 6)
+IRC_Color_Light_Grey=$(quiet_tput setaf 7)
+IRC_Color_Dark_Grey=$(quiet_tput setaf 8)
+IRC_Color_Light_Red=$(quiet_tput setaf 9)
+IRC_Color_Light_Green=$(quiet_tput setaf 10)
+IRC_Color_Yellow=$(quiet_tput setaf 11)
+IRC_Color_Light_Blue=$(quiet_tput setaf 12)
+IRC_Color_Light_Purple=$(quiet_tput setaf 13)
+IRC_Color_Light_Cyan=$(quiet_tput setaf 14)
+IRC_Color_White=$(quiet_tput setaf 15)
+IRC_Color_Special=$'\e[39;00;0m'
+IRC_Italic=$(quiet_tput sitm)
+IRC_RED=$IRC_Italic$IRC_Color_Red
+IRC_BOLD=$(quiet_tput bold)

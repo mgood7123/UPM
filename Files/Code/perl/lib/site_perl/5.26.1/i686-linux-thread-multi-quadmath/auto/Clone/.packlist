@@ -1,0 +1,4 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Clone.pm relocate_as=../../Clone.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Clone/Clone.so relocate_as=Clone.so
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Clone/autosplit.ix relocate_as=autosplit.ix
+/UPM/Files/Code/perl/man/man3/Clone.3 relocate_as=../../../../../../man/man3/Clone.3

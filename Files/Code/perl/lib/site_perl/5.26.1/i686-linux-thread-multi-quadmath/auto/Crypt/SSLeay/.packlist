@@ -1,0 +1,12 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Crypt/SSLeay.pm relocate_as=../../../Crypt/SSLeay.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Crypt/SSLeay/CTX.pm relocate_as=../../../Crypt/SSLeay/CTX.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Crypt/SSLeay/Conn.pm relocate_as=../../../Crypt/SSLeay/Conn.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Crypt/SSLeay/Err.pm relocate_as=../../../Crypt/SSLeay/Err.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Crypt/SSLeay/MainContext.pm relocate_as=../../../Crypt/SSLeay/MainContext.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Crypt/SSLeay/Version.pm relocate_as=../../../Crypt/SSLeay/Version.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Crypt/SSLeay/X509.pm relocate_as=../../../Crypt/SSLeay/X509.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Net/SSL.pm relocate_as=../../../Net/SSL.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Crypt/SSLeay/SSLeay.so relocate_as=SSLeay.so
+/UPM/Files/Code/perl/man/man3/Crypt::SSLeay.3 relocate_as=../../../../../../../man/man3/Crypt::SSLeay.3
+/UPM/Files/Code/perl/man/man3/Crypt::SSLeay::Version.3 relocate_as=../../../../../../../man/man3/Crypt::SSLeay::Version.3
+/UPM/Files/Code/perl/man/man3/Net::SSL.3 relocate_as=../../../../../../../man/man3/Net::SSL.3

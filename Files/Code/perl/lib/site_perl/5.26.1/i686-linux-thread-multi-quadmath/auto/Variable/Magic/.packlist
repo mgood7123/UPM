@@ -1,0 +1,3 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/Variable/Magic.pm relocate_as=../../../Variable/Magic.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/Variable/Magic/Magic.so relocate_as=Magic.so
+/UPM/Files/Code/perl/man/man3/Variable::Magic.3 relocate_as=../../../../../../../man/man3/Variable::Magic.3

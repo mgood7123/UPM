@@ -1,0 +1,9 @@
+convert() {
+read -e -p "Input -> english: " INPUT
+. ./parser
+repeat
+}
+repeat() {
+convert
+}
+convert

@@ -1,0 +1,7 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Data/Dump.pm relocate_as=../../../../Data/Dump.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Data/Dump/FilterContext.pm relocate_as=../../../../Data/Dump/FilterContext.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Data/Dump/Filtered.pm relocate_as=../../../../Data/Dump/Filtered.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/Data/Dump/Trace.pm relocate_as=../../../../Data/Dump/Trace.pm
+/UPM/Files/Code/perl/man/man3/Data::Dump.3 relocate_as=../../../../../../../man/man3/Data::Dump.3
+/UPM/Files/Code/perl/man/man3/Data::Dump::Filtered.3 relocate_as=../../../../../../../man/man3/Data::Dump::Filtered.3
+/UPM/Files/Code/perl/man/man3/Data::Dump::Trace.3 relocate_as=../../../../../../../man/man3/Data::Dump::Trace.3

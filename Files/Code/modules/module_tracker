@@ -1,0 +1,3 @@
+export IRC_modules=$(cat ./modules/module_controller ./modules/module_loader ./modules/module_irc_read ./modules/module_irc_session | grep -v ". ./modules/modules" | grep "/modules/module_" | sed 's/. .\/modules\/module_//g' | sed 's/ . .//g' | grep -v "#" | sort | tr '\n' ' ' | sed -e 's/ /, /g' -e "s/, $//")
+
+export IRC_modules_color=$(cat ./modules/module_controller ./modules/module_loader ./modules/module_irc_read ./modules/module_irc_session | grep -v ". ./modules/modules" | grep "/modules/module_" | sed 's/. .\/modules\/module_//g' | sed 's/ . .//g' | grep -v "#" | sort | tr '\n' ' ' | sed 's/ /, /g' | sed s/^/"${IRC_Color_Purple}"/ | sed "s/, $/${IRC_Color_None}/" | sed "s/, /${IRC_Color_None}, ${IRC_Color_Purple}/g")

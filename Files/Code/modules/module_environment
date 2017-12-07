@@ -1,0 +1,6 @@
+. ./Environment/module_irc_session.environment_sourcable 2>&1>&/dev/null
+. ./Environment/module_irc_read.environment_sourcable 2>&1>&/dev/null
+
+# env -i h=p o=e sh -c 'env ; ps | grep "00 sh" ; foo="`ps | grep "00 sh" | awk "{print $1}"`" ; pid=`echo "$foo" | cut -f1 | sed "s/ .*//"` ; cat /proc/$pid/environ ; echo ; cat /proc/$$/environ | od -t x1 -w1 -v'
+
+#sh -c 'foo="`ps | grep "00 sh" | awk "{print $1}"`" ; pid=`echo "$foo" | cut -f1 | sed "s/ .*//"` ; echo "$pid"'

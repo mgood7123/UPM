@@ -1,0 +1,920 @@
+#!./Files/bash-4.4.0
+converts(){
+    t=$1
+if [[ "$t" =~ "-" ]]
+    then
+        t=${t[0]/-/}
+fi
+
+    d=$((t/60/60/24))
+    h=$((t/60/60%24))
+    m=$((t/60%60))
+    s=$((t%60))
+
+    if [ $d -gt 0 ]; then
+            [ $d = 1 ] && printf "%d day " $d || printf "%d days " $d
+    fi
+    if [ $h -gt 0 ]; then
+            [ $h = 1 ] && printf "%d hour " $h || printf "%d hours " $h
+    fi
+    if [ $m -gt 0 ]; then
+            [ $m = 1 ] && printf "%d minute " $m || printf "%d minutes " $m
+    fi
+    if [ $s -gt 0 ]; then
+            [ $s = 1 ] && printf "%d second" $s || printf "%d seconds" $s
+    fi
+}
+
+#curl cvs.schmorp.de/App-Staticperl/bin/staticperl -o ./staticperl
+#[16:21] <jn__> https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux
+#[16:21] <feepbot> Windows Subsystem for Linux (WSL) is a compatibility layer for running Linux binary executables (in ELF format) natively on Windows 10.
+
+#Libraries have been installed in:
+#    /usr/local/lib
+# 
+# If you ever happen to want to link against installed libraries
+# in a given directory, LIBDIR, you must either use libtool, and
+# specify the full pathname of the library, or use the '-LLIBDIR'
+# flag during linking and do at least one of the following:
+#    - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable
+#      during execution
+#    - add LIBDIR to the 'LD_RUN_PATH' environment variable
+#      during linking
+#    - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
+#    - have your system administrator add LIBDIR to '/etc/ld.so.conf'
+# 
+# See any operating system documentation about shared libraries for
+# more information, such as the ld(1) and ld.so(8) manual pages.
+#
+# https://wiki.archlinux.org/index.php/Official_repositories
+
+### random number generator o.o
+### while true ; do curl www.google.com.au |& wc -c ; done
+
+# curl -z "$(date +'%d-%b-%Y %H:%M:%S')" https://mirror.aarnet.edu.au/pub/archlinux/core/os/x86_64/
+arch=$(uname -m)
+repo_gen() {
+repo=( \
+core \
+community \
+extra \
+multilib \
+)
+repoextra=( \
+desktop \
+lib32 \
+)
+#### To Do: extract repository name from url's while preservine there ordering and indexing positions
+printf "REPOS=(
+https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/$arch/
+# http://mirrors.kernel.org/archlinux/pool/packages/
+http://www-ftp.lip6.fr/pub/linux/distributions/chakra/core/$arch/
+http://mirror.dacentec.com/chakra/core/$arch/
+http://ftp.acc.umu.se/mirror/chakraos.org/packages/core/$arch/
+"
+for i in ${!repo[@]}
+    do
+printf '%b' "
+#https://mirror.aarnet.edu.au/pub/archlinux/${repo[i]}/os/$arch/
+http://archlinux.mirror.digitalpacific.com.au/${repo[i]}/os/$arch/
+http://mirror.internode.on.net/pub/archlinux/${repo[i]}/os/$arch/
+http://archlinux.melbourneitmirror.net/${repo[i]}/os/$arch/
+http://ftp.swin.edu.au/archlinux/${repo[i]}/os/$arch/
+"
+done
+for i in ${!repoextra[@]}
+    do
+printf '%b' "
+http://www-ftp.lip6.fr/pub/linux/distributions/chakra/${repoextra[i]}/$arch/
+http://mirror.dacentec.com/chakra/${repoextra[i]}/$arch/
+http://ftp.acc.umu.se/mirror/chakraos.org/packages/${repoextra[i]}/$arch/
+"
+done
+printf ")
+"
+printf 'REPODB=(
+https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/blackarch.db
+$(for i in ${!REPOS[@]}
+do
+    if [[ ${REPOS[i]} =~ "/core/" ]]
+        then
+            printf "${REPOS[i]}${REPOS[i]/*\/core\/*/core}.db
+"
+    elif [[ ${REPOS[i]} =~ "/community/" ]]
+        then
+            printf "${REPOS[i]}${REPOS[i]/*\/community\/*/community}.db
+"
+    elif [[ ${REPOS[i]} =~ "/extra/" ]]
+        then
+            printf "${REPOS[i]}${REPOS[i]/*\/extra\/*/extra}.db
+"
+    elif [[ ${REPOS[i]} =~ "/multilib/" ]]
+        then
+            printf "${REPOS[i]}${REPOS[i]/*\/multilib\/*/multilib}.db
+"
+    elif [[ ${REPOS[i]} =~ "/lib32/" ]]
+        then
+            printf "${REPOS[i]}${REPOS[i]/*\/lib32\/*/lib32}.db
+"
+    elif [[ ${REPOS[i]} =~ "/desktop/" ]]
+        then
+            printf "${REPOS[i]}${REPOS[i]/*\/desktop\/*/desktop}.db
+"
+    fi
+done)
+)
+'
+}
+
+repository_gen() {
+unset repository
+for i in ${!REPOS[@]}
+do
+    if [[ ${REPOS[i]} =~ "archlinux" ]]
+        then
+            repository+=(${REPOS[i]/*archlinux*/archlinux})
+    elif [[ ${REPOS[i]} =~ "blackarch" ]]
+        then
+            repository+=(${REPOS[i]/*blackarch*/blackarch})
+    elif [[ ${REPOS[i]} =~ "debian" ]]
+        then
+            repository+=(${REPOS[i]/*debian*/debian})
+    elif [[ ${REPOS[i]} =~ "chakra" ]]
+        then
+            repository+=(${REPOS[i]/*chakra*/chakra})
+    else
+            repository+=("Could Not Detect")
+    fi
+done
+}
+
+repository_section_gen() {
+unset repository_section
+for i in ${!REPOS[@]}
+do
+    if [[ ${REPOS[i]} =~ "/core/" ]]
+        then
+            repository_section+=(${REPOS[i]/*\/core\/*/core})
+    elif [[ ${REPOS[i]} =~ "/community/" ]]
+        then
+            repository_section+=(${REPOS[i]/*\/community\/*/community})
+    elif [[ ${REPOS[i]} =~ "/extra/" ]]
+        then
+            repository_section+=(${REPOS[i]/*\/extra\/*/extra})
+    elif [[ ${REPOS[i]} =~ "/multilib/" ]]
+        then
+            repository_section+=(${REPOS[i]/*\/multilib\/*/multilib})
+    elif [[ ${REPOS[i]} =~ "/lib32/" ]]
+        then
+            repository_section+=(${REPOS[i]/*\/lib32\/*/lib32})
+    elif [[ ${REPOS[i]} =~ "/desktop/" ]]
+        then
+            repository_section+=(${REPOS[i]/*\/desktop\/*/desktop})
+    else
+            repository_section+=("Could Not Detect")
+    fi
+done
+}
+
+gen_repo_data_printf() {
+unset ifgen
+for i in ${!REPOS[@]}
+    do
+        printf '%b' "POOL$i='${REPOS[i]}'
+ftpPOOL$i='${REPOS[i]/http*:/ftp:}'
+"
+        if [[ -e ./repo/${REPOS[i]}timestamp ]]
+            then
+                if [[ $sync == 1 ]]
+                    then
+                        printf '%s%b' "echo \"connecting to ${REPOS[i]}\" >&2
+online=\"\$(date -d \"\$(curl -k -I \"${REPODB[i]}\" |& grep -i \"modified\" | sed 's/.*\: //')\" +%s)\"
+physical=\"\$(cat ./repo/${REPOS[i]}timestamp | sed 's/.*: //g')\"
+difference=\"\$((\$physical-\$online))\"
+curl -k -I \"${REPODB[i]}\" |& grep -i \"modified\" >&2 || curl -k -I \"${REPODB[i]}\" >&2
+echo \"Last-Modified: \$online (online)\" >&2
+echo \"Last-Modified: \$physical (physical)\" >&2
+echo \"Last-Modified: \$(date -d \"\$(date +'%a, %d %b %Y %H:%M:%S')\" +%s) (current)\" >&2
+echo \"difference: \$difference seconds\" >&2
+if [[ \$difference =~ "-" ]]
+    then
+        keyword=newer
+        difference=\${difference[0]/-/}
+    else
+        keyword=older
+fi
+echo \"online repo is \$keyword then cached repo by \$(\converts \$difference)\" >&2
+if [[ \$keyword =~ \"older\" ]]
+    then
+        echo \"repo does not need updating\" >&2
+        treelistnew$i=(\$(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers '"./repo/${REPOS[i]}index.html"' | sed \"s/.*$arch\///g\" | grep \"xz$\"))
+    else
+        echo \"repo needs updating\" >&2
+        aria2c \$max_speed_flags_html_repo ${REPOS[i]} -o ./repo/${REPOS[i]}index.html
+        response=$?
+        if [[ \$response == 0 ]]
+            then
+                treelistnew$i=(\$(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers '"${REPOS[i]}"' | sed 's/${REPOS[i]//\//\\\/}//g' | grep \"xz$\"))
+                mkdir -pv ./repo/${REPOS[i]}
+                echo \"Last-Modified: \$(date -d \"\$(date +'%a, %d %b %Y %H:%M:%S')\" +%s)\" >./repo/${REPOS[i]}timestamp
+                printf \"\rDownloaded '${REPOS[i]}'    \n\"
+            else
+                echo \"repo could not be downloaded\" >&2
+        fi
+fi
+"
+                else
+                        printf '%s%b' "echo \"[NOSYNC] skipping ${REPOS[i]}\"
+treelistnew$i=(\$(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers '"./repo/${REPOS[i]}index.html"' | sed \"s/.*$arch\///g\" | grep \"xz$\"))
+"
+                fi
+            else
+                printf '%b' "aria2c \$max_speed_flags_html_repo ${REPOS[i]} -o ./repo/${REPOS[i]}index.html
+response=\$?
+if [[ \$response == 0 ]]
+    then
+        treelistnew$i=(\$(./Files/lynx/lynx -cfg ./Files/lynx/lynx.cfg -lss ./Files/lynx/lynx.lss -dump -listonly -nonumbers '"${REPOS[i]}"' | sed 's/${REPOS[i]//\//\\\/}//g' | grep \"xz$\"))
+        mkdir -pv ./repo/${REPOS[i]}
+        echo \"Last-Modified: \$(date -d \"\$(date +'%a, %d %b %Y %H:%M:%S')\" +%s)\" >./repo/${REPOS[i]}timestamp
+        printf \"\rDownloaded '${REPOS[i]}'    \n\"
+    else
+        echo \"repo could not be downloaded\" >&2
+fi
+"
+        fi
+done
+printf '%b' "
+package_check_repo() {
+"
+for i in ${!REPOS[@]}
+    do
+if [[ $ifgen == "" ]]
+then
+printf '%s' "
+if [ \$(printf '%s\n' \"found \${treelistnew0[@]}\" | grep -i -e ^\"\$1\") ]
+    then
+    url=\$POOL0\$1
+    ftp=\$ftpPOOL0\$1
+    echo \$1 found in \$POOL0
+"
+ifgen=gen
+else
+printf '%s' "
+elif [ \$(printf '%s\n' \"\${treelistnew$i[@]}\" | grep -i -e ^\"\$1\") ]
+    then
+    url=\$POOL$i\$1
+    ftp=\$ftpPOOL$i\$1
+    echo \$1 found in \$POOL$i
+"
+fi
+done
+printf '%b' "
+else
+    echo \"[WARNING] \$1 not found\"
+    notfound+=("\$1")
+fi
+}
+"
+
+# # TODO: add a summary as "Found '$package' in Repositories: '$repositories', Numbers: '$numbers', Sections: '$sections'"
+# # example
+# # 
+# # Repository: archlinux, Number: 1, Section: core, Package Availability: Available,    Package: bash-4.4.012-2-x86_64.pkg.tar.xz 
+# # Repository: archlinux, Number: 2, Section: core, Package Availability: Available,    Package: bash-4.4.012-2-x86_64.pkg.tar.xz 
+# # Repository: archlinux, Number: 3, Section: core, Package Availability: Available,    Package: bash-4.4.012-2-x86_64.pkg.tar.xz 
+# # Repository: archlinux, Number: 4, Section: core, Package Availability: Available,    Package: bash-4.4.012-2-x86_64.pkg.tar.xz
+# # Summary
+# # Found 'bash-4.4.012-2-x86_64.pkg.tar.xz' in Repositories: 'archlinux', Numbers: '1, 2, 3, 4', Sections: 'core'
+
+printf '%b' "
+package_search_repo() {
+
+#### as shown here, the deeper the repository that needs to be searched, the longer the overall search will be which is something in which i need to fix but i dont know what is causing it http://bpaste.net/raw/82ea8fab8dbb
+
+pak=\${1//\*/.\*}
+echo \"initiating search for \$1\"
+"
+for i in ${!REPOS[@]}
+    do
+printf '%s' "found$i=(\$(printf '%s\n' \"\${treelistnew$i[@]}\" | grep -i -e ^\"\$pak\" | grep -i -e \"64\" -i -e \"any\"))
+for i in \${!found$i[@]}
+    do
+        package_check_repo \"\${found$i[i]}\" > /dev/null
+printf '%b\n' \"Repository: ${repository[i]}, \\
+\\
+Number: $i, \\
+\\
+Section: ${repository_section[i]}, \\
+\\
+Package Availability: \$(package_check_repo \${found$i[i]} | grep -q 'found in' ; echo \$? | sed -e 's/0/Available,     /g' -e 's/1/Not Available, /g')\\
+\\
+Package: \"\${found$i[i]}\" \\
+\"
+done
+
+"
+done
+
+printf '%s' "
+echo \"finished search for \$1\"
+}
+package_quick_search_repo() {
+unset url ftp
+"
+for i in ${!REPOS[@]}
+    do
+printf '%s' "found$i=(\$(printf '%s\n' \"\${treelistnew$i[@]}\" | grep -i -e ^\"\$1\" | grep -i -e \"64\" -i -e \"any\"))
+for i in \${!found$i[@]} ; do package_check_repo \"\${found$i[i]}\" > /dev/null ;  packagepre+=(\"\${found$i[i]}\") ; done
+
+"
+done
+printf '%s' "
+if [[ -z \$url || -z \$ftp ]]
+    then
+        if [[ \$(printf '%s' \"\${provides[*]} \" | tr '\n' ' ' | grep \"\$(printf \" \$1 \" | sed 's/-\[0-9\]//g')\") ]]
+            then
+                for i in \${!provides[@]}
+                    do
+                        if [[ \$(printf '%s' \"\${provides[i]} \" | tr '\n' ' ' | grep \"\$(printf \"\ $1 \" | sed 's/-\[0-9\]//g')\") ]]
+                            then
+                                echo \"[WARNING] \$(printf \"\$1\" | sed 's/-\[0-9\]//g') not found but is provided by \$(printf '%s%b' \"\${provides[i]}\" | tr '\n' 'n' | grep -v \"provides:n$\" | sed \"s/provides.*//g\")\"
+                        fi
+                done
+            else
+                echo \"[WARNING] \$(printf \"\$1\" | sed 's/-\[0-9\]//g') not found and is not current provided by any packages aquired in this instance\"
+                notfound+=(\$(echo \$1 | sed 's/-\[0-9\]//g'))
+        fi
+        return 1
+    else
+        sortpackageversion packagepre
+        package+=(\$packagepre)
+        unset packagepre
+        package=(\$(printf '%b\n' \${package[@]} | sort -u))
+#         declare -p url ftp
+        return 0
+fi
+}
+"
+}
+
+evaldownload() {
+for i in $@
+    do
+        echo "download $i"
+        echo "sortpackageversion"
+        echo "extract $ARGS $i"
+done
+}
+
+evalextract() {
+for i in $@
+    do
+        echo "extract $ARGS $i"
+done
+}
+
+evaldownloada() {
+for i in $@
+    do
+        echo "downloadiso \"$i\""
+done
+}
+
+evalsearch() {
+for i in $@
+    do
+        echo "package_search_repo $i"
+done
+}
+evalquicksearch() {
+for i in $@
+    do
+        echo "package_quick_search_repo $i-[0-9]"
+done
+}
+
+        search() {
+        declare -a provides=([0]=$'bash-4.4.012-2-x86_64.pkg.tar.xz provides:\nsh' [1]=$'glibc-2.26-6-x86_64.pkg.tar.xz provides:\n' [2]=$'ncurses-6.0+20170902-3-x86_64.pkg.tar.xz provides:\nlibncurses++w.so\nlibformw.so\nlibmenuw.so\nlibpanelw.so\nlibncursesw.so\nlibncursesw.so' [3]=$'readline-7.0.003-1-x86_64.pkg.tar.xz provides:\nlibhistory.so\nlibreadline.so')
+for i in ${!provides[@]}
+            do
+        if [[ $(printf '%s%b' "
+${provides[i]}
+" | grep "$1$") ]]
+                    then
+                    printf '%s%b' "$(printf '%s%b' "
+${provides[i]}
+" | grep "$1$" | sort -u) is provided by $(printf '%s' "${provides[i]}" | tr '\n' 'n' | grep -v "provides:n$" | sed "s/provides.*//g")"
+                fi
+        done
+        }
+
+
+# https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
+command_exists() { command -v "$1" > /dev/null 2>&1 ; }
+
+echo 'for the following two checks (we check for the presence of readlink, and dirname), we assume that the current working directory is set to the location of this script should any of them fail...'
+
+if [[ $(command_exists dirname ; echo $?) == 0 ]]
+    then
+        echo dirname exists
+    else
+        echo dirname does not exist
+            dirname() {
+                ./Files/dirname
+            }
+fi
+
+if [[ $(command_exists readlink ; echo $?) == 0 ]]
+    then
+        echo readlink exists
+    else
+        echo readlink does not exist
+            readlink() {
+                ./Files/readlink
+            }
+fi
+
+#relies on readlink and dirname to determine current location of script
+HERE="$(dirname "$(readlink -f "${0}")")" # note pwd is unreliable as it returns the current working directory of the terminal, for example cd / ; ./git/UPM/UPM returns /
+echo script directory = $HERE
+#cd "$HERE"
+
+curl() {
+    ./Files/curl $@
+}
+
+#needs LANG=  in order to work correctly
+aria2c() {
+    LANG= ./Files/aria2-1.32.0-linux-gnu-64bit-build1/aria2c $@
+}
+
+set_aria2c_flags() {
+    max_speed_flags_html='--max-connection-per-server=16 --min-split-size=1M --split 16 --conditional-get=true --allow-overwrite=false --continue --auto-file-renaming=false'
+    max_speed_flags_html_repo='--max-connection-per-server=16 --min-split-size=1M --split 16 --conditional-get=true --allow-overwrite=true --continue --auto-file-renaming=false'
+}
+
+aquire_deps() {
+    curl https://raw.githubusercontent.com/minos-org/minos-static/de7ceb083fb1945c9861185e43cb869121c098e7/static-get -o ./Files/Static-Get
+    chmod +x ./Files/Static-Get
+    chmod 777 ./Files/Static-Get
+    aria2c http://mirrors.kernel.org/archlinux/pool/packages/freetype2-2.8-2-x86_64.pkg.tar.xz
+    Files/Static-Get -s perl | sed 's/:.*//'
+    #./Files/Static-Get -d ./Files/Static\ Packages -s . | sed -e s/xz:.*/xz/g | tr '\n' ' ' | ./Files/Static-Get -d ./Files/Static\ Packages -v -x
+}
+
+set_aria2c_flags
+
+
+#aria2c $max_speed_flags_html https://nchc.dl.sourceforge.net/project/zorin-os/12/Zorin-OS-12.1-Core-64.iso
+#aria2 all downloads one at a time in a for loop
+#time (printf "https://www.mirrorservice.org/sites/blackarch.org/blackarch/blackarch/os/x86_64/\nhttp://mirrors.kernel.org/archlinux/pool/packages/" | ./UPM/Files/aria2-1.32.0-linux-gnu-64bit-build1/aria2c --input-file=- --max-connection-per-server=16 --min-split-size=1M --split 16 --conditional-get=true --allow-overwrite=false --continue --auto-file-renaming=false )
+#exit
+
+rel() {
+# both $1 and $2 are absolute paths beginning with /
+# returns relative path to $2/$target from $1/$source
+source=$1
+target=$2
+
+common_part=$source # for now
+result="" # for now
+
+while [[ "${target#$common_part}" == "${target}" ]]; do
+    # no match, means that candidate common part is not correct
+    # go up one level (reduce common part)
+    common_part="$(dirname $common_part)"
+    # and record that we went back, with correct / handling
+    if [[ -z $result ]]; then
+        result=".."
+    else
+        result="../$result"
+    fi
+done
+
+if [[ $common_part == "/" ]]; then
+    # special case for root (no common path)
+    result="$result/"
+fi
+
+# since we now have identified the common part,
+# compute the non-common part
+forward_part="${target#$common_part}"
+
+# and now stick all parts together
+if [[ -n $result ]] && [[ -n $forward_part ]]; then
+    result="$result$forward_part"
+elif [[ -n $forward_part ]]; then
+    # extra slash removal
+    result="${forward_part:1}"
+fi
+
+echo $result
+}
+
+extract() {
+now=$(pwd)
+if [[ $1 =~ "--noforce" ]]
+then
+    noforce=1
+    shift 1
+fi
+if [[ $1 =~ "--noremove" ]]
+then
+    :
+    shift 1
+    else
+    sudo rm -rfv ./Tests/PACKAGES/$1* |& sed s/"removed"/'[REMOVED] '/g
+fi
+for p in ./Tests/Packages/$1*
+do
+    ext=".pkg.tar.xz"
+    base="$(basename $p | sed s/"$ext"//)"
+    dest="$(readlink -m $(basename $p)/../Tests/PACKAGES | sed s/"$ext"//)/"
+    dest_rel="$(rel "$(readlink -m $(dirname "$p/layer_0/$base"))" "$dest")"
+    if [[ ! -z $noforce ]] && [[ -e "$dest$base/" ]]
+    then
+        echo "[ERROR] "$dest$base/" exists"
+        skip=1
+    fi
+    if [[ ! -z $skip ]]
+        then
+            :
+        else
+            for i in $p/layer_*/*
+            do
+                basepackage="$(basename $i)"
+                basepackagenoext="$(basename $i | sed s/"$ext"//)"
+                basepackagelayer="$(basename $(dirname $i) | tail -c 2)"
+                mkdir -vp "$dest$base" |& sed s/"mkdir."/'[MKDIR] '/g
+                if [[ ! -z $skip ]]
+                then
+                    :
+                else
+                    tar -xf $i --directory="$dest$base/" --backup=simple --suffix=.backup --skip-old-files |& grep -v "SCHILY"
+            #                 PIPESTATUS array contains the exit values of all commands executed in the last pipe chain of commands
+                    if [[ ${PIPESTATUS[0]} == 0 ]]
+                    then
+                    echo "[TAR] \"$base/$basepackagelayer/$basepackagenoext\" extracted to \"$dest_rel$base/\""
+                    else
+                    echo "[FAILED $?]"
+                    fi
+                    mv "$dest$base/.PKGINFO" "$dest$base/.$basepackage.PKGINFO" |& grep -v "No such file or directory" |& sed -e "1 s/'/\[MOVE\] '/; t" -e "1,// s//'/"
+                    
+                    mv "$dest$base/.BUILDINFO" "$dest$base/.$basepackage.BUILDINFO" |& grep -v "No such file or directory" |& sed s/".*->"/"\[MOVE\] ->"/
+                    
+                    mv "$dest$base/.MTREE" "$dest$base/.$basepackage.MTREE" |& grep -v "No such file or directory" |& sed s/".*->"/"\[MOVE\] ->"/
+                    
+                    mv "$dest$base/.INSTALL" "$dest$base/.$basepackage.INSTALL" |& grep -v "No such file or directory" |& sed s/".*->"/"\[MOVE\] ->"/
+                fi
+            done
+            cd "$dest$base"
+            patchdir archlinux
+            cd "$now"
+    fi
+done
+}
+
+sortpackageversion() {
+if [[ -z $1 ]]
+    then
+        echo '[SORTING]'
+        ls ./Tests/Packages/$package_name/layer_*/ | grep -v './' | sort --version-sort | cat -n | sed -e s/'     '/'   00'/g -e s/'    '/'   0'/g | sort -r | sed -e s/"   [0-9][0-9][0-9]\t"//g | grep -v "^$"
+        :
+    else
+#         eval "printf '%s%b' \"$(printf '%s%b' '${'$1'[*]}')\" " | tr ' ' '\n' | grep -v './' | sort --version-sort | cat -n | sed -e s/'     '/'   00'/g -e s/'    '/'   0'/g | sort -r | sed -e s/"   [0-9][0-9][0-9]\t"//g | grep -v "^$"
+        selection=($(eval "printf '%s%b' \"$(printf '%s%b' '${'$1'[*]}')\" " | tr ' ' '\n' | grep -v './' | sort --version-sort | cat -n | sed -e s/'     '/'   00'/g -e s/'    '/'   0'/g | sort -r | sed -e s/"   [0-9][0-9][0-9]\t"//g | grep -v "^$"))
+        echo "[SELECTING] ${selection[0]}"
+        eval "$1=(\"${selection[0]}\")"
+fi
+}
+
+download() {
+package_quick_search_repo $1-[0-9] >/dev/null
+if [[ -z $url || -z $ftp ]]
+    then
+        echo "[ERROR] $1 not found in repo"
+        exit
+    else
+        dep_previous=()
+        dep_next=()
+        provides=()
+        notfound=()
+        data=()
+        package=()
+        package_name=()
+        layer=()
+        echo "[SYSTEM] gathering dependancy list for $1..."
+        package_quick_search_repo $1-[0-9]
+        echo "[SYSTEM] dependance list gathered"
+        package_name=$(printf '%s\n' "$package" | sed s/.pkg.tar.xz//g)
+        #one of the dependancies of johnny is qt4 wich has a depancy of fontconfig wich has a dependancy of freetype2 wich has a dependancy of harfbuzz
+        #johnny > qt4 > fontconfig > freetype2 > harfbuzz
+        layer=0
+        mkdir -pv ./Tests/Packages/$package_name/layer_$layer |& sed s/"mkdir."/'[MKDIR] '/g
+        for i in ${!package[@]}
+            do
+                package_check_repo ${package[i]} > /dev/null
+                printf '%b'  "[DOWNLOADING]  ${package[i]}"
+                aria2c -q -j2 "$url" "$ftp" $max_speed_flags_html --dir=./Tests/Packages/$package_name/layer_$layer -o ${package[i]}
+                response=$?
+                if [[ $response == 0 ]]
+                    then
+                printf '%b' "\r[SAVED]  ${package[i]}         \n"
+                    else
+                        printf '%b' "\r[FAILED] RETRYING (with verbose) ${package[i]}         \n"
+                        aria2c -j2 "$url" "$ftp" $max_speed_flags_html --dir=./Tests/Packages/$package_name/layer_$layer -o ${package[i]}
+                        response=$?
+                        if [[ $response == 0 ]]
+                            then
+                                printf '%b' "\r[SAVED]  ${package[i]}         \n"
+                            else
+                                printf '%b' "\r[FAILED] ${package[i]}         \n"
+                                faileddownload+=${package[i]}
+                        fi
+                fi
+                printf "[TAR] extracting data from archive..."
+                data=$(tar --to-stdout --file=./Tests/Packages/$package_name/layer_$layer/${package[i]} -x .PKGINFO 2>&1)
+                responseb=$?
+                if [[ $responseb == 0 ]]
+                    then
+                printf '%b' "\r[TAR] extracted data from archive    \n"
+                    else
+                printf '%b' "\r[TAR FAILED]                         \n"
+                failedtar+=${package[i]}
+                fi
+                dep_next+=($(printf "$data" | grep ^"depend = " | sed 's/depend = //g' | sed 's/>.*//g' | sed 's/<.*//g' | sed 's/=.*//g'))
+                provides+=("${package[i]} provides:
+$(printf "\n$data" | grep ^"provides = " | sed 's/provides = //g' | sed 's/>.*//g' | sed 's/<.*//g' | sed 's/=.*//g')")
+        done
+        dep_previous+=($1)
+        dep_next=($(printf '%b\n' ${dep_next[@]} | sort -u))
+        echo "[COLLECTED]  ${dep_previous[*]}"
+        if [[ -z $dep_next ]]
+            then
+                echo "[DONE]"
+            else
+                echo "[COLLECTING] ${dep_next[*]}"
+                layer=$(( layer +1 ))
+                until [ ${#dep_next[@]} == 0 ]
+                    do
+                        downloaddep
+                done
+        fi
+        echo
+        echo "[SUMMARY]"
+        printf '%s%b' "[COLLECTED ($(printf '%b\n' ${dep_previous[@]} | sort -u | grep -v "^$" | wc -l))]
+$(printf '%b\n' ${dep_previous[@]} | sort -u)
+
+"
+        printf '%s%b' "[FAILED DOWNLOAD ($(printf '%b' ${#faileddownload[@]}))]
+$(printf '%b\n' ${faileddownload[@]})
+
+"
+
+        printf '%s%b' "[FAILED EXTRACT ($(printf '%b' ${#failedtar[@]}))]
+$(printf '%b\n' ${failedtar[@]})
+
+"
+        for k in ${!notfound[@]}
+            do
+                if [[ $(printf '%s' " ${provides[*]} " | tr '\n' ' ' | grep "$(printf " ${notfound[k]} " | sed 's/-\[0-9\]//g')") ]]
+                    then
+                        for i in ${!provides[@]}
+                            do
+                                if [[ $(printf '%s' " ${provides[i]} " | tr '\n' ' ' | grep "$(printf " ${notfound[k]} " | sed 's/-\[0-9\]//g')") ]]
+                                    then
+                                        echo "[WARNING] $(printf "${notfound[k]}" | sed 's/-\[0-9\]//g') not found but is provided by $(printf '%s%b' "${provides[i]}" | tr '\n' 'n' | grep -v "provides:n$" | sed "s/provides.*//g")"
+                                fi
+                        done
+                    else
+                        echo "[WARNING] $(printf "${notfound[k]}" | sed 's/-\[0-9\]//g') not found and is not current provided by any packages aquired in this instance"
+                        notfoundb+=($(echo ${notfound[k]} | sed 's/-\[0-9\]//g'))
+                fi
+            done
+            unset notfound
+            notfound=(${notfoundb[@]})
+            unset notfoundb
+
+        printf '%s%b' "[NOT FOUND ($(printf '%b' ${#notfound[@]}))]
+$(printf '%b\n' ${notfound[@]})
+
+"
+
+        printf '%s%b' "[PROVIDES ($(for i in ${!provides[@]}
+            do
+                if [[ $(printf '%s' "${provides[i]}" | tr '\n' 'n' | grep -v "provides:n$") ]]
+                    then
+                    printf '%s%b' "
+${provides[i]}
+" | grep -v "provides:" | grep -v "^$"
+                fi
+        done | wc -l)) BY ($(for i in ${!provides[@]}
+            do
+                if [[ $(printf '%s' "${provides[i]}" | tr '\n' 'n' | grep -v "provides:n$") ]]
+                    then
+                    printf '%s%b' "
+${provides[i]}
+" | grep "provides:"
+                fi
+        done | wc -l)) PACKAGES] $(for i in ${!provides[@]}
+            do
+                if [[ $(printf '%s' "${provides[i]}" | tr '\n' 'n' | grep -v "provides:n$") ]]
+                    then
+                    printf '%s%b' "
+${provides[i]}
+"
+                fi
+        done)
+
+"
+fi
+}
+
+downloaddep() {
+mkdir -vp ./Tests/Packages/$package_name/layer_$layer |& sed s/"mkdir."/'[MKDIR] '/g
+package=()
+echo "[SYSTEM] gathering dependancy list..."
+for i in ${!dep_next[@]}
+    do
+        package_quick_search_repo "${dep_next[i]}"-[0-9]
+done
+echo "[SYSTEM] dependance list gathered"
+dep_previous+=($(printf '%b\n' ${dep_next[@]}))
+dep_next=()
+for i in ${!package[@]}
+    do
+        package_check_repo ${package[i]} > /dev/null
+
+        printf '%b'  "[DOWNLOADING]  ${package[i]}"
+        aria2c -q -j2 "$url" "$ftp" $max_speed_flags_html --dir=./Tests/Packages/$package_name/layer_$layer -o ${package[i]}
+        response=$?
+        if [[ $response == 0 ]]
+            then
+                printf '%b' "\r[SAVED]  ${package[i]}         \n"
+            else
+                printf '%b' "\r[FAILED] RETRYING (with verbose) ${package[i]}         \n"
+                aria2c -j2 "$url" "$ftp" $max_speed_flags_html --dir=./Tests/Packages/$package_name/layer_$layer -o ${package[i]}
+                response=$?
+                if [[ $response == 0 ]]
+                    then
+                        printf '%b' "\r[SAVED]  ${package[i]}         \n"
+                    else
+                        printf '%b' "\r[FAILED] ${package[i]}         \n"
+                        faileddownload+=${package[i]}
+                fi
+        fi
+        printf "[TAR] extracting data from archive..."
+        data=$(tar --to-stdout --file=./Tests/Packages/$package_name/layer_$layer/${package[i]} -x .PKGINFO 2>&1)
+        responseb=$?
+        if [[ $responseb == 0 ]]
+            then
+        printf '%b' "\r[TAR] extracted data from archive    \n"
+            else
+        printf '%b' "\r[TAR FAILED]                         \n"
+        failedtar+=${package[i]}
+        fi
+        dep_next+=($(printf "$data" | grep ^"depend = " | sed 's/depend = //g' | sed 's/>.*//g' | sed 's/<.*//g' | sed 's/=.*//g'))
+        provides+=("${package[i]} provides:
+$(printf "$data" | grep ^"provides = " | sed 's/provides = //g' | sed 's/>.*//g' | sed 's/<.*//g' | sed 's/=.*//g')")
+done
+dep_next=($(printf '%b\n' ${dep_next[@]} | sort -u))
+count=0
+for match in ${!dep_previous[@]}
+    do
+        dep_next=($(printf '%b\n' ${dep_next[@]} | grep -v ^"${dep_previous[count]}"))
+        count=$(( count +1))
+done
+echo "[COLLECTED]  ${dep_previous[*]}"
+if [[ -z $dep_next ]]
+    then
+        echo "[DONE]"
+    else
+        echo "[COLLECTING] ${dep_next[*]}"
+fi
+layer=$(( layer +1 ))
+package=()
+}
+
+downloadiso() {
+aria2c $max_speed_flags_html "$1"
+exit
+}
+
+init() {
+eval "$(repo_gen)"
+repository_gen
+repository_section_gen
+eval "$(gen_repo_data_printf)"
+}
+#download $1
+# https://rsync.chakralinux.org/releases/chakra-2017.10-goedel-x86_64.iso
+
+# repo_gen
+if [[ $1 =~ "--nosync" ]]
+    then
+        sync=0
+        shift 1
+    else
+        sync=1
+fi
+if [[ $1 =~ "--noforce" ]]
+    then
+        ARGS+="--noforce "
+        shift 1
+fi
+if [[ $1 =~ "--noremove" ]]
+    then
+        ARGS+="--noremove "
+        shift 1
+fi
+if [[ $1 =~ "--search" ]]
+    then
+        init
+        shift 1
+        eval "$(evalsearch $@)"
+elif [[ $1 =~ "--quicksearch" ]]
+    then
+        init
+        shift 1
+        eval "$(evalquicksearch $@)"
+elif [[ $1 =~ "--redownloadall" ]]
+    then
+        packs=$(ls ./Tests/Packages | sed 's/-[0-9].*//g' | tr '\n' ' ')
+        packsb=$(ls ./Tests/Packages | tr '\n' ' ')
+        cd ./Tests/Packages
+        rm -rfv $(eval "printf '%s%b' \"${packsb[*]}\"") |& sed s/"removed"/'[REMOVED] '/g
+        cd ../../
+        init
+        shift 1
+        eval "$(evaldownload $(eval "printf '%s%b' \"${packs[*]}\"") $@)"
+elif [[ $1 =~ "--redownload" ]]
+    then
+        shift 1
+#         could have this in a sub function to loop though the args instead of operating on only arg 1
+        if [[ $(readlink -e ./Tests/Packages/$1* >/dev/null; echo $?) == 0 ]]
+        then
+            packs=$(for i in $(readlink -m ./Tests/Packages/$1* | tr '\n' ' ') ; do basename "$i" | sed 's/-[0-9].*//g' | tr '\n' ' '; done)
+#             declare -p packs
+            rm -rfv ./Tests/Packages/$1* |& sed s/"removed"/'[REMOVED] '/g
+            shift 1
+            init
+            eval "$(evaldownload $(eval "printf '%s%b' \"${packs[*]}\"") $@)"
+        else
+            packs=$@
+#             declare -p packs
+            init
+            eval "$(evaldownload $(eval "printf '%s%b' \"${packs[*]}\""))"
+        fi
+elif [[ $1 =~ "--download" ]]
+    then
+        shift 1
+        eval "$(evaldownloada "$@")"
+elif [[ $1 =~ "--extractall" ]]
+    then
+        shift 1
+        extract
+elif [[ $1 =~ "--extract" ]]
+    then
+        shift 1
+        eval "$(evalextract "$@")"
+else
+    init
+    ARGS="--noforce --noremove"
+    eval "$(evaldownload $@)"
+fi
+# echo 'extract files to folder then attempt to symlink each file, on file collision unsymlink previous file and symlink new file'
+
+# count=0
+# for match in ${!grepresults[@]}
+#     do
+#         filelist2=($(printf '%b\n' ${filelist[@]} | grep -v "${grepresults[count]}"$))
+#         count=$(( count +1))
+# done
+
+# dep_previous=($(pactree -l bash | sort -u))
+# 
+# dep_next=($(find ./Tests/Packages/bash-4.4.012-2-x86_64/*/ | sed 's/.*\///g' | sort | sed '/^[[:blank:]]*$/d;'))
+# 
+# count=0
+# 
+# for match in ${!dep_next[@]};
+# 
+#     do
+#         dep_next=($(printf '%b\n' ${dep_next[@]} | grep -v "${dep_previous[count]}"))
+#         
+#         printf '%b\n' ${dep_next[@]}
+# 
+#         declare -p dep_next
+#         
+#         count=$(( count +1))
+# done
+
+
+#find ./Tests/Packages/*/*/ | sed 's/.*\///g' | sort -u
+#find ./Tests/Packages/*/*/ | sed 's/.*\///g' | sort | sed ':a; s/^[^-]*-//; /^[0-9]/!{/-/ba;}; /^[[:blank:]]*$/d;'
+# echo 'manually generate urls based on formed url validation, for example, *url is generated, generated url is then checked for url validation, generate url is then saved into the variable formed_url and sent to aria2c via aria2c $formed_url'
+# 
+# echo "hello ///world" | sed 's/\///g'
+# echo "hello ///world" | sed 's|/||g'
+# echo ' ldconfig -l l
+# -l                         Manually link individual libraries.'

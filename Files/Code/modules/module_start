@@ -1,0 +1,8 @@
+exec 3>&${IRC_NC[0]}
+exec 4>&${IRC_NC[1]}
+
+redirect_to_output <&3 &
+irc_session & # Feed nc with user input
+export IRC_SESSION_PID=$!
+irc_read & # Handle pings from IRC
+export IRC_READ_PID=$!

@@ -1,0 +1,15 @@
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/DateTime.pm relocate_as=../../DateTime.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/DateTime/Conflicts.pm relocate_as=../../DateTime/Conflicts.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/DateTime/Duration.pm relocate_as=../../DateTime/Duration.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/DateTime/Helpers.pm relocate_as=../../DateTime/Helpers.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/DateTime/Infinite.pm relocate_as=../../DateTime/Infinite.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/DateTime/LeapSecond.pm relocate_as=../../DateTime/LeapSecond.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/DateTime/PP.pm relocate_as=../../DateTime/PP.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/DateTime/PPExtra.pm relocate_as=../../DateTime/PPExtra.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/DateTime/Types.pm relocate_as=../../DateTime/Types.pm
+/UPM/Files/Code/perl/lib/site_perl/5.26.1/i686-linux-thread-multi-quadmath/auto/DateTime/DateTime.so relocate_as=DateTime.so
+/UPM/Files/Code/perl/man/man3/DateTime.3 relocate_as=../../../../../../man/man3/DateTime.3
+/UPM/Files/Code/perl/man/man3/DateTime::Duration.3 relocate_as=../../../../../../man/man3/DateTime::Duration.3
+/UPM/Files/Code/perl/man/man3/DateTime::Infinite.3 relocate_as=../../../../../../man/man3/DateTime::Infinite.3
+/UPM/Files/Code/perl/man/man3/DateTime::LeapSecond.3 relocate_as=../../../../../../man/man3/DateTime::LeapSecond.3
+/UPM/Files/Code/perl/man/man3/DateTime::Types.3 relocate_as=../../../../../../man/man3/DateTime::Types.3

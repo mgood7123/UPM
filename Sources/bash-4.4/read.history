@@ -1,0 +1,17 @@
+HISTFILE=./read.history
+ls
+read -e test
+rlogin-cwd 
+./bash
+./bash --version
+make
+make clean
+make
+./builtins/mkbuiltins 
+./builtins/mkbuiltins --help
+./builtins/mkbuiltins read.c
+./builtins/mkbuiltins read.def
+./builtins/mkbuiltins ./builtins/read.def 
+./builtins/mkbuiltins ./builtins/read.def
+make
+help read

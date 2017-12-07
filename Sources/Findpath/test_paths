@@ -1,0 +1,44 @@
+#!/bin/bash
+# source: https://stackoverflow.com/a/34271901
+
+# echoargc is in ~/bin/echoargc
+# bin is in path
+shopt -s expand_aliases
+set -v
+mkdir ~/src/ ~/bin
+# cp ./test.c ~/src/echoargc.c
+# cat ~/src/echoargc.c
+# gcc -o ~/bin/echoargc ~/src/echoargc.c 
+cat ../../Files/findself.bash
+cp ../../Files/findself.bash ~/bin/echoargc
+chmod +x ~/bin/echoargc
+PATH=~/bin:$PATH
+PATH=/home/$USER/bin/:$PATH
+cd ~
+/home/$USER/bin/echoargc
+echoargc
+bin/echoargc
+bin//echoargc
+bin/./echoargc
+src/../bin/echoargc
+cd ~/bin
+*echo*
+e?hoargc
+./echoargc
+cd ~/src
+../bin/echoargc
+mkdir ~/junk
+cd ~/junk
+~/bin/echoargc
+~/../$USER/bin/echoargc
+alias echoit=~/bin/echoargc
+echoit
+echoarg=~/bin/echoargc
+$echoarg
+ln -s ~/bin/echoargc junk1
+./junk1
+ln -s /home/$USER/bin/echoargc junk2
+./junk2
+ln -s junk1 junk3
+./junk3
+rm -rfv ./junk1 ./junk2 ./junk3 ~/bin/echoargc ~/src/ ~/bin/ ~/junk/ ~/junk1 ~/junk2 ~/junk3
