@@ -1,0 +1,37 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = IBM297.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/IBM297.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+IBM297.so > libc-2.26.so
+
+IBM297.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/IBM297.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: IBM297.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/IBM297.so to ./libimported/IBM297.so_dir/IBM297.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so to ./libimported/IBM297.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/IBM297.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/IBM297.so_dir/IBM297.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/IBM297.so_dir/IBM297.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/IBM297.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/IBM297.so_dir/IBM297.so"
+
+[SUCCEEDED]
+

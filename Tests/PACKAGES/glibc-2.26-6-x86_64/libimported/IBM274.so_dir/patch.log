@@ -1,0 +1,37 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = IBM274.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/IBM274.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+IBM274.so > libc-2.26.so
+
+IBM274.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/IBM274.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: IBM274.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/IBM274.so to ./libimported/IBM274.so_dir/IBM274.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so to ./libimported/IBM274.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/IBM274.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/IBM274.so_dir/IBM274.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/IBM274.so_dir/IBM274.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/IBM274.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/IBM274.so_dir/IBM274.so"
+
+[SUCCEEDED]
+

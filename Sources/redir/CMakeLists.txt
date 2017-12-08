@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.4)
+project(Foo)
+add_executable(redir redir.c)
+target_include_directories(redir PRIVATE .)
+add_subdirectory(tests/relocation/mkdir)
+enable_testing()
+add_dependencies(test callname.h)
+add_test(test test redir $<TARGET_FILE:mkdir_test>)

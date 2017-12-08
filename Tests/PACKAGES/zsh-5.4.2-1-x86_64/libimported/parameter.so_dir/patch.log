@@ -1,0 +1,37 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = parameter.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/zsh/5.4.2/zsh/parameter.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+parameter.so > libc-2.26.so
+
+parameter.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/zsh/5.4.2/zsh/parameter.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: parameter.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/zsh/5.4.2/zsh/parameter.so to ./libimported/parameter.so_dir/parameter.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/parameter.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/parameter.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/parameter.so_dir/parameter.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/parameter.so_dir/parameter.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/parameter.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/parameter.so_dir/parameter.so"
+
+[SUCCEEDED]
+

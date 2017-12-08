@@ -1,0 +1,37 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = rlimits.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/zsh/5.4.2/zsh/rlimits.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+rlimits.so > libc-2.26.so
+
+rlimits.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/zsh/5.4.2/zsh/rlimits.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: rlimits.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/zsh/5.4.2/zsh/rlimits.so to ./libimported/rlimits.so_dir/rlimits.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/rlimits.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/rlimits.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/rlimits.so_dir/rlimits.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/rlimits.so_dir/rlimits.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/rlimits.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/rlimits.so_dir/rlimits.so"
+
+[SUCCEEDED]
+

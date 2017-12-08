@@ -1,0 +1,5 @@
+
+ln: failed to create symbolic link './libimported/ld.so.cache' -> '': No such file or directory
+/dummy
+./libimported/1: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /dummy, for GNU/Linux 2.6.32, BuildID[sha1]=c5669e69a7a87abd535933740e53e87311c30530, not stripped
+

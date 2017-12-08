@@ -1,0 +1,24 @@
+
+
+[SETTING UP]
+
+$1 = ./usr/lib/libform.so
+
+$2 = 0
+
+$3 = libform.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libform.so
+
+libform.so
+
+libform.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libform.so
+
+[EXECUTING]
+
+file: libform.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libform.so to ./libimported/libform.so_dir/libform.so
+

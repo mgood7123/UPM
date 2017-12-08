@@ -1,0 +1,24 @@
+
+
+[SETTING UP]
+
+$1 = ./usr/lib/libcursesw.so
+
+$2 = 0
+
+$3 = libcursesw.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libcursesw.so
+
+libcursesw.so
+
+libcursesw.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libcursesw.so
+
+[EXECUTING]
+
+file: libcursesw.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libcursesw.so to ./libimported/libcursesw.so_dir/libcursesw.so
+

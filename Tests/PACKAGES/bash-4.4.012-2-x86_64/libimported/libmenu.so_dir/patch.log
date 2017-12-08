@@ -1,0 +1,24 @@
+
+
+[SETTING UP]
+
+$1 = ./usr/lib/libmenu.so
+
+$2 = 0
+
+$3 = libmenu.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libmenu.so
+
+libmenu.so
+
+libmenu.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libmenu.so
+
+[EXECUTING]
+
+file: libmenu.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libmenu.so to ./libimported/libmenu.so_dir/libmenu.so
+

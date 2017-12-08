@@ -1,0 +1,37 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = sotruss-lib.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/audit/sotruss-lib.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+sotruss-lib.so > libc-2.26.so
+
+sotruss-lib.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/audit/sotruss-lib.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: sotruss-lib.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/audit/sotruss-lib.so to ./libimported/sotruss-lib.so_dir/sotruss-lib.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so to ./libimported/sotruss-lib.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/sotruss-lib.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/sotruss-lib.so_dir/sotruss-lib.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/sotruss-lib.so_dir/sotruss-lib.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/sotruss-lib.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/sotruss-lib.so_dir/sotruss-lib.so"
+
+[SUCCEEDED]
+

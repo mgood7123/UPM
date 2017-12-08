@@ -1,0 +1,83 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = EUC-CN.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/EUC-CN.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+EUC-CN.so > libc-2.26.so
+
+EUC-CN.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/EUC-CN.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: EUC-CN.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/EUC-CN.so to ./libimported/EUC-CN.so_dir/EUC-CN.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so to ./libimported/EUC-CN.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/EUC-CN.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/EUC-CN.so_dir/EUC-CN.so
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = EUC-CN.so > libGB.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/EUC-CN.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/libGB.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+EUC-CN.so > libGB.so > libc-2.26.so
+
+EUC-CN.so_dir/libGB.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/EUC-CN.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/libGB.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: EUC-CN.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/EUC-CN.so to ./libimported/EUC-CN.so_dir/EUC-CN.so
+
+file: libGB.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/libGB.so to ./libimported/EUC-CN.so_dir/libGB.so_dir/libGB.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/EUC-CN.so_dir/libGB.so_dir/libGB.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/EUC-CN.so_dir/EUC-CN.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so to ./libimported/EUC-CN.so_dir/libGB.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/EUC-CN.so_dir/libGB.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/EUC-CN.so_dir/libGB.so_dir/libGB.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/EUC-CN.so_dir/EUC-CN.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/EUC-CN.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/EUC-CN.so_dir/EUC-CN.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/EUC-CN.so_dir/EUC-CN.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/EUC-CN.so_dir/libGB.so_dir/libGB.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/EUC-CN.so_dir/EUC-CN.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/EUC-CN.so_dir/libGB.so_dir/libGB.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/EUC-CN.so_dir/libGB.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/EUC-CN.so_dir/libGB.so_dir/libGB.so"
+
+[SUCCEEDED]
+

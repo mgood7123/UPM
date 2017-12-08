@@ -1,0 +1,37 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = IBM935.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/gconv/IBM935.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+IBM935.so > libc-2.26.so
+
+IBM935.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/gconv/IBM935.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: IBM935.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/gconv/IBM935.so to ./libimported/IBM935.so_dir/IBM935.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/IBM935.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/IBM935.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/IBM935.so_dir/IBM935.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/IBM935.so_dir/IBM935.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/IBM935.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/IBM935.so_dir/IBM935.so"
+
+[SUCCEEDED]
+

@@ -1,0 +1,83 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = UHC.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/UHC.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+UHC.so > libc-2.26.so
+
+UHC.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/UHC.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: UHC.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/UHC.so to ./libimported/UHC.so_dir/UHC.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so to ./libimported/UHC.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UHC.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UHC.so_dir/UHC.so
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = UHC.so > libKSC.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/UHC.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/libKSC.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+UHC.so > libKSC.so > libc-2.26.so
+
+UHC.so_dir/libKSC.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/UHC.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/libKSC.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: UHC.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/UHC.so to ./libimported/UHC.so_dir/UHC.so
+
+file: libKSC.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/libKSC.so to ./libimported/UHC.so_dir/libKSC.so_dir/libKSC.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UHC.so_dir/libKSC.so_dir/libKSC.so /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UHC.so_dir/UHC.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so to ./libimported/UHC.so_dir/libKSC.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UHC.so_dir/libKSC.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UHC.so_dir/libKSC.so_dir/libKSC.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UHC.so_dir/UHC.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UHC.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UHC.so_dir/UHC.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UHC.so_dir/UHC.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UHC.so_dir/libKSC.so_dir/libKSC.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UHC.so_dir/UHC.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UHC.so_dir/libKSC.so_dir/libKSC.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UHC.so_dir/libKSC.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UHC.so_dir/libKSC.so_dir/libKSC.so"
+
+[SUCCEEDED]
+

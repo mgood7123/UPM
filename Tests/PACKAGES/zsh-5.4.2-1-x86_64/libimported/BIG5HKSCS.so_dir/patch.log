@@ -1,0 +1,37 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = BIG5HKSCS.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/gconv/BIG5HKSCS.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+BIG5HKSCS.so > libc-2.26.so
+
+BIG5HKSCS.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/gconv/BIG5HKSCS.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: BIG5HKSCS.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/gconv/BIG5HKSCS.so to ./libimported/BIG5HKSCS.so_dir/BIG5HKSCS.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/BIG5HKSCS.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/BIG5HKSCS.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/BIG5HKSCS.so_dir/BIG5HKSCS.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/BIG5HKSCS.so_dir/BIG5HKSCS.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/BIG5HKSCS.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/BIG5HKSCS.so_dir/BIG5HKSCS.so"
+
+[SUCCEEDED]
+

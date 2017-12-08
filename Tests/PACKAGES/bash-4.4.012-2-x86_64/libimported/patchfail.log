@@ -1,0 +1,51 @@
+
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/bin/ld.so.cache': File exists
+wrong ELF type
+./usr/lib/crt1.o: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), for GNU/Linux 3.2.0, not stripped
+
+wrong ELF type
+./usr/lib/Mcrt1.o: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+
+wrong ELF type
+./usr/lib/gcrt1.o: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), for GNU/Linux 3.2.0, not stripped
+
+wrong ELF type
+./usr/lib/libieee.a: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+
+wrong ELF type
+./usr/lib/libmcheck.a: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+
+wrong ELF type
+./usr/lib/crtn.o: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+
+ln: failed to create symbolic link './usr/lib/getconf/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/lib/getconf/ld.so.cache': File exists
+ln: failed to create symbolic link './usr/lib/ld.so.cache': File exists
+wrong ELF type
+./usr/lib/crti.o: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+
+wrong ELF type
+./usr/lib/Scrt1.o: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), for GNU/Linux 3.2.0, not stripped
+

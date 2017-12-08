@@ -1,0 +1,1 @@
+/usr/bin/cc    CMakeFiles/redir.dir/redir.c.o  -o redir 

@@ -1,0 +1,37 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = ISO_6937.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/ISO_6937.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+ISO_6937.so > libc-2.26.so
+
+ISO_6937.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/ISO_6937.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: ISO_6937.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/ISO_6937.so to ./libimported/ISO_6937.so_dir/ISO_6937.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so to ./libimported/ISO_6937.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/ISO_6937.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/ISO_6937.so_dir/ISO_6937.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/ISO_6937.so_dir/ISO_6937.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/ISO_6937.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/ISO_6937.so_dir/ISO_6937.so"
+
+[SUCCEEDED]
+

@@ -1,0 +1,14 @@
+
+
+./libimported/0 has interpreter and it is not currently set to 
+
+patching ./libimported/0
+
+./patchelf-static --set-interpreter "" "./libimported/0"
+
+ln -sv  ./libimported/ld.so.cache
+
+[SUCCEEDED]
+
+[PATCHED]
+

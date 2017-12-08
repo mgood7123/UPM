@@ -1,0 +1,37 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = IEC_P27-1.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/IEC_P27-1.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+IEC_P27-1.so > libc-2.26.so
+
+IEC_P27-1.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/IEC_P27-1.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: IEC_P27-1.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/IEC_P27-1.so to ./libimported/IEC_P27-1.so_dir/IEC_P27-1.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so to ./libimported/IEC_P27-1.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/IEC_P27-1.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/IEC_P27-1.so_dir/IEC_P27-1.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/IEC_P27-1.so_dir/IEC_P27-1.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/IEC_P27-1.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/IEC_P27-1.so_dir/IEC_P27-1.so"
+
+[SUCCEEDED]
+

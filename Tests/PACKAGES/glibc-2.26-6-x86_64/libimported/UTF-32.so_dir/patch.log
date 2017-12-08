@@ -1,0 +1,37 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = UTF-32.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/UTF-32.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+UTF-32.so > libc-2.26.so
+
+UTF-32.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/UTF-32.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: UTF-32.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/UTF-32.so to ./libimported/UTF-32.so_dir/UTF-32.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so to ./libimported/UTF-32.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UTF-32.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UTF-32.so_dir/UTF-32.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UTF-32.so_dir/UTF-32.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UTF-32.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/UTF-32.so_dir/UTF-32.so"
+
+[SUCCEEDED]
+

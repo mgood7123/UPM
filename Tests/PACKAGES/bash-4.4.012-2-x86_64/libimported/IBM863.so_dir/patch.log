@@ -1,0 +1,37 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = IBM863.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/IBM863.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+IBM863.so > libc-2.26.so
+
+IBM863.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/IBM863.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: IBM863.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/IBM863.so to ./libimported/IBM863.so_dir/IBM863.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so to ./libimported/IBM863.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/IBM863.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/IBM863.so_dir/IBM863.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/IBM863.so_dir/IBM863.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/IBM863.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/IBM863.so_dir/IBM863.so"
+
+[SUCCEEDED]
+

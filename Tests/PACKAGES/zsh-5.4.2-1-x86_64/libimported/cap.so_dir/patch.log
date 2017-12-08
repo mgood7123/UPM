@@ -1,0 +1,129 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = cap.so > libcap.so.2.25 > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/zsh/5.4.2/zsh/cap.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libcap.so.2.25 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+cap.so > libcap.so.2.25 > libc-2.26.so
+
+cap.so_dir/libcap.so.2.25_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/zsh/5.4.2/zsh/cap.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libcap.so.2.25 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: cap.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/zsh/5.4.2/zsh/cap.so to ./libimported/cap.so_dir/cap.so
+
+file: libcap.so.2.25
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libcap.so.2.25 to ./libimported/cap.so_dir/libcap.so.2.25_dir/libcap.so.2.25
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/libcap.so.2.25_dir/libcap.so.2.25 /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/cap.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/cap.so_dir/libcap.so.2.25_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/libcap.so.2.25_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/libcap.so.2.25_dir/libcap.so.2.25
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = cap.so > libcap.so.2.25 > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/zsh/5.4.2/zsh/cap.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libcap.so.2.25 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+cap.so > libcap.so.2.25 > libc-2.26.so
+
+cap.so_dir/libcap.so.2.25_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/zsh/5.4.2/zsh/cap.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libcap.so.2.25 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: cap.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/zsh/5.4.2/zsh/cap.so to ./libimported/cap.so_dir/cap.so
+
+file: libcap.so.2.25
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libcap.so.2.25 to ./libimported/cap.so_dir/libcap.so.2.25_dir/libcap.so.2.25
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/libcap.so.2.25_dir/libcap.so.2.25 /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/cap.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/cap.so_dir/libcap.so.2.25_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/libcap.so.2.25_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/libcap.so.2.25_dir/libcap.so.2.25
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = cap.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/zsh/5.4.2/zsh/cap.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+cap.so > libc-2.26.so
+
+cap.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/zsh/5.4.2/zsh/cap.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: cap.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/zsh/5.4.2/zsh/cap.so to ./libimported/cap.so_dir/cap.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/cap.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/cap.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/cap.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/libcap.so.2.25_dir/libcap.so.2.25" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/cap.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/libcap.so.2.25_dir/libcap.so.2.25
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/libcap.so.2.25_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/libcap.so.2.25_dir/libcap.so.2.25"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/cap.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/libcap.so.2.25_dir/libcap.so.2.25" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/cap.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/libcap.so.2.25_dir/libcap.so.2.25
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/libcap.so.2.25_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/libcap.so.2.25_dir/libcap.so.2.25"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/cap.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/cap.so_dir/cap.so"
+
+[SUCCEEDED]
+

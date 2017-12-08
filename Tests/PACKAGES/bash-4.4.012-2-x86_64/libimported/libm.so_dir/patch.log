@@ -1,0 +1,24 @@
+
+
+[SETTING UP]
+
+$1 = ./usr/lib/libm.so
+
+$2 = 0
+
+$3 = libm.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libm.so
+
+libm.so
+
+libm.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libm.so
+
+[EXECUTING]
+
+file: libm.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libm.so to ./libimported/libm.so_dir/libm.so
+

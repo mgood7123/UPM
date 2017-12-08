@@ -1,0 +1,24 @@
+
+
+[SETTING UP]
+
+$1 = ./usr/lib/libpanel.so
+
+$2 = 0
+
+$3 = libpanel.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libpanel.so
+
+libpanel.so
+
+libpanel.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libpanel.so
+
+[EXECUTING]
+
+file: libpanel.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libpanel.so to ./libimported/libpanel.so_dir/libpanel.so
+

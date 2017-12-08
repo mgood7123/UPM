@@ -41,10 +41,6 @@
 # include <string.h>
 # include <unistd.h>
 
-#include <sched.h>
-#include <string.h>
-#include <stdlib.h>
-
 static long
 k_sigsuspend(const sigset_t *const set, const unsigned long size)
 {
@@ -87,9 +83,6 @@ handler(int signo)
 int
 main(void)
 {
-    pid_t pid = getpid();
-    printf("this is my pid %i\n", pid);
-    sleep(5);
 	tprintf("%s", "");
 
 	const unsigned int big_size = 1024 / 8;

@@ -1,0 +1,24 @@
+
+
+[SETTING UP]
+
+$1 = ./usr/lib/libncursesw.so
+
+$2 = 0
+
+$3 = libncursesw.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libncursesw.so
+
+libncursesw.so
+
+libncursesw.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libncursesw.so
+
+[EXECUTING]
+
+file: libncursesw.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libncursesw.so to ./libimported/libncursesw.so_dir/libncursesw.so
+

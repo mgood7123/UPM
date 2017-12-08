@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/universalpackagemanager/UPM/Sources/redir/tests/relocation/mkdir/mkdir.c
+sys/stat.h
+-
+sys/types.h
+-
+unistd.h
+-
+

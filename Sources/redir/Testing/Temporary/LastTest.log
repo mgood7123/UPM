@@ -1,0 +1,19 @@
+Start testing: Dec 08 15:13 AEST
+----------------------------------------------------------
+1/1 Testing: test
+1/1 Test: test
+Command: "/usr/bin/test" "redir" "$<TARGET_FILE:mkdir_test>"
+Directory: /home/universalpackagemanager/UPM/Sources/redir
+"test" start time: Dec 08 15:13 AEST
+Output:
+----------------------------------------------------------
+/usr/bin/test: missing argument after ‘$<TARGET_FILE:mkdir_test>’
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Failed.
+"test" end time: Dec 08 15:13 AEST
+"test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Dec 08 15:13 AEST

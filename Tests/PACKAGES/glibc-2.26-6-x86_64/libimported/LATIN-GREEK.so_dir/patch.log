@@ -1,0 +1,37 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = LATIN-GREEK.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/LATIN-GREEK.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+LATIN-GREEK.so > libc-2.26.so
+
+LATIN-GREEK.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/LATIN-GREEK.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: LATIN-GREEK.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/gconv/LATIN-GREEK.so to ./libimported/LATIN-GREEK.so_dir/LATIN-GREEK.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/usr/lib/libc-2.26.so to ./libimported/LATIN-GREEK.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/LATIN-GREEK.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/LATIN-GREEK.so_dir/LATIN-GREEK.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/LATIN-GREEK.so_dir/LATIN-GREEK.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/LATIN-GREEK.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/glibc-2.26-6-x86_64/libimported/LATIN-GREEK.so_dir/LATIN-GREEK.so"
+
+[SUCCEEDED]
+

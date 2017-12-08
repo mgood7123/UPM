@@ -1,0 +1,129 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = libncursesw.so.6.0 > libtinfo.so.6.0 > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libncursesw.so.6.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libtinfo.so.6.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+libncursesw.so.6.0 > libtinfo.so.6.0 > libc-2.26.so
+
+libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libncursesw.so.6.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libtinfo.so.6.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libncursesw.so.6.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libncursesw.so.6.0 to ./libimported/libncursesw.so.6.0_dir/libncursesw.so.6.0
+
+file: libtinfo.so.6.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libtinfo.so.6.0 to ./libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libtinfo.so.6.0
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libtinfo.so.6.0 /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libncursesw.so.6.0
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libtinfo.so.6.0
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = libncursesw.so.6.0 > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libncursesw.so.6.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+libncursesw.so.6.0 > libc-2.26.so
+
+libncursesw.so.6.0_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libncursesw.so.6.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libncursesw.so.6.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libncursesw.so.6.0 to ./libimported/libncursesw.so.6.0_dir/libncursesw.so.6.0
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/libncursesw.so.6.0_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libncursesw.so.6.0
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = libncursesw.so.6.0 > libtinfo.so.6.0 > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libncursesw.so.6.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libtinfo.so.6.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+libncursesw.so.6.0 > libtinfo.so.6.0 > libc-2.26.so
+
+libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libncursesw.so.6.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libtinfo.so.6.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libncursesw.so.6.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libncursesw.so.6.0 to ./libimported/libncursesw.so.6.0_dir/libncursesw.so.6.0
+
+file: libtinfo.so.6.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libtinfo.so.6.0 to ./libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libtinfo.so.6.0
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libtinfo.so.6.0 /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libncursesw.so.6.0
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libtinfo.so.6.0
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libncursesw.so.6.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libtinfo.so.6.0" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libncursesw.so.6.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libtinfo.so.6.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libtinfo.so.6.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libncursesw.so.6.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libncursesw.so.6.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libncursesw.so.6.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libtinfo.so.6.0" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libncursesw.so.6.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libtinfo.so.6.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libncursesw.so.6.0_dir/libtinfo.so.6.0_dir/libtinfo.so.6.0"
+
+[SUCCEEDED]
+

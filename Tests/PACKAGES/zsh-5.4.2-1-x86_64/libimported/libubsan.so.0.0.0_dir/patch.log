@@ -1,0 +1,649 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = libubsan.so.0.0.0 > libm-2.26.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libm-2.26.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+libubsan.so.0.0.0 > libm-2.26.so > libc-2.26.so
+
+libubsan.so.0.0.0_dir/libm-2.26.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libm-2.26.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libubsan.so.0.0.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 to ./libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libm-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libm-2.26.so to ./libimported/libubsan.so.0.0.0_dir/libm-2.26.so_dir/libm-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libm-2.26.so_dir/libm-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/libubsan.so.0.0.0_dir/libm-2.26.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libm-2.26.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libm-2.26.so_dir/libm-2.26.so
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = libubsan.so.0.0.0 > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+libubsan.so.0.0.0 > libc-2.26.so
+
+libubsan.so.0.0.0_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libubsan.so.0.0.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 to ./libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/libubsan.so.0.0.0_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 5
+
+$3 = libubsan.so.0.0.0 > libstdc++.so.6.0.24 > libm-2.26.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libm-2.26.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+libubsan.so.0.0.0 > libstdc++.so.6.0.24 > libm-2.26.so > libc-2.26.so
+
+libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libm-2.26.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libubsan.so.0.0.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 to ./libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libstdc++.so.6.0.24
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 to ./libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24 /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libm-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libm-2.26.so to ./libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libm-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libm-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libm-2.26.so
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = libubsan.so.0.0.0 > libstdc++.so.6.0.24 > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+libubsan.so.0.0.0 > libstdc++.so.6.0.24 > libc-2.26.so
+
+libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libubsan.so.0.0.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 to ./libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libstdc++.so.6.0.24
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 to ./libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24 /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 5
+
+$3 = libubsan.so.0.0.0 > libstdc++.so.6.0.24 > libgcc_s.so.1 > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libgcc_s.so.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+libubsan.so.0.0.0 > libstdc++.so.6.0.24 > libgcc_s.so.1 > libc-2.26.so
+
+libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libgcc_s.so.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libubsan.so.0.0.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 to ./libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libstdc++.so.6.0.24
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 to ./libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24 /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libgcc_s.so.1
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libgcc_s.so.1 to ./libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libgcc_s.so.1
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libgcc_s.so.1 /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libgcc_s.so.1
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 5
+
+$3 = libubsan.so.0.0.0 > libstdc++.so.6.0.24 > libm-2.26.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libm-2.26.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+libubsan.so.0.0.0 > libstdc++.so.6.0.24 > libm-2.26.so > libc-2.26.so
+
+libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libm-2.26.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libubsan.so.0.0.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 to ./libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libstdc++.so.6.0.24
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 to ./libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24 /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libm-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libm-2.26.so to ./libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libm-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libm-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libm-2.26.so
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = libubsan.so.0.0.0 > libstdc++.so.6.0.24 > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+libubsan.so.0.0.0 > libstdc++.so.6.0.24 > libc-2.26.so
+
+libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libubsan.so.0.0.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 to ./libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libstdc++.so.6.0.24
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 to ./libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24 /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 5
+
+$3 = libubsan.so.0.0.0 > libstdc++.so.6.0.24 > libgcc_s.so.1 > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libgcc_s.so.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+libubsan.so.0.0.0 > libstdc++.so.6.0.24 > libgcc_s.so.1 > libc-2.26.so
+
+libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libgcc_s.so.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libubsan.so.0.0.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 to ./libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libstdc++.so.6.0.24
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libstdc++.so.6.0.24 to ./libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24 /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libgcc_s.so.1
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libgcc_s.so.1 to ./libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libgcc_s.so.1
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libgcc_s.so.1 /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libgcc_s.so.1
+
+[SETTING UP]
+
+$1 = ./libimported/libpthread-2.26.so/libpthread-2.26.so/usr/lib/libc-2.25.so
+
+$2 = 4
+
+$3 = libubsan.so.0.0.0 > libpthread-2.26.so > libc-2.25.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libpthread-2.26.so > /usr/lib/libc-2.25.so
+
+libubsan.so.0.0.0 > libpthread-2.26.so > libc-2.25.so
+
+libubsan.so.0.0.0_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libpthread-2.26.so > /usr/lib/libc-2.25.so
+
+[EXECUTING]
+
+file: libubsan.so.0.0.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 to ./libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libpthread-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libpthread-2.26.so to ./libimported/libubsan.so.0.0.0_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libpthread-2.26.so_dir/libpthread-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libc-2.25.so
+
+succesfully copied /usr/lib/libc-2.25.so to ./libimported/libubsan.so.0.0.0_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = libubsan.so.0.0.0 > libdl-2.26.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libdl-2.26.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+libubsan.so.0.0.0 > libdl-2.26.so > libc-2.26.so
+
+libubsan.so.0.0.0_dir/libdl-2.26.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libdl-2.26.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libubsan.so.0.0.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 to ./libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libdl-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libdl-2.26.so to ./libimported/libubsan.so.0.0.0_dir/libdl-2.26.so_dir/libdl-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libdl-2.26.so_dir/libdl-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/libubsan.so.0.0.0_dir/libdl-2.26.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libdl-2.26.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libdl-2.26.so_dir/libdl-2.26.so
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = libubsan.so.0.0.0 > libgcc_s.so.1 > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libgcc_s.so.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+libubsan.so.0.0.0 > libgcc_s.so.1 > libc-2.26.so
+
+libubsan.so.0.0.0_dir/libgcc_s.so.1_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libgcc_s.so.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libubsan.so.0.0.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 to ./libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libgcc_s.so.1
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libgcc_s.so.1 to ./libimported/libubsan.so.0.0.0_dir/libgcc_s.so.1_dir/libgcc_s.so.1
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libgcc_s.so.1_dir/libgcc_s.so.1 /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/libubsan.so.0.0.0_dir/libgcc_s.so.1_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libgcc_s.so.1_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libgcc_s.so.1_dir/libgcc_s.so.1
+
+[SETTING UP]
+
+$1 = ./libimported/librt-2.26.so/librt-2.26.so/usr/lib/libc-2.25.so
+
+$2 = 5
+
+$3 = libubsan.so.0.0.0 > librt-2.26.so > libpthread-2.26.so > libc-2.25.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/librt-2.26.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libpthread-2.26.so > /usr/lib/libc-2.25.so
+
+libubsan.so.0.0.0 > librt-2.26.so > libpthread-2.26.so > libc-2.25.so
+
+libubsan.so.0.0.0_dir/librt-2.26.so_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/librt-2.26.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libpthread-2.26.so > /usr/lib/libc-2.25.so
+
+[EXECUTING]
+
+file: libubsan.so.0.0.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 to ./libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: librt-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/librt-2.26.so to ./libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/librt-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/librt-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libpthread-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libpthread-2.26.so to ./libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/libpthread-2.26.so_dir/libpthread-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/librt-2.26.so
+
+file: libc-2.25.so
+
+succesfully copied /usr/lib/libc-2.25.so to ./libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = libubsan.so.0.0.0 > librt-2.26.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/librt-2.26.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+libubsan.so.0.0.0 > librt-2.26.so > libc-2.26.so
+
+libubsan.so.0.0.0_dir/librt-2.26.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/librt-2.26.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libubsan.so.0.0.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libubsan.so.0.0.0 to ./libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: librt-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/librt-2.26.so to ./libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/librt-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/librt-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libc-2.26.so to ./libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/librt-2.26.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libm-2.26.so_dir/libm-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libm-2.26.so_dir/libm-2.26.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libm-2.26.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libm-2.26.so_dir/libm-2.26.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libm-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libm-2.26.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libm-2.26.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libgcc_s.so.1" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libgcc_s.so.1
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libgcc_s.so.1"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libm-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libm-2.26.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libm-2.26.so_dir/libm-2.26.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libgcc_s.so.1" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libstdc++.so.6.0.24"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libgcc_s.so.1
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libstdc++.so.6.0.24_dir/libgcc_s.so.1_dir/libgcc_s.so.1"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libpthread-2.26.so_dir/libpthread-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libpthread-2.26.so_dir/libpthread-2.26.so"
+
+[FAILED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libdl-2.26.so_dir/libdl-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libdl-2.26.so_dir/libdl-2.26.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libdl-2.26.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libdl-2.26.so_dir/libdl-2.26.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libgcc_s.so.1_dir/libgcc_s.so.1" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libgcc_s.so.1_dir/libgcc_s.so.1
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libgcc_s.so.1_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libgcc_s.so.1_dir/libgcc_s.so.1"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/librt-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/librt-2.26.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/libpthread-2.26.so_dir/libpthread-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/librt-2.26.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/libpthread-2.26.so_dir/libpthread-2.26.so"
+
+[FAILED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/librt-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/libubsan.so.0.0.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/librt-2.26.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/libimported/libubsan.so.0.0.0_dir/librt-2.26.so_dir/librt-2.26.so"
+
+[SUCCEEDED]
+

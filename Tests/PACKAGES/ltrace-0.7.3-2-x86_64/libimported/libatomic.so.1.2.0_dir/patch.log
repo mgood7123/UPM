@@ -1,0 +1,83 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = libatomic.so.1.2.0 > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libatomic.so.1.2.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+libatomic.so.1.2.0 > libc-2.26.so
+
+libatomic.so.1.2.0_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libatomic.so.1.2.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libatomic.so.1.2.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libatomic.so.1.2.0 to ./libimported/libatomic.so.1.2.0_dir/libatomic.so.1.2.0
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so to ./libimported/libatomic.so.1.2.0_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libatomic.so.1.2.0_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libatomic.so.1.2.0_dir/libatomic.so.1.2.0
+
+[SETTING UP]
+
+$1 = ./libimported/libpthread-2.26.so/libpthread-2.26.so/usr/lib/libc-2.25.so
+
+$2 = 4
+
+$3 = libatomic.so.1.2.0 > libpthread-2.26.so > libc-2.25.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libatomic.so.1.2.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libpthread-2.26.so > /usr/lib/libc-2.25.so
+
+libatomic.so.1.2.0 > libpthread-2.26.so > libc-2.25.so
+
+libatomic.so.1.2.0_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libatomic.so.1.2.0 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libpthread-2.26.so > /usr/lib/libc-2.25.so
+
+[EXECUTING]
+
+file: libatomic.so.1.2.0
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libatomic.so.1.2.0 to ./libimported/libatomic.so.1.2.0_dir/libatomic.so.1.2.0
+
+file: libpthread-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libpthread-2.26.so to ./libimported/libatomic.so.1.2.0_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libatomic.so.1.2.0_dir/libpthread-2.26.so_dir/libpthread-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libatomic.so.1.2.0_dir/libatomic.so.1.2.0
+
+file: libc-2.25.so
+
+succesfully copied /usr/lib/libc-2.25.so to ./libimported/libatomic.so.1.2.0_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libatomic.so.1.2.0_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libatomic.so.1.2.0_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libatomic.so.1.2.0_dir/libatomic.so.1.2.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libatomic.so.1.2.0_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libatomic.so.1.2.0_dir/libatomic.so.1.2.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libatomic.so.1.2.0_dir/libatomic.so.1.2.0
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libatomic.so.1.2.0_dir/libpthread-2.26.so_dir/libpthread-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libatomic.so.1.2.0_dir/libatomic.so.1.2.0"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libatomic.so.1.2.0_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libatomic.so.1.2.0_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libatomic.so.1.2.0_dir/libpthread-2.26.so_dir/libpthread-2.26.so"
+
+[FAILED]
+

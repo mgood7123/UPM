@@ -1,0 +1,37 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = CWI.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/CWI.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+CWI.so > libc-2.26.so
+
+CWI.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/CWI.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: CWI.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/gconv/CWI.so to ./libimported/CWI.so_dir/CWI.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so to ./libimported/CWI.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/CWI.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/CWI.so_dir/CWI.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/CWI.so_dir/CWI.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/CWI.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/CWI.so_dir/CWI.so"
+
+[SUCCEEDED]
+

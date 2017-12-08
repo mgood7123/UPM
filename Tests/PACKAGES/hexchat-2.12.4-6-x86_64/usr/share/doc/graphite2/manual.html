@@ -1,0 +1,912 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Graphite2 Manual</title><link rel="stylesheet" type="text/css" href="graphite.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /></head><body><div xml:lang="en" class="article" lang="en"><div class="titlepage"><div><div><h2 class="title"><a id="idm140051348732784"></a>Graphite2 Manual</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Martin</span> <span class="surname">Hosken</span></h3><code class="email">&lt;<a class="email" href="mailto:martin_hosken@sil.org">martin_hosken@sil.org</a>&gt;</code></div></div></div><hr /></div><div class="toc"><p><strong>Table of Contents</strong></p><dl class="toc"><dt><span class="section"><a href="#_introduction">1. Introduction</a></span></dt><dt><span class="section"><a href="#_building_graphite_2">2. Building Graphite 2</a></span></dt><dd><dl><dt><span class="section"><a href="#_linux">2.1. Linux</a></span></dt><dt><span class="section"><a href="#_windows">2.2. Windows</a></span></dt><dt><span class="section"><a href="#X1">2.3. Generator configuration options</a></span></dt><dt><span class="section"><a href="#X2">2.4. Limitations</a></span></dt></dl></dd><dt><span class="section"><a href="#_calling_graphite2">3. Calling Graphite2</a></span></dt><dd><dl><dt><span class="section"><a href="#_introduction_2">3.1. Introduction</a></span></dt><dt><span class="section"><a href="#_slots">3.2. Slots</a></span></dt><dt><span class="section"><a href="#_charinfo">3.3. CharInfo</a></span></dt><dt><span class="section"><a href="#_face">3.4. Face</a></span></dt><dt><span class="section"><a href="#_caching">3.5. Caching</a></span></dt><dt><span class="section"><a href="#_clustering">3.6. Clustering</a></span></dt><dt><span class="section"><a href="#_line_breaking_and_justification">3.7. Line Breaking and Justification</a></span></dt><dt><span class="section"><a href="#_bidi">3.8. Bidi</a></span></dt></dl></dd><dt><span class="section"><a href="#_font_features">4. Font Features</a></span></dt><dt><span class="section"><a href="#_font_topics">5. Font Topics</a></span></dt><dd><dl><dt><span class="section"><a href="#_guard_space">5.1. Guard Space</a></span></dt></dl></dd><dt><span class="section"><a href="#_hacking">6. Hacking</a></span></dt><dd><dl><dt><span class="section"><a href="#_compiling_and_integrating">6.1. Compiling and Integrating</a></span></dt><dt><span class="section"><a href="#_floating_point_maths">6.2. Floating point maths</a></span></dt><dt><span class="section"><a href="#_thread_safety">6.3. Thread Safety</a></span></dt><dt><span class="section"><a href="#_memory_allocation">6.4. Memory Allocation</a></span></dt><dt><span class="section"><a href="#_missing_features">6.5. Missing Features</a></span></dt><dt><span class="section"><a href="#_hunting_speed">6.6. Hunting Speed</a></span></dt></dl></dd><dt><span class="section"><a href="#_testing_graphite2">7. Testing Graphite2</a></span></dt><dd><dl><dt><span class="section"><a href="#_running_the_tests">7.1. Running the tests</a></span></dt><dt><span class="section"><a href="#_adding_fuzz_tests">7.2. Adding fuzz tests</a></span></dt></dl></dd></dl></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="_introduction"></a>1. Introduction</h2></div></div></div><p>Graphite2 is a reimplementation of the SIL Graphite text processing engine. The
+reason for such a project has grown out of the experience gained in integration
+the Graphite engine into various applications and frameworks. The original
+engine was designed with different use cases in mind and optimised towards
+those. These optimisations get in the way of optimising for the actual use case
+requirements that the integration projects required. The Graphite2 engine,
+therefore, is designed for use where a simple shaping engine is required, much
+akin to the simpler OpenType engine interfaces that exist. Graphite2 has the
+following features over the original engine:</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+Faster
+</li><li class="listitem">
+Smaller memory footprint
+</li><li class="listitem">
+More resiliant to font corruption
+</li><li class="listitem">
+Smaller code base
+</li></ul></div><p>What is lost is:</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+Selection support
+</li><li class="listitem">
+Line end contextuals
+</li><li class="listitem">
+Integrated line breaking to paragraph rendering
+</li></ul></div><p><strong>What is Graphite? </strong>Graphite is a <span class="emphasis"><em>smart font</em></span> technology designed to facilitate the process known
+as shaping. This process takes an input Unicode text string and returns a
+sequence of positioned glyphids from the font. There are other similar <span class="emphasis"><em>smart
+font</em></span> technologies including AAT and OpenType. While OpenType implementations
+are more prevalently integrated into applications than Graphite, Graphite still
+has a place. Graphite was developed primarily to address the generic shaping
+problem where current OpenType shaping engines do not address the specific needs
+of a font developer and the lead time on any changes to address those needs
+become prohibitive. This is a particular issue when creating solutions for some
+minority languages. In effect OpenType addresses the 80% problem and Graphite
+the 20% problem (or is that the 98% problem and the 2% problem?)</p><p>There are a number of reasons why someone might want to add Graphite smarts to
+their font:</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+There is no consistent shaping across OpenType engines for the script and
+  writing system that a font designer wants their font to support. Not all
+  OpenType engines support all scripts in the same way. In addition, some
+  writing system requirements do not fit with the shaping of the script that
+  OpenType engines support.
+</li><li class="listitem">
+The font designer would like to implement more complex shaping and positioning
+  than OpenType supports. For example, in Graphite one can position glyphs based
+  on the positions and sizes of other glyphs.
+</li><li class="listitem">
+Graphite supports user defined features. The font designer may create and
+  support any features they want and these can be presented to the user in a
+  standardised way.
+</li></ul></div><p>Graphite allows font implementors to implement their font their way. It does not
+require them to fit within an, often poorly specified, interface between the
+shaper and the font. This allows for quicker debugging and results. Graphite
+supports font debugging to identify what the shaper is doing all the way from
+input Unicode to output glyphs and positions, giving font designers better
+control over their font processing.</p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="_building_graphite_2"></a>2. Building Graphite 2</h2></div></div></div><p>Graphite 2 is made available as a source tarball from these urls:
+    <a class="ulink" href="http://projects.palaso.org/graphitedev/files" target="_top">http://projects.palaso.org/graphitedev/files</a>
+ or <a class="ulink" href="http://sf.net/projects/silgraphite/files/graphite2" target="_top">http://sf.net/projects/silgraphite/files/graphite2</a></p><p>Graphite 2 uses cmake for its build system. The basic build procedure is to
+create a directory in which to build the library and produce the products.
+Then cmake is run to generate build files and then the build is run.</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_linux"></a>2.1. Linux</h3></div></div></div><pre class="screen">mkdir build
+cd build
+cmake -G "Unix Makefiles" ..
+make
+make test</pre><p>This will do a default build of Graphite with minimal dependencies on other
+packages. There are various option settings see
+<a class="link" href="#X1" title="2.3. Generator configuration options">Generator configuration options</a>&gt;.</p><p>On amd64 architecture if you wish build and test 32 bit binaries this is
+possible using the following cmake ivocation:</p><pre class="screen">CFLAGS=-m32 CXXFLAGS=-m32 cmake ..
+make
+make test</pre><p>You will need g++-multilib support see <a class="link" href="#X2" title="2.4. Limitations">Limitations</a></p><p>It is possible to use clang to build and test Graphite. Use this build command:</p><pre class="screen">CC=clang CXX=clang++ cmake ..
+make</pre><p>You will need libc<code class="literal"> libc</code>-abi see clang-asan section of <a class="link" href="#X2" title="2.4. Limitations">Limitations</a>.</p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_windows"></a>2.2. Windows</h3></div></div></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+Create your build directory
+</p><pre class="screen">mkdir build
+cd build</pre></li><li class="listitem"><p class="simpara">
+Generate project files for your build system
+</p><p class="simpara">You need to specify the CMAKE_BUILD_TYPE as some Windows generators require it.</p><pre class="screen">cmake -DCMAKE_BUILD_TYPE:STRING=Release ..</pre><p class="simpara">CMake will automatically detect your build system and generate a project for
+that. The options passed above will do a default build of Graphite with minimal
+dependencies on other packages.
+You may wish to specify a build system other than the automatically detected
+one, for examples if you have multiple versions of Visual Studio installed or
+other toolchains such as MinGW you wish build under. To do this pass
+the <code class="literal">-G &lt;generator name&gt;</code> option to the initial cmake configuration call, for
+example for Visual Studio 8:</p><pre class="screen">cmake -G "Visual Studio 8 2005" -DCMAKE_BUILD_TYPE:STRING=Release ..</pre><p class="simpara">or for MinGW</p><pre class="screen">cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE:STRING=Release ..</pre><div class="tip" style="margin-left: 0; margin-right: 10%;"><h3 class="title">Tip</h3><p>You can get a list of generators CMakes supports with <code class="literal">cmake --help</code>.</p></div></li><li class="listitem"><p class="simpara">
+Build graphite binaries
+</p><pre class="screen">cmake --build .</pre><p class="simpara">When building with using the Visual Studio generator you will need to append
+<code class="literal">--config Debug</code> or <code class="literal">--config Release</code> for you debug and release builds
+respectively to the end of above command. Depending on your chosen generator
+the next step varies, for MS Visual Studio projects you will need to run:</p><pre class="screen">cmake --build . --target RUN_TESTS</pre><p class="simpara">for everything else:</p><pre class="screen">cmake --build . --target test</pre></li><li class="listitem"><p class="simpara">
+Rebuilds
+</p><p class="simpara">You can clean the project with:</p><pre class="screen">cmake --build . --target clean</pre><p class="simpara">Or just delete the build directory and start again.</p></li></ol></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="X1"></a>2.3. Generator configuration options</h3></div></div></div><p>There are various option settings that can be passed to cmake when generating.
+They are described here, along with their type and possible and default values.
+Boolean values may take the value OFF or ON. Options may be set using
+the -Doption=value command line option.
+For example: -DGRAPHITE2_COMPARE_RENDERER:BOOL=ON</p><div class="variablelist"><dl class="variablelist"><dt><span class="term">
+CMAKE_BUILD_TYPE:STRING
+</span></dt><dd>
+    This specifies which type of build to do. It is a string and may take the
+    values: Release, RelWithDeb, Debug.
+    The default is Release. This must be specified on Windows.
+</dd><dt><span class="term">
+GRAPHITE2_COMPARE_RENDERER:BOOL
+</span></dt><dd>
+    This is a boolean value that specifies whether to build the comparerenderer
+    program that may link to silGraphite or harfbuzz, if libraries of those
+    packages are installed. The default value is OFF.
+</dd><dt><span class="term">
+GRAPHITE2_NFILEFACE:BOOL
+</span></dt><dd>
+    This boolean value turns off FileFace support to save code space.
+    By default it is OFF.
+</dd><dt><span class="term">
+GRAPHITE2_NSEGCACHE:BOOL
+</span></dt><dd>
+    This boolean value turns off Segment caching support to save code space.
+    By default it is OFF.
+</dd><dt><span class="term">
+GRAPHITE2_NTRACING:BOOL
+</span></dt><dd>
+    This boolean value turns off tracing support to save code space. Tracing
+    support allows debug output of segment creation. By default it is OFF.
+</dd><dt><span class="term">
+GRAPHITE2_VM_TYPE:STRING
+</span></dt><dd>
+    This string value can be auto, direct or call. It specifies which type of
+    virtual machine processor to use. The default value of auto tells the
+    system to work out the best approach for this architecture. A value of
+    direct tells the system to use the direct machine which is faster.
+    The value of call tells the system to use the slower but more cross
+    compiler portable call based machine.
+</dd><dt><span class="term">
+GRAPHITE2_ASAN:BOOL
+</span></dt><dd>
+    This turns on copmile time support for Google’s
+    <a class="ulink" href="https://code.google.com/p/address-sanitizer/" target="_top">ASAN</a> Address Sanitizer.
+    This works with both gcc and clang, however under clang any tests driven by
+    Python will not be run. These tests require the ASAN runtime as a shared
+    library and currently clang only provides static version.
+</dd></dl></div><p>Bear in mind that ASAN will not work with ulimit constraints so running the
+fuzztest may result in problems.</p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="X2"></a>2.4. Limitations</h3></div></div></div><p>There are some hard build dependencies:</p><div class="variablelist"><dl class="variablelist"><dt><span class="term">
+python
+</span></dt><dd>
+    To run the make test and make fuzztest, the build system requires
+    python v2.6 or later. Currently python 3 is not supported, however porting
+    using 2to3 is straightforward.
+</dd></dl></div><p>Other configuration related dependencies:</p><div class="variablelist"><dl class="variablelist"><dt><span class="term">
+fonttools
+</span></dt><dd>
+    This python library supports truetype font reading.
+</dd><dt><span class="term">
+g++-multilib
+</span></dt><dd>
+    If building 32bit binaries under a 64bit Linux host this is
+    required for successful linking. These are the <code class="literal">g++-multilib</code> and
+    <code class="literal">libc6-dev-i386</code> packages on Debian and derivatives and <code class="literal">glibc-devel.i686</code>,
+    <code class="literal">glibc-devel</code> and <code class="literal">libstdc++-devel.i686</code> on Redhat OSs
+</dd><dt><span class="term">
+clang
+</span></dt><dd>
+    To build with clang under linux you will need to ensure you have installed
+    libc<code class="literal"> and libc</code>abi packages. The easiest way to do on Debian &amp; derivatives
+    is to install the libc<code class="literal">-dev and libc</code>abi-dev packages.
+</dd></dl></div></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="_calling_graphite2"></a>3. Calling Graphite2</h2></div></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_introduction_2"></a>3.1. Introduction</h3></div></div></div><p>The basic model for running graphite is to pass text, font and face information
+to create a segment. A segment consists of a linked list of slots which each
+correspond to an output glyph. In addition a segment holds charinfo for each
+character in the input text.</p><pre class="programlisting">#include &lt;graphite2/Segment.h&gt;
+#include &lt;stdio.h&gt;
+
+/* usage: ./simple fontfile.ttf string */
+int main(int argc, char **argv)
+{
+    int rtl = 0;                /* are we rendering right to left? probably not */
+    int pointsize = 12;         /* point size in points */
+    int dpi = 96;               /* work with this many dots per inch */
+
+    char *pError;               /* location of faulty utf-8 */
+    gr_font *font = NULL;
+    size_t numCodePoints = 0;
+    gr_segment * seg = NULL;
+    const gr_slot *s;
+    gr_face *face = gr_make_file_face(argv[1], 0);                              /*<a id="CO1-1"></a>(1)*/
+    if (!face) return 1;
+    font = gr_make_font(pointsize * dpi / 72.0f, face);                         /*<a id="CO1-2"></a>(2)*/
+    if (!font) return 2;
+    numCodePoints = gr_count_unicode_characters(gr_utf8, argv[2], NULL,
+                (const void **)(&amp;pError));                                      /*<a id="CO1-3"></a>(3)*/
+    if (pError) return 3;
+    seg = gr_make_seg(font, face, 0, 0, gr_utf8, argv[2], numCodePoints, rtl);  /*<a id="CO1-4"></a>(4)*/
+    if (!seg) return 3;
+
+    for (s = gr_seg_first_slot(seg); s; s = gr_slot_next_in_segment(s))         /*<a id="CO1-5"></a>(5)*/
+        printf("%d(%f,%f) ", gr_slot_gid(s), gr_slot_origin_X(s), gr_slot_origin_Y(s));
+    gr_seg_destroy(seg);
+    gr_font_destroy(font);
+    gr_face_destroy(face);
+    return 0;
+}</pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#CO1-1">(1)</a> </p></td><td valign="top" align="left"><p>
+The first parameter to the program is the full path to the font file to be used for
+    rendering. This function loads the font and reads all the graphite tables, etc. If
+    there is a fault in the font, it will fail to load and the function will return NULL.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO1-2">(2)</a> </p></td><td valign="top" align="left"><p>
+A font is merely a face at a given size in pixels per em. It is possible to support
+    hinted advances, but this is done via a callback function.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO1-3">(3)</a> </p></td><td valign="top" align="left"><p>
+For simplification of memory allocation, graphite works on characters (Unicode
+    codepoints) rather than bytes or gr_uint16s, etc. We need to calculate the number of
+    characters in the input string (the second parameter to the program). Very often
+    applications already know this. If there is an error in the utf-8, the pError variable
+    will point to it and we just exit. But it is possible to render up to that point.
+</p><p>If your string is null terminated, then you don’t necessarily have to calculate a
+precise number of characters. You can use a value that is greater than the number
+in the string and rely on graphite to stop at the terminating null. It is necessary
+to pass some value for the number of characters so that graphite can initialise
+its internal memory structures appropriately and not waste time updating them.
+Thus for UTF-16 and UTF-32 strings, one could simply pass the number of code units
+in the string. For UTF-8 it may be preferable to call gr_count_unicode_characters.</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO1-4">(4)</a> </p></td><td valign="top" align="left"><p>
+Here we create a segment. A segment is the results of processing a string of text with
+    graphite. It contains all the information necessary for final rendering including all
+    the glyphs, their positions, relationships between glyphs and underlying characters,
+    etc.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO1-5">(5)</a> </p></td><td valign="top" align="left"><p>
+A segment primarily consists of a linked list of slots. Each slot corresponds to a
+    glyph in the output. The information about a glyph and its relationships is queried
+    from the slot.
+</p></td></tr></table></div><p>Source for this program may be found in tests/examples/simple.c</p><p>Assuming that graphite2 has been built and installed, this example can be
+built and run on linux using:</p><pre class="screen">gcc -o simple -lgraphite2 simple.c
+LD_LIBRARY_PATH=/usr/local/lib ./simple ../fonts/Padauk.ttf 'Hello World!'</pre><p>Running simple gives the results:</p><pre class="screen">43(0.000000,0.000000) 72(9.859375,0.000000) 79(17.609375,0.000000) 79(20.796875,0.000000) 82(23.984375,0.000000) 3(32.203125,0.000000) 58(38.109375,0.000000) 82(51.625000,0.000000) 85(59.843750,0.000000) 79(64.875000,0.000000) 71(68.062500,0.000000) 4(76.281250,0.000000)</pre><p>Not very pretty, but reassuring! Graphite isn’t a graphical rendering engine,
+it merely calculates which glyphs should render where and leaves the actual
+process of displaying those glyphs to other libraries.</p><p>This example is pretty simple and uses a convenient way to load fonts into Graphite
+for testing purposes. But when integrating into real applications, that is rarely
+the most appropriate way. Instead the necessary font information comes to Graphite
+via some other data structure with its own accessor functions. In the following example
+we show the same application but using a FreeType font rather than a font file.</p><pre class="programlisting">#include &lt;graphite2/Segment.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "ft2build.h"
+#include FT_FREETYPE_H
+#include FT_TRUETYPE_TABLES_H
+
+const void *getTable(const void *appHandle, unsigned int name, size_t *len)
+{
+    void *res;
+    FT_Face ftface = (FT_Face)appHandle;
+    FT_ULong ftlen = 0;
+    FT_Load_Sfnt_Table(ftface, name, 0, NULL, &amp;ftlen);     /* find length of table */
+    if (!ftlen) return NULL;
+    res = malloc(ftlen);                                 /* allocate somewhere to hold it */
+    if (!res) return NULL;
+    FT_Load_Sfnt_Table(ftface, name, 0, res, &amp;ftlen);      /* copy table into buffer */
+    *len = ftlen;
+    return res;
+}
+
+void releaseTable(const void *appHandle, const void *ptr)
+{
+    free((void *)ptr);          /* simply free the allocated memory */              /*<a id="CO2-1"></a>(1)*/
+}
+
+float getAdvance(const void *appFont, unsigned short glyphid)
+{
+    FT_Face ftface = (FT_Face)appFont;
+    if (FT_Load_Glyph(ftface, glyphid, FT_LOAD_DEFAULT)) return -1.;  /* grid fit glyph */
+    return ftface-&gt;glyph-&gt;advance.x;                    /* return grid fit advance */
+}
+
+/* usage: ./freetype fontfile.ttf string */
+int main(int argc, char **argv)
+{
+    int rtl = 0;                /* are we rendering right to left? probably not */
+    int pointsize = 12;         /* point size in points */
+    int dpi = 96;               /* work with this many dots per inch */
+
+    char *pError;               /* location of faulty utf-8 */
+    gr_font *font = NULL;
+    size_t numCodePoints = 0;
+    gr_segment * seg = NULL;
+    const gr_slot *s;
+    gr_face *face;
+    FT_Library ftlib;
+    FT_Face ftface;
+    gr_face_ops faceops = {sizeof(gr_face_ops), &amp;getTable, &amp;releaseTable};          /*<a id="CO2-2"></a>(2)*/
+    gr_font_ops fontops = {sizeof(gr_font_ops), &amp;getAdvance, NULL};
+    /* Set up freetype font face at given point size */
+    if (FT_Init_FreeType(&amp;ftlib)) return -1;
+    if (FT_New_Face(ftlib, argv[1], 0, &amp;ftface)) return -2;
+    if (FT_Set_Char_Size(ftface, pointsize &lt;&lt; 6, pointsize &lt;&lt; 6, dpi, dpi)) return -3;
+
+    face = gr_make_face_with_ops(ftface, &amp;faceops, gr_face_preloadAll);             /*<a id="CO2-3"></a>(3)*/
+    if (!face) return 1;
+    font = gr_make_font_with_ops(pointsize * dpi / 72.0f, ftface, &amp;fontops, face);  /*<a id="CO2-4"></a>(4)*/
+    if (!font) return 2;
+    numCodePoints = gr_count_unicode_characters(gr_utf8, argv[2], NULL,
+                (const void **)(&amp;pError));
+    if (pError) return 3;
+    seg = gr_make_seg(font, face, 0, 0, gr_utf8, argv[2], numCodePoints, rtl);
+    if (!seg) return 3;
+
+    for (s = gr_seg_first_slot(seg); s; s = gr_slot_next_in_segment(s))
+        printf("%d(%f,%f) ", gr_slot_gid(s), gr_slot_origin_X(s) / 64,
+                             gr_slot_origin_Y(s) / 64);                             /*<a id="CO2-5"></a>(5)*/
+    gr_seg_destroy(seg);
+    gr_font_destroy(font);
+    gr_face_destroy(face);
+    /* Release freetype face and library handle */
+    FT_Done_Face(ftface);
+    FT_Done_FreeType(ftlib);
+    return 0;
+}</pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#CO2-1">(1)</a> </p></td><td valign="top" align="left"><p>
+We cast the pointer to remove its const restriction. Since when the memory was allocated, it was
+    passed to Graphite as a read only memory block, via const, it gets passed back to us as a read only
+    memory block. But we are the owner of the block and so can mess with it (like freeing it). So we
+    are free to break the const restriction here.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO2-2">(2)</a> </p></td><td valign="top" align="left"><p>
+The structure of an operations structure is to first hold the size of the structure and then the
+    pointers to the functions. Storing the size allows an older application to call a newer version
+    of the Graphite engine which might support more function pointers. In such a case, all those
+    newer pointers are assumed to be NULL.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO2-3">(3)</a> </p></td><td valign="top" align="left"><p>
+Pass the function pointers structure for creating the font face. The first function is called to
+    load a table from the font and pass it back to Graphite. The second is called by Graphite to say
+    that it no longer needs the table loaded in memory and will make no further reference to it.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO2-4">(4)</a> </p></td><td valign="top" align="left"><p>
+Pass a function pointers structure for fonts. The two functions (either can be NULL) return
+    the horizontal or vertical advance for a glyph in pixels. Notice that usually fractional advances
+    are preferable to grid fit advances, unless working entirely in a low resolution graphical framework.
+</p><p>The code following is virtually identical to the fileface code, apart from some housekeeping at the end.</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO2-5">(5)</a> </p></td><td valign="top" align="left"><p>
+Note that freetype works with fixed point arithmetic of 26.6, thus 1.0 is stored as 64. We
+    therefore multiply the pointsize by 64 (or shift left by 6) and divide the resulting positions
+    down by 64 to true floating point values.
+</p></td></tr></table></div><p>Building and running this example gives similar, but not identical, results to the simple case. Notice that since the advances
+are grid fit, all the positions are integral, unlike the fractional positioning in the simple application:</p><pre class="screen">43(0.000000,0.000000) 72(9.000000,0.000000) 79(17.000000,0.000000) 79(20.000000,0.000000) 82(23.000000,0.000000) 3(31.000000,0.000000) 58(37.000000,0.000000) 82(51.000000,0.000000) 85(59.000000,0.000000) 79(64.000000,0.000000) 71(67.000000,0.000000) 4(75.000000,0.000000)</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_slots"></a>3.2. Slots</h3></div></div></div><p>The primary contents of a segment is slots. These slots are organised into a
+doubly linked list and each corresponds to a glyph to be rendered. The linked
+list is terminated at each end by a NULL. There are also functions to get the
+first and last slot in a segment.</p><p>In addition to the main slot list, slots may be attached to each other. This
+means that two glyphs have been attached to each other in the GDL. Again,
+attached slots are held in a separate singly linked list associated with the
+slot to which they attach. Thus slots will be in the main linked list and may
+be in an attachment linked list. Each slot in an attachment linked list has the
+same attachment parent accessed via <code class="literal">gr_slot_attached_to()</code>. To get the start of
+the linked list of all the slots directly attached to a parent, one calls
+<code class="literal">gr_slot_first_attachment()</code> and then <code class="literal">gr_slot_next_attachment()</code> to walk forwards
+through that linked list. Given that a diacritic may attach to another
+diacritic, an attached slot may in its turn have a linked list of attached
+slots. In all cases, linked lists terminate with a NULL.</p><div class="informalfigure"><div class="mediaobject"><img src="glyph_string.png" alt="glyph_string.png" /></div></div><p>The core information held by a slot is the glyph id of the glyph the slot
+corresponds to (<code class="literal">gr_slot_gid()</code>); the position relative to the start of the
+segment that the glyph is to be rendered at (<code class="literal">gr_slot_origin_X()</code> and
+<code class="literal">gr_slot_origin_Y()</code>); the advance for the glyph which corresponds to the glyph
+metric advance as adjusted by kerning. In addition a slot indicates whether the
+font designer wants to allow a cursor to be placed before this glyph or not.
+This information is accessible via <code class="literal">gr_slot_can_insert_before()</code>.</p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_charinfo"></a>3.3. CharInfo</h3></div></div></div><p>For each unicode character in the input, there is a CharInfo structure that can
+be queried for such information as the code unit position in the input string,
+the before slot index (if we are before this character, which is the earliest
+slot we are before) and the corresponding after slot index.</p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_face"></a>3.4. Face</h3></div></div></div><p>The <code class="literal">gr_face</code> type is the memory correspondance of a font. It holds the data
+structures corresponding to those in a font file as required to process text
+using that font. In creating a <code class="literal">gr_face</code> it is necessary to pass a function by
+which graphite can get hold of font tables. The tables that graphite queries for
+must be available for the lifetime of the <code class="literal">gr_face</code>, except when a <code class="literal">gr_face</code> is
+created with the faceOptions of <code class="literal">gr_face_preloadAll</code>. This then loads
+everything from the font at <code class="literal">gr_face</code> construction time, leaving nothing further
+to be read from the font when the <code class="literal">gr_face</code> is used. This reduces the required
+lifetime of the in memory font tables to the <code class="literal">gr_make_face</code> call. In situations
+where the tables are only stored for the purposes of creating a <code class="literal">gr_face</code>, it
+can save memory to preload everything and delete the tables.</p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_caching"></a>3.5. Caching</h3></div></div></div><p>Graphite2 has the capability to make use of a subsegmental cache. What this
+does is to chop each run of characters at a word break, as defined by the
+linebreaking pass. Each sub run is then looked up in the cache rather than
+calculating the values from scratch.  The cache is most effective when similar
+runs of text are processed. For raw benchmark testing against wordlists, the
+cache can be slightly slower than uncached processing. But most people use real
+text in their documents and that has a much higher level of redundancy.</p><p>To use the cache, one simply creates a cached face, specifying the size of the
+cache in elements. A cache size of 5,000 to 10,000 has produced a good
+compromise between time and space.</p><p>In the example above, point 1 becomes:</p><pre class="screen">    gr_face *face = make_file_face_with_seg_cache(argv[1]);</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_clustering"></a>3.6. Clustering</h3></div></div></div><p>It is common for applications to work with simplified clusters, these are
+sequences of glyphs associated with a sequence of characters, such that
+these simplified clusters are as small as possible and are never reordered
+or split in relation to each other. In addition, a cursor may occur between
+simplified clusters.</p><p>The following code gives an example algorithm for calculating such clusters:</p><pre class="programlisting">#include &lt;graphite2/Segment.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+typedef struct cluster_t {
+    unsigned int base_char;
+    unsigned int num_chars;
+    unsigned int base_glyph;
+    unsigned int num_glyphs;
+} cluster_t;
+
+/* usage: ./cluster fontfile.ttf string */
+int main(int argc, char **argv)
+{
+    int rtl = 0;                /* are we rendering right to left? probably not */
+    int pointsize = 12;         /* point size in points */
+    int dpi = 96;               /* work with this many dots per inch */
+
+    char *pError;               /* location of faulty utf-8 */
+    gr_font *font = NULL;
+    size_t numCodePoints = 0;
+    unsigned int lenstr = strlen(argv[2]);
+    gr_segment * seg = NULL;
+    cluster_t *clusters;
+    int ic, ci = 0;
+    const gr_slot *s, *is;
+    FILE *log;
+    gr_face *face = gr_make_file_face(argv[1], 0);
+    if (!face) return 1;
+    font = gr_make_font(pointsize * dpi / 72.0f, face);
+    if (!font) return 2;
+    numCodePoints = gr_count_unicode_characters(gr_utf8, argv[2], NULL,
+                (const void **)(&amp;pError));
+    if (pError || !numCodePoints) return 3;
+    seg = gr_make_seg(font, face, 0, 0, gr_utf8, argv[2], numCodePoints, rtl);      /*<a id="CO3-1"></a>(1)*/
+    if (!seg) return 3;
+
+    clusters = (cluster_t *)malloc(numCodePoints * sizeof(cluster_t));
+    memset(clusters, 0, numCodePoints * sizeof(cluster_t));
+    for (is = gr_seg_first_slot(seg), ic = 0; is; is = gr_slot_next_in_segment(is), ic++)
+    {
+        unsigned int before = gr_cinfo_base(gr_seg_cinfo(seg, gr_slot_before(is)));
+        unsigned int after = gr_cinfo_base(gr_seg_cinfo(seg, gr_slot_after(is)));
+        unsigned int nAfter;
+        unsigned int cAfter;
+        while (clusters[ci].base_char &gt; before &amp;&amp; ci)                               /*<a id="CO3-2"></a>(2)*/
+        {
+            clusters[ci-1].num_chars += clusters[ci].num_chars;
+            clusters[ci-1].num_glyphs += clusters[ci].num_glyphs;
+            --ci;
+        }
+
+        if (gr_slot_can_insert_before(is) &amp;&amp; clusters[ci].num_chars
+                &amp;&amp; before &gt;= clusters[ci].base_char + clusters[ci].num_chars)       /*<a id="CO3-3"></a>(3)*/
+        {
+            cluster_t *c = clusters + ci + 1;
+            c-&gt;base_char = clusters[ci].base_char + clusters[ci].num_chars;
+            c-&gt;num_chars = before - c-&gt;base_char;
+            c-&gt;base_glyph = ic;
+            c-&gt;num_glyphs = 0;
+            ++ci;
+        }
+        ++clusters[ci].num_glyphs;
+
+        nAfter = gr_slot_after(is) + 1;
+        cAfter = nAfter &lt; numCodePoints ? gr_cinfo_base(gr_seg_cinfo(seg, nAfter)) : lenstr;
+        if (clusters[ci].base_char + clusters[ci].num_chars &lt; cAfter)              /*<a id="CO3-4"></a>(4)*/
+            clusters[ci].num_chars = cAfter - clusters[ci].base_char;
+    }
+
+    ci = 0;
+    log = fopen("cluster.log", "w");
+    for (s = gr_seg_first_slot(seg); s; s = gr_slot_next_in_segment(s))
+    {
+        fprintf(log, "%d(%f,%f) ", gr_slot_gid(s), gr_slot_origin_X(s),
+                                   gr_slot_origin_Y(s));
+        if (--clusters[ci].num_glyphs == 0)                                         /*<a id="CO3-5"></a>(5)*/
+        {
+            fprintf(log, "[%d+%d]\n", clusters[ci].base_char, clusters[ci].num_chars);
+            ++ci;
+        }
+    }
+    fclose(log);
+    free(clusters);
+    gr_seg_destroy(seg);
+    gr_font_destroy(font);
+    gr_face_destroy(face);
+    return 0;
+}</pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#CO3-1">(1)</a> </p></td><td valign="top" align="left"><p>
+Create a segment as per the example in the introduction.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO3-2">(2)</a> </p></td><td valign="top" align="left"><p>
+If this slot starts before the start of this cluster, then merge this cluster
+    with the previous one and try again until this slot is within the current
+    cluster.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO3-3">(3)</a> </p></td><td valign="top" align="left"><p>
+If this slot starts after the end of the current cluster, then create a new
+    cluster for it. You can’t start a new cluster with a glyph that cannot take
+    a cursor position before it. Also don’t make a new cluster the first time
+    around (i.e. at the start of the string).
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO3-4">(4)</a> </p></td><td valign="top" align="left"><p>
+If this slot ends after the end of this cluster then extend this cluster to
+    include it.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO3-5">(5)</a> </p></td><td valign="top" align="left"><p>
+Output a line break between each cluster.
+</p></td></tr></table></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_line_breaking_and_justification"></a>3.7. Line Breaking and Justification</h3></div></div></div><p>Whilst most applications will convert glyphs and positions out of the gr_slot structure
+into some internal structure, if graphite is to be used for justification, then it is
+necessary to line break the text and justify it within graphite’s data structures.
+Graphite provides two functions to help with this. The first is gr_slot_linebreak_before()
+which will chop the slot linked list before a given slot. The application needs to keep
+track of the start of each of the subsequent linked lists itself, since graphite does
+not do that. After line breaking, the application may call gr_seg_justify() on each
+line linked list. The following example shows how this might be done in an application.</p><p>Notice that this example does not take into considering whitespace hanging outside the
+right margin.</p><pre class="programlisting">#include &lt;graphite2/Segment.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+/* calculate the breakweight between two slots */
+int breakweight_before(const gr_slot *s, const gr_segment *seg)
+{
+    int bbefore = gr_cinfo_break_weight(gr_seg_cinfo(seg, gr_slot_after(gr_slot_prev_in_segment(s))));
+    int bafter = gr_cinfo_break_weight(gr_seg_cinfo(seg, gr_slot_before(s)));
+
+    if (!gr_slot_can_insert_before(s))
+        return 50;
+    if (bbefore &lt; 0) bbefore = 0;
+    if (bafter &gt; 0) bafter = 0;
+    return (bbefore &gt; bafter) ? bbefore : bafter;
+}
+
+/* usage: ./linebreak fontfile.ttf width string */
+int main(int argc, char **argv)
+{
+    int rtl = 0;                /* are we rendering right to left? probably not */
+    int pointsize = 12;         /* point size in points */
+    int dpi = 96;               /* work with this many dots per inch */
+    int width = atoi(argv[2]) * dpi / 72;  /* linewidth in points */
+
+    char *pError;               /* location of faulty utf-8 */
+    gr_font *font = NULL;
+    size_t numCodePoints = 0;
+    gr_segment * seg = NULL;
+    const gr_slot *s, *sprev;
+    int i;
+    float lineend = (float)width;
+    int numlines = 0;
+    const gr_slot **lineslots;
+    gr_face *face = gr_make_file_face(argv[1], 0);
+    if (!face) return 1;
+    font = gr_make_font(pointsize * dpi / 72.0f, face);
+    if (!font) return 2;
+    numCodePoints = gr_count_unicode_characters(gr_utf8, argv[3], NULL,
+                (const void **)(&amp;pError));
+    if (pError) return 3;
+    seg = gr_make_seg(font, face, 0, 0, gr_utf8, argv[3], numCodePoints, rtl);  /*<a id="CO4-1"></a>(1)*/
+    if (!seg) return 3;
+
+    lineslots = (const gr_slot **)malloc(numCodePoints * sizeof(gr_slot *));
+    lineslots[numlines++] = gr_seg_first_slot(seg);                             /*<a id="CO4-2"></a>(2)*/
+    for (s = lineslots[0]; s; s = gr_slot_next_in_segment(s))                   /*<a id="CO4-3"></a>(3)*/
+    {
+        sprev = NULL;
+        if (gr_slot_origin_X(s) &gt; lineend)                                      /*<a id="CO4-4"></a>(4)*/
+        {
+            while (s)
+            {
+                if (breakweight_before(s, seg) &gt;= gr_breakWord)                 /*<a id="CO4-5"></a>(5)*/
+                    break;
+                s = gr_slot_prev_in_segment(s);                                 /*<a id="CO4-6"></a>(6)*/
+            }
+            lineslots[numlines++] = s;
+            gr_slot_linebreak_before((gr_slot *)s);                             /*<a id="CO4-7"></a>(7)*/
+            lineend = gr_slot_origin_X(s) + width;                              /*<a id="CO4-8"></a>(8)*/
+        }
+    }
+
+    printf("%d:", width);
+    for (i = 0; i &lt; numlines; i++)
+    {
+        gr_seg_justify(seg, (gr_slot *)lineslots[i], font, width, 0, NULL, NULL); /*<a id="CO4-9"></a>(9)*/
+        for (s = lineslots[i]; s; s = gr_slot_next_in_segment(s))               /*<a id="CO4-10"></a>(10)*/
+            printf("%d(%.2f,%.2f@%d) ", gr_slot_gid(s), gr_slot_origin_X(s), gr_slot_origin_Y(s), gr_slot_attr(s, seg, gr_slatJWidth, 0));
+        printf("\n");
+    }
+    free((void*)lineslots);
+    gr_seg_destroy(seg);
+    gr_font_destroy(font);
+    gr_face_destroy(face);
+    return 0;
+}</pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#CO4-1">(1)</a> </p></td><td valign="top" align="left"><p>
+Create a segment as per the example in the introduction
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO4-2">(2)</a> </p></td><td valign="top" align="left"><p>
+Create an area to store line starts. There won’t be more line starts than characters
+    in the text. The first line starts at the start of the segment.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO4-3">(3)</a> </p></td><td valign="top" align="left"><p>
+A simplistic approach would scan forwards using gr_slot_next_sibling_attachment, thus
+    walking the bases. The bases are guaranteed to be ordered graphically, and so we can
+    chop when we pass the line end. But in some cases, particularly Arabic, fonts are
+    implemented with one base per word and all the other base characters are attached in
+    a chain from that. So we need to walk the segment by slot, even considering attached
+    slots. This is not a problem since attached slots are not going to have a wildly
+    different position to their base and if one leaks over the end of the line, the
+    breakweight considerations will get us back to a good base.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO4-4">(4)</a> </p></td><td valign="top" align="left"><p>
+Scan through the slots, if we are past the end of the line then find somewhere to chop.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO4-5">(5)</a> </p></td><td valign="top" align="left"><p>
+We use 15 (word break) as an appropriate break value.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO4-6">(6)</a> </p></td><td valign="top" align="left"><p>
+Scan backwards for a valid linebreak location.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO4-7">(7)</a> </p></td><td valign="top" align="left"><p>
+Break the line here.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO4-8">(8)</a> </p></td><td valign="top" align="left"><p>
+Update the line width for the new line based on the start of the new line.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO4-9">(9)</a> </p></td><td valign="top" align="left"><p>
+Justify each line to be width wide. And tell it to skip final whitespace (as if that whitespace were outside the width).
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO4-10">(10)</a> </p></td><td valign="top" align="left"><p>
+Each line is a complete linked list that we can iterate over. We can no longer iterate
+     over the whole segment. We have to do it line by line now.
+</p></td></tr></table></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_bidi"></a>3.8. Bidi</h3></div></div></div><p>Bidirectional processing is complex; not so much because of any algorithms
+involved, but because of the tendency for applications to address bidi text
+processing differently. Some try to do everything themselves, inverting the text
+order, etc. While others do nothing, expecting the shaper to resolve all the
+orders. In addition, there is the question of mirroring characters and where
+that is done. Graphite2 adds the complexity that it tries to enable extensions
+to the bidi algorithm by giving PUA characters directionality. To facilitate all
+these different ways of working, Graphite2 uses the <code class="literal">rtl</code> attribute to pass
+various bits to control bidi processing within the Graphite engine.</p><div class="informaltable"><table class="informaltable" cellpadding="4px" style="border-collapse: collapse;border-top: 3px solid #527bbd; border-bottom: 3px solid #527bbd; border-left: 3px solid #527bbd; border-right: 3px solid #527bbd; " width="100%"><colgroup><col class="col_1" /><col class="col_2" /><col class="col_3" /></colgroup><thead><tr><th style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="center" valign="top"> gr_nobidi </th><th style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="center" valign="top"> gr_nomirror </th><th style="border-bottom: 1px solid #527bbd; " align="left" valign="top"> Description</th></tr></thead><tbody><tr><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="center" valign="top"><p>0</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="center" valign="top"><p>0</p></td><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>Runs the bidi algorithm and does all mirroring</p></td></tr><tr><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="center" valign="top"><p>0</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="center" valign="top"><p>1</p></td><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>Runs the bidi algorithm and mirrors those chars
+                            that don’t have char replacements. It also
+                            un/remirrors anything that ends up in the opposite
+                            direction to the stated text direction on input.</p></td></tr><tr><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="center" valign="top"><p>1</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="center" valign="top"><p>0</p></td><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>Doesn’t run the bidi algorithm but does do
+                            mirroring of all characters if direction is rtl.</p></td></tr><tr><td style="border-right: 1px solid #527bbd; " align="center" valign="top"><p>1</p></td><td style="border-right: 1px solid #527bbd; " align="center" valign="top"><p>1</p></td><td style="" align="left" valign="top"><p>Doesn’t run the bidi algorithm and only mirrors
+                            those glyphs for which there is no corresponding
+                            mirroring character.</p></td></tr></tbody></table></div></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="_font_features"></a>4. Font Features</h2></div></div></div><p>Graphite fonts have user features. These are values that can be set to control
+all kinds of rendering effects from choosing particular glyph styles for a
+group of languages to how bad sequences should be displayed to almost anything.</p><p>A font (strictly speaking a face) has a set of features. Each feature has an identifier which is a 32-bit
+number which can take the form of a tag (4 characters) or if the top byte is 0
+a number. Also each feature can take one of a set of values. Each feature has a
+UI name from the name table. In addition each value also has a UI name
+associated with it. This allows an application to list all the features in a
+font and to show their names and values in a user interface to allow user
+selection.</p><p>Feature values are held in a FeatureVal which is a compressed map of feature id to value. The map is indexed via a FeatureRef which may be quered from a face given an id. It is also possible to iterate over all the FeatureRefs in a face.</p><p>A face has a default featureVal corresponding to each language the face supports along with a default for other languages. A face may be asked for a copy of one of these default featureVals and then it may be modified to account for the specific feature settings for a run.</p><pre class="programlisting">#include &lt;graphite2/Font.h&gt;
+#include &lt;stdio.h&gt;
+
+int main(int argc, char **argv)
+{
+    gr_uint16 i;
+    gr_uint16 langId = 0x0409;
+    gr_uint32 lang = 0;
+    char idtag[5] = {0, 0, 0, 0, 0};                                    /*<a id="CO5-1"></a>(1)*/
+    gr_feature_val *features = NULL;
+    gr_face *face = gr_make_file_face(argv[1], 0);
+    int num = gr_face_n_fref(face);
+
+
+    if (!face) return 1;
+    if (argc &gt; 2) lang = gr_str_to_tag(argv[2]);
+    features = gr_face_featureval_for_lang(face, lang);                 /*<a id="CO5-2"></a>(2)*/
+    if (!features) return 2;
+    for (i = 0; i &lt; num; ++i)
+    {
+        const gr_feature_ref *fref = gr_face_fref(face, i);             /*<a id="CO5-3"></a>(3)*/
+        gr_uint32 length = 0;
+        char *label = gr_fref_label(fref, &amp;langId, gr_utf8, &amp;length);   /*<a id="CO5-4"></a>(4)*/
+        gr_uint32 id = gr_fref_id(fref);                                /*<a id="CO5-5"></a>(5)*/
+        gr_uint16 val = gr_fref_feature_value(fref, features);
+        int numval = gr_fref_n_values(fref);
+        int j;
+
+        printf("%s ", label);
+        gr_label_destroy(label);
+        if (id &lt;= 0x00FFFFFF)
+            printf("(%d)\n", id);
+        else
+        {
+            gr_tag_to_str(id, idtag);
+            printf("(%s)\n", idtag);
+        }
+
+        for (j = 0; j &lt; numval; ++j)
+        {
+            if (gr_fref_value(fref, j) == val)                          /*<a id="CO5-6"></a>(6)*/
+            {
+                label = gr_fref_value_label(fref, j, &amp;langId, gr_utf8, &amp;length);
+                printf("\t%s (%d)\n", label, val);
+                gr_label_destroy(label);
+            }
+        }
+    }
+    gr_featureval_destroy(features);
+    gr_face_destroy(face);
+    return 0;
+}</pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#CO5-1">(1)</a> </p></td><td valign="top" align="left"><p>
+The easiest way to turn a char[4] into a string is to append a nul,
+    hence we make a char[5].
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO5-2">(2)</a> </p></td><td valign="top" align="left"><p>
+Query the face for the default featureVal of the given lang or 0 for the
+    default. The lang is a uint32 which has been converted from the string and
+    is 0 padded (as opposed to space padded).
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO5-3">(3)</a> </p></td><td valign="top" align="left"><p>
+Iterate over all the features in a font querying for the featureRef.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO5-4">(4)</a> </p></td><td valign="top" align="left"><p>
+Get the label in US English, for the feature name.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO5-5">(5)</a> </p></td><td valign="top" align="left"><p>
+Get the id for the feature name so that applications can refer to it.
+    The id may be numeric or a string tag.
+</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO5-6">(6)</a> </p></td><td valign="top" align="left"><p>
+Iterate over all the possible values for this feature and find the one
+    the is equal to the value for the feature in the default featureVal. Then
+    print out its details.
+</p></td></tr></table></div><p>A sample run of.</p><pre class="screen">./features ../fonts/Padauk.ttf ksw</pre><p>Gives this output.</p><pre class="screen">Khamti style dots (kdot)
+        False (0)
+Filled dots (fdot)
+        False (0)
+Lower dot shifts left (lldt)
+        True (1)
+Tear drop style washwe (wtri)
+        True (1)
+Long U with Yayit, long UU with Hato (ulon)
+        False (0)
+U and UU always full height (utal)
+        False (0)
+Insert dotted circles for errors (dotc)
+        True (1)
+Slanted hato (hsln)
+        Sgaw style slanted leg with horizontal foot (1)
+Disable great nnya (nnya)
+        False (0)
+Variant tta (vtta)
+        False (0)</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="_font_topics"></a>5. Font Topics</h2></div></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_guard_space"></a>5.1. Guard Space</h3></div></div></div><p>Graphite introduces guard space around diacritics. Sometimes a diacritic is
+wider than its base and the diacritic is in danger of crashing into clusters on
+either side of it. To stop that happening, graphite allows the font designer to
+signal that they want guard space to be ensured around a diacritic. For example,
+if a diacritic glyph is designed with a positive left side bearing and a
+positive right side bearing, the graphite engine will ensure that the cluster
+honours those side bearings for the diacritic. Of course, if the base character
+is wider than the diacritic, then no guard space is needed.</p><p>The basic principle for cluster adjustment is that if a diacritic has a non-zero
+advance and after positioning, the advance of the diacritic is greater than the
+advance of the base then the advance of the base is increased to be the same as
+the positioned advance of the diacritic. Likewise if the origin of the diacritic
+is to the left of the origin of the base character, then the cluster is adjusted
+so that the origin of the diacritic is now where the origin of the base
+character was and the base character is moved to the right. Notice that this
+only happens if the origin of the diacritic is to the left of where it is
+attached or the advance is non-zero.</p><p>In the following image, we use a dotless i with a combining tilde over it, which
+is wider than the dotless i. The four scenarios show how positioning the tilde
+and setting its advance controls the origin and advance of the attached cluster:</p><div class="informalfigure"><div class="mediaobject"><img src="guardspace.png" alt="guardspace.png" /></div></div><p>Each line shows the two glyphs as they are designed with the origin and advance
+(if any). The third element on the line is the combined cluster. Again the
+origin and advance for the cluster is shown with solid lines and any subglyph
+origins and advances that don’t coincide with a solid line, are shown dotted.
+Notice that we don’t show the implied attachment point used to attach the tilde
+to the dotless i.</p><p>The first line shows the diacritic as if it were a full base character, with
+positive left and right side bearings. When the glyphs attach the origin and the
+advance of the dotless i (shown as dotted lines) are pushed out to the origin
+and advance of the diacritic. Notice that graphite uses the wider advance and
+origin regardless of which component of the cluster they come from.</p><p>The second line shows the other extreme. Here no guard space is inserted. The
+diacritic is to the left of the origin and the advance is zero. The cluster
+origin and advance are taken from the base glyph. The dotted line shows the
+origin and advance of the diacritic.</p><p>These two lines are the most common cases that people want to use for rendering
+diacritics and whether space is automatically inserted to avoid collisions. The
+next two are rarely used but help to explain how the mechanism works.</p><p>The third line has guard space on the left only. For this the diacritic is drawn
+to the right of the origin but the advance width is set to 0. The effect is that
+guard space is inserted on the left, because there is a positive left side
+bearing (or more precisely the origin of the diacritic is to the left of the
+origin of the base when the two glyphs combine). Thus the dotless i origin
+(shown as a dotted line) is pushed out. Actually the whole cluster is pushed to
+the right so that the origin of the diacritic is aligned with where the origin
+of the base glyph was.</p><p>The fourth line gives guard space only after the diacritic. In this case, the
+diacritic is drawn to the left of the origin, and so no left guard space can
+occur, since the origin of the diacritic is to the right of the dotless i. The
+diacritic has also been drawn so that it finishes at the origin. This ensures
+that the guard space to the right is the same as the advance. It need not be.
+The cluster has the same origin as the base glyph. The base glyph advance is
+shown as a dotted line, which while not necessarily coinciding with the origin
+of the diacritic, will be close. Finally the advance for the cluster is the
+advance from the diacritic.</p><p>Since it is possible to change the advance width of a glyph (or at least for a
+particular instance of a glyph or slot), it is possible to dynamically control
+some of the guard space mechanism within GDL. It is possible to use a rule to
+change from both to or from left only. Likewise it is possible to use a rule to
+change from none to or from right only. But, unfortunately, it is not possible
+to shift glyphs within their drawn space and so switch between both and none,
+purely from GDL.</p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="_hacking"></a>6. Hacking</h2></div></div></div><p>In this section we look at coding conventions and some of the design models used in coding graphiteng.</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_compiling_and_integrating"></a>6.1. Compiling and Integrating</h3></div></div></div><p>To compile the graphite2 library for integration into another application framework, there are some
+useful utilities and also various definitions that need to be defined. The file src/files.mk will create
+three make variables containing lists of files that someone will want to build in order to build
+graphite2 from source as part of an application build. The variable names are controlled by setting
+_NS to a prefix that is then applied to the variable names _SOURCES, _PRIVATE_HEADERS and _PUBLIC_HEADERS.
+All files are listed relative to the variable _BASE (with its _NS expansion prefix). The _MACHINE variable
+with its _NS expansion prefix, must be set to <span class="emphasis"><em>call</em></span> or <span class="emphasis"><em>direct</em></span> depending on which kind of virtual
+machine to use inside the engine. gcc supports direct call, while all other compilers without a computed
+goto should use the call style virtual machine. See src/direct_machine.cpp and src/call_machine.cpp for details.</p><p>Various C preprocessor definitions are also used as part of compiling graphite2:</p><div class="variablelist"><dl class="variablelist"><dt><span class="term">
+GRAPHITE2_EXPORTING
+</span></dt><dd>
+    Needs to be set when building the library source if your are build it as a DLL.
+    When unset the graphite header API will be marked dllimport for use in client code.
+</dd><dt><span class="term">
+GRAPHITE2_STATIC
+</span></dt><dd>
+    If set removes all dllimport or dllexport declspecs on the Graphtie2 API functions and makes them
+    exportable for a clean static library build on Windows.
+</dd><dt><span class="term">
+GRAPHITE2_BUILTINS
+</span></dt><dd>
+    If set this will use gcc or clang <span class="emphasis"><em>builtin intrinsics where appropriate when compilling for
+    some architectures (Intel with SSE4.2 or later and ARMv7a with a NEON capable FPU) this
+    will cause the compiler to emit specialised instructions where it can or fall back to library code.
+    Currently this is only used for </em></span>builtin_popcount and should only be turned when you know the instruction
+    will be emitted as the gcc __builtin_popcount is 2x slower on Intel than Graphite’s own version.
+</dd><dt><span class="term">
+GRAPHITE2_NSEGCACHE
+</span></dt><dd>
+    If set, the segment caching code is not compiled into the library. This can be used to save space
+    if the engine is under space constraints both for code and memory. The default is that this is not
+    defined.
+</dd><dt><span class="term">
+GRAPHITE2_NFILEFACE
+</span></dt><dd>
+    If set, the code to support creating a face directly from a font file is not included in the library.
+    By default this is not set.
+</dd><dt><span class="term">
+GRAPHITE2_NTRACING
+</span></dt><dd>
+    If set, the code to support tracing segment creation and logging to a json output file is not built.
+    However the API remains, it just won’t do anything.
+</dd><dt><span class="term">
+GRAPHITE2_CUSTOM_HEADER
+</span></dt><dd>
+    If set, then the value of this macro will be included as a header in Main.h (in effect, all source files). See Main.h for details.
+</dd></dl></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_floating_point_maths"></a>6.2. Floating point maths</h3></div></div></div><p>On some Intel 32 bit processors, gcc on Linux, will attempt to optimise floating point operations by keeping
+floating point values in 80 bit (or larger) float registers for as long as possible. In some of the floating
+point maths performed for collision detection this results in error accumlating which produces different
+results between 64 bit and 32 bit native code.  The current work around is to pass either -ffloat-store (the
+slow but widely compatible option) or -mfpmath=sse -msse2 (the faster but not as generic), this causes float
+values to be rounded between every opteration or the use of sse float operations which are more strictly
+specified and therfore more predictable across processor generations.
+This has not been observed to be an issue on 32 bit MSVC or Mac 32 bit compilers and is not an issue on ARM 32
+bit either.</p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_thread_safety"></a>6.3. Thread Safety</h3></div></div></div><p>The Graphite engine has no locking or thread safe storage. But it is possible to use the Graphite engine in a thread safe manner.
+Face creation must be done in one thread and if <code class="literal">gr_face_preloadAll</code> is set, all font table interaction will occur while the face is being created. That is no calls will be made to the <code class="literal">get_table</code> function or the <code class="literal">release_table</code> function during segment creation. References to the name table, made during calls to <code class="literal">gr_fref_label</code> use an internal copy of that table to ensure that all table interaction is completed after <code class="literal">gr_make_face</code> is called. Note that none of this precludes an application handling thread issues around font table querying and releasing and graphite being used in a lazy table query manner.
+Font objects must be created without hinted advances otherwise the application is responsible for handling the shared <code class="literal">AppHandle</code> resource during segment creation.
+Following this, the face is a read only object and can be shared across different threads, and so segment creation is thread safe. Following creation, segments may be shared across threads so long as they are not modified (using <code class="literal">gr_seg_justify</code> or <code class="literal">gr_slot_linebreak_before</code>).</p><p>Any use of logging will break thread safety. Face specific logging involves holding a file open for as long as logging is active,
+and so segments cannot be made from a shared face across different threads.
+Further, if gr_start_logging is called with NULL for the face, a non locked global library variable is written to which will impact across threads and all face creation. Logging should therefore only be used in a single threaded context.</p><p>Any other use of the graphite engine in a multithreaded context will involve the application in doing its own locking.</p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_memory_allocation"></a>6.4. Memory Allocation</h3></div></div></div><p>While GraphiteNG is written in C++, it is targetted at environments where
+libstdc++ is not present. While this can be problematic since functions used in
+C++ may be arbitrarily placed in libc and libstdc++, there are general
+approaches that can help. To this end we use a mixed memory allocation model.
+For graphiteng classes, we declare our own new() methods and friends, allowing
+the use of C++ new() and all that it gives us in terms of constructors. For
+types that are not classes we use malloc() or the type safe version gralloc().</p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_missing_features"></a>6.5. Missing Features</h3></div></div></div><p>There are various facilities that silgraphite provides that graphite2 as yet does not. The primary motivation in developing graphite2 is that it be use case driven. Thus only those facilities that have a proven use case in the target applications into which graphite is to be integrated will be implemented.</p><div class="variablelist"><dl class="variablelist"><dt><span class="term">
+Ligature Components
+</span></dt><dd>
+    Graphite has the ability to track ligature components and this feature is used in some fonts. But application support has yet to be proven and this is an issue looking for a use case and appropriate API.
+</dd><dt><span class="term">
+SegmentPainter
+</span></dt><dd>
+    Silgraphite provides a helper class to do range selection, cursor hitting and
+    support text editing within a segment. These facilities were not being used in
+    applications. Graphite2 does not preclude the addition of such a helper class
+    if it would be of help to different applications, since it would be layered
+    on top of graphite2.
+</dd><dt><span class="term">
+Hinted Attachment Points
+</span></dt><dd>
+    No use has been made of hinted attachment points, and so until a real use case requirement is proven, these are not in the font api. They can be added should a need be proven.
+</dd></dl></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_hunting_speed"></a>6.6. Hunting Speed</h3></div></div></div><p>Graphite2 is written based on the experience of using SilGraphite. SilGraphite was written primarily to be feature complete in terms of all features that may be needed. Graphite2 takes the experience of using SilGraphite and starts from a use case requirement before a feature is added to the engine. Thus a number of features that have not been used in SilGraphite have been removed, although the design is such that they can be replaced in future.</p><p>In addition, a number of techniques were used to speed up the engine. Some of these are discussed here.</p><div class="variablelist"><dl class="variablelist"><dt><span class="term">
+Slot Stream
+</span></dt><dd>
+    Rather than copying slots from one stream to another, the slot stream is allocated in blocks of slots and the processing is done in place. This means that each pass is executed to completion in sequence rather than using a pull model that SilGraphite uses. In addition, the slot stream is held as a linked list to keep the cost of insertion and deletion down for large segments.
+</dd><dt><span class="term">
+Virtual Machine
+</span></dt><dd>
+    The virtual machine that executes action and condition code is optimised for speed with different versions of the core engine code being used dependent upon compiler. The interpretted code is also pre-analysed for checking purposes and even some commands are added necessary for the inplace editing of the slot stream.
+</dd><dt><span class="term">
+Design Space Positioning
+</span></dt><dd>
+    The nature of the new processing model is that all concrete positioning is done in a final finalisation process. This means that all passes can be run in design space and then only at finalisation positioned in pixel space.
+</dd></dl></div></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="_testing_graphite2"></a>7. Testing Graphite2</h2></div></div></div><p>During development Graphite2 is regularly checked against it’s test suite
+of over a 100 test cases.  This happens automatically on every check-in to the
+default branch thanks to our continuous build server for Windows and Linux.
+Prior to each major release it’s tested using an automated fuzzing system,
+which checks for robustness in the face of corrupted font files.  This set of
+fuzz tests uses valgrind to check for rogue memory accesses and runs several
+thousand tests on each of the 4 major test fonts and takes considerably longer
+to run.
+We also have a growing suite of fuzz test regressions culled from logs
+generated by the above fuzz test system, which can be run with a make command.
+These are intended to be run before bug fix release and other point releases.</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_running_the_tests"></a>7.1. Running the tests</h3></div></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="_running_the_standard_tests"></a>Running the standard tests</h4></div></div></div><p>The standard test suite, the same one run on every checkin to the graphite2
+project repository, can be run with a simple:</p><pre class="screen">make test</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="_runnging_the_fuzztest_regressions"></a>Runnging the fuzztest regressions</h4></div></div></div><pre class="screen">make fuzztest</pre><p>These should be run before point and bug fix releases.</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="_running_the_full_fuzz_test_script"></a>Running the full fuzz test script</h4></div></div></div><pre class="screen">full-fuzz-test.sh script [fuzztest options]</pre><p>This script exercises graphite over 4 scripts Myanmar, Devangari, extended
+Latin and Arabic using 4 fonts and text in the Myanmar, Nepalese, Yoroba and
+Arabic languages.  It uses the <code class="literal">fuzzcomparerender</code> script to fuzz every byte of
+each font with a random value and enforce generous enough runtime and memory
+resource limits to detect infinite loops or memory leaks.
+A successfull run of this script will produce four empty log files. Passing
+<code class="literal">--valgrind</code> to the script this is passed down to the <code class="literal">fuzztest</code> program which
+will run the test program with valgrind, this increases the runtime of script
+considerably.  Normally the script can run all four tests within 24 hours,
+fully loading our 4 core hyperthreaded Xeon/Core i7 system.  Using the valgrind
+option this takes approximately a week on the same system.</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="_running_fuzzcomparerender"></a>Running fuzzcomparerender</h4></div></div></div><pre class="screen">tests/fuzzcomparerender &lt;font name&gt; &lt;text name&gt; [-r] [fuzztest options]</pre><p>The <code class="literal">font name</code> must be the basename of a font file under <code class="literal">tests/fonts</code> and the
+<code class="literal">text name</code> must be the basename of a text file from <code class="literal">tests/texts</code>.  The <code class="literal">-r</code>
+option if present is passed to comparerenderer and tells it the text is
+right-to-left.  Any further options are passed to the fuzztest program, this is
+typically one of <code class="literal">--valgrind</code> or <code class="literal">--input</code>, or less frequently <code class="literal">--passes</code>,
+<code class="literal">--jobs</code> or <code class="literal">--status</code>. See <code class="literal">tests/fuzztest --help</code> for more information.
+This script runs <code class="literal">fuzztest</code> so that it corrupts every byte of the required
+TrueType and Graphite specific tables with a random value, but excludes
+OpenType and AAT related tables. It also imposes a runtime limit of 10 seconds
+(most test should compete in a fraction of a second) and a memory limit 200MiB,
+again a normal run should only use a tiny fraction of that.
+If the <code class="literal">comparerenderer</code> test segfaults, exceeds those limits or returns an
+error value it is logged to a file named on the following pattern:
+<code class="literal">fuzzfont-&lt;font name&gt;-&lt;text name&gt;.log</code>, which is written to the script’s
+current directory.</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="_running_fuzztest"></a>Running fuzztest</h4></div></div></div><pre class="screen">tests/fuzztest --font=font [options] -- &lt;test harness&gt;</pre><p>A multiprocess fuzz test framework that generates corrupt fonts to run a user
+supplied test harness against.  This will check each byte in every table of a
+TTF or subset of it’s tables if specified, by overwriting with a random or user
+specified value. Using the <code class="literal">--input</code> option it can also re-run tests using
+previous output logs as input, it will ignore any line that doesn’t match the
+format of a fuzz line generated by the program, so such input fuzzes can be well
+annotated.  It is this facility that is used to drive the <code class="literal">make fuzztest</code>
+regression check.
+By default this will try to ensure there is always one test harness running on
+each OS reported core at all times, the <code class="literal">--jobs</code> option can be used to limit
+this if need to limit the load.
+Unless told otherwise the program will display a status line inidcating the
+percentage of the tests run so far, the rate of testing and an estimated time
+and date for completion.  Once the status has updated 4-5 times the estimate
+usually settles down to a frequently accurate estimate.</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_adding_fuzz_tests"></a>7.2. Adding fuzz tests</h3></div></div></div><p>Fuzz regression test files are simply copies of the log generated by the
+<code class="literal">fuzzcomparerender</code> script.  Once you have a log that generates a test case, you
+can edit it to produce a more targeted set of fuzz lines (a log can generate
+several different bugs).  You should try to produce a minimal set of fuzz lines
+for that particular test case, however the more fuzz lines that casue the same
+bug the better.</p><p>The test case should be placed as follows:</p><pre class="screen">tests/fuzz-tests/&lt;font name&gt;/&lt;text name&gt;/&lt;bug description&gt;.fuzz</pre><p>where:</p><div class="variablelist"><dl class="variablelist"><dt><span class="term">
+font name
+</span></dt><dd>
+    The name of a font, minus the .ttf extension from tests/fonts.
+</dd><dt><span class="term">
+text name
+</span></dt><dd>
+    The name of a text file, minus .txt extension from tests/texts.
+</dd><dt><span class="term">
+bug description
+</span></dt><dd>
+    A short description of the bug, this cannot contain any ":" characters or
+    other characters forbidden by Windows or Unix filename schemes. For
+    <code class="literal">class::member</code> references use an <code class="literal">_</code> e.g. <code class="literal">class_member</code>.
+</dd></dl></div></div></div></div></body></html>

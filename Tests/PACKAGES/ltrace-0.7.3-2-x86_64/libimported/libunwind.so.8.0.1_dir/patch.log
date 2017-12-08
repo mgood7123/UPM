@@ -1,0 +1,337 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = libunwind.so.8.0.1 > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+libunwind.so.8.0.1 > libc-2.26.so
+
+libunwind.so.8.0.1_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libunwind.so.8.0.1
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 to ./libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so to ./libimported/libunwind.so.8.0.1_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+[SETTING UP]
+
+$1 = ./libimported/libpthread-2.26.so/libpthread-2.26.so/usr/lib/libc-2.25.so
+
+$2 = 4
+
+$3 = libunwind.so.8.0.1 > libpthread-2.26.so > libc-2.25.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libpthread-2.26.so > /usr/lib/libc-2.25.so
+
+libunwind.so.8.0.1 > libpthread-2.26.so > libc-2.25.so
+
+libunwind.so.8.0.1_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libpthread-2.26.so > /usr/lib/libc-2.25.so
+
+[EXECUTING]
+
+file: libunwind.so.8.0.1
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 to ./libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+file: libpthread-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libpthread-2.26.so to ./libimported/libunwind.so.8.0.1_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libpthread-2.26.so_dir/libpthread-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+file: libc-2.25.so
+
+succesfully copied /usr/lib/libc-2.25.so to ./libimported/libunwind.so.8.0.1_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = libunwind.so.8.0.1 > libgcc_s.so.1 > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libgcc_s.so.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+libunwind.so.8.0.1 > libgcc_s.so.1 > libc-2.26.so
+
+libunwind.so.8.0.1_dir/libgcc_s.so.1_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libgcc_s.so.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libunwind.so.8.0.1
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 to ./libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+file: libgcc_s.so.1
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libgcc_s.so.1 to ./libimported/libunwind.so.8.0.1_dir/libgcc_s.so.1_dir/libgcc_s.so.1
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libgcc_s.so.1_dir/libgcc_s.so.1 /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so to ./libimported/libunwind.so.8.0.1_dir/libgcc_s.so.1_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libgcc_s.so.1_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libgcc_s.so.1_dir/libgcc_s.so.1
+
+[SETTING UP]
+
+$1 = ./libimported/liblzma.so.5.2.3/liblzma.so.5.2.3/usr/lib/libc-2.25.so
+
+$2 = 5
+
+$3 = libunwind.so.8.0.1 > liblzma.so.5.2.3 > libpthread-2.26.so > libc-2.25.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/liblzma.so.5.2.3 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libpthread-2.26.so > /usr/lib/libc-2.25.so
+
+libunwind.so.8.0.1 > liblzma.so.5.2.3 > libpthread-2.26.so > libc-2.25.so
+
+libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/liblzma.so.5.2.3 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libpthread-2.26.so > /usr/lib/libc-2.25.so
+
+[EXECUTING]
+
+file: libunwind.so.8.0.1
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 to ./libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+file: liblzma.so.5.2.3
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/liblzma.so.5.2.3 to ./libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3 /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+file: libpthread-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libpthread-2.26.so to ./libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libpthread-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3
+
+file: libc-2.25.so
+
+succesfully copied /usr/lib/libc-2.25.so to ./libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = libunwind.so.8.0.1 > liblzma.so.5.2.3 > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/liblzma.so.5.2.3 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+libunwind.so.8.0.1 > liblzma.so.5.2.3 > libc-2.26.so
+
+libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/liblzma.so.5.2.3 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libunwind.so.8.0.1
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 to ./libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+file: liblzma.so.5.2.3
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/liblzma.so.5.2.3 to ./libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3 /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so to ./libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3
+
+[SETTING UP]
+
+$1 = ./libimported/liblzma.so.5.2.3/liblzma.so.5.2.3/usr/lib/libc-2.25.so
+
+$2 = 5
+
+$3 = libunwind.so.8.0.1 > liblzma.so.5.2.3 > libpthread-2.26.so > libc-2.25.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/liblzma.so.5.2.3 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libpthread-2.26.so > /usr/lib/libc-2.25.so
+
+libunwind.so.8.0.1 > liblzma.so.5.2.3 > libpthread-2.26.so > libc-2.25.so
+
+libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/liblzma.so.5.2.3 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libpthread-2.26.so > /usr/lib/libc-2.25.so
+
+[EXECUTING]
+
+file: libunwind.so.8.0.1
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 to ./libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+file: liblzma.so.5.2.3
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/liblzma.so.5.2.3 to ./libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3 /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+file: libpthread-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libpthread-2.26.so to ./libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libpthread-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3
+
+file: libc-2.25.so
+
+succesfully copied /usr/lib/libc-2.25.so to ./libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = libunwind.so.8.0.1 > liblzma.so.5.2.3 > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/liblzma.so.5.2.3 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+libunwind.so.8.0.1 > liblzma.so.5.2.3 > libc-2.26.so
+
+libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/liblzma.so.5.2.3 > /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: libunwind.so.8.0.1
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libunwind.so.8.0.1 to ./libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+file: liblzma.so.5.2.3
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/liblzma.so.5.2.3 to ./libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3 /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/usr/lib/libc-2.26.so to ./libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libpthread-2.26.so_dir/libpthread-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libpthread-2.26.so_dir/libpthread-2.26.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libgcc_s.so.1_dir/libgcc_s.so.1" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libgcc_s.so.1_dir/libgcc_s.so.1
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libgcc_s.so.1_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libgcc_s.so.1_dir/libgcc_s.so.1"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libpthread-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libpthread-2.26.so"
+
+[FAILED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libpthread-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libpthread-2.26.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libc-2.25.so_dir/libc-2.25.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libpthread-2.26.so_dir/libpthread-2.26.so"
+
+[FAILED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/libunwind.so.8.0.1"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/ltrace-0.7.3-2-x86_64/libimported/libunwind.so.8.0.1_dir/liblzma.so.5.2.3_dir/liblzma.so.5.2.3"
+
+[SUCCEEDED]
+

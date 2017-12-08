@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/universalpackagemanager/UPM/Sources/redir",
+  "command": "/usr/bin/cc  -I/home/universalpackagemanager/UPM/Sources/redir/.    -o CMakeFiles/redir.dir/redir.c.o   -c /home/universalpackagemanager/UPM/Sources/redir/redir.c",
+  "file": "/home/universalpackagemanager/UPM/Sources/redir/redir.c"
+},
+{
+  "directory": "/home/universalpackagemanager/UPM/Sources/redir/tests/relocation/mkdir",
+  "command": "/usr/bin/cc     -o CMakeFiles/mkdir_test.dir/mkdir.c.o   -c /home/universalpackagemanager/UPM/Sources/redir/tests/relocation/mkdir/mkdir.c",
+  "file": "/home/universalpackagemanager/UPM/Sources/redir/tests/relocation/mkdir/mkdir.c"
+}
+]

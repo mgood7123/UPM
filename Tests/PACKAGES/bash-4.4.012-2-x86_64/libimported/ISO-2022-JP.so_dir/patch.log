@@ -1,0 +1,175 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = ISO-2022-JP.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/ISO-2022-JP.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+ISO-2022-JP.so > libc-2.26.so
+
+ISO-2022-JP.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/ISO-2022-JP.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: ISO-2022-JP.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/ISO-2022-JP.so to ./libimported/ISO-2022-JP.so_dir/ISO-2022-JP.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so to ./libimported/ISO-2022-JP.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/ISO-2022-JP.so
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = ISO-2022-JP.so > libJIS.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/ISO-2022-JP.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/libJIS.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+ISO-2022-JP.so > libJIS.so > libc-2.26.so
+
+ISO-2022-JP.so_dir/libJIS.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/ISO-2022-JP.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/libJIS.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: ISO-2022-JP.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/ISO-2022-JP.so to ./libimported/ISO-2022-JP.so_dir/ISO-2022-JP.so
+
+file: libJIS.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/libJIS.so to ./libimported/ISO-2022-JP.so_dir/libJIS.so_dir/libJIS.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libJIS.so_dir/libJIS.so /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/ISO-2022-JP.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so to ./libimported/ISO-2022-JP.so_dir/libJIS.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libJIS.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libJIS.so_dir/libJIS.so
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = ISO-2022-JP.so > libKSC.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/ISO-2022-JP.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/libKSC.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+ISO-2022-JP.so > libKSC.so > libc-2.26.so
+
+ISO-2022-JP.so_dir/libKSC.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/ISO-2022-JP.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/libKSC.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: ISO-2022-JP.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/ISO-2022-JP.so to ./libimported/ISO-2022-JP.so_dir/ISO-2022-JP.so
+
+file: libKSC.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/libKSC.so to ./libimported/ISO-2022-JP.so_dir/libKSC.so_dir/libKSC.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libKSC.so_dir/libKSC.so /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/ISO-2022-JP.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so to ./libimported/ISO-2022-JP.so_dir/libKSC.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libKSC.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libKSC.so_dir/libKSC.so
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = ISO-2022-JP.so > libGB.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/ISO-2022-JP.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/libGB.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+ISO-2022-JP.so > libGB.so > libc-2.26.so
+
+ISO-2022-JP.so_dir/libGB.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/ISO-2022-JP.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/libGB.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: ISO-2022-JP.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/ISO-2022-JP.so to ./libimported/ISO-2022-JP.so_dir/ISO-2022-JP.so
+
+file: libGB.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/libGB.so to ./libimported/ISO-2022-JP.so_dir/libGB.so_dir/libGB.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libGB.so_dir/libGB.so /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/ISO-2022-JP.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so to ./libimported/ISO-2022-JP.so_dir/libGB.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libGB.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libGB.so_dir/libGB.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/ISO-2022-JP.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/ISO-2022-JP.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/ISO-2022-JP.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libJIS.so_dir/libJIS.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/ISO-2022-JP.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libJIS.so_dir/libJIS.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libJIS.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libJIS.so_dir/libJIS.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/ISO-2022-JP.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libKSC.so_dir/libKSC.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/ISO-2022-JP.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libKSC.so_dir/libKSC.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libKSC.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libKSC.so_dir/libKSC.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/ISO-2022-JP.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libGB.so_dir/libGB.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/ISO-2022-JP.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libGB.so_dir/libGB.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libGB.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/ISO-2022-JP.so_dir/libGB.so_dir/libGB.so"
+
+[SUCCEEDED]
+

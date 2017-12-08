@@ -1,0 +1,37 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = EBCDIC-IT.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/EBCDIC-IT.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+EBCDIC-IT.so > libc-2.26.so
+
+EBCDIC-IT.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/EBCDIC-IT.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: EBCDIC-IT.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/EBCDIC-IT.so to ./libimported/EBCDIC-IT.so_dir/EBCDIC-IT.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so to ./libimported/EBCDIC-IT.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/EBCDIC-IT.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/EBCDIC-IT.so_dir/EBCDIC-IT.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/EBCDIC-IT.so_dir/EBCDIC-IT.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/EBCDIC-IT.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/EBCDIC-IT.so_dir/EBCDIC-IT.so"
+
+[SUCCEEDED]
+

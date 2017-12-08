@@ -1,0 +1,8 @@
+/home/universalpackagemanager/UPM/Sources/redir/CMakeFiles/rebuild_cache.dir
+/home/universalpackagemanager/UPM/Sources/redir/CMakeFiles/edit_cache.dir
+/home/universalpackagemanager/UPM/Sources/redir/CMakeFiles/test.dir
+/home/universalpackagemanager/UPM/Sources/redir/CMakeFiles/redir.dir
+/home/universalpackagemanager/UPM/Sources/redir/tests/relocation/mkdir/CMakeFiles/rebuild_cache.dir
+/home/universalpackagemanager/UPM/Sources/redir/tests/relocation/mkdir/CMakeFiles/edit_cache.dir
+/home/universalpackagemanager/UPM/Sources/redir/tests/relocation/mkdir/CMakeFiles/test.dir
+/home/universalpackagemanager/UPM/Sources/redir/tests/relocation/mkdir/CMakeFiles/mkdir_test.dir

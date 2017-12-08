@@ -1,0 +1,83 @@
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 3
+
+$3 = JOHAB.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/JOHAB.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+JOHAB.so > libc-2.26.so
+
+JOHAB.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/JOHAB.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: JOHAB.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/JOHAB.so to ./libimported/JOHAB.so_dir/JOHAB.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so to ./libimported/JOHAB.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/JOHAB.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/JOHAB.so_dir/JOHAB.so
+
+[SETTING UP]
+
+$1 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+$2 = 4
+
+$3 = JOHAB.so > libKSC.so > libc-2.26.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/JOHAB.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/libKSC.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+JOHAB.so > libKSC.so > libc-2.26.so
+
+JOHAB.so_dir/libKSC.so_dir/libc-2.26.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/JOHAB.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/libKSC.so > /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so
+
+[EXECUTING]
+
+file: JOHAB.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/JOHAB.so to ./libimported/JOHAB.so_dir/JOHAB.so
+
+file: libKSC.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/gconv/libKSC.so to ./libimported/JOHAB.so_dir/libKSC.so_dir/libKSC.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/JOHAB.so_dir/libKSC.so_dir/libKSC.so /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/JOHAB.so_dir/JOHAB.so
+
+file: libc-2.26.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libc-2.26.so to ./libimported/JOHAB.so_dir/libKSC.so_dir/libc-2.26.so_dir/libc-2.26.so
+
+patchlib /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/JOHAB.so_dir/libKSC.so_dir/libc-2.26.so_dir/libc-2.26.so /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/JOHAB.so_dir/libKSC.so_dir/libKSC.so
+
+[PATCHING]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/JOHAB.so_dir/JOHAB.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/JOHAB.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/JOHAB.so_dir/JOHAB.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/JOHAB.so_dir/JOHAB.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/JOHAB.so_dir/libKSC.so_dir/libKSC.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/JOHAB.so_dir/JOHAB.so"
+
+[SUCCEEDED]
+
+patching /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/JOHAB.so_dir/libKSC.so_dir/libKSC.so
+
+./patchelf-static --add-needed "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/JOHAB.so_dir/libKSC.so_dir/libc-2.26.so_dir/libc-2.26.so" "/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/libimported/JOHAB.so_dir/libKSC.so_dir/libKSC.so"
+
+[SUCCEEDED]
+

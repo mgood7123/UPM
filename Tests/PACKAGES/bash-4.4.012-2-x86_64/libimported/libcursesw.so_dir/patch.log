@@ -1,0 +1,24 @@
+
+
+[SETTING UP]
+
+$1 = ./usr/lib/libcursesw.so
+
+$2 = 0
+
+$3 = libcursesw.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libcursesw.so
+
+libcursesw.so
+
+libcursesw.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libcursesw.so
+
+[EXECUTING]
+
+file: libcursesw.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/bash-4.4.012-2-x86_64/usr/lib/libcursesw.so to ./libimported/libcursesw.so_dir/libcursesw.so
+

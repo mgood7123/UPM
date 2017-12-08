@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>hexchat.desktop</id>
+  <name>HexChat</name>
+  <developer_name>HexChat</developer_name>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <translation type="gettext">hexchat</translation>
+  <summary>IRC Client</summary>
+  <description>
+    <p>HexChat is an easy to use yet extensible IRC Client. It allows you to securely join multiple networks and talk to users privately or in channels using a customizable interface. You can even transfer files.</p>
+    <p xml:lang="ca">HexChat és un client IRC extensible i fàcil d'utilitzar. Et permet unir-te a múltiples xarxes amb seguretat i parlar amb altres usuaris en privat o en canals utilitzant una interfície personalitzable. Fins i tot pots transferir fitxers.</p>
+    <p xml:lang="cs">HexChat je snadno použitelný, ale rozšířitelný IRC klient. Umožňuje vám se bezpečně připojit k více sítím a psát si s lidmi soukromě nebo v kanálech pomocí přizpůsobitelného prostředí. Dokonce můžete přenášet soubory.</p>
+    <p xml:lang="da">HexChat er en IRC klient, der er nem at bruge, men som alligevel også kan udvides. Den tillader dig sikkert at forbinde til flere netværk og tale med brugere privat eller i kanaler ved brug af en tilpasselig grænseflade. Du kan endda overflytte filer.</p>
+    <p xml:lang="de">HexChar ist ein einfach zu benutzender, aber dennoch erweiterbarer IRC-Client. Er erlaubt es, sicher mehreren Netzwerken beizutreten und sich mithilfe der anpassbaren Benutzerschnittstelle privat oder auch in Kanälen zu unterhalten. Sogar Dateiübertragungen sind möglich.</p>
+    <p xml:lang="en_GB">HexChat is an easy to use yet extensible IRC Client. It allows you to securely join multiple networks and talk to users privately or in channels using a customisable interface. You can even transfer files.</p>
+    <p xml:lang="es">HexChat es un cliente de IRC fácil de usar. Le permite unirse a múltiples redes de manera segura y hablar con los usuarios en privado o en los canales usando una interfaz personalizable. Incluso puede enviar archivos.</p>
+    <p xml:lang="et">HexChat on lihtne ja paljude võimalustega IRC klient. See võimaldab turvaliselt ühenduda mitme võrguda samaaegselt ja suhelda inimestega privaatselt või liituda vestluskanalitega, kasutades selleks kohandatavat rakendust. Samuti on võimalus failivahetuseks.</p>
+    <p xml:lang="fi">HexChat on helppokäyttäinen IRC-asiakassovellus, joka on helposti laajennettavissa. Sen avulla voit liittyä lukuisiin eri verkkoihin ja keskustella muiden kanssa kanavilla tai yksityiskeskusteluissa. Voit myös siirtää tiedostoja muiden käyttäjien kanssa.</p>
+    <p xml:lang="fr">HexChat est un client IRC facile à utiliser et extensible. Il vous permet de rejoindre en toute sécurité plusieurs réseaux et de parler à d'autres utilisateurs en privé ou dans des canaux grâce à une interface personnalisable. Vous pouvez même transférer des fichiers.</p>
+    <p xml:lang="id">HexChat adalah klien IRC yang mudah digunakan tetapi bisa diperluas. Hal ini memungkinkan anda aman dalam bergabung ke beberapa jaringan dan berbicara ke pengguna secara pribadi atau dalam saluran dengan menggunakan antarmuka yang dapat disesuaikan. Anda bahkan dapat mentransfer berkas.</p>
+    <p xml:lang="it">HexChat è un client IRC semplice ed estensibile. Consente di accedere in modo sicuro a più reti e comunicare con altri utenti privatamente o nei canali usando una interfaccia personalizzabile. È inoltre possibile trasferire file.</p>
+    <p xml:lang="ja_JP">HexChatは使いやすく、しかも拡張可能なIRCクライアントです。安全に複数のネットワークに参加でき、カスタマイズ可能なインターフェイスを使用してチャネルのユーザーと話すことが可能、さらにファイルを転送することができます。</p>
+    <p xml:lang="ko">헥스채트는 사용하기 쉽고 확장성이 뛰어난 IRC 클라이언트 입니다. 여러 네트워크에 안전하게 참여할 수 있으며, 여러분이 직접 유연하게 꾸밀 수 있는 인터페이스를 사용하여 다른 사람과 개인적으로 대화하거나 대화방에서 대화할 수 있습니다. 게다가 파일도 보낼 수 있습니다.</p>
+    <p xml:lang="lt">HexChat yra paprastas naudoti IRC klientas, leidžiantis jums saugiai prisijungti prie kelių tinklų, privačiai kalbėtis su atskirais naudotojais arba kanaluose, naudojant tinkinamą sąsają. Jūs netgi galite persiųsti failus.</p>
+    <p xml:lang="nb">HexChat er en enkel og fleksibel IRC-klient. Den gir deg muligheten til å sikkert koble deg til nettverk, ha samtaler i kanaler eller privat med brukere, og dette med et tilpassbart grensesnitt. Du kan også utføre filoverføringer.</p>
+    <p xml:lang="pl">HexChat jest prostym, lecz dowolnie poszerzalnym klientem IRC. Pozwala na bezpieczne dołączenie do wielu sieci i rozmawianie z użytkownikami prywatnie bądź na kanałach. Można nawet przesyłać pliki.</p>
+    <p xml:lang="pt">O HexChat é um Cliente de IRC fácil de usar, mas também fácil de expandir. Ele permite que te juntes seguramente a várias redes e que fales com outros utilizadores em privado ou em canais através de uma interface personalizável. Se quiseres, podes até transferir ficheiros!</p>
+    <p xml:lang="pt_BR">HexChat é um cliente IRC extensível e fácil de usar. Ele permite que, de forma segura, você acesse múltiplas redes e tenha conversas privadas com outros usuários ou ainda em canais públicos, tudo isso através de uma interface personalizável. Você poderá até mesmo transferir arquivos.</p>
+    <p xml:lang="ru">HexChat легкий в использовании расширяемый IRC Клиент. Он позволяет безопасно соединяться со множеством сетей и общаться с пользователями лично или на каналах, используя настраиваемый интерфейс. Вы даже можете передавать файлы.</p>
+    <p xml:lang="sq">HexChat-i është një klient IRC-je i lehtë për t’u përdorur, por prapëseprapë shumë i zgjerueshëm. Ju lejon të hyni në mënyrë të sigurt, në shumë rrjete njëherësh, dhe të bisedoni me përdoruesit privatisht ose në kanale, duke përdorur një ndërfaqe të personalizueshme. Mundeni madje edhe të shkëmbeni kartela.</p>
+    <p xml:lang="sv">HexChat är en lättanvänd men även utbyggbar IRC klient. Den låter dig säkert ansluta till flera nätverk och prata med användare privat eller i kanaler med ett anpassningsbart utseende. Du kan till och med överföra filer.</p>
+    <p xml:lang="zh_CN">HexChat 是一款易于使用的可扩展 IRC 客户端。它允许以安全的方式进入多个网络，与用户进行私密聊天，或者在频道中使用自定义界面，甚至还可以传送文件。</p>
+    <p>HexChat supports features such as: DCC, SASL, proxies, spellcheck, alerts, logging, custom themes, and Python/Perl scripts.</p>
+    <p xml:lang="ca">HexChat té suport per: DCC, SASL, proxis, correcció d'escriptura, notificacions, registre, temes personalitzats i scripts en Python o Perl.</p>
+    <p xml:lang="cs">HexChat podporuje funkce jako DCC, SASL, brány proxy, kontrolu pravopisů, ukládání záznamů, vlastní motivy a skripty v jazycích Python nebo Perl.</p>
+    <p xml:lang="da">HexChat understøtter funktioner som: DCC, SASL, proxyer, stavekontrol, notifikationer, logning, tilpassede temaer og Python/Perl scripts.</p>
+    <p xml:lang="de">HexChat unterstützt Features wie: DCC, SASL, Proxies, Rechtschreibprüfung, Benachrichtigungen, Logging, Benutzerdesigns und Python/Perl-Skripte</p>
+    <p xml:lang="el">Το HexChat υποστηρίζει λειτουργίες όπως: DCC, SASL, διαμεσολαβητές, ορθογραφική διόρθωση, ειδοποιήσεις, logging, προσαρμοσμένα θέματα, και Python/Perl scripts.</p>
+    <p xml:lang="en_GB">HexChat supports features such as: DCC, SASL, proxies, spellcheck, alerts, logging, custom themes, and Python/Perl scripts.</p>
+    <p xml:lang="es">HexChat soporta características como: DCC, SASL, proxies, autocorrector, alertas, registro automático, temas personalizados, y scripts en Python/Perl.</p>
+    <p xml:lang="et">HexChat toetab kasutamiseks: DCC, SASL, hoiatusi, logide koguminst, kohandatud teemasid ja Python/Perl skripte.</p>
+    <p xml:lang="fi">HexChat tukee muun muassa seuraavia ominaisuuksia: DCC, SASL, välityspalvelimet, oikoluku, hälytykset, lokitus, mukautettavat teemat ja Python-/Perl-skriptit.</p>
+    <p xml:lang="fr">HexChat prend en charge des fonctionnalités telles que : DCC, SASL, serveurs mandataires, vérification orthographique, alertes, journalisation, thèmes personnalisés et scripts Python et Perl.</p>
+    <p xml:lang="id">HexChat mendukung fitur seperti: DCC, SASL, proksi, periksa ejaan, peringatan, pencatatan, tema kustom, dan skrip Python/Perl.</p>
+    <p xml:lang="it">HexChat supporta caratteristiche come: DCC, SASL, proxy, controllo ortografico, avvisi, registrazione delle conversazioni, temi personalizzati e script Python e Perl.</p>
+    <p xml:lang="ja_JP">HexChatは、次の機能をサポートしています: DCC, SASL, プロキシ, スペルチェック, アラート, カスタムテーマ, Python/Perl スクリプト</p>
+    <p xml:lang="ko">핵스채트는 DCC, SASL, 프록시 서버, 철자 검사, 경고, 기록, 사용자 정의 테마, 파이썬/펄 스크립트 같은 기능을 지원합니다.</p>
+    <p xml:lang="lt">HexChat palaiko tokias galimybes kaip: DCC, SASL, įgaliotuosius serverius, rašybos tikrinimą, signalizavimą, registravimą, tinkintas temas bei Phyton/Perl scenarijus.</p>
+    <p xml:lang="nb">HexChat støtter funksjoner som: DCC, SASL, mellomtjenere, stavekontroll, varslinger, logging, tilpassbare temaer, samt Python-/Perl-skript.</p>
+    <p xml:lang="pl">HexChat wspiera takie funkcje, jak: DCC, SASL, serwery proxy, sprawdzanie pisowni, alerty, logi, własne motywy i skrypty w Pythonie/Perlu.</p>
+    <p xml:lang="pt">O HexChat suporta funcionalidades como: DCC, SASL, proxies, verificação de erros ortográficos, alertas, registos, temas personalizados, e scripts em Python/Perl.</p>
+    <p xml:lang="pt_BR">HexChat suporta recursos como: DCC, SASL, proxies, corretor ortográfico, alertas, registros, temas personalizados, e scripts em Python/Perl</p>
+    <p xml:lang="ru">HexChat поддерживает следующие функции: DCC, SASL, прокси, проверка орфографии, уведомления, ведение логов, настраиваемые темы и скрипты на Python/Perl.</p>
+    <p xml:lang="sq">HexChat-i mbulon veçori të tilla si: DCC, SASL, ndërmjetës, drejtshkrim, sinjalizime, regjistrim veprimtarie, tema të personalizueshme, dhe programthe Python/Perl.</p>
+    <p xml:lang="sv">HexChat stödjer funktioner som: DCC, SASL, proxytjänster, stavningskontroll, notifikationer, loggning, egna teman, och Python/Perl-skript.</p>
+    <p xml:lang="zh_CN">HexChat 支持以下特性: DCC、SASL、代理、拼写检查、消息提醒、聊天记录、自定义主题和 Python/Perl 脚本。</p>
+  </description>
+  <url type="homepage">http://hexchat.github.io</url>
+  <url type="bugtracker">https://github.com/hexchat/hexchat</url>
+  <url type="translate">https://www.transifex.com/hexchat/hexchat</url>
+  <url type="donation">https://goo.gl/jESZvU</url>
+  <url type="help">https://hexchat.readthedocs.io/en/latest/</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>http://i.imgur.com/tLMguQz.png</image>
+      <caption>Main Chat Window</caption>
+      <caption xml:lang="es">Ventana principal de conversación</caption>
+      <caption xml:lang="nb">Hovedvinduet </caption>
+      <caption xml:lang="sq">Dritarja Kryesore e Fjalosjeve</caption>
+    </screenshot>
+  </screenshots>
+  <releases>
+    <release version="2.12.4" date="2016-12-10">
+      <description>
+        <p>This is another bug fix release:</p>
+        <ul>
+          <li>Fix issue with timers causing ping timeouts</li>
+          <li>Fix building against OpenSSL 1.1</li>
+          <li>Fix /exec output printing invalid utf8</li>
+          <li>Replace doat plugin with an internal command</li>
+          <li>Change how tab colors interact with plugins</li>
+          <li>Enable filtering the beep character by default</li>
+        </ul>
+      </description>
+    </release>
+    <release version="2.12.3" date="2016-10-22">
+      <description>
+        <p>This is a minor bug fix release just cleaning up a few issues:</p>
+        <ul>
+          <li>Fix crash with bad translations</li>
+          <li>Add new mhop command</li>
+          <li>Change ping timeout to 60 by default</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+  <kudos>
+    <kudo>UserDocs</kudo>
+    <kudo>HiDpiIcon</kudo>
+    <kudo>Notifications</kudo>
+  </kudos>
+  <update_contact>tingping_at_fedoraproject.org</update_contact>
+</component>

@@ -1,0 +1,24 @@
+
+
+[SETTING UP]
+
+$1 = ./usr/lib/libncurses++.so
+
+$2 = 0
+
+$3 = libncurses++.so
+
+$4 = /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libncurses++.so
+
+libncurses++.so
+
+libncurses++.so_dir/
+
+/home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libncurses++.so
+
+[EXECUTING]
+
+file: libncurses++.so
+
+succesfully copied /home/universalpackagemanager/UPM/Tests/PACKAGES/zsh-5.4.2-1-x86_64/usr/lib/libncurses++.so to ./libimported/libncurses++.so_dir/libncurses++.so
+
